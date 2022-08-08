@@ -14,7 +14,7 @@ struct LaunchView: View {
     var body: some View {
         if model.authorizationState == .notDetermined {
             
-            OnboardingView
+            OnboardingView()
             
         } else if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
             
@@ -31,5 +31,6 @@ struct LaunchView: View {
 struct LaunchView_Previews: PreviewProvider {
     static var previews: some View {
         LaunchView()
+            .environmentObject(ContentModel())
     }
 }
