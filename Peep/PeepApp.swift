@@ -12,6 +12,7 @@ struct PeepApp: App {
     var body: some Scene {
         WindowGroup {
             LaunchView()
+                .environmentObject(ContentModel())
         }
     }
 }

@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct LaunchView: View {
+    
+    @EnvironmentObject var model: ContentModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if model.authorizationState == .notDetermined {
+            
+            OnboardingView
+            
+        } else if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
+            
+            HomeView()
+            
+        } else if model.authorizationState == .denied {
+            
+            DeniedView()
+            
+        }
     }
 }
 

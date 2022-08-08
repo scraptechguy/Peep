@@ -13,6 +13,8 @@
 		901F83AA28A12372006FDC4F /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901F83A928A12372006FDC4F /* LaunchView.swift */; };
 		901F83AD28A1239B006FDC4F /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901F83AC28A1239B006FDC4F /* ContentModel.swift */; };
 		901F83AF28A123C6006FDC4F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901F83AE28A123C6006FDC4F /* HomeView.swift */; };
+		901F83B328A1659C006FDC4F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901F83B228A1659C006FDC4F /* OnboardingView.swift */; };
+		901F83B528A165A6006FDC4F /* DeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901F83B428A165A6006FDC4F /* DeniedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		901F83A928A12372006FDC4F /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		901F83AC28A1239B006FDC4F /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		901F83AE28A123C6006FDC4F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		901F83B228A1659C006FDC4F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		901F83B428A165A6006FDC4F /* DeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeniedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				901F83A928A12372006FDC4F /* LaunchView.swift */,
-				901F83AE28A123C6006FDC4F /* HomeView.swift */,
+				901F83B128A16377006FDC4F /* Onboarding */,
+				901F83B028A16351006FDC4F /* Home */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -87,6 +92,23 @@
 				901F83AC28A1239B006FDC4F /* ContentModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		901F83B028A16351006FDC4F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				901F83AE28A123C6006FDC4F /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		901F83B128A16377006FDC4F /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				901F83B228A1659C006FDC4F /* OnboardingView.swift */,
+				901F83B428A165A6006FDC4F /* DeniedView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +184,8 @@
 				901F839B28A121AF006FDC4F /* PeepApp.swift in Sources */,
 				901F83AF28A123C6006FDC4F /* HomeView.swift in Sources */,
 				901F83AA28A12372006FDC4F /* LaunchView.swift in Sources */,
+				901F83B528A165A6006FDC4F /* DeniedView.swift in Sources */,
+				901F83B328A1659C006FDC4F /* OnboardingView.swift in Sources */,
 				901F83AD28A1239B006FDC4F /* ContentModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +318,7 @@
 				DEVELOPMENT_TEAM = H4NW3RCM58;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Peep needs to know your location to deliver accurate data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -323,6 +348,7 @@
 				DEVELOPMENT_TEAM = H4NW3RCM58;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Peep needs to know your location to deliver accurate data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
