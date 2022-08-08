@@ -43,7 +43,7 @@ struct Map: UIViewRepresentable {
         uiView.removeAnnotations(uiView.annotations)
         
         // Add new ones based on the place
-        uiView.addAnnotations(self.locations)
+        uiView.showAnnotations(self.locations, animated: true)
         
     }
     
