@@ -9,15 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        /*
-        if model.sundials != 0 {
-            Text("bhahah")
-        } else {
-            ProgressView()
-        }
-         */
-        
-        Text("bhahah")
+        Map()
+            .ignoresSafeArea()
     }
 }
 
