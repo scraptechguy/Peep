@@ -20,10 +20,10 @@ struct HomeView: View {
                 HStack {
                     TextField("Search the globe", text: $search)
                         .padding(.all, 20.0)
-                        .frame(width: 250)
+                        .frame(width: 270)
                         .background(
                             Rectangle()
-                                .fill(.ultraThinMaterial)
+                                .fill(.thinMaterial)
                         )
                         .mask(
                             RoundedRectangle(cornerRadius: 30, style: .continuous)
@@ -34,16 +34,18 @@ struct HomeView: View {
                     }, label: {
                         ZStack {
                             Rectangle()
-                                .fill(.thinMaterial)
+                                .fill(.ultraThinMaterial)
                                 .frame(width: 60, height: 60)
                                 .mask(
                                     RoundedRectangle(cornerRadius: 30, style: .continuous)
                                 )
                             
                             Image(systemName: "gear")
+                                .resizable()
                                 .foregroundColor(.white)
+                                .frame(width: 20, height: 20)
                         }
-                    }).padding(.leading, 10)
+                    })
                 }
                 
                 Spacer()
