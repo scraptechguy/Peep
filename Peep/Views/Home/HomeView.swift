@@ -10,10 +10,12 @@ import SwiftUI
 struct HomeView: View {
     
     @State var search = ""
+    @State var showingSettings = false
+    @State var selectedPlace:Bool?
     
     var body: some View {
         ZStack {
-            Map()
+            Map(selectedPlace: $selectedPlace)
                 .ignoresSafeArea()
             
             VStack {
@@ -30,7 +32,7 @@ struct HomeView: View {
                         )
                     
                     Button(action: {
-                        
+                        showingSettings = true
                     }, label: {
                         ZStack {
                             Rectangle()
@@ -45,7 +47,7 @@ struct HomeView: View {
                                 .foregroundColor(.white)
                                 .frame(width: 20, height: 20)
                         }
-                    })
+                    }).sheet(isPresented: {$showingSettings}()) {SettingsView()}
                 }
                 
                 Spacer()

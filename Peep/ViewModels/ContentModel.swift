@@ -38,6 +38,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
             
         } else if locationManager.authorizationStatus == .denied {
             
+            
+            
         }
     }
     
@@ -46,7 +48,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         let userLocation = locations.first
         
         if userLocation != nil {
+            
             locationManager.stopUpdatingLocation()
+            
         }
     }
 }
