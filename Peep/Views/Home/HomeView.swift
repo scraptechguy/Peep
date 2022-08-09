@@ -11,7 +11,7 @@ struct HomeView: View {
     
     @State var search = ""
     @State var showingSettings = false
-    @State var selectedPlace:Bool?
+    @State var selectedPlace: Place?
     
     var body: some View {
         ZStack {
@@ -28,7 +28,7 @@ struct HomeView: View {
                                 .fill(.thinMaterial)
                         )
                         .mask(
-                            RoundedRectangle(cornerRadius: 30, style: .continuous)
+                            RoundedRectangle(cornerRadius: 22, style: .continuous)
                         )
                     
                     Button(action: {
@@ -39,7 +39,7 @@ struct HomeView: View {
                                 .fill(.ultraThinMaterial)
                                 .frame(width: 60, height: 60)
                                 .mask(
-                                    RoundedRectangle(cornerRadius: 30, style: .continuous)
+                                    RoundedRectangle(cornerRadius: 22, style: .continuous)
                                 )
                             
                             Image(systemName: "gear")

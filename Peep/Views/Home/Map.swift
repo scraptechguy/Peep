@@ -11,7 +11,7 @@ import MapKit
 struct Map: UIViewRepresentable {
     
     @EnvironmentObject var model: ContentModel
-    @Binding var selectedPlace:Bool?
+    @Binding var selectedPlace: Place?
     
     var locations:[MKPointAnnotation] {
         
