@@ -11,6 +11,9 @@ import CoreLocation
 
 class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     
+    
+    // MARK: Location
+    
     var locationManager = CLLocationManager()
 
     @Published var authorizationState = CLAuthorizationStatus.notDetermined
