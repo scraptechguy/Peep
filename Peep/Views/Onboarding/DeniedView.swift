@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DeniedView: View {
+    @EnvironmentObject var model: ContentModel
+    
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
@@ -20,15 +22,17 @@ struct DeniedView: View {
                     .foregroundColor(Color("Font"))
                     .multilineTextAlignment(.center)
                 
-                Text("He'll use it wisely")
-                    .font(.system(size: 12))
-                    .foregroundColor(Color("Font"))
-            }
-            
-            VStack {
-                Spacer()
-                
-                
+                HStack {
+                    Text("He'll use it wisely... ")
+                        .font(.system(size: 12))
+                        .foregroundColor(Color("Font"))
+                    
+                    Link(destination: URL(string: "https://youtu.be/dQw4w9WgXcQ")!) {
+                        Text("**Privacy Policy**")
+                            .font(.system(size: 12))
+                            .foregroundColor(Color("Font"))
+                    }
+                }
             }
         }
     }
@@ -37,5 +41,6 @@ struct DeniedView: View {
 struct DeniedView_Previews: PreviewProvider {
     static var previews: some View {
         DeniedView()
+            .environmentObject(ContentModel())
     }
 }
