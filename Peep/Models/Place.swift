@@ -16,11 +16,12 @@ class Place: Decodable, Identifiable, ObservableObject {
     
     enum CodingKeys: String, CodingKey {
         
-        case id
-        case name
-        case location
-        case coordinates
+        case id = "id"
+        case name = "name"
+        case location = "location"
+        case coordinates = "coordinates"
         
+        // TODO: Add actual coding keys
     }
 }
 
