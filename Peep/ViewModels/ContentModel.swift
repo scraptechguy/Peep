@@ -19,14 +19,20 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var authorizationState = CLAuthorizationStatus.notDetermined
     
     override init() {
+        
         // Init method of NSObject
         super.init()
         
         // Make ContentModel the delegate of the location manager
         locationManager.delegate = self
         
-        // Request permission
+    }
+    
+    // Request permission
+    func requestGeolocationPermission() {
+        
         locationManager.requestWhenInUseAuthorization()
+        
     }
     
     // MARK - Location Manager Delegate Methods
