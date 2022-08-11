@@ -9,7 +9,28 @@ import SwiftUI
 
 struct DeniedView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color("Background").ignoresSafeArea()
+            
+            VStack {
+                Image("broken_initial")
+                
+                Text("Peep needs to **track your location** in order for the app to **work**")
+                    .padding(25)
+                    .foregroundColor(Color("Font"))
+                    .multilineTextAlignment(.center)
+                
+                Text("He'll use it wisely")
+                    .font(.system(size: 12))
+                    .foregroundColor(Color("Font"))
+            }
+            
+            VStack {
+                Spacer()
+                
+                
+            }
+        }
     }
 }
 
