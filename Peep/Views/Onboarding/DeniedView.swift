@@ -27,7 +27,7 @@ struct DeniedView: View {
                         .font(.system(size: 12))
                         .foregroundColor(Color("Font"))
                     
-                    Link(destination: URL(string: "https://youtu.be/dQw4w9WgXcQ")!) {
+                    Link(destination: URL(string: "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md")!) {
                         Text("**Privacy Policy**")
                             .font(.system(size: 12))
                             .foregroundColor(Color("Font"))
