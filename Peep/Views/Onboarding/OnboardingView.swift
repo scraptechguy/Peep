@@ -12,7 +12,7 @@ struct OnboardingView: View {
     
     let screenSize: CGRect = UIScreen.main.bounds
     
-    @State private var tabSelection = 0
+    @State private var tabSelection = 2
     
     var body: some View {
         ZStack {
@@ -56,6 +56,7 @@ struct OnboardingView: View {
             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 .frame(height: screenSize.width / 0.9)
             
+            
             VStack {
                 Spacer()
                 
@@ -66,9 +67,18 @@ struct OnboardingView: View {
                         }
                     }, label: {
                         Text("Let's go!")
-                            .padding(.bottom, 40)
+                            .padding(10)
                             .font(.system(size: 25))
                             .foregroundColor(Color("Font"))
+                            .frame(width: screenSize.width / 1.2)
+                            .background(.ultraThinMaterial)
+                            .background(
+                                Image("Blob")
+                                    .scaleEffect(1.2)
+                            )
+                            .mask(
+                                RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            )
                     })
                 } else if tabSelection == 1 {
                     Button(action: {
@@ -77,33 +87,55 @@ struct OnboardingView: View {
                         }
                     }, label: {
                         Text("Okay!")
-                            .padding(.bottom, 40)
+                            .padding(10)
                             .font(.system(size: 25))
                             .foregroundColor(Color("Font"))
+                            .frame(width: screenSize.width / 1.2)
+                            .background(.ultraThinMaterial)
+                            .background(
+                                Image("Blob")
+                                    .scaleEffect(1.2)
+                            )
+                            .mask(
+                                RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            )
                     })
                 } else {
-                    ZStack {
-                        Button(action: {
-                            model.requestGeolocationPermission()
-                        }, label: {
-                            Text("Next")
-                                .padding(.bottom, 40)
-                                .font(.system(size: 25))
-                                .foregroundColor(Color("Font"))
-                        })
+                    Button(action: {
+                        model.requestGeolocationPermission()
+                    }, label: {
+                        Text("Next")
+                            .padding(10)
+                            .font(.system(size: 25))
+                            .foregroundColor(Color("Font"))
+                            .frame(width: screenSize.width / 1.2)
+                            .background(.ultraThinMaterial)
+                            .background(
+                                Image("Blob")
+                                    .scaleEffect(1.2)
+                            )
+                            .mask(
+                                RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            )
+                    })
+                }
+            }
+            
+            if tabSelection == 2 {
+                VStack {
+                    Spacer()
+                
+                    HStack(spacing: 0) {
+                        Text("By proceeding you agree to our ")
+                            .font(.system(size: 12))
+                            .foregroundColor(Color("Font"))
                         
-                        HStack(spacing: 0) {
-                            Text("By proceeding you agree to our ")
+                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md")!) {
+                            Text("**Privacy Policy**")
                                 .font(.system(size: 12))
                                 .foregroundColor(Color("Font"))
-                            
-                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md")!) {
-                                Text("**Privacy Policy**")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color("Font"))
-                            }
-                        }.padding(.top, 30)
-                    }
+                        }
+                    }.padding(.bottom, 62)
                 }
             }
         }
