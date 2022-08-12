@@ -12,7 +12,7 @@ struct OnboardingView: View {
     
     let screenSize: CGRect = UIScreen.main.bounds
     
-    @State private var tabSelection = 2
+    @State private var tabSelection = 0
     
     var body: some View {
         ZStack {
@@ -79,7 +79,7 @@ struct OnboardingView: View {
                             .mask(
                                 RoundedRectangle(cornerRadius: 15, style: .continuous)
                             )
-                    })
+                    }).padding(.bottom, 10)
                 } else if tabSelection == 1 {
                     Button(action: {
                         withAnimation {
@@ -99,7 +99,7 @@ struct OnboardingView: View {
                             .mask(
                                 RoundedRectangle(cornerRadius: 15, style: .continuous)
                             )
-                    })
+                    }).padding(.bottom, 10)
                 } else {
                     Button(action: {
                         model.requestGeolocationPermission()
@@ -117,7 +117,7 @@ struct OnboardingView: View {
                             .mask(
                                 RoundedRectangle(cornerRadius: 15, style: .continuous)
                             )
-                    })
+                    }).padding(.bottom, 10)
                 }
             }
             
@@ -135,7 +135,7 @@ struct OnboardingView: View {
                                 .font(.system(size: 12))
                                 .foregroundColor(Color("Font"))
                         }
-                    }.padding(.bottom, 62)
+                    }.padding(.bottom, 69)
                 }
             }
         }
