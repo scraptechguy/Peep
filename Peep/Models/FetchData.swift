@@ -9,12 +9,10 @@ import Foundation
 
 class FetchData: ObservableObject {
     
-    // MARK: Getting data
-    
     @Published var dataList = [DataModel]()
     
     init () {
-        let url = URL(string: "")!
+        let url = URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/json.php")!
         
         URLSession.shared.dataTask(with: url) {(data, response, error) in
             do {
@@ -27,8 +25,8 @@ class FetchData: ObservableObject {
                 } else {
                     print("No data received")
                 }
-            } catch {
-                print("Error")
+            } catch let error {
+                print(error)
             }
         }.resume()
     }

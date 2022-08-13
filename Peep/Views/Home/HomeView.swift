@@ -20,16 +20,16 @@ struct HomeView: View {
         ZStack {
             Map(selectedPlace: $selectedPlace)
                 .ignoresSafeArea()
+                .sheet(item: $selectedPlace) { place in
+                    PlaceDetail()
+                }
             
             VStack {
                 HStack {
                     TextField("Search the globe", text: $search)
                         .padding(.all, 20.0)
                         .frame(width: screenSize.width / 1.35, height: screenSize.width / 6)
-                        .background(
-                            Rectangle()
-                                .fill(.thinMaterial)
-                        )
+                        .background(.ultraThinMaterial)
                         .mask(
                             RoundedRectangle(cornerRadius: 22, style: .continuous)
                         )

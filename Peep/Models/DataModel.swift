@@ -9,8 +9,9 @@ import Foundation
 
 struct DataModel: Codable, Identifiable {
     
-    var id: Int
-    var title: String
-    var body: String
-    
+    var id: String
+    var adresa: String
+    var zdelka: String
+    var zsirka: String
+
 }

@@ -15,9 +15,6 @@ struct DeniedView: View {
             Color("Background").ignoresSafeArea()
             
             VStack {
-                Spacer()
-                Spacer()
-                
                 Image("broken_initial")
                 
                 Text("Peep needs to **track your location** in order for the app to **work**")
@@ -36,44 +33,6 @@ struct DeniedView: View {
                             .foregroundColor(Color("Font"))
                     }
                 }
-                
-                Spacer()
-                
-                HStack {
-                    Image("Blob")
-                        .resizable()
-                        .scaleEffect(2)
-                        .mask(Circle())
-                        .frame(width: 8, height: 8)
-                    
-                    Text("Open iPhone **Settings**")
-                        .font(.system(size: 15))
-                }
-                
-                HStack {
-                    Image("Blob")
-                        .resizable()
-                        .scaleEffect(2)
-                        .mask(Circle())
-                        .frame(width: 8, height: 8)
-                    
-                    Text("Scroll till you see **Peep**")
-                        .font(.system(size: 15))
-                }
-                
-                HStack {
-                    Image("Blob")
-                        .resizable()
-                        .scaleEffect(2)
-                        .mask(Circle())
-                        .frame(width: 8, height: 8)
-                    
-                    Text("**Allow** location use")
-                        .font(.system(size: 15))
-                        .multilineTextAlignment(.center)
-                }
-                
-                Spacer()
             }
         }
     }

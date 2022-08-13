@@ -14,7 +14,7 @@ struct SettingsView: View {
     var body: some View {
         List(data.dataList) { x in
             VStack {
-                Text(x.title)
+                Text("Hello world")
             }
         }
     }
