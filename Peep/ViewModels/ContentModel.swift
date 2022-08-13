@@ -17,6 +17,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     var locationManager = CLLocationManager()
 
     @Published var authorizationState = CLAuthorizationStatus.notDetermined
+    @Published var placemark: CLPlacemark?
     
     override init() {
         
@@ -58,7 +59,21 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         
         if userLocation != nil {
             
+            // Stop updating location after received once
             locationManager.stopUpdatingLocation()
+            
+            // Get the placemark of the user
+            let geoCoder = CLGeocoder()
+            
+            geoCoder.reverseGeocodeLocation(userLocation!) { (placemarks, error) in
+                
+                // Check for errors
+                if error == nil && placemarks != nil {
+                    
+                    self.placemark = placemarks?.first
+                    
+                }
+            }
             
         }
     }

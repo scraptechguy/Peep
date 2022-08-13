@@ -12,9 +12,13 @@ struct SettingsView: View {
     @ObservedObject var data = FetchData()
     
     var body: some View {
-        List(data.dataList) { x in
+        ZStack {
+            Color("Background").ignoresSafeArea()
+            
             VStack {
-                Text("Hello world")
+                Text("Sloveč 1")
+                    .font(.system(size: 30))
+                    .foregroundColor(Color("Font"))
             }
         }
     }
@@ -23,5 +27,6 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .preferredColorScheme(.dark)
     }
 }

@@ -11,7 +11,8 @@ struct HomeView: View {
     
     let screenSize: CGRect = UIScreen.main.bounds
     
-    @State var search = ""
+    @EnvironmentObject var model: ContentModel
+    
     @State var showingSettings = false
     @State var selectedPlace: DataModel?
     @State var isRotated = false
@@ -26,13 +27,20 @@ struct HomeView: View {
             
             VStack {
                 HStack {
-                    TextField("Search the globe", text: $search)
-                        .padding(.all, 20.0)
-                        .frame(width: screenSize.width / 1.35, height: screenSize.width / 6)
-                        .background(.ultraThinMaterial)
-                        .mask(
-                            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                        )
+                    ZStack(alignment: .leading) {
+                        Rectangle()
+                            .fill(.thinMaterial)
+                            .frame(width: screenSize.width / 1.35, height: screenSize.width / 6)
+                            .mask(
+                                RoundedRectangle(cornerRadius: 22, style: .continuous)
+                            )
+                        
+                        HStack {
+                            Image(systemName: "location")
+                            
+                            Text(model.placemark?.locality ?? "Loading...")
+                        }.padding(.leading, 22)
+                    }
                     
                     Button(action: {
                         showingSettings = true
@@ -64,5 +72,6 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .preferredColorScheme(.dark)
+            .environmentObject(ContentModel())
     }
 }

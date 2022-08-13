@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    
     @EnvironmentObject var model: ContentModel
     
     let screenSize: CGRect = UIScreen.main.bounds
