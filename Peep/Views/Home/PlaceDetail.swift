@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct PlaceDetail: View {
+    var place: DataModel
+    
     var body: some View {
-        Rectangle()
-            .frame(width: 200, height: 200)
-    }
-}
-
-struct PlaceDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        PlaceDetail()
+        VStack {
+            Text(place.adresa ?? "")
+                .foregroundColor(Color("Font"))
+        }
     }
 }

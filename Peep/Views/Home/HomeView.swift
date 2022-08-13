@@ -13,7 +13,7 @@ struct HomeView: View {
     
     @State var search = ""
     @State var showingSettings = false
-    @State var selectedPlace: Place?
+    @State var selectedPlace: DataModel?
     @State var isRotated = false
     
     var body: some View {
@@ -21,7 +21,7 @@ struct HomeView: View {
             Map(selectedPlace: $selectedPlace)
                 .ignoresSafeArea()
                 .sheet(item: $selectedPlace) { place in
-                    PlaceDetail()
+                    PlaceDetail(place: place)
                 }
             
             VStack {

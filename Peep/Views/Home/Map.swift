@@ -12,18 +12,26 @@ struct Map: UIViewRepresentable {
     
     @EnvironmentObject var model: ContentModel
     @ObservedObject var data = FetchData()
-    @Binding var selectedPlace: Place?
+    @Binding var selectedPlace: DataModel?
     
     var locations:[MKPointAnnotation] {
         
         var annotations = [MKPointAnnotation]()
         
         for place in data.dataList {
-            var a = MKPointAnnotation()
-            a.coordinate = CLLocationCoordinate2D(latitude: Double(place.zsirka) ?? 0.0, longitude: Double(place.zdelka) ?? 0.0)
-            a.title = place.adresa
             
-            annotations.append(a)
+            // If the place does have lat and long, create an annotation
+            if let lat = place.zsirka, let long = place.zdelka {
+                
+                
+                // Create an annotation
+                let a = MKPointAnnotation()
+                a.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(long)!)
+                a.title = place.adresa ?? ""
+                
+                annotations.append(a)
+                
+            }
         }
         
         return annotations
@@ -107,8 +115,18 @@ struct Map: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             
             // TODO: User tapped on the annotation even handling
-            view.annotation?.title
+            
+            for place in map.data.dataList {
+                
+                if place.adresa == view.annotation?.title {
+                    
+                    map.selectedPlace = place
+                    return
+                    
+                }
+            }
         }
         
     }
 }
+
