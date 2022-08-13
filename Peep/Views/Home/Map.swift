@@ -11,17 +11,20 @@ import MapKit
 struct Map: UIViewRepresentable {
     
     @EnvironmentObject var model: ContentModel
+    @ObservedObject var data = FetchData()
     @Binding var selectedPlace: Place?
     
     var locations:[MKPointAnnotation] {
         
         var annotations = [MKPointAnnotation]()
         
-        var a = MKPointAnnotation()
-        a.coordinate = CLLocationCoordinate2D(latitude: 37.773972, longitude: -122.431297)
-        a.title = "San Francisco"
-        
-        annotations.append(a)
+        for place in data.dataList {
+            var a = MKPointAnnotation()
+            a.coordinate = CLLocationCoordinate2D(latitude: Double(place.zsirka) ?? 0.0, longitude: Double(place.zdelka) ?? 0.0)
+            a.title = place.adresa
+            
+            annotations.append(a)
+        }
         
         return annotations
     }
@@ -104,7 +107,7 @@ struct Map: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             
             // TODO: User tapped on the annotation even handling
-            
+            view.annotation?.title
         }
         
     }
