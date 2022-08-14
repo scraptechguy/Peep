@@ -29,7 +29,7 @@ struct HomeView: View {
                 HStack {
                     ZStack(alignment: .leading) {
                         Rectangle()
-                            .fill(.thinMaterial)
+                            .fill(.ultraThinMaterial)
                             .frame(width: screenSize.width / 1.35, height: screenSize.width / 6)
                             .mask(
                                 RoundedRectangle(cornerRadius: 22, style: .continuous)
@@ -47,7 +47,7 @@ struct HomeView: View {
                     }, label: {
                         ZStack {
                             Rectangle()
-                                .fill(.ultraThinMaterial)
+                                .fill(.thinMaterial)
                                 .frame(width: screenSize.width / 6, height: screenSize.width / 6)
                                 .mask(
                                     RoundedRectangle(cornerRadius: 22, style: .continuous)
