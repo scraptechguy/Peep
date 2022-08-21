@@ -62,6 +62,8 @@ struct Map: UIViewRepresentable {
     
     static func dismantleUIView(_ uiView: MKMapView, coordinator: ()) {
         
+        uiView.removeAnnotations(uiView.annotations)
+        
     }
     
     
