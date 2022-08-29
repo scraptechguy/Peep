@@ -13,9 +13,8 @@ struct HomeView: View {
     
     @EnvironmentObject var model: ContentModel
     
-    @State var showingSettings = false
+    @State private var showingSettings = false
     @State var selectedPlace: DataModel?
-    @State var isRotated = false
     
     var body: some View {
         ZStack {
@@ -57,7 +56,6 @@ struct HomeView: View {
                                 .resizable()
                                 .frame(width: 25, height: 25)
                                 .foregroundColor(.white)
-                                .rotationEffect(Angle.degrees(isRotated ? 360 : 0))
                         }
                     }).sheet(isPresented: {$showingSettings}()) {SettingsView()}
                 }

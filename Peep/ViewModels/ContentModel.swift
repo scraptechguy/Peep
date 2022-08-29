@@ -10,7 +10,7 @@ import SwiftUI
 import CoreLocation
 
 class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
-    
+    @Published var list = ["a", "b", "c"]
     
     // MARK: Location
     
