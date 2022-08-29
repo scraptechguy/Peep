@@ -29,10 +29,8 @@ struct PlaceDetail: View {
                             .padding()
                             .font(.system(size: 25))
                             .foregroundColor(Color("Font"))
-                            .frame(width: screenSize.width / 0.1)
                             .lineLimit(1)
-                            .background(.ultraThinMaterial)
-                    }
+                    }.background(.ultraThinMaterial)
                 }
             }
                         
