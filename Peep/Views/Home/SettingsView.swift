@@ -172,56 +172,49 @@ struct SettingsView: View {
                         .padding([.top, .leading])
                         .padding(.bottom, 8)
                     
-                    VStack(alignment: .leading) {
-                        Divider()
-                        
-                        HStack(spacing: 20) {
-                            Text("Azimuth: ")
-                                .foregroundColor(Color("Font"))
-                                .frame(width: 100)
+                    VStack(alignment: .center) {
+                        HStack {
+                            Spacer()
                             
-                            Text("10")
-                                .bold()
-                                .foregroundColor(Color("Font"))
-                        }.padding(.leading)
-                        
-                        Divider()
-                        
-                        HStack(spacing: 20) {
-                            Text("Built: ")
-                                .foregroundColor(Color("Font"))
-                                .frame(width: 100)
+                            VStack {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(Color("Item"))
+                                        .frame(width: 120, height: 120)
+                                    
+                                    Image(systemName: "sun.max.fill")
+                                        .frame(width: 20)
+                                        .foregroundColor(Color("Item"))
+                                        .padding()
+                                }
+                                
+                                Text("Azimuth")
+                                    .font(.system(size: 10))
+                                    .foregroundColor(Color("Font"))
+                            }
                             
-                            Text("1900")
-                                .bold()
-                                .foregroundColor(Color("Font"))
-                        }.padding(.leading)
-                        
-                        Divider()
-                        
-                        HStack(spacing: 20) {
-                            Text("Evc: ")
-                                .foregroundColor(Color("Font"))
-                                .frame(width: 100)
+                            Spacer()
                             
-                            Text("NB 9")
-                                .bold()
-                                .foregroundColor(Color("Font"))
-                        }.padding(.leading)
-                        
-                        Divider()
-                        
-                        HStack(spacing: 20) {
-                            Text("Website: ")
-                                .foregroundColor(Color("Font"))
-                                .frame(width: 100)
+                            VStack {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(Color("Item"))
+                                        .frame(width: 120, height: 120)
+                                    
+                                    Image(systemName: "sun.max.fill")
+                                        .frame(width: 20)
+                                        .foregroundColor(Color("Item"))
+                                        .padding()
+                                }
+                                
+                                Text("Azimuth")
+                                    .font(.system(size: 10))
+                                    .foregroundColor(Color("Font"))
+                            }
                             
-                            Text("https://astro.troja.mff.cuni.cz/mira/sh/json2.php")
-                                .lineLimit(1)
-                        }.padding(.leading)
-                        
-                        Divider()
-                    }
+                            Spacer()
+                        }.padding(.top, 5)
+                    }.frame(width: screenSize.width)
                 }.padding(.top)
             }
         }

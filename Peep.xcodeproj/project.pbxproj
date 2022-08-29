@@ -16,6 +16,10 @@
 		901F83B328A1659C006FDC4F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901F83B228A1659C006FDC4F /* OnboardingView.swift */; };
 		901F83B528A165A6006FDC4F /* DeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901F83B428A165A6006FDC4F /* DeniedView.swift */; };
 		9050070A28BCE70800E64E92 /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050070928BCE70800E64E92 /* DirectionsView.swift */; };
+		9050071528BD49D200E64E92 /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071428BD49D200E64E92 /* StateView.swift */; };
+		9050071728BD49DA00E64E92 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071628BD49DA00E64E92 /* TypeView.swift */; };
+		9050071928BD49EA00E64E92 /* PointerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071828BD49EA00E64E92 /* PointerView.swift */; };
+		9050071B28BD49F900E64E92 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071A28BD49F900E64E92 /* DialView.swift */; };
 		90A625CA28A556F7009D9D8A /* SomethingWentWrong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A625C928A556F7009D9D8A /* SomethingWentWrong.swift */; };
 		90A625CC28A7A187009D9D8A /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A625CB28A7A187009D9D8A /* FetchData.swift */; };
 		90A625CE28A7A1D1009D9D8A /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A625CD28A7A1D1009D9D8A /* DataModel.swift */; };
@@ -36,6 +40,10 @@
 		901F83B228A1659C006FDC4F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		901F83B428A165A6006FDC4F /* DeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeniedView.swift; sourceTree = "<group>"; };
 		9050070928BCE70800E64E92 /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
+		9050071428BD49D200E64E92 /* StateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
+		9050071628BD49DA00E64E92 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
+		9050071828BD49EA00E64E92 /* PointerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerView.swift; sourceTree = "<group>"; };
+		9050071A28BD49F900E64E92 /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
 		90A625C928A556F7009D9D8A /* SomethingWentWrong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomethingWentWrong.swift; sourceTree = "<group>"; };
 		90A625CB28A7A187009D9D8A /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		90A625CD28A7A1D1009D9D8A /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -117,10 +125,9 @@
 			isa = PBXGroup;
 			children = (
 				901F83AE28A123C6006FDC4F /* HomeView.swift */,
-				90B36AA928A28746001C738C /* PlaceDetail.swift */,
 				90B36AA528A17A55001C738C /* Map.swift */,
 				90B36AA728A264AA001C738C /* SettingsView.swift */,
-				9050070928BCE70800E64E92 /* DirectionsView.swift */,
+				9050070B28BD48F500E64E92 /* Detail */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -132,6 +139,19 @@
 				901F83B428A165A6006FDC4F /* DeniedView.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		9050070B28BD48F500E64E92 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				9050070928BCE70800E64E92 /* DirectionsView.swift */,
+				90B36AA928A28746001C738C /* PlaceDetail.swift */,
+				9050071828BD49EA00E64E92 /* PointerView.swift */,
+				9050071628BD49DA00E64E92 /* TypeView.swift */,
+				9050071428BD49D200E64E92 /* StateView.swift */,
+				9050071A28BD49F900E64E92 /* DialView.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		90A625C828A556D2009D9D8A /* Helpers */ = {
@@ -222,16 +242,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9050071528BD49D200E64E92 /* StateView.swift in Sources */,
 				90B36AA628A17A55001C738C /* Map.swift in Sources */,
 				90B36AA828A264AA001C738C /* SettingsView.swift in Sources */,
 				9050070A28BCE70800E64E92 /* DirectionsView.swift in Sources */,
+				9050071B28BD49F900E64E92 /* DialView.swift in Sources */,
 				90A625CA28A556F7009D9D8A /* SomethingWentWrong.swift in Sources */,
 				901F839B28A121AF006FDC4F /* PeepApp.swift in Sources */,
 				90B36AAA28A28746001C738C /* PlaceDetail.swift in Sources */,
 				901F83AF28A123C6006FDC4F /* HomeView.swift in Sources */,
 				90A625CE28A7A1D1009D9D8A /* DataModel.swift in Sources */,
+				9050071928BD49EA00E64E92 /* PointerView.swift in Sources */,
 				901F83AA28A12372006FDC4F /* LaunchView.swift in Sources */,
 				901F83B528A165A6006FDC4F /* DeniedView.swift in Sources */,
+				9050071728BD49DA00E64E92 /* TypeView.swift in Sources */,
 				901F83B328A1659C006FDC4F /* OnboardingView.swift in Sources */,
 				901F83AD28A1239B006FDC4F /* ContentModel.swift in Sources */,
 				90A625CC28A7A187009D9D8A /* FetchData.swift in Sources */,
