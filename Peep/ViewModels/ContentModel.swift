@@ -10,7 +10,8 @@ import SwiftUI
 import CoreLocation
 
 class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
-    @Published var list = ["a", "b", "c"]
+    @Published var showingSettings = false
+    @Published var devLogOn = false
     
     // MARK: Location
     

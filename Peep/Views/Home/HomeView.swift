@@ -13,7 +13,6 @@ struct HomeView: View {
     
     @EnvironmentObject var model: ContentModel
     
-    @State private var showingSettings = false
     @State var selectedPlace: DataModel?
     
     var body: some View {
@@ -42,7 +41,7 @@ struct HomeView: View {
                     }
                     
                     Button(action: {
-                        showingSettings = true
+                        model.showingSettings = true
                     }, label: {
                         ZStack {
                             Rectangle()
@@ -57,7 +56,7 @@ struct HomeView: View {
                                 .frame(width: 25, height: 25)
                                 .foregroundColor(.white)
                         }
-                    }).sheet(isPresented: {$showingSettings}()) {SettingsView()}
+                    }).sheet(isPresented: {$model.showingSettings}()) {SettingsView()}
                 }
                 
                 Spacer()
