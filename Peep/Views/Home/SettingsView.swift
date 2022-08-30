@@ -31,6 +31,10 @@ struct SettingsView: View {
                             })
                         } label: {
                             HStack {
+                                Image("peep_initial")
+                                    .resizable()
+                                    .frame(width: 33, height: 26)
+                                
                                 Group {
                                     VStack {
                                         Text("Peep")
@@ -46,10 +50,6 @@ struct SettingsView: View {
                                             .frame(maxWidth: .infinity)
                                     }
                                 }.frame(maxWidth: .infinity, alignment: .leading)
-                                
-                                Image("peep_initial")
-                                    .resizable()
-                                    .frame(width: 40, height: 35)
                             }.frame(maxWidth: .infinity)
                                 .background(
                                     AnimatedBlobView()
@@ -122,15 +122,11 @@ struct SettingsView: View {
                         }
                     }.foregroundColor(.primary)
                     
-                    Section {
+                    Section(footer: Text("Made with Ɛ> by Rosťa").foregroundColor(.secondary)) {
                         Label("Version 0.0.1", systemImage: "server.rack")
                             .background(
                                 Image("Blob2")
                             )
-                        
-                        Text("Made with Ɛ> by Rosťa")
-                            .font(.footnote)
-                            .foregroundColor(.secondary)
                     }.foregroundColor(.secondary)
                 }.listStyle(.insetGrouped)
                     .navigationTitle("Settings")

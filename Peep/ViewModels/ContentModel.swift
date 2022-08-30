@@ -10,8 +10,13 @@ import SwiftUI
 import CoreLocation
 
 class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
+    
+    // MARK: State vars
+    
+    @AppStorage("devLogOn") var devLogOn = false
+    
     @Published var showingSettings = false
-    @Published var devLogOn = false
+    
     
     // MARK: Location
     

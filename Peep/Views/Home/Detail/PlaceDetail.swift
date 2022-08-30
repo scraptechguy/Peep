@@ -22,9 +22,6 @@ struct PlaceDetail: View {
     
     var body: some View {
         ZStack {
-            Color("Background")
-                .ignoresSafeArea()
-            
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 5) {
                     ScrollView(.horizontal, showsIndicators: false) {

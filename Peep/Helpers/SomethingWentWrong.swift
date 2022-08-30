@@ -13,6 +13,8 @@ struct SomethingWentWrong: View {
             Color("Background").ignoresSafeArea()
             
             VStack {
+                Spacer()
+                
                 Image("broken_initial")
                 
                 Text("*Something* went wrong")
@@ -26,6 +28,9 @@ struct SomethingWentWrong: View {
                     .font(.system(size: 15))
                     .foregroundColor(Color("Font"))
                     .multilineTextAlignment(.center)
+                
+                Spacer()
+                Spacer()
             }
         }
     }

@@ -19,9 +19,6 @@ struct HomeView: View {
         ZStack {
             Map(selectedPlace: $selectedPlace)
                 .ignoresSafeArea()
-                .sheet(item: $selectedPlace) { place in
-                    PlaceDetail(place: place)
-                }
             
             VStack {
                 HStack {
@@ -57,10 +54,24 @@ struct HomeView: View {
                                 .foregroundColor(.white)
                         }
                     }).sheet(isPresented: {$model.showingSettings}()) {SettingsView()}
-                }
+                }.padding(.top, 50)
                 
                 Spacer()
-            }
+                
+                Group {
+                    if selectedPlace != nil {
+                        PlaceDetail(place: selectedPlace!)
+                    } else {
+                        Text("Hahah")
+                    }
+                }.frame(width: screenSize.width, height: 250)
+                    .background(
+                        .thinMaterial
+                    )
+                    .mask(
+                        RoundedRectangle(cornerRadius: 15, style: .continuous)
+                    )
+            }.ignoresSafeArea()
         }
     }
 }
