@@ -12,73 +12,222 @@ struct PlaceDetail: View {
     var place: DataModel
     let screenSize: CGRect = UIScreen.main.bounds
     
+    @EnvironmentObject var model: ContentModel
+    
+    @State private var showingDirections = false
+    @State private var showingType = false
+    @State private var showingPointer = false
+    @State private var showingDial = false
+    @State private var showingState = false
+    
     var body: some View {
-        VStack(spacing: 0) {
-            ZStack {
-                AsyncImage(url: URL(string: "https://astro.mff.cuni.cz/mira/sh/icons/640x640/\(place.obrazky ?? "1_NB_09-DP-1984.jpg")"))
-                    .scaledToFill()
-                    .frame(width: screenSize.width, height: screenSize.width)
-                    .clipped()
-                    .ignoresSafeArea(.all, edges: .top)
-                
-                VStack {
-                    Spacer()
-                        
+        ZStack {
+            Color("Background")
+                .ignoresSafeArea()
+            
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 5) {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        Text(place.adresa ?? "")
-                            .padding()
+                        Text(place.adresa ?? "No address found")
                             .font(.system(size: 25))
                             .foregroundColor(Color("Font"))
-                            .lineLimit(1)
-                    }.background(.ultraThinMaterial)
-                }
-            }
-                        
-            List {
-                Section(header: Text("Additional information")) {
-                    HStack {
-                        Text("Description: ")
-                            .foregroundColor(Color("Font"))
-                        
-                        Text(place.umisteni ?? "")
+                            .padding(.horizontal)
+                    }
+                    
+                    if place.umisteni != "" {
+                        Text(place.umisteni ?? "No description")
                             .font(.system(size: 15))
                             .foregroundColor(.secondary)
+                            .padding(.horizontal)
+                    } else {
+                        Text("No description")
+                            .font(.system(size: 15))
+                            .foregroundColor(.secondary)
+                            .padding(.horizontal)
                     }
                     
-                    HStack {
-                        Text("Website: ")
-                            .foregroundColor(Color("Font"))
-                        
-                        Link(destination: URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/sh.php?rec=\(place.id ?? "16394")")!) {
-                            Text(place.id ?? "No id found")
-                        }
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 18) {
+                            Button(action: {
+                                showingDirections = true
+                            }, label: {
+                                VStack {
+                                    Image(systemName: "car")
+                                        .foregroundColor(Color("Item"))
+                                        .padding()
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .stroke(Color("Item"))
+                                                .frame(width: 52, height: 52)
+                                        )
+                                    
+                                    Text("Directions")
+                                        .font(.system(size: 10))
+                                        .foregroundColor(Color("Font"))
+                                }
+                            }).sheet(isPresented: {$showingDirections}()) {DirectionsView()}
+                            
+                            Button(action: {
+                                showingType = true
+                            }, label: {
+                                VStack {
+                                    Text(place.thodin ?? "?")
+                                        .bold()
+                                        .frame(width: 20)
+                                        .lineLimit(1)
+                                        .foregroundColor(Color("Item"))
+                                        .padding()
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .stroke(Color("Item"))
+                                                .frame(width: 52, height: 52)
+                                        )
+                                    
+                                    Text("Type")
+                                        .font(.system(size: 10))
+                                        .foregroundColor(Color("Font"))
+                                        
+                                }
+                            }).sheet(isPresented: {$showingType}()) {TypeView()}
+                            
+                            Button(action: {
+                                showingPointer = true
+                            }, label: {
+                                VStack {
+                                    Text(place.tukazatel ?? "?")
+                                        .bold()
+                                        .frame(width: 20)
+                                        .lineLimit(1)
+                                        .foregroundColor(Color("Item"))
+                                        .padding()
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .stroke(Color("Item"))
+                                                .frame(width: 52, height: 52)
+                                        )
+                                    
+                                    Text("Pointer")
+                                        .font(.system(size: 10))
+                                        .foregroundColor(Color("Font"))
+                                        
+                                }
+                            }).sheet(isPresented: {$showingPointer}()) {PointerView()}
+                            
+                            Button(action: {
+                                showingDial = true
+                            }, label: {
+                                VStack {
+                                    Text(place.tciselnik ?? "?")
+                                        .bold()
+                                        .frame(width: 20)
+                                        .lineLimit(1)
+                                        .foregroundColor(Color("Item"))
+                                        .padding()
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .stroke(Color("Item"))
+                                                .frame(width: 52, height: 52)
+                                        )
+                                    
+                                    Text("Dial")
+                                        .font(.system(size: 10))
+                                        .foregroundColor(Color("Font"))
+                                        
+                                }
+                            }).sheet(isPresented: {$showingDial}()) {DialView()}
+                            
+                            Button(action: {
+                                showingState = true
+                            }, label: {
+                                VStack {
+                                    Text(place.stav ?? "?")
+                                        .bold()
+                                        .frame(width: 20)
+                                        .lineLimit(1)
+                                        .foregroundColor(Color("Item"))
+                                        .padding()
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .stroke(Color("Item"))
+                                                .frame(width: 52, height: 52)
+                                        )
+                                    
+                                    Text("State")
+                                        .font(.system(size: 10))
+                                        .foregroundColor(Color("Font"))
+                                        
+                                }
+                            }).sheet(isPresented: {$showingState}()) {StateView()}
+                        }.padding([.top, .leading])
                     }
                     
-                    HStack {
-                        Text("Sundial type: ")
-                            .foregroundColor(Color("Font"))
-                        
-                        Text(place.thodin ?? "")
-                            .bold()
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 18) {
+                           // ForEach(place.obrazky.indices, id: \.self) { i in
+                                AsyncImage(url: URL(string: "https://astro.mff.cuni.cz/mira/sh/icons/640x640/\(place.obrazky ?? "??picture")"))
+                                    .scaledToFill()
+                                    .frame(width: 150, height: 150)
+                                    .clipped()
+                                    .mask(
+                                        RoundedRectangle(cornerRadius: 22)
+                                    )
+                        }.padding([.vertical, .leading])
+                        //}
                     }
                     
-                    HStack {
-                        Text("Pointer type: ")
-                            .foregroundColor(Color("Font"))
-                        
-                        Text(place.tukazatel ?? "")
-                            .bold()
-                    }
+                    Text("More information")
+                        .textCase(.uppercase)
+                        .font(.system(size: 15))
+                        .foregroundColor(.secondary)
+                        .padding(.leading)
+                        .padding(.bottom, 8)
                     
-                    HStack {
-                        Text("Dial type: ")
-                            .foregroundColor(Color("Font"))
-                        
-                        Text(place.tciselnik ?? "")
-                            .bold()
-                    }
-                }
+                    VStack(alignment: .center) {
+                        HStack {
+                            Spacer()
+                            
+                            VStack {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(Color("Item"))
+                                        .frame(width: 120, height: 120)
+                                    
+                                    Image(systemName: "sun.max.fill")
+                                        .frame(width: 20)
+                                        .foregroundColor(Color("Item"))
+                                        .padding()
+                                }
+                                
+                                Text("Azimuth")
+                                    .font(.system(size: 10))
+                                    .foregroundColor(Color("Font"))
+                            }
+                            
+                            Spacer()
+                            
+                            VStack {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(Color("Item"))
+                                        .frame(width: 120, height: 120)
+                                    
+                                    Image(systemName: "sun.max.fill")
+                                        .frame(width: 20)
+                                        .foregroundColor(Color("Item"))
+                                        .padding()
+                                }
+                                
+                                Text("Azimuth")
+                                    .font(.system(size: 10))
+                                    .foregroundColor(Color("Font"))
+                            }
+                            
+                            Spacer()
+                        }.padding(.top, 5)
+                    }.frame(width: screenSize.width)
+                }.padding(.top)
             }
         }
     }
 }
+
