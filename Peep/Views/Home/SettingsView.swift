@@ -116,7 +116,7 @@ struct SettingsView: View {
                         }
                     }
                     
-                    Section(header: Text("Developer").foregroundColor(.secondary), footer: Text("Dev log displays what the app is doing on the bottom of your screen").foregroundColor(.secondary)) {
+                    Section(header: Text("Developer settings").foregroundColor(.secondary), footer: Text("Dev log displays what the app is doing on the bottom of your screen").foregroundColor(.secondary)) {
                         Toggle(isOn: $model.devLogOn) {
                             Label("Dev log", systemImage: "pc")
                         }

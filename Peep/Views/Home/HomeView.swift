@@ -21,40 +21,7 @@ struct HomeView: View {
                 .ignoresSafeArea()
             
             VStack {
-                HStack {
-                    ZStack(alignment: .leading) {
-                        Rectangle()
-                            .fill(.ultraThinMaterial)
-                            .frame(width: screenSize.width / 1.35, height: screenSize.width / 6)
-                            .mask(
-                                RoundedRectangle(cornerRadius: 22, style: .continuous)
-                            )
-                        
-                        HStack {
-                            Image(systemName: "location")
-                            
-                            Text(model.placemark?.locality ?? "Loading...")
-                        }.padding(.leading, 22)
-                    }
-                    
-                    Button(action: {
-                        model.showingSettings = true
-                    }, label: {
-                        ZStack {
-                            Rectangle()
-                                .fill(.thinMaterial)
-                                .frame(width: screenSize.width / 6, height: screenSize.width / 6)
-                                .mask(
-                                    RoundedRectangle(cornerRadius: 22, style: .continuous)
-                                )
-                            
-                            Image(systemName: "gear")
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(.white)
-                        }
-                    }).sheet(isPresented: {$model.showingSettings}()) {SettingsView()}
-                }.padding(.top, 50)
+                NavigationBar()
                 
                 Spacer()
                 
