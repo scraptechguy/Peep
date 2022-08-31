@@ -47,7 +47,7 @@ struct NavigationBar: View {
                         .foregroundColor(.white)
                 }
             }).sheet(isPresented: {$model.showingSettings}()) {SettingsView()}
-        }.padding(.top, 50)
+        }
     }
 }
 

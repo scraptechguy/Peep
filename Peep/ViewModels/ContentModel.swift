@@ -16,6 +16,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @AppStorage("devLogOn") var devLogOn = false
     
     @Published var showingSettings = false
+    @Published var showingDirections = false
     
     
     // MARK: Location

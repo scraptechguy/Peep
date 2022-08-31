@@ -14,7 +14,6 @@ struct PlaceDetail: View {
     
     @EnvironmentObject var model: ContentModel
     
-    @State private var showingDirections = false
     @State private var showingType = false
     @State private var showingPointer = false
     @State private var showingDial = false
@@ -46,7 +45,7 @@ struct PlaceDetail: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 18) {
                             Button(action: {
-                                showingDirections = true
+                                model.showingDirections = true
                             }, label: {
                                 VStack {
                                     Image(systemName: "car")
@@ -62,7 +61,7 @@ struct PlaceDetail: View {
                                         .font(.system(size: 10))
                                         .foregroundColor(Color("Font"))
                                 }
-                            }).sheet(isPresented: {$showingDirections}()) {DirectionsView()}
+                            }).sheet(isPresented: {$model.showingDirections}()) {DirectionsView(place: place)}
                             
                             Button(action: {
                                 showingType = true

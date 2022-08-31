@@ -21,8 +21,7 @@ struct Map: UIViewRepresentable {
         for place in data.dataList {
             
             // If the place does have lat and long, create an annotation
-            if let lat = place.zsirka, let long = place.zdelka {
-                
+            if let lat = place.zsirka, let long = place.zdelka { 
                 
                 // Create an annotation
                 let a = MKPointAnnotation()
@@ -93,12 +92,12 @@ struct Map: UIViewRepresentable {
             }
             
             // Check for reusable annotations
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "place")
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationReusedId)
             
             if annotationView == nil {
                 
                 // Create new annotation
-                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "place")
+                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: Constants.annotationReusedId)
                 
                 annotationView!.canShowCallout = true
                 annotationView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
