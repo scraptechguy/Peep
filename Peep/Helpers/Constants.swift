@@ -8,5 +8,7 @@
 import Foundation
 
 struct Constants {
+    
     static var annotationReusedId = "place"
+    
 }

@@ -9,10 +9,10 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    let screenSize: CGRect = UIScreen.main.bounds 
-    
     @ObservedObject var data = FetchData()
     @EnvironmentObject var model: ContentModel
+    
+    let screenSize: CGRect = UIScreen.main.bounds
     
     var body: some View {
         ZStack {

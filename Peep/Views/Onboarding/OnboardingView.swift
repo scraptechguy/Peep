@@ -11,9 +11,9 @@ struct OnboardingView: View {
     
     @EnvironmentObject var model: ContentModel
     
-    let screenSize: CGRect = UIScreen.main.bounds
-    
     @State private var tabSelection = 0
+    
+    let screenSize: CGRect = UIScreen.main.bounds
     
     var body: some View {
         ZStack {

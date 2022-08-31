@@ -9,15 +9,15 @@ import SwiftUI
 
 struct PlaceDetail: View {
     
-    var place: DataModel
-    let screenSize: CGRect = UIScreen.main.bounds
-    
     @EnvironmentObject var model: ContentModel
     
     @State private var showingType = false
     @State private var showingPointer = false
     @State private var showingDial = false
     @State private var showingState = false
+    
+    var place: DataModel
+    let screenSize: CGRect = UIScreen.main.bounds
     
     var body: some View {
         ZStack {

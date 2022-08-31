@@ -9,9 +9,9 @@ import SwiftUI
 
 struct NavigationBar: View {
     
-    let screenSize: CGRect = UIScreen.main.bounds
-    
     @EnvironmentObject var model: ContentModel
+    
+    let screenSize: CGRect = UIScreen.main.bounds
     
     var body: some View {
         HStack {
