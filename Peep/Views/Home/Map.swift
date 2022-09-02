@@ -34,6 +34,7 @@ struct Map: UIViewRepresentable {
         }
         
         return annotations
+        
     }
     
     func makeUIView(context: Context) -> MKMapView {

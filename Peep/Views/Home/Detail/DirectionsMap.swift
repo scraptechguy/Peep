@@ -90,6 +90,9 @@ struct DirectionsMap: UIViewRepresentable {
         
     }
     
+    
+    // MARK: Coordinator Class
+    
     func makeCoordinator() -> Coordinator {
         
         return Coordinator()
