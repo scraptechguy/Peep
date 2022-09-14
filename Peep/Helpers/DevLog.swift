@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct DevLog: View {
+    let screenSize: CGRect = UIScreen.main.bounds
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .foregroundColor(.primary)
+        Text("Get Started")
     }
 }
 

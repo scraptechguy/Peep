@@ -18,6 +18,7 @@ struct Map: UIViewRepresentable {
         
         var annotations = [MKPointAnnotation]()
         
+        // Loop through all places
         for place in data.dataList {
             
             // If the place does have lat and long, create an annotation
@@ -55,7 +56,7 @@ struct Map: UIViewRepresentable {
         // Remove all annotations
         uiView.removeAnnotations(uiView.annotations)
         
-        // Add new ones based on the place you're at
+        // Add new ones
         uiView.showAnnotations(self.locations, animated: true)
         
     }
@@ -77,6 +78,7 @@ struct Map: UIViewRepresentable {
     
     class Coordinator: NSObject, MKMapViewDelegate {
         
+        var region = MKCoordinateRegion.self
         var map: Map
         
         init(map: Map) {
@@ -89,15 +91,17 @@ struct Map: UIViewRepresentable {
             
             // Don't treat user as an annotation
             if annotation is MKUserLocation {
+                
                 return nil
+                
             }
             
             // Check for reusable annotations
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationReusedId)
             
+            // If none found, create a new one
             if annotationView == nil {
                 
-                // Create new annotation
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: Constants.annotationReusedId)
                 
                 annotationView!.canShowCallout = true
@@ -111,6 +115,12 @@ struct Map: UIViewRepresentable {
             }
             
             return annotationView
+            
+        }
+        
+        func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+            
+            
             
         }
         

@@ -11,7 +11,7 @@ class FetchData: ObservableObject {
     
     @Published var dataList = [DataModel]()
     
-    init () {
+    init() {
         let url = URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/json2.php")!
         
         URLSession.shared.dataTask(with: url) {(data, response, error) in
