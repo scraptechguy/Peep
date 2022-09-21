@@ -21,54 +21,29 @@ struct SettingsView: View {
             
             NavigationView {
                 List {
-                    Section {
-                        Menu {
-                            Button(action: {
-                                    
-                                }, label: {
-                                    Label("Soon to be account label", systemImage: "sparkles")
-                                        .foregroundColor(.red)
-                            })
-                        } label: {
+                    Section(header: Text("General").foregroundColor(.secondary), footer: Text("Note that selecting many region can affect app performance").foregroundColor(.secondary)) {
+                        NavigationLink(destination: RegionsView()) {
                             HStack {
-                                Image("peep_initial")
-                                    .resizable()
-                                    .frame(width: 33, height: 26)
+                                Label("Regions", systemImage: "globe.europe.africa.fill")
                                 
-                                Group {
-                                    VStack {
-                                        Text("Peep")
-                                            .font(.title2.weight(.semibold))
-                                            .foregroundColor(.primary)
-                                            .lineLimit(1)
-                                            .padding(.horizontal, 10)
-                                            .frame(maxWidth: .infinity)
-                                        
-                                        Text("Peep")
-                                            .font(.footnote)
-                                            .foregroundColor(.secondary)
-                                            .frame(maxWidth: .infinity)
-                                    }
-                                }.frame(maxWidth: .infinity, alignment: .leading)
-                            }.frame(maxWidth: .infinity)
-                                .background(
-                                    AnimatedBlobView()
-                                        .frame(width: 400, height: 414)
-                                        .offset(x: 200, y: 0)
-                                        .scaleEffect(1)
-                                )
-                                .padding()
+                                Spacer()
+                                
+                                Text("\(model.regions[0]), ...")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                                    .frame(width: 120)
+                            }
                         }
-
-                    }
+                    }.foregroundColor(.primary)
                     
                     Section(header: Text("Information").foregroundColor(.secondary)) {
                         NavigationLink(destination: SomethingWentWrong()) {
-                            Label("Feedback", systemImage: "person")
+                            Label("Feedback", systemImage: "leaf")
                         }
                         
                         NavigationLink(destination: SomethingWentWrong()) {
-                            Label("How does it work?", systemImage: "lightbulb")
+                            Label("Privacy policy", systemImage: "person.badge.key")
                         }
                         
                         NavigationLink(destination: SomethingWentWrong()) {
@@ -122,10 +97,13 @@ struct SettingsView: View {
                         }
                     }.foregroundColor(.primary)
                     
-                    Section(footer: Text("Made with Ɛ> by Rosťa").foregroundColor(.secondary)) {
+                    Section(footer: HStack(spacing: 0) { Text("Made with Ɛ> by ").foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}) {
                         Label("Version 0.0.1", systemImage: "server.rack")
                             .background(
-                                Image("Blob2")
+                                AnimatedBlobView()
+                                    .frame(width: 400, height: 414)
+                                    .offset(x: 300, y: 0)
+                                    .scaleEffect(1)
                             )
                     }.foregroundColor(.secondary)
                 }.listStyle(.insetGrouped)
