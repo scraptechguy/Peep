@@ -25,6 +25,7 @@
 		9050071B28BD49F900E64E92 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071A28BD49F900E64E92 /* DialView.swift */; };
 		9050071D28BDF81200E64E92 /* AnimatedBlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071C28BDF81200E64E92 /* AnimatedBlobView.swift */; };
 		9050071F28BE062200E64E92 /* DevLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071E28BE062200E64E92 /* DevLog.swift */; };
+		908D279328D850A200CBB23C /* RegionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908D279228D850A200CBB23C /* RegionsView.swift */; };
 		90A625CA28A556F7009D9D8A /* SomethingWentWrong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A625C928A556F7009D9D8A /* SomethingWentWrong.swift */; };
 		90A625CC28A7A187009D9D8A /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A625CB28A7A187009D9D8A /* FetchData.swift */; };
 		90A625CE28A7A1D1009D9D8A /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A625CD28A7A1D1009D9D8A /* DataModel.swift */; };
@@ -54,6 +55,7 @@
 		9050071A28BD49F900E64E92 /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
 		9050071C28BDF81200E64E92 /* AnimatedBlobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedBlobView.swift; sourceTree = "<group>"; };
 		9050071E28BE062200E64E92 /* DevLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevLog.swift; sourceTree = "<group>"; };
+		908D279228D850A200CBB23C /* RegionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsView.swift; sourceTree = "<group>"; };
 		90A625C928A556F7009D9D8A /* SomethingWentWrong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomethingWentWrong.swift; sourceTree = "<group>"; };
 		90A625CB28A7A187009D9D8A /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		90A625CD28A7A1D1009D9D8A /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				901F83AE28A123C6006FDC4F /* HomeView.swift */,
 				9021FA6828BE3D5E00C56CE7 /* NavigationBar.swift */,
+				908D279228D850A200CBB23C /* RegionsView.swift */,
 				90B36AA728A264AA001C738C /* SettingsView.swift */,
 				90B36AA528A17A55001C738C /* Map.swift */,
 				9050070B28BD48F500E64E92 /* Detail */,
@@ -264,6 +267,7 @@
 				9050071D28BDF81200E64E92 /* AnimatedBlobView.swift in Sources */,
 				9050071B28BD49F900E64E92 /* DialView.swift in Sources */,
 				90A625CA28A556F7009D9D8A /* SomethingWentWrong.swift in Sources */,
+				908D279328D850A200CBB23C /* RegionsView.swift in Sources */,
 				901F839B28A121AF006FDC4F /* PeepApp.swift in Sources */,
 				90B36AAA28A28746001C738C /* PlaceDetail.swift in Sources */,
 				901F83AF28A123C6006FDC4F /* HomeView.swift in Sources */,

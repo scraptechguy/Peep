@@ -15,6 +15,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     @AppStorage("devLogOn") var devLogOn = false
     
+    @Published var regions = ["Czechia south", "Czechia north", "Czechia west", "Czechia east"]
+    @Published var selectedRegions = [4]
     @Published var showingSettings = false
     @Published var showingDirections = false
     
