@@ -24,12 +24,16 @@ struct Map: UIViewRepresentable {
             // If the place does have lat and long, create an annotation
             if let lat = place.zsirka, let long = place.zdelka { 
                 
-                // Create an annotation
-                let a = MKPointAnnotation()
-                a.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(long)!)
-                a.title = place.adresa ?? ""
-                
-                annotations.append(a)
+                // Create annotations only for places within a certain region
+                if Double(lat)! <= 51 && Double(lat)! >= 50 && Double(long)! <= 18 && Double(long)! >= 14 {
+                    
+                    // Create an annotation
+                    let a = MKPointAnnotation()
+                    a.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(long)!)
+                    a.title = place.adresa ?? ""
+                    
+                    annotations.append(a)
+                }
                 
             }
         }
