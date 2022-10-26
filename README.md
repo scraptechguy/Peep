@@ -8,7 +8,7 @@ Watch! is currently in active development
 
 ### Latest release on the App Store: 
 
-<a href="https://youtu.be/dQw4w9WgXcQ" target="_blank"> <img width="250" alt="Download on the App Store" src="https://files.catbox.moe/bpoouz.svg"> </a>
+<a href="" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
 
   - App Store® and the Apple logo® are trademarks of Apple Inc.
 
