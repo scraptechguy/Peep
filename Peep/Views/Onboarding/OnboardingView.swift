@@ -262,13 +262,11 @@ struct OnboardingView: View {
                             .font(.system(size: 14))
                             .foregroundColor(.secondary)
                         
-                        Button(action: {
-                            showLogIn = true
-                        }, label: {
+                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md")!) {
                             Text(privacyButton)
                                 .font(.system(size: 14))
                                 .foregroundColor(Color("Font"))
-                        })
+                        }
                     }.offset(y: screenIsLast ? -12 : 100)
                         .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5), value: screenIsLast)
                         .offset(y: showSignUp ? -size.height * 1.3 : 0)
