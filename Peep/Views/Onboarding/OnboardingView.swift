@@ -12,19 +12,7 @@ struct OnboardingView: View {
     @EnvironmentObject var model: ContentModel
     
     @State var showOnboardingScreens: Bool = false
-    @State var showLogIn: Bool = false
-    @State var showSignUp: Bool = false
     @State var currentIndex: Int = 0
-    
-    @State var status = ""
-    
-    @State var logInEmail = ""
-    @State var logInPassword = ""
-    
-    @State var signUpEmail = ""
-    @State var emailIsValid: Bool = true
-    @State var signUpPassword = ""
-    @State var signUpReenteredPassword = ""
     
     let introHeading: LocalizedStringKey = "introHeading"
     let introText: LocalizedStringKey = "introText"
@@ -63,8 +51,6 @@ struct OnboardingView: View {
             
             NavigationBar()
         }.animation(.interactiveSpring(response: 1.1, dampingFraction: 0.85, blendDuration: 0.85), value: showOnboardingScreens)
-            .animation(.interactiveSpring(response: 1.1, dampingFraction: 0.85, blendDuration: 0.85), value: showLogIn)
-            .animation(.interactiveSpring(response: 1.1, dampingFraction: 0.85, blendDuration: 0.85), value: showSignUp)
             .preferredColorScheme(model.isDarkMode ? .dark : .light)
     }
     
@@ -123,16 +109,14 @@ struct OnboardingView: View {
         
         HStack {
             Button(action: {
-                if !showLogIn && !showSignUp {
-                    if currentIndex > 0 {
-                        
-                        currentIndex -= 1
-                        
-                    } else if currentIndex == 0 {
-                        
-                        showOnboardingScreens.toggle()
-                        
-                    }
+                if currentIndex > 0 {
+                    
+                    currentIndex -= 1
+                    
+                } else if currentIndex == 0 {
+                    
+                    showOnboardingScreens.toggle()
+                    
                 }
             }, label: {
                 Image(systemName: "chevron.left")
@@ -251,8 +235,6 @@ struct OnboardingView: View {
                         }
                         .offset(y: screenIsLast ? -40 : -90)
                         .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5), value: screenIsLast)
-                        .offset(y: showSignUp ? -size.height * 1.3 : 0)
-                        .offset(y: showLogIn ? -size.height * 1.3 : 0)
                 }
                 .overlay(alignment: .bottom) {
                     let screenIsLast = currentIndex == intros.count
@@ -269,8 +251,6 @@ struct OnboardingView: View {
                         }
                     }.offset(y: screenIsLast ? -12 : 100)
                         .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5), value: screenIsLast)
-                        .offset(y: showSignUp ? -size.height * 1.3 : 0)
-                        .offset(y: showLogIn ? -size.height * 1.3 : 0)
                 }
                 .offset(y: showOnboardingScreens ? 0 : size.height)
         }
@@ -304,8 +284,6 @@ struct OnboardingView: View {
                 .offset(x: -size.width * CGFloat(currentIndex - index))
                 .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5).delay(currentIndex == index ? 0 : 0.2).delay(currentIndex == index ? 0.1 : 0), value: currentIndex)
         }.offset(y: -30)
-            .offset(y: showLogIn ? -size.height : 0)
-            .offset(y: showSignUp ? -size.height : 0)
     }
 }
 
