@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  Peep
+
+  Created by Rostislav Brož on 11/18/22.
+  
+*/
+
+// MARK: - Intro
+
+"introHeading" = "Peep says hi!";
+"introText" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+"introButton" = "Let's dive in";
+
+// MARK: - Onboarding
+
+"skipButton" = "Skip";
+
+"onboardingHeading1" = "Don't be a jerk";
+"onboardingText1" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+"onboardingHeading2" = "Be cool af";
+"onboardingText2" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+// MARK: - Welcome
+
+"welcomeHeading" = "And recycle!";
+"welcomeText" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+"nextButton" = "Sign up";
+"welcomeSubtitle" = "Already have an account?";
+"privacyButton" = "Log in";
