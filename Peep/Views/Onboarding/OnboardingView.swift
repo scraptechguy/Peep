@@ -40,9 +40,9 @@ struct OnboardingView: View {
     
     let welcomeHeading: LocalizedStringKey = "welcomeHeading"
     let welcomeText: LocalizedStringKey = "welcomeText"
-    let signUpButton: LocalizedStringKey = "signUpButton"
-    let account: LocalizedStringKey = "account"
-    let logInButton: LocalizedStringKey = "logInButton"
+    let nextButton: LocalizedStringKey = "nextButton"
+    let welcomeSubtitle: LocalizedStringKey = "welcomeSubtitle"
+    let privacyButton: LocalizedStringKey = "privacyButton"
     
     let signUpHeading: LocalizedStringKey = "signUpHeading"
     let signUpPasswordHeading: LocalizedStringKey = "signUpPassword"
@@ -98,10 +98,14 @@ struct OnboardingView: View {
                     .padding(.horizontal, 40)
                     .padding(.vertical)
                     .foregroundColor(.white)
-                    .background {
-                        Capsule()
-                            .fill(Color("AccentColor"))
-                    }
+                    .background(.ultraThinMaterial)
+                    .background(
+                        Image("Blob")
+                            .scaleEffect(1.2)
+                    )
+                    .mask(
+                        RoundedRectangle(cornerRadius: 15, style: .continuous)
+                    )
                     .onTapGesture {
                         showOnboardingScreens.toggle()
                     }
@@ -129,9 +133,6 @@ struct OnboardingView: View {
                         showOnboardingScreens.toggle()
                         
                     }
-                } else {
-                    showLogIn = false
-                    showSignUp = false
                 }
             }, label: {
                 Image(systemName: "chevron.left")
@@ -178,7 +179,8 @@ struct OnboardingView: View {
             Image(intro.imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(height: 250, alignment: .top)
+                .frame(height: 100)
+                .padding(.top, 70)
                 .padding(.horizontal, 20)
                 .offset(x: -size.width * CGFloat(currentIndex - index))
                 .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5).delay(currentIndex == index ? 0.2 : 0).delay(currentIndex == index ? 0.2 : 0), value: currentIndex)
@@ -210,7 +212,7 @@ struct OnboardingView: View {
                             .opacity(!screenIsLast ? 1 : 0)
                         
                         HStack {
-                            Text(signUpButton)
+                            Text(nextButton)
                                 .font(.title3)
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -227,12 +229,19 @@ struct OnboardingView: View {
                         .foregroundColor(.white)
                         .background {
                             RoundedRectangle(cornerRadius: screenIsLast ? 10 : 30, style: screenIsLast ? .continuous : .circular)
-                                .fill(Color("AccentColor"))
+                                .background(.ultraThinMaterial)
+                                .background(
+                                    Image("Blob")
+                                        .scaleEffect(1.2)
+                                )
+                                .mask(
+                                    RoundedRectangle(cornerRadius: 15, style: .continuous)
+                                )
                         }
                         .onTapGesture {
                             if currentIndex == intros.count {
                                 
-                                showSignUp = true
+                                model.requestGeolocationPermission()
                                 
                             } else {
                                 
@@ -249,16 +258,16 @@ struct OnboardingView: View {
                     let screenIsLast = currentIndex == intros.count
                     
                     HStack(spacing: 5) {
-                        Text(account)
+                        Text(welcomeSubtitle)
                             .font(.system(size: 14))
                             .foregroundColor(.secondary)
                         
                         Button(action: {
                             showLogIn = true
                         }, label: {
-                            Text(logInButton)
+                            Text(privacyButton)
                                 .font(.system(size: 14))
-                                .foregroundColor(Color("AccentColor"))
+                                .foregroundColor(Color("Font"))
                         })
                     }.offset(y: screenIsLast ? -12 : 100)
                         .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5), value: screenIsLast)
@@ -274,10 +283,11 @@ struct OnboardingView: View {
     @ViewBuilder
     func WelcomeScreen(size: CGSize, index: Int) -> some View {
         VStack(spacing: 10) {
-            Image("rotty_happy")
+            Image("dangerous_initial")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(height: 250, alignment: .top)
+                .frame(height: 120)
+                .padding(.bottom, 60)
                 .padding(.horizontal, 20)
                 .offset(x: -size.width * CGFloat(currentIndex - index))
                 .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5).delay(currentIndex == index ? 0.2 : 0).delay(currentIndex == index ? 0.1 : 0), value: currentIndex)
