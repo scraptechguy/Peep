@@ -184,7 +184,7 @@ struct OnboardingView: View {
                 .padding(.horizontal, 20)
                 .offset(x: -size.width * CGFloat(currentIndex - index))
                 .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5).delay(currentIndex == index ? 0.2 : 0).delay(currentIndex == index ? 0.2 : 0), value: currentIndex)
-        }
+        }.padding(.bottom, 150)
     }
     
     // MARK: - Onboarding screens
