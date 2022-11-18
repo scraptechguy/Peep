@@ -17,7 +17,7 @@ struct Intro: Identifiable {
 
 var intros: [Intro] = [
 
-    .init(imageName: "rotty_mad", title: "Don't be a jerk"),
-    .init(imageName: "rotty_coolaf", title: "Be cool af"),
+    .init(imageName: "peep_initial", title: "Peep is a good bird"),
+    .init(imageName: "peep_initial", title: "Really good bird"),
 
 ]
