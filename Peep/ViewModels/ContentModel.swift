@@ -14,6 +14,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     // MARK: State vars
     
     @AppStorage("devLogOn") var devLogOn = false
+    @AppStorage("isDarkMode") var isDarkMode = true
     
     @Published var regions = ["Czechia south", "Czechia north", "Czechia west", "Czechia east"]
     @Published var selectedRegions = [4]
