@@ -12,8 +12,8 @@ struct PlaceDetail: View {
     @EnvironmentObject var model: ContentModel
     
     @State private var currentHeight: CGFloat = 200
-    let minHeight: CGFloat = 100
-    let maxHeight: CGFloat = 300
+    let minHeight: CGFloat = 70
+    let maxHeight: CGFloat = 600
     
     @State private var showingType = false
     @State private var showingPointer = false
@@ -270,11 +270,10 @@ struct PlaceDetail: View {
                     
                 } else {
                     
-                    currentHeight -= dragAmount / 6
+                    currentHeight -= dragAmount / 20
                     
                 }
                 
-                currentHeight -= dragAmount
                 prevDragTranslation = value.translation
             }
             .onEnded { value in
