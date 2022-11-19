@@ -1,10 +1,10 @@
-# Peep!
+# Píp
 
-Peep! is an iOS app that keeps track of sundials around the globe, driven by MFFUK's DB
+Píp is an iOS app that keeps track of sundials around the globe, driven by MFFUK's DB
 
 ## Peep! Status 
 
-Watch! is currently in active development
+Píp is currently in active development
 
 ### Latest release on the App Store: 
 
