@@ -19,15 +19,14 @@ struct HomeView: View {
         ZStack {
             Map(selectedPlace: $selectedPlace)
                 .ignoresSafeArea()
-                .sheet(item: $selectedPlace) { place in
-                                   PlaceDetail(place: place)
-                               }
             
             VStack {
                 NavigationBar()
                 
                 Spacer()   
             }
+            
+            PlaceDetail(place: selectedPlace ?? DataModel.init(id: "0"))
         }
     }
 }
