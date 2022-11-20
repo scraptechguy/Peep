@@ -1,6 +1,6 @@
 ## Píp is an iOS app that keeps track of sundials around the globe, driven by MFFUK's DB
 
-Píp is currently in active development
+Píp is currently in active development and is waiting for initial App Store release
 
 ![PeepMockUps1](https://user-images.githubusercontent.com/75474651/202924302-085f5ae3-c3e5-43e6-9f23-3de89f27be68.png)
 
