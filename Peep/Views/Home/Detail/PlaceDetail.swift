@@ -32,6 +32,7 @@ struct PlaceDetail: View {
                 ZStack {
                     Capsule()
                         .frame(width: 40, height: 6)
+                        .foregroundColor(.secondary)
                 }.frame(height: 20)
                     .frame(maxWidth: .infinity)
                     .background(Color.white.opacity(0.00001))
@@ -252,12 +253,11 @@ struct PlaceDetail: View {
                 }
             }.frame(height: currentHeight)
                 .frame(maxWidth: .infinity)
-                .transition(.move(edge: .bottom ))
                 .background {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 30)
-                            .background(.ultraThinMaterial)
-                    }
+                    RoundedRectangle(cornerRadius: 30)
+                        .fill(Color.clear)
+                        .overlay(.ultraThinMaterial)
+                        .mask(RoundedRectangle(cornerRadius: 30))
                 }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea()
