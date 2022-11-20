@@ -14,4 +14,17 @@ Píp is currently in active development and is waiting for initial App Store rel
 
 Click <a href="">here</a> or use the Redeem Code: <b>bla bla bla</b>
 
-## Groundwork
+## About
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/75474651/202924529-86a4beb5-4266-409b-85d5-9f7308d91a94.svg" width="200">
+  
+#### Meet Píp
+
+Píp is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger also). 
+
+**peep** *verb* [I usually + adv/prep ] - to secretly look at something for a short time, usually through a hole
+
+*I saw her peeping into the world of sundials using Píp.*
+
+</div>
