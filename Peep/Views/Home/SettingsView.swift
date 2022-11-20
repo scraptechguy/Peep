@@ -101,7 +101,7 @@ struct SettingsView: View {
                         }
                     }.foregroundColor(.primary)
                     
-                    Section(footer: HStack(spacing: 0) { Text("Made with Ɛ> by ").foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}) {
+                    Section(footer: HStack(spacing: 0) { Text("Made with Ɛ> by ").foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}.padding(.bottom, 60)) {
                         Label("Version 0.0.1", systemImage: "server.rack")
                             .background(
                                 AnimatedBlobView()
