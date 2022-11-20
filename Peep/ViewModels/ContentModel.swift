@@ -21,6 +21,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var showingSettings = false
     @Published var showingDirections = false
     
+    @Published var annotationSelected = false
+    
     
     // MARK: Location
     

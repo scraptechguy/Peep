@@ -58,10 +58,14 @@ struct Map: UIViewRepresentable {
     func updateUIView(_ uiView: MKMapView, context: Context) {
         
         // Remove all annotations
-        uiView.removeAnnotations(uiView.annotations)
+        // uiView.removeAnnotations(uiView.annotations)
         
         // Add new ones
-        uiView.showAnnotations(self.locations, animated: true)
+        if !model.annotationSelected {
+            
+            uiView.showAnnotations(self.locations, animated: true)
+            
+        }
         
     }
     
@@ -76,17 +80,19 @@ struct Map: UIViewRepresentable {
     
     func makeCoordinator() -> Coordinator {
         
-        return Coordinator(map: self)
+        return Coordinator(model: self.model, map: self)
         
     }
     
     class Coordinator: NSObject, MKMapViewDelegate {
         
         var region = MKCoordinateRegion.self
+        var model: ContentModel
         var map: Map
         
-        init(map: Map) {
+        init(model: ContentModel, map: Map) {
             
+            self.model = model
             self.map = map
             
         }
@@ -137,6 +143,7 @@ struct Map: UIViewRepresentable {
                 if place.adresa == view.annotation?.title {
                     
                     map.selectedPlace = place
+                    model.annotationSelected = true
                     return
                     
                 }
