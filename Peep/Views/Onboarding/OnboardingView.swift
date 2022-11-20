@@ -51,7 +51,7 @@ struct OnboardingView: View {
             
             NavigationBar()
         }.animation(.interactiveSpring(response: 1.1, dampingFraction: 0.85, blendDuration: 0.85), value: showOnboardingScreens)
-            .preferredColorScheme(model.isDarkMode ? .dark : .light)
+            .preferredColorScheme(model.isLightMode ? .light : .dark)
     }
     
     // MARK: - Intro screen

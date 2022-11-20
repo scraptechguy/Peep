@@ -257,15 +257,11 @@ struct PlaceDetail: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 30)
                             .background(.ultraThinMaterial)
-                        
-                        Rectangle()
-                            .frame(height: currentHeight / 2)
-                            .foregroundColor(.clear)
                     }
                 }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea()
-              
+            .preferredColorScheme(model.isLightMode ? .light : .dark)
     }
     
     @State private var prevDragTranslation = CGSize.zero

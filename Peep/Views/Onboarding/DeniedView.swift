@@ -35,7 +35,7 @@ struct DeniedView: View {
                     }
                 }
             }
-        }
+        }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }
 

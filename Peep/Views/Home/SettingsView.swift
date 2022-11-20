@@ -22,6 +22,10 @@ struct SettingsView: View {
             NavigationView {
                 List {
                     Section(header: Text("General").foregroundColor(.secondary), footer: Text("Note that selecting many region can affect app performance").foregroundColor(.secondary)) {
+                        Toggle(isOn: $model.isLightMode) {
+                            Label("Light mode", systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
+                        }
+                        
                         NavigationLink(destination: RegionsView()) {
                             HStack {
                                 Label("Regions", systemImage: "globe.europe.africa.fill")
@@ -132,7 +136,7 @@ struct SettingsView: View {
                 
                 Spacer()
             }
-        }
+        }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }
 

@@ -31,7 +31,7 @@ struct RegionsView: View {
                     })
                 }
             }
-        }
+        }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }
 

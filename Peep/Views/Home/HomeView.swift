@@ -27,7 +27,7 @@ struct HomeView: View {
             }
             
             PlaceDetail(place: selectedPlace ?? DataModel.init(id: ""))
-        }
+        }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }
 

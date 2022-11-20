@@ -47,7 +47,7 @@ struct NavigationBar: View {
                         .foregroundColor(.white)
                 }
             }).sheet(isPresented: {$model.showingSettings}()) {SettingsView()}
-        }
+        }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }
 
