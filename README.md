@@ -27,4 +27,8 @@ Píp is a very busy bird, he keeps track of sundials all around the globe. When 
 
 *I saw her peeping into the world of sundials using Píp.*
 
+<img src="https://user-images.githubusercontent.com/75474651/202924529-86a4beb5-4266-409b-85d5-9f7308d91a94.svg" width="20">
+
+Rare footage of Píp's actual size
+
 </div>
