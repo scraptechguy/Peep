@@ -26,7 +26,7 @@ struct HomeView: View {
                 Spacer()   
             }
             
-            PlaceDetail(place: selectedPlace ?? DataModel.init(id: "0"))
+            PlaceDetail(place: selectedPlace ?? DataModel.init(id: ""))
         }
     }
 }
