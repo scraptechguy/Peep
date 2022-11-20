@@ -8,24 +8,24 @@
 
 // MARK: - Intro
 
-"introHeading" = "Peep says hi!";
-"introText" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-"introButton" = "Let's dive in";
+"introHeading" = "Píp říká ahoj!";
+"introText" = "Píp je velmi pracovitý pták, stará se o sluneční hodiny po celé zeměkouli";
+"introButton" = "Dem na to skočit";
 
 // MARK: - Onboarding
 
-"skipButton" = "Skip";
+"skipButton" = "Přeskočit";
 
-"onboardingHeading1" = "Don't be a jerk";
+"onboardingHeading1" = "Píp je hodný pták";
 "onboardingText1" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
-"onboardingHeading2" = "Be cool af";
+"onboardingHeading2" = "Velmi hodný pták";
 "onboardingText2" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
 // MARK: - Welcome
 
-"welcomeHeading" = "And recycle!";
-"welcomeText" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-"nextButton" = "Sign up";
-"welcomeSubtitle" = "Already have an account?";
-"privacyButton" = "Log in";
+"welcomeHeading" = "Eeeeej!";
+"welcomeText" = "Píp chce používat **tvoji lokaci** k doručení přesných údajů, kliknutím na **pokračovat** mu to umožníš";
+"nextButton" = "Pokračovat";
+"welcomeSubtitle" = "Pokračovaním souhlasíš s naší ";
+"privacyButton" = "**Privacy Policy**";

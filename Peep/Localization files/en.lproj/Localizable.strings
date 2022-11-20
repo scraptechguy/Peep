@@ -8,24 +8,24 @@
 
 // MARK: - Intro
 
-"introHeading" = "Peep says hi!";
-"introText" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit";
+"introHeading" = "Píp says hi!";
+"introText" = "Píp is a very busy bird, he keeps track of sundials all around the globe";
 "introButton" = "Let's dive in";
 
 // MARK: - Onboarding
 
 "skipButton" = "Skip";
 
-"onboardingHeading1" = "Don't be a jerk";
+"onboardingHeading1" = "Píp is a good bird";
 "onboardingText1" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
-"onboardingHeading2" = "Be cool af";
+"onboardingHeading2" = "Really good bird";
 "onboardingText2" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
 // MARK: - Welcome
 
 "welcomeHeading" = "Ayooo!";
-"welcomeText" = "Peep wants to use **your location** to deliver accurate data, click **next** to allow him to do so";
+"welcomeText" = "Píp wants to use **your location** to deliver accurate data, click **next** to allow him to do so";
 "nextButton" = "Next";
 "welcomeSubtitle" = "By proceeding you agree to our ";
 "privacyButton" = "**Privacy Policy**";
