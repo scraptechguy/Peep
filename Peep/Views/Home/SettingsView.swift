@@ -76,7 +76,7 @@ struct SettingsView: View {
                     }.foregroundColor(.primary)
                     
                     Section(header: Text(settingsSectionLinks)) {
-                        Link(destination: URL(string: "https://youtu.be/dQw4w9WgXcQ")!) {
+                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep")!) {
                             HStack {
                                 Label(settingsWebsite, systemImage: "sun.min")
                                     .foregroundColor(.primary)
@@ -89,7 +89,7 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                    UIPasteboard.general.string = "https://youtu.be/dQw4w9WgXcQ"
+                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep"
                                 }, label: {
                                     Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
                             })
