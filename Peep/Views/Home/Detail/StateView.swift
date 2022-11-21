@@ -13,7 +13,7 @@ struct StateView: View {
     
     var body: some View {
         ZStack {
-            Text("Hello world")
+            SomethingWentWrong()
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }
