@@ -14,7 +14,7 @@ struct Map: UIViewRepresentable {
     @ObservedObject var data = FetchData()
     @Binding var selectedPlace: DataModel?
     
-    var locations:[MKPointAnnotation] {
+    func getLocations(center: CLLocationCoordinate2D) -> [MKPointAnnotation] {
         
         var annotations = [MKPointAnnotation]()
         
@@ -22,10 +22,10 @@ struct Map: UIViewRepresentable {
         for place in data.dataList {
             
             // If the place does have lat and long, create an annotation
-            if let lat = place.zsirka, let long = place.zdelka { 
+            if let lat = place.zsirka, let long = place.zdelka {
                 
                 // Create annotations only for places within a certain region
-                if Double(lat)! <= 51 && Double(lat)! >= 50 && Double(long)! <= 18 && Double(long)! >= 14 {
+                if Double(lat)! >= center.latitude - 0.035 && Double(lat)! <= center.latitude + 0.035 && Double(long)! >= center.longitude - 0.035 && Double(long)! <= center.longitude + 0.035 {
                     
                     // Create an annotation
                     let a = MKPointAnnotation()
@@ -47,9 +47,14 @@ struct Map: UIViewRepresentable {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         
-        // Show user on the map
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .followWithHeading
+        mapView.showsUserLocation = true // Show user on the map
+        mapView.userTrackingMode = .followWithHeading // Follow user when moving
+        mapView.showsCompass = false // Disable compass indicator
+        
+        let span = MKCoordinateSpan.init(latitudeDelta: 0.069, longitudeDelta: 0.069)
+        let coordinate = CLLocationCoordinate2D.init(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
+        let region = MKCoordinateRegion.init(center: coordinate, span: span)
+        mapView.setRegion(region, animated: true)
         
         return mapView
         
@@ -61,11 +66,7 @@ struct Map: UIViewRepresentable {
         // uiView.removeAnnotations(uiView.annotations)
         
         // Add new ones
-        if !model.annotationSelected {
-            
-            uiView.showAnnotations(self.locations, animated: true)
-            
-        }
+        // uiView.showAnnotations(self.locations, animated: true)
         
     }
     
@@ -128,9 +129,26 @@ struct Map: UIViewRepresentable {
             
         }
         
-        func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             
-            
+            if mapView.region.span.latitudeDelta < 0.1 && mapView.region.span.longitudeDelta < 0.1 {
+                        
+                if !model.annotationSelected {
+                    
+                    print("Baaaaah")
+                    mapView.removeAnnotations(mapView.annotations)
+                    mapView.addAnnotations(map.getLocations(center: mapView.region.center))
+                    
+                    
+                    //mapView.selectedAnnotations = []
+                    
+                }
+                
+            } else {
+                
+                mapView.removeAnnotations(mapView.annotations)
+                
+            }
             
         }
         
