@@ -139,7 +139,9 @@ struct SettingsView: View {
                     Spacer()
                     
                     Button(action: {
-                        model.showingSettings = false
+                        withAnimation {
+                            model.showingSettings = false
+                        }
                     }, label: {
                         ZStack {
                             Circle()

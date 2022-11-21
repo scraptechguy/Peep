@@ -49,7 +49,9 @@ struct DirectionsView: View {
                     Spacer()
                     
                     Button(action: {
-                        model.showingDirections = false
+                        withAnimation {
+                            model.showingDirections = false
+                        }
                     }, label: {
                         ZStack {
                             Circle()
