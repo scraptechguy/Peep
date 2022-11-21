@@ -17,8 +17,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @AppStorage("isLightMode") var isLightMode = false
     
     @Published var currentHeight: CGFloat = 90
-    @Published var regions = ["Czechia south", "Czechia north", "Czechia west", "Czechia east"]
-    @Published var selectedRegions = [4]
     @Published var showingSettings = false
     @Published var showingDirections = false
     

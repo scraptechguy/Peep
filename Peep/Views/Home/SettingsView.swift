@@ -17,8 +17,6 @@ struct SettingsView: View {
     let settingsHeading: LocalizedStringKey = "settingsHeading"
     let settingsSectionGeneral: LocalizedStringKey = "settingsSectionGeneral"
     let settingsColorScheme: LocalizedStringKey = "settingsColorScheme"
-    let settingsRegions: LocalizedStringKey = "settingsRegions"
-    let settingsRegionsSubtitle1: LocalizedStringKey = "settingsRegionsSubtitle1"
     
     let settingsSectionInformation: LocalizedStringKey = "settingsSectionInformation"
     let settingsFeedback: LocalizedStringKey = "settingsFeedback"
@@ -41,23 +39,9 @@ struct SettingsView: View {
             
             NavigationView {
                 List {
-                    Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary), footer: Text(settingsRegionsSubtitle1).foregroundColor(.secondary)) {
+                    Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary)) {
                         Toggle(isOn: $model.isLightMode) {
                             Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
-                        }
-                        
-                        NavigationLink(destination: RegionsView()) {
-                            HStack {
-                                Label(settingsRegions, systemImage: "globe.europe.africa.fill")
-                                
-                                Spacer()
-                                
-                                Text("\(model.regions[0]), ...")
-                                    .font(.footnote)
-                                    .foregroundColor(.secondary)
-                                    .lineLimit(1)
-                                    .frame(width: 120)
-                            }
                         }
                     }.foregroundColor(.primary)
                     

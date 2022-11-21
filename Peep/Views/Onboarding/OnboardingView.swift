@@ -120,8 +120,7 @@ struct OnboardingView: View {
                 }
             }, label: {
                 Image(systemName: "chevron.left")
-                    .font(.title3)
-                    .fontWeight(.semibold)
+                    .font(.title3.bold())
                     .foregroundColor(Color("Font"))
             })
             
@@ -190,8 +189,7 @@ struct OnboardingView: View {
                 .overlay(alignment: .bottom) {
                     ZStack {
                         Image(systemName: "chevron.right")
-                            .font(.title3)
-                            .fontWeight(.semibold)
+                            .font(.title3.bold())
                             .scaleEffect(!screenIsLast ? 1 : 0.001)
                             .opacity(!screenIsLast ? 1 : 0)
                         
@@ -202,8 +200,7 @@ struct OnboardingView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             
                             Image(systemName: "arrow.right")
-                                .font(.title3)
-                                .fontWeight(.semibold)
+                                .font(.title3.bold())
                                 .foregroundColor(.white)
                         }.padding(.horizontal, 15)
                             .scaleEffect(screenIsLast ? 1 : 0.001)

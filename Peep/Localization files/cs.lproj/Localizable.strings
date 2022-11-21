@@ -36,14 +36,6 @@
 "settingsSectionGeneral" = "Obecné";
 "settingsColorScheme" = "Světlý režim";
 
-"settingsRegions" = "Regiony";
-"settingsRegionsSubtitle1" = "Zvolení mnoha regionů může ovlivnit výkon aplikace";
-"settingsRegionsCzechiaSouth" = "Czechia south";
-"settingsRegionsCzechiaNorth" = "Czechia north";
-"settingsRegionsCzechiaWest" = "Czechia west";
-"settingsRegionsCzechiaEast" = "Czechia east";
-"settingsRegionsSubtitle2" = "Region ve kterém se nacházíš je zvolen automaticky";
-
 "settingsSectionInformation" = "Informace";
 "settingsFeedback" = "Zpětná vazba";
 "settingsPrivacyPolicy" = "Privacy Policy";
