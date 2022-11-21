@@ -149,6 +149,8 @@ struct Map: UIViewRepresentable {
             } else {
                 
                 mapView.removeAnnotations(mapView.annotations)
+
+                // TODO: - mapView.selectedAnnotations = [] -> if true, set annotationSelected to false
                 
             }
             
