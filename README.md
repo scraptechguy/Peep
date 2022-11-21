@@ -21,7 +21,7 @@ Click <a href="">here</a> or use the Redeem Code: <b>bla bla bla</b>
   
 #### Meet Píp
 
-Píp is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger, in reality, he's not all that big). 
+Píp is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger,  but in reality, he's not all that big). 
 
 **peep** *verb* [I usually + adv/prep ] - to secretly look at something for a short time, usually through a hole
 
