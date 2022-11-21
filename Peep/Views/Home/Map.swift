@@ -136,14 +136,27 @@ struct Map: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             
-            // TODO: User tapped on the annotation even handling
+            // User tapped on the annotation...
             
+            // Loop through places to look for a match
             for place in map.data.dataList {
                 
                 if place.adresa == view.annotation?.title {
                     
                     map.selectedPlace = place
                     model.annotationSelected = true
+                    
+                    // Center the map on the selected annotation
+                    if let lat = place.zsirka, let long = place.zdelka {
+                        
+                        let span = MKCoordinateSpan.init(latitudeDelta: 0.02, longitudeDelta:
+                                                            0.02)
+                        let coordinate = CLLocationCoordinate2D.init(latitude: Double(lat)!, longitude: Double(long)!)
+                        let region = MKCoordinateRegion.init(center: coordinate, span: span)
+                        mapView.setRegion(region, animated: true)
+                        
+                    }
+                    
                     return
                     
                 }
