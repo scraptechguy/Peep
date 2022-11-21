@@ -23,6 +23,6 @@ struct DataModel: Codable, Identifiable {
     var vznik: String?
     var stav: String?
     var evc: String?
-    var obrazky: String?
+    var obrazky: [String]?
 
 }

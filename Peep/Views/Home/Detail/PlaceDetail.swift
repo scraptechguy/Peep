@@ -182,16 +182,16 @@ struct PlaceDetail: View {
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 18) {
-                                    // ForEach(place.obrazky.indices, id: \.self) { i in
-                                    AsyncImage(url: URL(string: "https://astro.mff.cuni.cz/mira/sh/icons/640x640/\(place.obrazky ?? "??picture")"))
-                                        .scaledToFill()
-                                        .frame(width: 150, height: 150)
-                                        .clipped()
-                                        .mask(
-                                            RoundedRectangle(cornerRadius: 22)
-                                        )
-                                }.padding([.vertical, .leading])
-                                //}
+                                    ForEach(place.obrazky?.indices ?? [""].indices, id: \.self) { i in
+                                        AsyncImage(url: URL(string: "https://astro.mff.cuni.cz/mira/sh/icons/640x640/\(place.obrazky ?? [""])"))
+                                            .scaledToFill()
+                                            .frame(width: 150, height: 150)
+                                            .clipped()
+                                            .mask(
+                                                RoundedRectangle(cornerRadius: 22)
+                                            )
+                                    }.padding([.vertical, .leading])
+                                }
                             }
                             
                             Text("More information")
