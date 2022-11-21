@@ -20,6 +20,20 @@ struct SettingsView: View {
     let settingsRegions: LocalizedStringKey = "settingsRegions"
     let settingsRegionsSubtitle1: LocalizedStringKey = "settingsRegionsSubtitle1"
     
+    let settingsSectionInformation: LocalizedStringKey = "settingsSectionInformation"
+    let settingsFeedback: LocalizedStringKey = "settingsFeedback"
+    let settingsPrivacyPolicy: LocalizedStringKey = "settingsPrivacyPolicy"
+    let settingsHelp: LocalizedStringKey = "settingsHelp"
+    
+    let settingsSectionLinks: LocalizedStringKey = "settingsSectionLinks"
+    let settingsWebsite: LocalizedStringKey = "settingsWebsite"
+    
+    let settingsSectionDeveloperSettings: LocalizedStringKey = "settingsSectionDeveloperSettings"
+    let settingsSectionDeveloperSettingsSubtitle: LocalizedStringKey = "settingsSectionDeveloperSettingsSubtitle"
+    
+    let settingsVersion: LocalizedStringKey = "settingsVersion"
+    let settingsFooter: LocalizedStringKey = "settingsFooter"
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -47,24 +61,24 @@ struct SettingsView: View {
                         }
                     }.foregroundColor(.primary)
                     
-                    Section(header: Text("Information").foregroundColor(.secondary)) {
+                    Section(header: Text(settingsSectionInformation).foregroundColor(.secondary)) {
                         NavigationLink(destination: SomethingWentWrong()) {
-                            Label("Feedback", systemImage: "leaf")
+                            Label(settingsFeedback, systemImage: "leaf")
                         }
                         
                         NavigationLink(destination: SomethingWentWrong()) {
-                            Label("Privacy policy", systemImage: "person.badge.key")
+                            Label(settingsPrivacyPolicy, systemImage: "person.badge.key")
                         }
                         
                         NavigationLink(destination: SomethingWentWrong()) {
-                            Label("Help", systemImage: "questionmark")
+                            Label(settingsHelp, systemImage: "questionmark")
                         }
                     }.foregroundColor(.primary)
                     
-                    Section(header: Text("Links")) {
+                    Section(header: Text(settingsSectionLinks)) {
                         Link(destination: URL(string: "https://youtu.be/dQw4w9WgXcQ")!) {
                             HStack {
-                                Label("Website", systemImage: "sun.min")
+                                Label(settingsWebsite, systemImage: "sun.min")
                                     .foregroundColor(.primary)
                                 
                                 Spacer()
@@ -101,13 +115,13 @@ struct SettingsView: View {
                         }
                     }
                     
-                    Section(header: Text("Developer settings").foregroundColor(.secondary), footer: Text("Dev log displays what the app is doing on the bottom of your screen").foregroundColor(.secondary)) {
+                    Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
                         Toggle(isOn: $model.devLogOn) {
                             Label("Dev log", systemImage: "pc")
                         }
                     }.foregroundColor(.primary)
                     
-                    Section(footer: HStack(spacing: 0) { Text("Made with Ɛ> by ").foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}.padding(.bottom, 60)) {
+                    Section(footer: HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}.padding(.bottom, 60)) {
                         Label("Version 0.0.1", systemImage: "server.rack")
                             .background(
                                 AnimatedBlobView()

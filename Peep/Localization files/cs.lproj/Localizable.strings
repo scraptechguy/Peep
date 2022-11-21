@@ -43,3 +43,17 @@
 "settingsRegionsCzechiaWest" = "Czechia west";
 "settingsRegionsCzechiaEast" = "Czechia east";
 "settingsRegionsSubtitle2" = "Region ve kterém se nacházíš je zvolen automaticky";
+
+"settingsSectionInformation" = "Informace";
+"settingsFeedback" = "Zpětná vazba";
+"settingsPrivacyPolicy" = "Privacy Policy";
+"settingsHelp" = "Pomoc";
+
+"settingsSectionLinks" = "Odkazy";
+"settingsWebsite" = "Webová stránka";
+
+"settingsSectionDeveloperSettings" = "Developerská nastavení";
+"settingsSectionDeveloperSettingsSubtitle" = "Dev log ukazuje na spodku obrazovky co aplikace právě dělá";
+
+"settingsVersion" = "Verze";
+"settingsFooter" = "Vyrobeno s Ɛ> - ";

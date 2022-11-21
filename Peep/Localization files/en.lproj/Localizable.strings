@@ -43,3 +43,17 @@
 "settingsRegionsCzechiaWest" = "Czechia west";
 "settingsRegionsCzechiaEast" = "Czechia east";
 "settingsRegionsSubtitle2" = "Region you're in is selected automatically";
+
+"settingsSectionInformation" = "Information";
+"settingsFeedback" = "Feedback";
+"settingsPrivacyPolicy" = "Privacy Policy";
+"settingsHelp" = "Help";
+
+"settingsSectionLinks" = "Links";
+"settingsWebsite" = "Website";
+
+"settingsSectionDeveloperSettings" = "Developer settings";
+"settingsSectionDeveloperSettingsSubtitle" = "Dev log displays what the app is doing on the bottom of your screen";
+
+"settingsVersion" = "Version";
+"settingsFooter" = "Made with Ɛ> by ";
