@@ -29,3 +29,17 @@
 "nextButton" = "Next";
 "welcomeSubtitle" = "By proceeding you agree to our ";
 "privacyButton" = "**Privacy Policy**";
+
+// MARK: - Settings
+
+"settingsHeading" = "Settings";
+"settingsSectionGeneral" = "General";
+"settingsColorScheme" = "Light mode";
+
+"settingsRegions" = "Regions";
+"settingsRegionsSubtitle1" = "Note that selecting many regions can affect app performance";
+"settingsRegionsCzechiaSouth" = "Czechia south";
+"settingsRegionsCzechiaNorth" = "Czechia north";
+"settingsRegionsCzechiaWest" = "Czechia west";
+"settingsRegionsCzechiaEast" = "Czechia east";
+"settingsRegionsSubtitle2" = "Region you're in is selected automatically";

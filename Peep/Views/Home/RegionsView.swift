@@ -11,9 +11,16 @@ struct RegionsView: View {
     
     @EnvironmentObject var model: ContentModel
     
+    let settingsRegions: LocalizedStringKey = "settingsRegions"
+    let settingsRegionsCzechiaSouth: LocalizedStringKey = "settingsRegionsCzechiaSouth"
+    let ettingsRegionsCzechiaNorth: LocalizedStringKey = "ettingsRegionsCzechiaNorth"
+    let settingsRegionsCzechiaWest: LocalizedStringKey = "settingsRegionsCzechiaWest"
+    let settingsRegionsCzechiaEast: LocalizedStringKey = "settingsRegionsCzechiaEast"
+    let settingsRegionsSubtitle2: LocalizedStringKey = "settingsRegionsSubtitle2"
+    
     var body: some View {
         List {
-            Section(header: Text("Regions"), footer: Text("Region you're in is selected automatically")) {
+            Section(header: Text(settingsRegions), footer: Text(settingsRegionsSubtitle2)) {
                 ForEach(model.regions.indices, id: \.self) { i in
                     Button(action: {
                             

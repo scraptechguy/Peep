@@ -14,6 +14,12 @@ struct SettingsView: View {
     
     let screenSize: CGRect = UIScreen.main.bounds
     
+    let settingsHeading: LocalizedStringKey = "settingsHeading"
+    let settingsSectionGeneral: LocalizedStringKey = "settingsSectionGeneral"
+    let settingsColorScheme: LocalizedStringKey = "settingsColorScheme"
+    let settingsRegions: LocalizedStringKey = "settingsRegions"
+    let settingsRegionsSubtitle1: LocalizedStringKey = "settingsRegionsSubtitle1"
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -21,14 +27,14 @@ struct SettingsView: View {
             
             NavigationView {
                 List {
-                    Section(header: Text("General").foregroundColor(.secondary), footer: Text("Note that selecting many region can affect app performance").foregroundColor(.secondary)) {
+                    Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary), footer: Text(settingsRegionsSubtitle1).foregroundColor(.secondary)) {
                         Toggle(isOn: $model.isLightMode) {
-                            Label("Light mode", systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
+                            Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
                         }
                         
                         NavigationLink(destination: RegionsView()) {
                             HStack {
-                                Label("Regions", systemImage: "globe.europe.africa.fill")
+                                Label(settingsRegions, systemImage: "globe.europe.africa.fill")
                                 
                                 Spacer()
                                 
