@@ -52,7 +52,7 @@ struct PlaceDetail: View {
                                 Button(action: {
                                     withAnimation {
                                         model.annotationSelected = false
-                                        model.currentHeight = 200
+                                        model.currentHeight = 90
                                     }
                                 }, label: {
                                     ZStack {
