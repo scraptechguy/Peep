@@ -17,7 +17,7 @@ struct Map: UIViewRepresentable {
     func getLocations(center: CLLocationCoordinate2D) -> [MKPointAnnotation] {
         
         var annotations = [MKPointAnnotation]()
-        var annotationSpanIndex: Double = model.latlongDelta * 10 * 0.035
+        let annotationSpanIndex: Double = model.latlongDelta * 10 * 0.035
         
         // Loop through all places
         for place in data.dataList {
