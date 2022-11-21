@@ -21,5 +21,6 @@ struct PointerView: View {
 struct PointerView_Previews: PreviewProvider {
     static var previews: some View {
         PointerView()
+            .environmentObject(ContentModel())
     }
 }

@@ -21,5 +21,6 @@ struct DialView: View {
 struct DialView_Previews: PreviewProvider {
     static var previews: some View {
         DialView()
+            .environmentObject(ContentModel())
     }
 }

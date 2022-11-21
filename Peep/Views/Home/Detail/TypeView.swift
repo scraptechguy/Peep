@@ -21,5 +21,6 @@ struct TypeView: View {
 struct TypeView_Previews: PreviewProvider {
     static var previews: some View {
         TypeView()
+            .environmentObject(ContentModel())
     }
 }
