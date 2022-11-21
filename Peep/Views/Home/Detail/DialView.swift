@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct DialView: View {
+    
+    @EnvironmentObject var model: ContentModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Text("Hello world")
+        }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }
 
