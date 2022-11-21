@@ -39,9 +39,16 @@ struct SettingsView: View {
             
             NavigationView {
                 List {
-                    Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary)) {
+                    Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary), footer: Text("Increasing reach allows you to view more sundials at once. Note that increasing reach can affect app performance").foregroundColor(.secondary)) {
                         Toggle(isOn: $model.isLightMode) {
                             Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
+                        }
+                        
+                        HStack {
+                            Label("Reach", systemImage: "globe.americas")
+                                .padding(.trailing)
+                            
+                            Slider(value: $model.latlongDelta, in: 0.1...0.35)
                         }
                     }.foregroundColor(.primary)
                     

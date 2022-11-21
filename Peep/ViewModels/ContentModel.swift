@@ -15,6 +15,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     @AppStorage("devLogOn") var devLogOn = false
     @AppStorage("isLightMode") var isLightMode = false
+    @AppStorage("latlogDelta") var latlongDelta: Double = 0.15
     
     @Published var currentHeight: CGFloat = 90
     @Published var showingSettings = false

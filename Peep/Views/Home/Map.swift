@@ -17,6 +17,7 @@ struct Map: UIViewRepresentable {
     func getLocations(center: CLLocationCoordinate2D) -> [MKPointAnnotation] {
         
         var annotations = [MKPointAnnotation]()
+        var annotationSpanIndex: Double = model.latlongDelta * 10 * 0.035
         
         // Loop through all places
         for place in data.dataList {
@@ -25,7 +26,7 @@ struct Map: UIViewRepresentable {
             if let lat = place.zsirka, let long = place.zdelka {
                 
                 // Create annotations only for places within a certain region
-                if Double(lat)! >= center.latitude - 0.035 && Double(lat)! <= center.latitude + 0.035 && Double(long)! >= center.longitude - 0.035 && Double(long)! <= center.longitude + 0.035 {
+                if Double(lat)! >= center.latitude - annotationSpanIndex && Double(lat)! <= center.latitude + annotationSpanIndex && Double(long)! >= center.longitude - annotationSpanIndex && Double(long)! <= center.longitude + annotationSpanIndex {
                     
                     // Create an annotation
                     let a = MKPointAnnotation()
@@ -137,7 +138,7 @@ struct Map: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             
-            if mapView.region.span.latitudeDelta < 0.1 && mapView.region.span.longitudeDelta < 0.1 {
+            if mapView.region.span.latitudeDelta < model.latlongDelta && mapView.region.span.longitudeDelta < model.latlongDelta {
                         
                 if !model.annotationSelected {
                     
