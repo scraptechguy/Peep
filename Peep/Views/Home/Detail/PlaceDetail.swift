@@ -38,14 +38,33 @@ struct PlaceDetail: View {
                     .gesture(dragGesture)
                 
                 ScrollView(showsIndicators: false) {
-                    if place.id != "" {
+                    if model.annotationSelected {
                         
                         VStack(alignment: .leading, spacing: 5) {
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                Text(place.adresa ?? "No address found")
-                                    .font(.system(size: 25))
-                                    .foregroundColor(Color("Font"))
-                                    .padding(.horizontal)
+                            HStack {
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    Text(place.adresa ?? "No address found")
+                                        .font(.system(size: 25))
+                                        .foregroundColor(Color("Font"))
+                                        .padding(.horizontal)
+                                }
+                                
+                                Button(action: {
+                                    withAnimation {
+                                        model.annotationSelected = false
+                                        model.currentHeight = 200
+                                    }
+                                }, label: {
+                                    ZStack {
+                                        Circle()
+                                            .fill(.ultraThinMaterial)
+                                        
+                                        Image(systemName: "multiply")
+                                            .font(.title2)
+                                            .foregroundColor(.secondary)
+                                    }.frame(width: 35, height: 35)
+                                        .padding(.horizontal)
+                                })
                             }
                             
                             if place.umisteni != "" {
@@ -246,7 +265,8 @@ struct PlaceDetail: View {
                         }
                     } else {
                         
-                        Text("Hello world")
+                        Text("**Move around the map to find sundials!**")
+                            .font(.title3)
                         
                     }
                 }

@@ -68,6 +68,12 @@ struct Map: UIViewRepresentable {
         // Add new ones
         // uiView.showAnnotations(self.locations, animated: true)
         
+        if !model.annotationSelected {
+            
+            uiView.selectedAnnotations = []
+            
+        }
+        
     }
     
     static func dismantleUIView(_ uiView: MKMapView, coordinator: ()) {
