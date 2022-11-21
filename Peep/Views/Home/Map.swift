@@ -51,7 +51,7 @@ struct Map: UIViewRepresentable {
         mapView.userTrackingMode = .followWithHeading // Follow user when moving
         mapView.showsCompass = false // Disable compass indicator
         
-        let span = MKCoordinateSpan.init(latitudeDelta: 0.069, longitudeDelta: 0.069)
+        let span = MKCoordinateSpan.init(latitudeDelta: 10, longitudeDelta: 10)
         let coordinate = CLLocationCoordinate2D.init(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
         let region = MKCoordinateRegion.init(center: coordinate, span: span)
         mapView.setRegion(region, animated: true)
@@ -135,12 +135,8 @@ struct Map: UIViewRepresentable {
                         
                 if !model.annotationSelected {
                     
-                    print("Baaaaah")
                     mapView.removeAnnotations(mapView.annotations)
                     mapView.addAnnotations(map.getLocations(center: mapView.region.center))
-                    
-                    
-                    //mapView.selectedAnnotations = []
                     
                 }
                 
@@ -163,6 +159,10 @@ struct Map: UIViewRepresentable {
                     
                     map.selectedPlace = place
                     model.annotationSelected = true
+                    
+                    withAnimation {
+                        model.currentHeight = 400
+                    }
                     
                     // Center the map on the selected annotation
                     if let lat = place.zsirka, let long = place.zdelka {

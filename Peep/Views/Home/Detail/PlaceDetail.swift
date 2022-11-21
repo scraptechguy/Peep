@@ -11,7 +11,6 @@ struct PlaceDetail: View {
     
     @EnvironmentObject var model: ContentModel
     
-    @State private var currentHeight: CGFloat = 200
     let minHeight: CGFloat = 70
     let maxHeight: CGFloat = 600
     
@@ -251,7 +250,7 @@ struct PlaceDetail: View {
                         
                     }
                 }
-            }.frame(height: currentHeight)
+            }.frame(height: model.currentHeight)
                 .frame(maxWidth: .infinity)
                 .background {
                     RoundedRectangle(cornerRadius: 30)
@@ -271,13 +270,13 @@ struct PlaceDetail: View {
             .onChanged { value in
                 let dragAmount = value.translation.height - prevDragTranslation.height
                 
-                if currentHeight < maxHeight && currentHeight > minHeight {
+                if model.currentHeight < maxHeight && model.currentHeight > minHeight {
                     
-                    currentHeight -= dragAmount
+                    model.currentHeight -= dragAmount
                     
                 } else {
                     
-                    currentHeight -= dragAmount / 20
+                    model.currentHeight -= dragAmount / 20
                     
                 }
                 
