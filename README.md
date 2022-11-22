@@ -6,13 +6,13 @@ Píp is currently in active development and is waiting for initial App Store rel
 
 ### Latest release on the App Store: 
 
-<a href="" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
+<a href="https://testflight.apple.com/join/nrBtEpPi" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
 
   - App Store® and the Apple logo® are trademarks of Apple Inc.
 
 ### Latest TestFlight release:
 
-Click <a href="">here</a> or use the Redeem Code: <b>bla bla bla</b>
+Click <a href="https://testflight.apple.com/join/nrBtEpPi">here</a> or use the Redeem Code: <b>Not set, use link</b>
 
 ## About
 
