@@ -27,6 +27,10 @@ struct HomeView: View {
             }
             
             PlaceDetail(place: selectedPlace ?? DataModel.init(id: ""))
+            
+            if model.showingGallery {
+                Gallery(place: selectedPlace!)
+            }
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }

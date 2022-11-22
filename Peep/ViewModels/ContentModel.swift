@@ -18,6 +18,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @AppStorage("latlogDelta") var latlongDelta: Double = 0.15
     
     @Published var currentHeight: CGFloat = 90
+    @Published var showingGallery = false
     @Published var showingSettings = false
     @Published var showingDirections = false
     

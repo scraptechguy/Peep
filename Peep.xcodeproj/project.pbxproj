@@ -34,6 +34,7 @@
 		90B36AA628A17A55001C738C /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B36AA528A17A55001C738C /* Map.swift */; };
 		90B36AA828A264AA001C738C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B36AA728A264AA001C738C /* SettingsView.swift */; };
 		90B36AAA28A28746001C738C /* PlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B36AA928A28746001C738C /* PlaceDetail.swift */; };
+		90C38567292CB634009060B3 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C38566292CB633009060B3 /* Gallery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		90B36AA728A264AA001C738C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		90B36AA928A28746001C738C /* PlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetail.swift; sourceTree = "<group>"; };
 		90C38565292ABCE0009060B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		90C38566292CB633009060B3 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				9050071628BD49DA00E64E92 /* TypeView.swift */,
 				9050071428BD49D200E64E92 /* StateView.swift */,
 				9050071A28BD49F900E64E92 /* DialView.swift */,
+				90C38566292CB633009060B3 /* Gallery.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				901F83AA28A12372006FDC4F /* LaunchView.swift in Sources */,
 				901F83B528A165A6006FDC4F /* DeniedView.swift in Sources */,
 				9050071728BD49DA00E64E92 /* TypeView.swift in Sources */,
+				90C38567292CB634009060B3 /* Gallery.swift in Sources */,
 				9021FA6928BE3D5E00C56CE7 /* NavigationBar.swift in Sources */,
 				901F83B328A1659C006FDC4F /* OnboardingView.swift in Sources */,
 				9050071F28BE062200E64E92 /* DevLog.swift in Sources */,
