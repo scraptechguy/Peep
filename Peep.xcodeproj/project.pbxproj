@@ -169,10 +169,10 @@
 				9050070928BCE70800E64E92 /* DirectionsView.swift */,
 				90404FDD28BF843C001E4DC9 /* DirectionsMap.swift */,
 				90B36AA928A28746001C738C /* PlaceDetail.swift */,
-				9050071828BD49EA00E64E92 /* PointerView.swift */,
 				9050071628BD49DA00E64E92 /* TypeView.swift */,
-				9050071428BD49D200E64E92 /* StateView.swift */,
+				9050071828BD49EA00E64E92 /* PointerView.swift */,
 				9050071A28BD49F900E64E92 /* DialView.swift */,
+				9050071428BD49D200E64E92 /* StateView.swift */,
 				90C38566292CB633009060B3 /* Gallery.swift */,
 			);
 			path = Detail;
