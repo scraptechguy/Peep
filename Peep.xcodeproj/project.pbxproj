@@ -35,6 +35,7 @@
 		90B36AA828A264AA001C738C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B36AA728A264AA001C738C /* SettingsView.swift */; };
 		90B36AAA28A28746001C738C /* PlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B36AA928A28746001C738C /* PlaceDetail.swift */; };
 		90C38567292CB634009060B3 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C38566292CB633009060B3 /* Gallery.swift */; };
+		90C3856B292EAEE7009060B3 /* ExplanationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C3856A292EAEE7009060B3 /* ExplanationItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		90B36AA928A28746001C738C /* PlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetail.swift; sourceTree = "<group>"; };
 		90C38565292ABCE0009060B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		90C38566292CB633009060B3 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
+		90C3856A292EAEE7009060B3 /* ExplanationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			children = (
 				90A625C928A556F7009D9D8A /* SomethingWentWrong.swift */,
 				9021FA6A28BE3F0600C56CE7 /* Constants.swift */,
+				90C3856A292EAEE7009060B3 /* ExplanationItem.swift */,
 				9050071C28BDF81200E64E92 /* AnimatedBlobView.swift */,
 				9050071E28BE062200E64E92 /* DevLog.swift */,
 			);
@@ -288,6 +291,7 @@
 				90A625CA28A556F7009D9D8A /* SomethingWentWrong.swift in Sources */,
 				901F839B28A121AF006FDC4F /* PeepApp.swift in Sources */,
 				90B36AAA28A28746001C738C /* PlaceDetail.swift in Sources */,
+				90C3856B292EAEE7009060B3 /* ExplanationItem.swift in Sources */,
 				901F83AF28A123C6006FDC4F /* HomeView.swift in Sources */,
 				90A625CE28A7A1D1009D9D8A /* DataModel.swift in Sources */,
 				9021FA6B28BE3F0600C56CE7 /* Constants.swift in Sources */,
