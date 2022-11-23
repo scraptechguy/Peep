@@ -138,7 +138,7 @@ struct PlaceDetail: View {
                                             
                                         }
                                     }).sheet(isPresented: {$model.showingType}()) {
-                                        TypeView()
+                                        TypeView(place: place)
                                             .presentationDetents([.large])
                                     }
                                     
