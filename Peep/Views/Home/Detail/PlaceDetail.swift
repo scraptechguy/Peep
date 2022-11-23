@@ -110,7 +110,8 @@ struct PlaceDetail: View {
                                         VStack {
                                             Text(place.thodin ?? "?")
                                                 .bold()
-                                                .frame(width: 20)
+                                                .minimumScaleFactor(0.1)
+                                                .frame(width: 20, height: 20)
                                                 .lineLimit(1)
                                                 .foregroundColor(Color("Font"))
                                                 .padding()
@@ -133,7 +134,8 @@ struct PlaceDetail: View {
                                         VStack {
                                             Text(place.tukazatel ?? "?")
                                                 .bold()
-                                                .frame(width: 20)
+                                                .minimumScaleFactor(0.1)
+                                                .frame(width: 20, height: 20)
                                                 .lineLimit(1)
                                                 .foregroundColor(Color("Font"))
                                                 .padding()
@@ -156,7 +158,8 @@ struct PlaceDetail: View {
                                         VStack {
                                             Text(place.tciselnik ?? "?")
                                                 .bold()
-                                                .frame(width: 20)
+                                                .minimumScaleFactor(0.1)
+                                                .frame(width: 20, height: 20)
                                                 .lineLimit(1)
                                                 .foregroundColor(Color("Font"))
                                                 .padding()
@@ -179,7 +182,8 @@ struct PlaceDetail: View {
                                         VStack {
                                             Text(place.stav ?? "?")
                                                 .bold()
-                                                .frame(width: 20)
+                                                .minimumScaleFactor(0.1)
+                                                .frame(width: 20, height: 20)
                                                 .lineLimit(1)
                                                 .foregroundColor(Color("Font"))
                                                 .padding()
