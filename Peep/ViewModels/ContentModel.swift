@@ -21,6 +21,10 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var showingGallery = false
     @Published var showingSettings = false
     @Published var showingDirections = false
+    @Published var showingType = false
+    @Published var showingPointer = false
+    @Published var showingDial = false
+    @Published var showingState = false
     
     @Published var annotationSelected = false    
     

@@ -14,11 +14,6 @@ struct PlaceDetail: View {
     let minHeight: CGFloat = 70
     let maxHeight: CGFloat = 600
     
-    @State private var showingType = false
-    @State private var showingPointer = false
-    @State private var showingDial = false
-    @State private var showingState = false
-    
     var place: DataModel
     let screenSize: CGRect = UIScreen.main.bounds
     
@@ -115,10 +110,13 @@ struct PlaceDetail: View {
                                                 .font(.system(size: 10))
                                                 .foregroundColor(Color("Font"))
                                         }
-                                    }).sheet(isPresented: {$model.showingDirections}()) {DirectionsView(place: place)}
+                                    }).sheet(isPresented: {$model.showingDirections}()) {
+                                        DirectionsView(place: place)
+                                            .presentationDetents([.large])
+                                    }
                                     
                                     Button(action: {
-                                        showingType = true
+                                        model.showingType = true
                                     }, label: {
                                         VStack {
                                             Text(place.thodin ?? "?")
@@ -139,10 +137,13 @@ struct PlaceDetail: View {
                                                 .foregroundColor(Color("Font"))
                                             
                                         }
-                                    }).sheet(isPresented: {$showingType}()) {TypeView()}
+                                    }).sheet(isPresented: {$model.showingType}()) {
+                                        TypeView()
+                                            .presentationDetents([.large])
+                                    }
                                     
                                     Button(action: {
-                                        showingPointer = true
+                                        model.showingPointer = true
                                     }, label: {
                                         VStack {
                                             Text(place.tukazatel ?? "?")
@@ -163,10 +164,13 @@ struct PlaceDetail: View {
                                                 .foregroundColor(Color("Font"))
                                             
                                         }
-                                    }).sheet(isPresented: {$showingPointer}()) {PointerView()}
+                                    }).sheet(isPresented: {$model.showingPointer}()) {
+                                        PointerView()
+                                            .presentationDetents([.large])
+                                    }
                                     
                                     Button(action: {
-                                        showingDial = true
+                                        model.showingDial = true
                                     }, label: {
                                         VStack {
                                             Text(place.tciselnik ?? "?")
@@ -187,10 +191,13 @@ struct PlaceDetail: View {
                                                 .foregroundColor(Color("Font"))
                                             
                                         }
-                                    }).sheet(isPresented: {$showingDial}()) {DialView()}
+                                    }).sheet(isPresented: {$model.showingDial}()) {
+                                        DialView()
+                                            .presentationDetents([.large])
+                                    }
                                     
                                     Button(action: {
-                                        showingState = true
+                                        model.showingState = true
                                     }, label: {
                                         VStack {
                                             Text(place.stav ?? "?")
@@ -211,7 +218,10 @@ struct PlaceDetail: View {
                                                 .foregroundColor(Color("Font"))
                                             
                                         }
-                                    }).sheet(isPresented: {$showingState}()) {StateView()}
+                                    }).sheet(isPresented: {$model.showingState}()) {
+                                        StateView()
+                                            .presentationDetents([.large])
+                                    }
                                 }.padding([.top, .leading])
                             }
                             
