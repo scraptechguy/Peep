@@ -165,7 +165,7 @@ struct PlaceDetail: View {
                                             
                                         }
                                     }).sheet(isPresented: {$model.showingPointer}()) {
-                                        PointerView()
+                                        PointerView(place: place)
                                             .presentationDetents([.large])
                                     }
                                     
