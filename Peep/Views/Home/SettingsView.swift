@@ -122,7 +122,7 @@ struct SettingsView: View {
                             )
                     }.foregroundColor(.secondary)
                 }.listStyle(.insetGrouped)
-                    .navigationTitle("Settings")
+                    .navigationTitle(settingsHeading)
             }
             
             VStack {

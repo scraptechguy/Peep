@@ -49,3 +49,21 @@
 
 "settingsVersion" = "Version";
 "settingsFooter" = "Made with Ɛ> by ";
+
+// MARK: - Place detail
+
+"detailGuide" = "**Move around the map to find sundials!**";
+
+"detailNoAddress" = "No address found";
+"detailNoDescription" = "No description found";
+"detailDirections" = "Directions";
+"detailType" = "Type";
+"detailPointer" = "Pointer";
+"detailDial" = "Dial";
+"detailState" = "State";
+
+"detailSectionInformation" = "MORE INFORMATION";
+"detailAzimuth" = "Azimuth";
+
+"detailGalleryHeading" = "**Gallery**";
+"detailGalleryGuide" = "**Swipe to browse**";

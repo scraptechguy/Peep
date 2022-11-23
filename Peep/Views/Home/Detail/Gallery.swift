@@ -15,6 +15,10 @@ struct Gallery: View {
     
     let screenSize: CGRect = UIScreen.main.bounds
     
+    
+    let detailGalleryHeading: LocalizedStringKey = "detailGalleryHeading"
+    let detailGalleryGuide: LocalizedStringKey = "detailGalleryGuide"
+    
     var body: some View {
         ZStack {
             Rectangle()
@@ -53,13 +57,13 @@ struct Gallery: View {
                 .frame(width: screenSize.width, height: screenSize.height, alignment: .center)
            
             VStack {
-                Text("Gallery")
-                    .font(.largeTitle)
-                    .padding(.top, 60)
+                Text(detailGalleryHeading)
+                    .font(.title)
+                    .padding(.top, 80)
                 
                 Spacer()
                 
-                Text("**Swipe to browse**")
+                Text(detailGalleryGuide)
                     .font(.title3)
                     .padding(.bottom, 100)
             }.frame(height: screenSize.height)
@@ -82,7 +86,7 @@ struct Gallery: View {
                                 .foregroundColor(.secondary)
                         }.frame(width: 35, height: 35)
                             .padding(.trailing)
-                            .padding(.top, 40)
+                            .padding(.top, 45)
                     })
                 }
                 

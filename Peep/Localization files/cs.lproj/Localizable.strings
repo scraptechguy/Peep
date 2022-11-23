@@ -49,3 +49,21 @@
 
 "settingsVersion" = "Verze";
 "settingsFooter" = "Vyrobeno s Ɛ> - ";
+
+// MARK: - Place detail
+
+"detailGuide" = "**Poohlédni se po slunečních hodinách!**";
+
+"detailNoAddress" = "Adresa chybí";
+"detailNoDescription" = "Popis chybí";
+"detailDirections" = "Trasa";
+"detailType" = "Typ";
+"detailPointer" = "Ukazatel";
+"detailDial" = "Číselník";
+"detailState" = "Stav";
+
+"detailSectionInformation" = "VÍCE INFORMACÍ";
+"detailAzimuth" = "Azimut";
+
+"detailGalleryHeading" = "**Galerie**";
+"detailGalleryGuide" = "**Prohlížej přejetím prstu**";

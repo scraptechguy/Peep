@@ -22,6 +22,19 @@ struct PlaceDetail: View {
     var place: DataModel
     let screenSize: CGRect = UIScreen.main.bounds
     
+    let detailGuide: LocalizedStringKey = "detailGuide"
+    
+    let detailNoAddress: LocalizedStringKey = "detailNoAddress"
+    let detailNoDescription: LocalizedStringKey = "detailNoDescription"
+    let detailDirections: LocalizedStringKey = "detailDirections"
+    let detailType: LocalizedStringKey = "detailType"
+    let detailPointer: LocalizedStringKey = "detailPointer"
+    let detailDial: LocalizedStringKey = "detailDial"
+    let detailState: LocalizedStringKey = "detailState"
+    
+    let detailSectionInformation: LocalizedStringKey = "detailSectionInformation"
+    let detailAzimuth: LocalizedStringKey = "detailAzimuth"
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             Color.clear
@@ -43,7 +56,7 @@ struct PlaceDetail: View {
                         VStack(alignment: .leading, spacing: 5) {
                             HStack {
                                 ScrollView(.horizontal, showsIndicators: false) {
-                                    Text(place.adresa ?? "No address found")
+                                    Text(place.adresa ?? "???")
                                         .font(.system(size: 25))
                                         .foregroundColor(Color("Font"))
                                         .padding(.horizontal)
@@ -69,14 +82,14 @@ struct PlaceDetail: View {
                             
                             if place.umisteni != "" {
                                 
-                                Text(place.umisteni ?? "No description")
+                                Text(place.umisteni ?? "???")
                                     .font(.system(size: 15))
                                     .foregroundColor(.secondary)
                                     .padding(.horizontal)
                                 
                             } else {
                                 
-                                Text("No description")
+                                Text(detailNoDescription)
                                     .font(.system(size: 15))
                                     .foregroundColor(.secondary)
                                     .padding(.horizontal)
@@ -98,7 +111,7 @@ struct PlaceDetail: View {
                                                         .frame(width: 52, height: 52)
                                                 )
                                             
-                                            Text("Directions")
+                                            Text(detailDirections)
                                                 .font(.system(size: 10))
                                                 .foregroundColor(Color("Font"))
                                         }
@@ -121,7 +134,7 @@ struct PlaceDetail: View {
                                                         .frame(width: 52, height: 52)
                                                 )
                                             
-                                            Text("Type")
+                                            Text(detailType)
                                                 .font(.system(size: 10))
                                                 .foregroundColor(Color("Font"))
                                             
@@ -145,7 +158,7 @@ struct PlaceDetail: View {
                                                         .frame(width: 52, height: 52)
                                                 )
                                             
-                                            Text("Pointer")
+                                            Text(detailPointer)
                                                 .font(.system(size: 10))
                                                 .foregroundColor(Color("Font"))
                                             
@@ -169,7 +182,7 @@ struct PlaceDetail: View {
                                                         .frame(width: 52, height: 52)
                                                 )
                                             
-                                            Text("Dial")
+                                            Text(detailDial)
                                                 .font(.system(size: 10))
                                                 .foregroundColor(Color("Font"))
                                             
@@ -193,7 +206,7 @@ struct PlaceDetail: View {
                                                         .frame(width: 52, height: 52)
                                                 )
                                             
-                                            Text("State")
+                                            Text(detailState)
                                                 .font(.system(size: 10))
                                                 .foregroundColor(Color("Font"))
                                             
@@ -222,7 +235,7 @@ struct PlaceDetail: View {
                                 }.padding([.vertical, .leading])
                             }
                             
-                            Text("More information")
+                            Text(detailSectionInformation)
                                 .textCase(.uppercase)
                                 .font(.system(size: 15))
                                 .foregroundColor(.secondary)
@@ -245,7 +258,7 @@ struct PlaceDetail: View {
                                                 .padding()
                                         }
                                         
-                                        Text("Azimuth")
+                                        Text(detailAzimuth)
                                             .font(.system(size: 10))
                                             .foregroundColor(Color("Font"))
                                     }
@@ -264,7 +277,7 @@ struct PlaceDetail: View {
                                                 .padding()
                                         }
                                         
-                                        Text("Azimuth")
+                                        Text(detailAzimuth)
                                             .font(.system(size: 10))
                                             .foregroundColor(Color("Font"))
                                     }
@@ -275,7 +288,7 @@ struct PlaceDetail: View {
                         }
                     } else {
                         
-                        Text("**Move around the map to find sundials!**")
+                        Text(detailGuide)
                             .font(.title3)
                             .minimumScaleFactor(0.1)
                         
