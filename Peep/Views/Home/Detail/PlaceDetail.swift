@@ -277,6 +277,7 @@ struct PlaceDetail: View {
                         
                         Text("**Move around the map to find sundials!**")
                             .font(.title3)
+                            .minimumScaleFactor(0.1)
                         
                     }
                 }
