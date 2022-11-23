@@ -192,7 +192,7 @@ struct PlaceDetail: View {
                                             
                                         }
                                     }).sheet(isPresented: {$model.showingDial}()) {
-                                        DialView()
+                                        DialView(place: place)
                                             .presentationDetents([.large])
                                     }
                                     
