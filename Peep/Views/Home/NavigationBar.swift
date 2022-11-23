@@ -25,8 +25,10 @@ struct NavigationBar: View {
                 
                 HStack {
                     Image(systemName: "location")
+                        .foregroundColor(Color("Font"))
                     
                     Text(model.placemark?.locality ?? "Loading...")
+                        .foregroundColor(Color("Font"))
                 }.padding(.leading, 22)
             }
             
@@ -44,7 +46,7 @@ struct NavigationBar: View {
                     Image(systemName: "gear")
                         .resizable()
                         .frame(width: 25, height: 25)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("Font"))
                 }
             }).sheet(isPresented: {$model.showingSettings}()) {SettingsView()}
         }.preferredColorScheme(model.isLightMode ? .light : .dark)

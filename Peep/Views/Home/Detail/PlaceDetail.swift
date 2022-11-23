@@ -90,11 +90,11 @@ struct PlaceDetail: View {
                                     }, label: {
                                         VStack {
                                             Image(systemName: "car")
-                                                .foregroundColor(Color("Item"))
+                                                .foregroundColor(Color("Font"))
                                                 .padding()
                                                 .background(
                                                     RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(Color("Item"))
+                                                        .stroke(Color("Font"))
                                                         .frame(width: 52, height: 52)
                                                 )
                                             
@@ -112,11 +112,11 @@ struct PlaceDetail: View {
                                                 .bold()
                                                 .frame(width: 20)
                                                 .lineLimit(1)
-                                                .foregroundColor(Color("Item"))
+                                                .foregroundColor(Color("Font"))
                                                 .padding()
                                                 .background(
                                                     RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(Color("Item"))
+                                                        .stroke(Color("Font"))
                                                         .frame(width: 52, height: 52)
                                                 )
                                             
@@ -135,11 +135,11 @@ struct PlaceDetail: View {
                                                 .bold()
                                                 .frame(width: 20)
                                                 .lineLimit(1)
-                                                .foregroundColor(Color("Item"))
+                                                .foregroundColor(Color("Font"))
                                                 .padding()
                                                 .background(
                                                     RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(Color("Item"))
+                                                        .stroke(Color("Font"))
                                                         .frame(width: 52, height: 52)
                                                 )
                                             
@@ -158,11 +158,11 @@ struct PlaceDetail: View {
                                                 .bold()
                                                 .frame(width: 20)
                                                 .lineLimit(1)
-                                                .foregroundColor(Color("Item"))
+                                                .foregroundColor(Color("Font"))
                                                 .padding()
                                                 .background(
                                                     RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(Color("Item"))
+                                                        .stroke(Color("Font"))
                                                         .frame(width: 52, height: 52)
                                                 )
                                             
@@ -181,11 +181,11 @@ struct PlaceDetail: View {
                                                 .bold()
                                                 .frame(width: 20)
                                                 .lineLimit(1)
-                                                .foregroundColor(Color("Item"))
+                                                .foregroundColor(Color("Font"))
                                                 .padding()
                                                 .background(
                                                     RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(Color("Item"))
+                                                        .stroke(Color("Font"))
                                                         .frame(width: 52, height: 52)
                                                 )
                                             
@@ -232,12 +232,12 @@ struct PlaceDetail: View {
                                     VStack {
                                         ZStack {
                                             RoundedRectangle(cornerRadius: 25)
-                                                .stroke(Color("Item"))
+                                                .stroke(Color("Font"))
                                                 .frame(width: 120, height: 120)
                                             
                                             Image(systemName: "sun.max.fill")
                                                 .frame(width: 20)
-                                                .foregroundColor(Color("Item"))
+                                                .foregroundColor(Color("Font"))
                                                 .padding()
                                         }
                                         
@@ -251,12 +251,12 @@ struct PlaceDetail: View {
                                     VStack {
                                         ZStack {
                                             RoundedRectangle(cornerRadius: 25)
-                                                .stroke(Color("Item"))
+                                                .stroke(Color("Font"))
                                                 .frame(width: 120, height: 120)
                                             
                                             Image(systemName: "sun.max.fill")
                                                 .frame(width: 20)
-                                                .foregroundColor(Color("Item"))
+                                                .foregroundColor(Color("Font"))
                                                 .padding()
                                         }
                                         
