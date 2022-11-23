@@ -18,7 +18,7 @@ struct DeniedView: View {
             VStack {
                 Image("broken_initial")
                 
-                Text("Peep needs to **track your location** in order for the app to **work**")
+                Text("Píp needs to **track your location** in order for the app to **work**")
                     .padding(25)
                     .foregroundColor(Color("Font"))
                     .multilineTextAlignment(.center)
@@ -34,6 +34,11 @@ struct DeniedView: View {
                             .foregroundColor(Color("Font"))
                     }
                 }
+                
+                Text("Go to **iPhone Settings**, find **Píp**,\nand allow him to **access your location**")
+                    .padding(15)
+                    .foregroundColor(Color("Font"))
+                    .multilineTextAlignment(.center)
             }
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
