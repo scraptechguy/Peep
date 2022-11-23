@@ -219,7 +219,7 @@ struct PlaceDetail: View {
                                             
                                         }
                                     }).sheet(isPresented: {$model.showingState}()) {
-                                        StateView()
+                                        StateView(place: place)
                                             .presentationDetents([.large])
                                     }
                                 }.padding([.top, .leading])
