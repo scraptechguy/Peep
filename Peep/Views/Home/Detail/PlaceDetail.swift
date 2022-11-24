@@ -201,23 +201,41 @@ struct PlaceDetail: View {
                                         model.showingState = true
                                     }, label: {
                                         VStack {
-                                            Text(place.stav ?? "?")
-                                                .bold()
-                                                .minimumScaleFactor(0.1)
-                                                .frame(width: 20, height: 20)
-                                                .lineLimit(1)
-                                                .foregroundColor(Color("Font"))
-                                                .padding()
-                                                .background(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(Color("Font"))
-                                                        .frame(width: 52, height: 52)
-                                                )
-                                            
-                                            Text(detailState)
-                                                .font(.system(size: 10))
-                                                .foregroundColor(Color("Font"))
-                                            
+                                            if place.stav == "Z" {
+                                                Text(place.stav ?? "?")
+                                                    .bold()
+                                                    .minimumScaleFactor(0.1)
+                                                    .frame(width: 20, height: 20)
+                                                    .lineLimit(1)
+                                                    .foregroundColor(.red)
+                                                    .padding()
+                                                    .background(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                            .stroke(.red)
+                                                            .frame(width: 52, height: 52)
+                                                    )
+                                                
+                                                Text(detailState)
+                                                    .font(.system(size: 10))
+                                                    .foregroundColor(.red)
+                                            } else {
+                                                Text(place.stav ?? "?")
+                                                    .bold()
+                                                    .minimumScaleFactor(0.1)
+                                                    .frame(width: 20, height: 20)
+                                                    .lineLimit(1)
+                                                    .foregroundColor(Color("Font"))
+                                                    .padding()
+                                                    .background(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                            .stroke(Color("Font"))
+                                                            .frame(width: 52, height: 52)
+                                                    )
+                                                
+                                                Text(detailState)
+                                                    .font(.system(size: 10))
+                                                    .foregroundColor(Color("Font"))
+                                            }
                                         }
                                     }).sheet(isPresented: {$model.showingState}()) {
                                         StateView(place: place)
