@@ -16,6 +16,9 @@ struct DirectionsView: View {
     
     var body: some View {
         ZStack {
+            Color("Background")
+                .ignoresSafeArea()
+            
             VStack(alignment: .leading, spacing: 5) {
                 VStack(alignment: .leading, spacing: 5) {
                     ScrollView(.horizontal, showsIndicators: false) {
