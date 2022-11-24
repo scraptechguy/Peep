@@ -110,7 +110,12 @@ struct SettingsView: View {
                     
                     Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
                         Toggle(isOn: $model.devLogOn) {
-                            Label("Dev log", systemImage: "pc")
+                            HStack(spacing: 0) {
+                                Label("Dev log ", systemImage: "pc")
+                                
+                                Text("beta")
+                                    .foregroundColor(Color("Green"))
+                            }
                         }
                     }.foregroundColor(.primary)
                     
