@@ -29,11 +29,33 @@ struct TypeView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 40)
                     
-                    ExplanationItem(item: "S", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    Group {
+                        ExplanationItem(item: "S", explanation: "Vertical sundial")
+                        
+                        ExplanationItem(item: "V", explanation: "Horizontal sundial")
+                        
+                        ExplanationItem(item: "R", explanation: "Equatorial sundial")
+                        
+                        ExplanationItem(item: "P", explanation: "Polar sundial")
+                        
+                        ExplanationItem(item: "PP", explanation: "Ring polar sundial")
+                        
+                        ExplanationItem(item: "PJ", explanation: "Southern polar sundial")
+                    }
                     
-                    ExplanationItem(item: "T", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-                    
-                    ExplanationItem(item: "DV", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    Group {
+                        ExplanationItem(item: "K", explanation: "Spherical sundial")
+                        
+                        ExplanationItem(item: "A", explanation: "Analemmatic sundial")
+                        
+                        ExplanationItem(item: "E", explanation: "\"Extra\" sundial")
+                        
+                        ExplanationItem(item: "Y", explanation: "Symbol only sundial")
+                        
+                        ExplanationItem(item: "O", explanation: "Horologe")
+                        
+                        ExplanationItem(item: "M", explanation: "Portable sundial")
+                    }
                 }
             }
             
