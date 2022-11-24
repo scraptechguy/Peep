@@ -29,11 +29,23 @@ struct StateView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 40)
                     
-                    ExplanationItem(item: "V", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    ExplanationItem(item: "V", explanation: "Sundials are in great shape")
                     
-                    ExplanationItem(item: "D", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    ExplanationItem(item: "D", explanation: "Sundials are in a pretty good shape")
                     
-                    ExplanationItem(item: "AB", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    ExplanationItem(item: "P", explanation: "Sundials are slightly damaged")
+                    
+                    ExplanationItem(item: "PZ", explanation: "Sundials are severly damaged")
+                    
+                    ExplanationItem(item: "PZ", explanation: "Sundials are considerably damaged")
+                    
+                    ExplanationItem(item: "U", explanation: "All that's left is the indicator")
+                    
+                    ExplanationItem(item: "C", explanation: "All that's left is the dial")
+                    
+                    ExplanationItem(item: "Z", explanation: "Sundials are destroyed")
+                    
+                    ExplanationItem(item: "X", explanation: "Sundials are yet to be built")
                 }
             }
             
