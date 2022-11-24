@@ -37,7 +37,7 @@ struct IndicatorView: View {
                     
                     ExplanationItem(item: "KN", explanation: "Vertical indicator with nodus")
                     
-                    Text("**Nodus** is a")
+                    Text("**Nodus** is a...")
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
