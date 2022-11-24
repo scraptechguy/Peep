@@ -29,11 +29,29 @@ struct DialView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 40)
                     
-                    ExplanationItem(item: "CZO", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    Group {
+                        ExplanationItem(item: "C", explanation: "Dial has numbers")
+                        
+                        ExplanationItem(item: "Z", explanation: "Dial has labels")
+                        
+                        ExplanationItem(item: "R", explanation: "Dial has tics (every 1/number h)")
+                        
+                        ExplanationItem(item: "O", explanation: "1 - 24 range")
+                        
+                        ExplanationItem(item: "P", explanation: "1 - 12 range")
+                    }
                     
-                    ExplanationItem(item: "VSCZ01", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-                    
-                    ExplanationItem(item: "SD", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    Group {
+                        ExplanationItem(item: "L", explanation: "Summer time dial")
+                        
+                        ExplanationItem(item: "D", explanation: "Dial has date lines (number)")
+                        
+                        ExplanationItem(item: "A", explanation: "Analemma")
+                        
+                        ExplanationItem(item: "S", explanation: "\"Special\" dial")
+                        
+                        ExplanationItem(item: "G", explanation: "Dial has gnomonic error")
+                    }
                 }
             }
             
