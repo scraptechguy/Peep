@@ -35,6 +35,8 @@
 "settingsHeading" = "Settings";
 "settingsSectionGeneral" = "General";
 "settingsColorScheme" = "Light mode";
+"settingsReach" = "Reach";
+"settingsSectionGeneralFooter" = "Increasing reach allows you to view more sundials at once. Note that increasing reach can affect app performance";
 
 "settingsSectionInformation" = "Information";
 "settingsFeedback" = "Feedback";
