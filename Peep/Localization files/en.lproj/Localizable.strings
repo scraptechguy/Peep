@@ -58,7 +58,7 @@
 "detailNoDescription" = "No description found";
 "detailDirections" = "Directions";
 "detailType" = "Type";
-"detailPointer" = "Pointer";
+"detailIndicator" = "Indicator";
 "detailDial" = "Dial";
 "detailState" = "State";
 

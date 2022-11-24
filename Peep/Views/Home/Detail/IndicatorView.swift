@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PointerView: View {
+struct IndicatorView: View {
     
     @EnvironmentObject var model: ContentModel
     
@@ -21,7 +21,7 @@ struct PointerView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 50) {
                     HStack {
-                        Text("Pointer: ")
+                        Text("Indicator: ")
                         
                         Text(place.tukazatel ?? "???")
                     }.bold()
@@ -67,7 +67,7 @@ struct PointerView: View {
 
 struct PointerView_Previews: PreviewProvider {
     static var previews: some View {
-        PointerView(place: DataModel())
+        IndicatorView(place: DataModel())
             .environmentObject(ContentModel())
     }
 }

@@ -23,7 +23,7 @@ struct PlaceDetail: View {
     let detailNoDescription: LocalizedStringKey = "detailNoDescription"
     let detailDirections: LocalizedStringKey = "detailDirections"
     let detailType: LocalizedStringKey = "detailType"
-    let detailPointer: LocalizedStringKey = "detailPointer"
+    let detailIndicator: LocalizedStringKey = "detailIndicator"
     let detailDial: LocalizedStringKey = "detailDial"
     let detailState: LocalizedStringKey = "detailState"
     
@@ -159,13 +159,13 @@ struct PlaceDetail: View {
                                                         .frame(width: 52, height: 52)
                                                 )
                                             
-                                            Text(detailPointer)
+                                            Text(detailIndicator)
                                                 .font(.system(size: 10))
                                                 .foregroundColor(Color("Font"))
                                             
                                         }
                                     }).sheet(isPresented: {$model.showingPointer}()) {
-                                        PointerView(place: place)
+                                        IndicatorView(place: place)
                                             .presentationDetents([.large])
                                     }
                                     
