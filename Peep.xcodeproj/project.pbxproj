@@ -25,6 +25,7 @@
 		9050071B28BD49F900E64E92 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071A28BD49F900E64E92 /* DialView.swift */; };
 		9050071D28BDF81200E64E92 /* AnimatedBlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071C28BDF81200E64E92 /* AnimatedBlobView.swift */; };
 		9050071F28BE062200E64E92 /* DevLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071E28BE062200E64E92 /* DevLog.swift */; };
+		90707DD4292FF2BD00F4D7CE /* OfflineDatabase.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 90707DD3292FF2BD00F4D7CE /* OfflineDatabase.geojson */; };
 		90A625CA28A556F7009D9D8A /* SomethingWentWrong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A625C928A556F7009D9D8A /* SomethingWentWrong.swift */; };
 		90A625CC28A7A187009D9D8A /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A625CB28A7A187009D9D8A /* FetchData.swift */; };
 		90A625CE28A7A1D1009D9D8A /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A625CD28A7A1D1009D9D8A /* DataModel.swift */; };
@@ -58,6 +59,7 @@
 		9050071A28BD49F900E64E92 /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
 		9050071C28BDF81200E64E92 /* AnimatedBlobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedBlobView.swift; sourceTree = "<group>"; };
 		9050071E28BE062200E64E92 /* DevLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevLog.swift; sourceTree = "<group>"; };
+		90707DD3292FF2BD00F4D7CE /* OfflineDatabase.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = OfflineDatabase.geojson; sourceTree = "<group>"; };
 		90A625C928A556F7009D9D8A /* SomethingWentWrong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomethingWentWrong.swift; sourceTree = "<group>"; };
 		90A625CB28A7A187009D9D8A /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		90A625CD28A7A1D1009D9D8A /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				90A625C928A556F7009D9D8A /* SomethingWentWrong.swift */,
 				9021FA6A28BE3F0600C56CE7 /* Constants.swift */,
 				90C3856A292EAEE7009060B3 /* ExplanationItem.swift */,
+				90707DD3292FF2BD00F4D7CE /* OfflineDatabase.geojson */,
 				9050071C28BDF81200E64E92 /* AnimatedBlobView.swift */,
 				9050071E28BE062200E64E92 /* DevLog.swift */,
 			);
@@ -268,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90707DD4292FF2BD00F4D7CE /* OfflineDatabase.geojson in Resources */,
 				90A625D028A82857009D9D8A /* LaunchScreen.storyboard in Resources */,
 				90B2E365292827F30047B106 /* Localizable.strings in Resources */,
 				901F83A228A121B2006FDC4F /* Preview Assets.xcassets in Resources */,
