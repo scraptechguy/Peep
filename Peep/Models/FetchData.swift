@@ -12,10 +12,12 @@ class FetchData: ObservableObject {
     @Published var dataList = [DataModel]()
     
     init() {
+        
         let url = URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/json3.php")!
         
         URLSession.shared.dataTask(with: url) {(data, response, error) in
             do {
+                
                 if let todoData = data {
                     
                     let decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
@@ -32,6 +34,7 @@ class FetchData: ObservableObject {
                     else {
                         
                         print("Json file not found")
+                        
                         return
                         
                     }
@@ -41,11 +44,13 @@ class FetchData: ObservableObject {
                     self.dataList = decodedData
                     
                 }
+                
             } catch let error {
                 
                 print(error)
                 
             }
         }.resume()
+        
     }
 }
