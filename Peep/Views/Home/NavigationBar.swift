@@ -28,9 +28,11 @@ struct NavigationBar: View {
                         Image(systemName: "location")
                             .foregroundColor(Color("Font"))
                         
-                        Text(model.placemark?.locality ?? "Loading...")
+                        Text(model.placemark?.locality ?? "No location found")
                             .foregroundColor(Color("Font"))
+                            .lineLimit(1)
                     }.padding(.leading, 22)
+                        .frame(width: screenSize.width / 1.35, alignment: .leading)
                 }
                 
                 Button(action: {

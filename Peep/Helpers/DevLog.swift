@@ -12,7 +12,8 @@ struct DevLog: View {
     @EnvironmentObject var model: ContentModel
     
     var body: some View {
-        Text("Dev log is in development...")
+        Text(model.devLog)
+            .font(.system(size: 12))
             .foregroundColor(Color("Font"))
             .frame(height: 33)
             .frame(maxWidth: .infinity, alignment: .leading)

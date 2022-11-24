@@ -61,6 +61,7 @@ struct PlaceDetail: View {
                                     withAnimation {
                                         model.annotationSelected = false
                                         model.currentHeight = 90
+                                        model.devLog = "Annotation deselected"
                                     }
                                 }, label: {
                                     ZStack {

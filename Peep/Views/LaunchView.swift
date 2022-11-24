@@ -18,13 +18,7 @@ struct LaunchView: View {
             
         } else if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
             
-            ZStack {
-                HomeView()
-                
-                if model.devLogOn {
-                    DevLog()
-                }
-            }
+            HomeView()
             
         } else if model.authorizationState == .denied {
             

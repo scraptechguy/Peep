@@ -168,6 +168,7 @@ struct Map: UIViewRepresentable {
                     
                     map.selectedPlace = place
                     model.annotationSelected = true
+                    model.devLog = "Annotation selected"
                     
                     withAnimation {
                         model.currentHeight = 400
