@@ -14,41 +14,47 @@ struct NavigationBar: View {
     let screenSize: CGRect = UIScreen.main.bounds
     
     var body: some View {
-        HStack {
-            ZStack(alignment: .leading) {
-                Rectangle()
-                    .fill(.ultraThinMaterial)
-                    .frame(width: screenSize.width / 1.35, height: screenSize.width / 6)
-                    .mask(
-                        RoundedRectangle(cornerRadius: 22, style: .continuous)
-                    )
-                
-                HStack {
-                    Image(systemName: "location")
-                        .foregroundColor(Color("Font"))
-                    
-                    Text(model.placemark?.locality ?? "Loading...")
-                        .foregroundColor(Color("Font"))
-                }.padding(.leading, 22)
-            }
-            
-            Button(action: {
-                model.showingSettings = true
-            }, label: {
-                ZStack {
+        VStack(spacing: 10) {
+            HStack {
+                ZStack(alignment: .leading) {
                     Rectangle()
-                        .fill(.thinMaterial)
-                        .frame(width: screenSize.width / 6, height: screenSize.width / 6)
+                        .fill(.ultraThinMaterial)
+                        .frame(width: screenSize.width / 1.35, height: screenSize.width / 6)
                         .mask(
                             RoundedRectangle(cornerRadius: 22, style: .continuous)
                         )
                     
-                    Image(systemName: "gear")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                        .foregroundColor(Color("Font"))
+                    HStack {
+                        Image(systemName: "location")
+                            .foregroundColor(Color("Font"))
+                        
+                        Text(model.placemark?.locality ?? "Loading...")
+                            .foregroundColor(Color("Font"))
+                    }.padding(.leading, 22)
                 }
-            }).sheet(isPresented: {$model.showingSettings}()) {SettingsView()}
+                
+                Button(action: {
+                    model.showingSettings = true
+                }, label: {
+                    ZStack {
+                        Rectangle()
+                            .fill(.thinMaterial)
+                            .frame(width: screenSize.width / 6, height: screenSize.width / 6)
+                            .mask(
+                                RoundedRectangle(cornerRadius: 22, style: .continuous)
+                            )
+                        
+                        Image(systemName: "gear")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .foregroundColor(Color("Font"))
+                    }
+                }).sheet(isPresented: {$model.showingSettings}()) {SettingsView()}
+            }
+            
+            if model.devLogOn {
+                DevLog()
+            }
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }

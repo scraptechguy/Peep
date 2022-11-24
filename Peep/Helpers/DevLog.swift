@@ -8,15 +8,26 @@
 import SwiftUI
 
 struct DevLog: View {
-    let screenSize: CGRect = UIScreen.main.bounds
+    
+    @EnvironmentObject var model: ContentModel
     
     var body: some View {
-        Text("Get Started")
+        Text("Dev log is in development...")
+            .foregroundColor(Color("Font"))
+            .frame(height: 33)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading)
+            .background(.ultraThinMaterial)
+            .mask(
+                RoundedRectangle(cornerRadius: 22, style: .continuous)
+            )
+            .padding(.horizontal)
     }
 }
 
 struct DevLog_Previews: PreviewProvider {
     static var previews: some View {
         DevLog()
+            .environmentObject(ContentModel())
     }
 }
