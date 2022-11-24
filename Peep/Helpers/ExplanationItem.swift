@@ -27,7 +27,8 @@ struct ExplanationItem: View {
             Spacer()
             
             Text(explanation)
-                .frame(width: screenSize.width / 1.7)
+                .frame(width: screenSize.width / 1.7, alignment: .leading)
+                .minimumScaleFactor(0.1)
             
             Spacer()
         }.foregroundColor(Color("Font"))
