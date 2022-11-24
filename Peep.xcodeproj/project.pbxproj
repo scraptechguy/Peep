@@ -188,9 +188,9 @@
 				90A625C928A556F7009D9D8A /* SomethingWentWrong.swift */,
 				9021FA6A28BE3F0600C56CE7 /* Constants.swift */,
 				90C3856A292EAEE7009060B3 /* ExplanationItem.swift */,
-				90707DD3292FF2BD00F4D7CE /* OfflineDatabase.geojson */,
 				9050071C28BDF81200E64E92 /* AnimatedBlobView.swift */,
 				9050071E28BE062200E64E92 /* DevLog.swift */,
+				90707DD3292FF2BD00F4D7CE /* OfflineDatabase.geojson */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
