@@ -29,11 +29,16 @@ struct IndicatorView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 40)
                     
-                    ExplanationItem(item: "P", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    ExplanationItem(item: "P", explanation: "Oblique indicator (polos)")
                     
-                    ExplanationItem(item: "VS", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    ExplanationItem(item: "PN", explanation: "Oblique indicator with nodus")
                     
-                    ExplanationItem(item: "ABC", explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    ExplanationItem(item: "K", explanation: "Vertical indicator")
+                    
+                    ExplanationItem(item: "KN", explanation: "Vertical indicator with nodus")
+                    
+                    Text("**Nodus** is a")
+                        .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
             
