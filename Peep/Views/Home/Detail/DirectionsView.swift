@@ -14,6 +14,8 @@ struct DirectionsView: View {
     var place: DataModel
     let screenSize: CGRect = UIScreen.main.bounds
     
+    let detailDirections: LocalizedStringKey = "detailDirections"
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -29,14 +31,14 @@ struct DirectionsView: View {
                     }.frame(width: screenSize.width / 1.25)
                     
                     HStack {
-                        Text("Directions")
+                        Text(detailDirections)
                             .font(.system(size: 15))
                             .foregroundColor(.secondary)
                             .padding(.horizontal)
                         
                         if let lat = place.zsirka, let long = place.zdelka, let name = place.adresa {
                             
-                            Link("Open in Maps", destination: URL(string:"http://maps.apple.com/?ll=\(lat),\(long)&q=\(name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)")!)
+                            Link(String(localized: "detailDirectionsOpen"), destination: URL(string:"http://maps.apple.com/?ll=\(lat),\(long)&q=\(name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)")!)
                                 .font(.system(size: 15))
                             
                         }

@@ -59,8 +59,9 @@
 "detailNoAddress" = "Adresa chybí";
 "detailNoDescription" = "Popis chybí";
 "detailDirections" = "Trasa";
+"detailDirectionsOpen" = "Otevřít v Mapách";
 "detailType" = "Typ";
-"detailPointer" = "Ukazatel";
+"detailIndicator" = "Ukazatel";
 "detailDial" = "Číselník";
 "detailState" = "Stav";
 
