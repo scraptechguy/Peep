@@ -13,6 +13,8 @@ struct DialView: View {
     
     var place: DataModel
     
+    let detailDial: LocalizedStringKey = "detailDial"
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -21,7 +23,7 @@ struct DialView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 50) {
                     HStack {
-                        Text("Dial: ")
+                        Text(detailDial)
                         
                         Text(place.tciselnik ?? "???")
                     }.bold()
@@ -30,27 +32,27 @@ struct DialView: View {
                         .padding(.top, 40)
                     
                     Group {
-                        ExplanationItem(item: "C", explanation: "Dial has numbers")
+                        ExplanationItem(item: "C", explanation: String(localized: "dialC"))
                         
-                        ExplanationItem(item: "Z", explanation: "Dial has labels")
+                        ExplanationItem(item: "Z", explanation: String(localized: "dialZ"))
                         
-                        ExplanationItem(item: "R", explanation: "Dial has tics (every 1/number h)")
+                        ExplanationItem(item: "R", explanation: String(localized: "dialR"))
                         
-                        ExplanationItem(item: "O", explanation: "1 - 24 range")
+                        ExplanationItem(item: "O", explanation: String(localized: "dialO"))
                         
-                        ExplanationItem(item: "P", explanation: "1 - 12 range")
+                        ExplanationItem(item: "P", explanation: String(localized: "dialP"))
                     }
                     
                     Group {
-                        ExplanationItem(item: "L", explanation: "Summer time dial")
+                        ExplanationItem(item: "L", explanation: String(localized: "dialL"))
                         
-                        ExplanationItem(item: "D", explanation: "Dial has date lines (number)")
+                        ExplanationItem(item: "D", explanation: String(localized: "dialD"))
                         
-                        ExplanationItem(item: "A", explanation: "Analemma")
+                        ExplanationItem(item: "A", explanation: String(localized: "dialA"))
                         
-                        ExplanationItem(item: "S", explanation: "\"Special\" dial")
+                        ExplanationItem(item: "S", explanation: String(localized: "dialS"))
                         
-                        ExplanationItem(item: "G", explanation: "Dial has gnomonic error")
+                        ExplanationItem(item: "G", explanation: String(localized: "dialG"))
                     }
                 }
             }

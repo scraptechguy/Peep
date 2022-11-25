@@ -93,3 +93,16 @@
 "indicatorKN" = "Kolmý ukazatel s nodem";
 
 "indicatorFooter" = "**Nodus** je...";
+
+// MARK: - Dial
+
+"dialC" = "Číselník má čísla";
+"dialZ" = "Číselník má značky";
+"dialR" = "Číselník má rysky (po 1/číslo h)";
+"dialO" = "Orlojní číselník";
+"dialP" = "Polorlojní číselník";
+"dialL" = "Číselník s letním časem";
+"dialD" = "Číselník má datové čáry (počet)";
+"dialA" = "Analema";
+"dialS" = "\"Speciální\" číselník";
+"dialG" = "Číselník je gnomonicky chybný";

@@ -93,3 +93,16 @@
 "indicatorKN" = "Vertical indicator with nodus";
 
 "indicatorFooter" = "**Nodus** is a...";
+
+// MARK: - Dial
+
+"dialC" = "Dial has numbers";
+"dialZ" = "Dial has labels";
+"dialR" = "Dial has tics (every 1/number h)";
+"dialO" = "1 - 24 range";
+"dialP" = "1 - 12 range";
+"dialL" = "Summer time dial";
+"dialD" = "Dial has date lines (number)";
+"dialA" = "Analemma";
+"dialS" = "\"Special\" dial";
+"dialG" = "Dial has gnomonic error";
