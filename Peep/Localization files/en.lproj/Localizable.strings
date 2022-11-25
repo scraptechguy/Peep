@@ -69,3 +69,18 @@
 
 "detailGalleryHeading" = "**Gallery**";
 "detailGalleryGuide" = "**Swipe to browse**";
+
+// MARK: - Type
+
+"typeS" = "Vertical sundial";
+"typeV" = "Horizontal sundial";
+"typeR" = "Equatorial sundial";
+"typeP" = "Polar sundial";
+"typePP" = "Ring polar sundial";
+"typePJ" = "Southern polar sundial";
+"typeK" = "Spherical sundial";
+"typeA" = "Analemmatic sundial";
+"typeE" = "\"Extra\" sundial";
+"typeY" = "Symbol only sundial";
+"typeO" = "Horologe";
+"typeM" = "Portable sundial";

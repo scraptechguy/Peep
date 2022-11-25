@@ -13,6 +13,8 @@ struct TypeView: View {
     
     var place: DataModel
     
+    let detailType: LocalizedStringKey = "detailType"
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -21,7 +23,7 @@ struct TypeView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 50) {
                     HStack {
-                        Text("Type: ")
+                        Text(detailType)
                         
                         Text(place.thodin ?? "???")
                     }.bold()
@@ -30,31 +32,31 @@ struct TypeView: View {
                         .padding(.top, 40)
                     
                     Group {
-                        ExplanationItem(item: "S", explanation: "Vertical sundial")
+                        ExplanationItem(item: "S", explanation: String(localized: "typeS"))
                         
-                        ExplanationItem(item: "V", explanation: "Horizontal sundial")
+                        ExplanationItem(item: "V", explanation: String(localized: "typeV"))
                         
-                        ExplanationItem(item: "R", explanation: "Equatorial sundial")
+                        ExplanationItem(item: "R", explanation: String(localized: "typeR"))
                         
-                        ExplanationItem(item: "P", explanation: "Polar sundial")
+                        ExplanationItem(item: "P", explanation: String(localized: "typeP"))
                         
-                        ExplanationItem(item: "PP", explanation: "Ring polar sundial")
+                        ExplanationItem(item: "PP", explanation: String(localized: "typePP"))
                         
-                        ExplanationItem(item: "PJ", explanation: "Southern polar sundial")
+                        ExplanationItem(item: "PJ", explanation: String(localized: "typePJ"))
                     }
                     
                     Group {
-                        ExplanationItem(item: "K", explanation: "Spherical sundial")
+                        ExplanationItem(item: "K", explanation: String(localized: "typeK"))
                         
-                        ExplanationItem(item: "A", explanation: "Analemmatic sundial")
+                        ExplanationItem(item: "A", explanation: String(localized: "typeA"))
                         
-                        ExplanationItem(item: "E", explanation: "\"Extra\" sundial")
+                        ExplanationItem(item: "E", explanation: String(localized: "typeE"))
                         
-                        ExplanationItem(item: "Y", explanation: "Symbol only sundial")
+                        ExplanationItem(item: "Y", explanation: String(localized: "typeY"))
                         
-                        ExplanationItem(item: "O", explanation: "Horologe")
+                        ExplanationItem(item: "O", explanation: String(localized: "typeO"))
                         
-                        ExplanationItem(item: "M", explanation: "Portable sundial")
+                        ExplanationItem(item: "M", explanation: String(localized: "typeM"))
                     }
                 }
             }

@@ -69,3 +69,18 @@
 
 "detailGalleryHeading" = "**Galerie**";
 "detailGalleryGuide" = "**Prohlížej přejetím prstu**";
+
+// MARK: - Type
+
+"typeS" = "Svislé sluneční hodiny";
+"typeV" = "Vodorovné sluneční hodiny";
+"typeR" = "Rovníkové sluneční hodiny";
+"typeP" = "Polární sluneční hodiny";
+"typePP" = "Prstencové polární sluneční hodiny";
+"typePJ" = "Jihopolární sluneční hodiny";
+"typeK" = "Kulové sluneční hodiny";
+"typeA" = "Analematické sluneční hodiny";
+"typeE" = "\"Extra\" sluneční hodiny";
+"typeY" = "Sluneční hodiny pouze se symbolem";
+"typeO" = "Orloj (astroláb)";
+"typeM" = "Přenosné sluneční hodiny (sbírka)";
