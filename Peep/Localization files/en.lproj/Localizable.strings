@@ -47,7 +47,7 @@
 "settingsWebsite" = "Website";
 
 "settingsSectionDeveloperSettings" = "Developer settings";
-"settingsSectionDeveloperSettingsSubtitle" = "Dev log displays what the app is doing on the bottom of your screen";
+"settingsSectionDeveloperSettingsSubtitle" = "Dev log displays what the app is doing at the top of your screen";
 
 "settingsVersion" = "Version";
 "settingsFooter" = "Made with Ɛ> by ";
