@@ -106,3 +106,14 @@
 "dialA" = "Analema";
 "dialS" = "\"Speciální\" číselník";
 "dialG" = "Číselník je gnomonicky chybný";
+
+// MARK: - State
+
+"stateV" = "Sluneční hodiny jsou ve výborném stavu";
+"stateD" = "Sluneční hodiny jsou v dobrém stavu";
+"stateP" = "Sluneční hodiny jsou poškozeny";
+"statePZ" = "Sluneční hodiny jsou značně poškozeny";
+"stateU" = "Zbyl jen ukazatel";
+"stateC" = "Zbyl jen číselník";
+"stateZ" = "Sluneční hodiny jsou zaniklé";
+"stateX" = "Plánované sluneční hodiny";

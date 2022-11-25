@@ -106,3 +106,14 @@
 "dialA" = "Analemma";
 "dialS" = "\"Special\" dial";
 "dialG" = "Dial has gnomonic error";
+
+// MARK: - State
+
+"stateV" = "Sundials are in a great shape";
+"stateD" = "Sundials are in a pretty good shape";
+"stateP" = "Sundials are slightly damaged";
+"statePZ" = "Sundials are considerably damaged";
+"stateU" = "All that's left is the indicator";
+"stateC" = "All that's left is the dial";
+"stateZ" = "Sundials are destroyed";
+"stateX" = "Sundials are yet to be built";

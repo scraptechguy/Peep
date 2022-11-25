@@ -13,6 +13,8 @@ struct StateView: View {
     
     var place: DataModel
     
+    let detailState: LocalizedStringKey = "detailState"
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -21,7 +23,7 @@ struct StateView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 50) {
                     HStack {
-                        Text("State: ")
+                        Text(detailState)
                         
                         Text(place.stav ?? "???")
                     }.bold()
@@ -29,23 +31,21 @@ struct StateView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 40)
                     
-                    ExplanationItem(item: "V", explanation: "Sundials are in great shape")
+                    ExplanationItem(item: "V", explanation: String(localized: "stateV"))
                     
-                    ExplanationItem(item: "D", explanation: "Sundials are in a pretty good shape")
+                    ExplanationItem(item: "D", explanation: String(localized: "stateD"))
                     
-                    ExplanationItem(item: "P", explanation: "Sundials are slightly damaged")
+                    ExplanationItem(item: "P", explanation: String(localized: "stateP"))
                     
-                    ExplanationItem(item: "PZ", explanation: "Sundials are severly damaged")
+                    ExplanationItem(item: "PZ", explanation: String(localized: "statePZ"))
                     
-                    ExplanationItem(item: "PZ", explanation: "Sundials are considerably damaged")
+                    ExplanationItem(item: "U", explanation: String(localized: "stateU"))
                     
-                    ExplanationItem(item: "U", explanation: "All that's left is the indicator")
+                    ExplanationItem(item: "C", explanation: String(localized: "stateC"))
                     
-                    ExplanationItem(item: "C", explanation: "All that's left is the dial")
+                    ExplanationItem(item: "Z", explanation: String(localized: "stateZ"))
                     
-                    ExplanationItem(item: "Z", explanation: "Sundials are destroyed")
-                    
-                    ExplanationItem(item: "X", explanation: "Sundials are yet to be built")
+                    ExplanationItem(item: "X", explanation: String(localized: "stateX"))
                 }
             }
             
