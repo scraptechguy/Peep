@@ -49,7 +49,7 @@ struct Map: UIViewRepresentable {
         mapView.delegate = context.coordinator
         
         mapView.showsUserLocation = true // Show user on the map
-        mapView.userTrackingMode = .followWithHeading // Follow user when moving
+        mapView.userTrackingMode = .follow // Follow user
         mapView.showsCompass = false // Disable compass indicator
         
         let span = MKCoordinateSpan.init(latitudeDelta: 10, longitudeDelta: 10)
