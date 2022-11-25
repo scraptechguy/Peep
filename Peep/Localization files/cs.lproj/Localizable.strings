@@ -30,6 +30,12 @@
 "welcomeSubtitle" = "Pokračovaním souhlasíš s naší ";
 "privacyButton" = "**Privacy Policy**";
 
+// MARK: - Denied view
+
+"deniedMainText" = "Píp potřebuje znát **tvoji lokaci** aby aplikace mohla **dobře fungovat**";
+"deniedSubtitle" = "Bude ji používat rozumně... ";
+"deniedGuide" = "Jdi do **Nastavení**, najdi **Pípa**,\na povol mu **přístup k tvoji lokaci**";
+
 // MARK: - Settings
 
 "settingsHeading" = "Nastavení";

@@ -11,6 +11,10 @@ struct DeniedView: View {
     
     @EnvironmentObject var model: ContentModel
     
+    let deniedMainText: LocalizedStringKey = "deniedMainText"
+    let deniedSubtitle: LocalizedStringKey = "deniedSubtitle"
+    let deniedGuide: LocalizedStringKey = "deniedGuide"
+    
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
@@ -18,13 +22,13 @@ struct DeniedView: View {
             VStack {
                 Image("broken_initial")
                 
-                Text("Píp needs to **track your location** in order for the app to **work**")
+                Text(deniedMainText)
                     .padding(25)
                     .foregroundColor(Color("Font"))
                     .multilineTextAlignment(.center)
                 
                 HStack {
-                    Text("He'll use it wisely... ")
+                    Text(deniedSubtitle)
                         .font(.system(size: 12))
                         .foregroundColor(Color("Font"))
                     
@@ -35,7 +39,7 @@ struct DeniedView: View {
                     }
                 }
                 
-                Text("Go to **iPhone Settings**, find **Píp**,\nand allow him to **access your location**")
+                Text(deniedGuide)
                     .padding(15)
                     .foregroundColor(Color("Font"))
                     .multilineTextAlignment(.center)
