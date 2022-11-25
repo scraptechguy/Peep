@@ -84,3 +84,12 @@
 "typeY" = "Sluneční hodiny pouze se symbolem";
 "typeO" = "Orloj (astroláb)";
 "typeM" = "Přenosné sluneční hodiny (sbírka)";
+
+// MARK: - Indicator
+
+"indicatorP" = "Šikmý ukazatel (polos)";
+"indicatorPN" = "Šikmý ukazatel s nodem";
+"indicatorK" = "Kolmý ukazatel (gnómon)";
+"indicatorKN" = "Kolmý ukazatel s nodem";
+
+"indicatorFooter" = "**Nodus** je...";

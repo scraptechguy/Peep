@@ -13,6 +13,9 @@ struct IndicatorView: View {
     
     var place: DataModel
     
+    let detailIndicator: LocalizedStringKey = "detailIndicator"
+    let indicatorFooter: LocalizedStringKey = "indicatorFooter"
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -21,7 +24,7 @@ struct IndicatorView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 50) {
                     HStack {
-                        Text("Indicator: ")
+                        Text(detailIndicator)
                         
                         Text(place.tukazatel ?? "???")
                     }.bold()
@@ -29,15 +32,15 @@ struct IndicatorView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 40)
                     
-                    ExplanationItem(item: "P", explanation: "Oblique indicator (polos)")
+                    ExplanationItem(item: "P", explanation: String(localized: "indicatorP"))
                     
-                    ExplanationItem(item: "PN", explanation: "Oblique indicator with nodus")
+                    ExplanationItem(item: "PN", explanation: String(localized: "indicatorPN"))
                     
-                    ExplanationItem(item: "K", explanation: "Vertical indicator")
+                    ExplanationItem(item: "K", explanation: String(localized: "indicatorK"))
                     
-                    ExplanationItem(item: "KN", explanation: "Vertical indicator with nodus")
+                    ExplanationItem(item: "KN", explanation: String(localized: "indicatorKN"))
                     
-                    Text("**Nodus** is a...")
+                    Text(indicatorFooter)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
             }

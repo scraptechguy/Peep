@@ -84,3 +84,12 @@
 "typeY" = "Symbol only sundial";
 "typeO" = "Horologe";
 "typeM" = "Portable sundial";
+
+// MARK: - Indicator
+
+"indicatorP" = "Oblique indicator (polos)";
+"indicatorPN" = "Oblique indicator with nodus";
+"indicatorK" = "Vertical indicator";
+"indicatorKN" = "Vertical indicator with nodus";
+
+"indicatorFooter" = "**Nodus** is a...";
