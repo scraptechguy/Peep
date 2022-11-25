@@ -124,3 +124,7 @@
 "stateC" = "Zbyl jen číselník";
 "stateZ" = "Sluneční hodiny jsou zaniklé";
 "stateX" = "Plánované sluneční hodiny";
+
+// MARK: - Prompts
+
+"comingSoon" = "Již brzy...";

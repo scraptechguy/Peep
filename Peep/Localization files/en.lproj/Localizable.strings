@@ -124,3 +124,7 @@
 "stateC" = "All that's left is the dial";
 "stateZ" = "Sundials are destroyed";
 "stateX" = "Sundials are yet to be built";
+
+// MARK: - Prompts
+
+"comingSoon" = "Coming soon...";

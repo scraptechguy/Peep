@@ -273,53 +273,26 @@ struct PlaceDetail: View {
                             
                             VStack(alignment: .center) {
                                 HStack {
-                                    Spacer()
-                                    
-                                    VStack {
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 25)
-                                                .stroke(Color("Font"))
-                                                .frame(width: 120, height: 120)
-                                            
-                                            Image(systemName: "sun.max.fill")
-                                                .frame(width: 20)
-                                                .foregroundColor(Color("Font"))
-                                                .padding()
-                                        }
-                                        
-                                        Text(detailAzimuth)
-                                            .font(.system(size: 10))
-                                            .foregroundColor(Color("Font"))
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    VStack {
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 25)
-                                                .stroke(Color("Font"))
-                                                .frame(width: 120, height: 120)
-                                            
-                                            Image(systemName: "sun.max.fill")
-                                                .frame(width: 20)
-                                                .foregroundColor(Color("Font"))
-                                                .padding()
-                                        }
-                                        
-                                        Text(detailAzimuth)
-                                            .font(.system(size: 10))
-                                            .foregroundColor(Color("Font"))
-                                    }
-                                    
-                                    Spacer()
+                                    Text(String(localized: "comingSoon"))
+                                        .bold()
+                                        .font(.title3)
+                                        .padding(.bottom, 50)
                                 }.padding(.top, 5)
                             }.frame(width: screenSize.width)
                         }
                     } else {
                         
-                        Text(detailGuide)
-                            .font(.title3)
-                            .minimumScaleFactor(0.1)
+                        VStack {
+                            Text(detailGuide)
+                                .font(.title3)
+                                .minimumScaleFactor(0.1)
+                            
+                            Text(String(localized: "comingSoon"))
+                                .bold()
+                                .font(.title3)
+                                .padding(.top, 50)
+                                .padding(.bottom, 30)
+                        }
                         
                     }
                 }
