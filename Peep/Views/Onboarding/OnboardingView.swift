@@ -264,7 +264,7 @@ struct OnboardingView: View {
             Image("dangerous_initial")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(height: 120)
+                .frame(height: 150)
                 .padding(.bottom, 60)
                 .padding(.horizontal, 20)
                 .offset(x: -size.width * CGFloat(currentIndex - index))
