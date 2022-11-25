@@ -26,8 +26,7 @@ struct TypeView: View {
                         Text(detailType)
                         
                         Text(place.thodin ?? "???")
-                    }.bold()
-                        .font(.title)
+                    }.font(.title.bold())
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 40)
                     

@@ -113,7 +113,6 @@ struct PlaceDetail: View {
                                         }
                                     }).sheet(isPresented: {$model.showingDirections}()) {
                                         DirectionsView(place: place)
-                                            .presentationDetents([.large])
                                     }
                                     
                                     Button(action: {
@@ -140,7 +139,6 @@ struct PlaceDetail: View {
                                         }
                                     }).sheet(isPresented: {$model.showingType}()) {
                                         TypeView(place: place)
-                                            .presentationDetents([.large])
                                     }
                                     
                                     Button(action: {
@@ -167,7 +165,6 @@ struct PlaceDetail: View {
                                         }
                                     }).sheet(isPresented: {$model.showingPointer}()) {
                                         IndicatorView(place: place)
-                                            .presentationDetents([.large])
                                     }
                                     
                                     Button(action: {
@@ -194,7 +191,6 @@ struct PlaceDetail: View {
                                         }
                                     }).sheet(isPresented: {$model.showingDial}()) {
                                         DialView(place: place)
-                                            .presentationDetents([.large])
                                     }
                                     
                                     Button(action: {
@@ -239,7 +235,6 @@ struct PlaceDetail: View {
                                         }
                                     }).sheet(isPresented: {$model.showingState}()) {
                                         StateView(place: place)
-                                            .presentationDetents([.large])
                                     }
                                 }.padding([.top, .leading])
                             }

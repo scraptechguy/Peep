@@ -26,8 +26,7 @@ struct DialView: View {
                         Text(detailDial)
                         
                         Text(place.tciselnik ?? "???")
-                    }.bold()
-                        .font(.title)
+                    }.font(.title.bold())
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 40)
                     

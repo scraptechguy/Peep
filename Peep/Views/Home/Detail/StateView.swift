@@ -26,8 +26,7 @@ struct StateView: View {
                         Text(detailState)
                         
                         Text(place.stav ?? "???")
-                    }.bold()
-                        .font(.title)
+                    }.font(.title.bold())
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 40)
                     

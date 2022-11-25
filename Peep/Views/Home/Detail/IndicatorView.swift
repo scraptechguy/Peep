@@ -27,8 +27,7 @@ struct IndicatorView: View {
                         Text(detailIndicator)
                         
                         Text(place.tukazatel ?? "???")
-                    }.bold()
-                        .font(.title)
+                    }.font(.title.bold())
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 40)
                     
