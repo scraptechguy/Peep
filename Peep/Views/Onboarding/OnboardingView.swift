@@ -152,7 +152,7 @@ struct OnboardingView: View {
                 .offset(x: -size.width * CGFloat(currentIndex - index))
                 .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5).delay(currentIndex == index ? 0 : 0.2).delay(currentIndex == index ? 0.2 : 0), value: currentIndex)
             
-            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+            Text(intro.text)
                 .font(.system(size: 14))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
