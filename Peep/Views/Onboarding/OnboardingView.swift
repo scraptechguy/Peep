@@ -50,7 +50,7 @@ struct OnboardingView: View {
             OnboardingScreens()
             
             NavigationBar()
-        }.animation(.interactiveSpring(response: 1.1, dampingFraction: 0.85, blendDuration: 0.85), value: showOnboardingScreens)
+        }.animation(.interactiveSpring(response: 1.1, dampingFraction: 0.85, blendDuration: 1), value: showOnboardingScreens)
             .preferredColorScheme(model.isLightMode ? .light : .dark)
     }
     
@@ -65,6 +65,7 @@ struct OnboardingView: View {
                 Text(introHeading)
                     .bold()
                     .font(.largeTitle)
+                    .padding(.top, 85)
                 
                 Text(introText)
                     .font(.system(size: 14))
@@ -93,11 +94,11 @@ struct OnboardingView: View {
                         RoundedRectangle(cornerRadius: 15, style: .continuous)
                     )
                     .onTapGesture {
-                        showOnboardingScreens.toggle()
+                        showOnboardingScreens = true
                     }
-                    .padding(.top, 20)
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                .offset(y: showOnboardingScreens ? -size.height : 0)
+                    .padding(.top, 75)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .offset(y: showOnboardingScreens ? -size.height * 1.5 : 0)
         }
     }
     
@@ -109,13 +110,13 @@ struct OnboardingView: View {
         
         HStack {
             Button(action: {
-                if currentIndex > 0 {
-                    
-                    currentIndex -= 1
-                    
-                } else if currentIndex == 0 {
+                if currentIndex == 0 {
                     
                     showOnboardingScreens.toggle()
+                    
+                } else if currentIndex > 0 {
+                    
+                    currentIndex -= 1
                     
                 }
             }, label: {
