@@ -16,11 +16,11 @@
 
 "skipButton" = "Skip";
 
-"onboardingHeading1" = "Píp is a good bird";
-"onboardingText1" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+"onboardingHeading1" = "Find sundials...";
+"onboardingText1" = "There's over 30,000 sundials documented around the world. Zoom in and find them all! Here's how they look like:";
 
-"onboardingHeading2" = "Really good bird";
-"onboardingText2" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+"onboardingHeading2" = "...and get to know them";
+"onboardingText2" = "Each sundial has a variety of properties, you can inspect them all here, in one place. Just click on them!";
 
 // MARK: - Welcome
 

@@ -18,7 +18,7 @@ struct Intro: Identifiable {
 
 var intros: [Intro] = [
 
-    .init(imageName: "peep_initial", title: String(localized: "onboardingHeading1"), text: String(localized: "onboardingText1")),
-    .init(imageName: "peep_initial", title: String(localized: "onboardingHeading2"), text: String(localized: "onboardingText2")),
+    .init(imageName: "sundials", title: String(localized: "onboardingHeading1"), text: String(localized: "onboardingText1")),
+    .init(imageName: "detail", title: String(localized: "onboardingHeading2"), text: String(localized: "onboardingText2")),
 
 ]

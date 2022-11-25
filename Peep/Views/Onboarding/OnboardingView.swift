@@ -72,7 +72,7 @@ struct OnboardingView: View {
                     .padding(.horizontal, 30)
                 
                 Group {
-                    Image("jump_initial")
+                    Image("jump")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: size.width / 1.5, height: size.height / 2)
@@ -161,8 +161,10 @@ struct OnboardingView: View {
             
             Image(intro.imageName)
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 100)
+                .frame(width: 250, height: 250)
+                .mask(
+                    RoundedRectangle(cornerRadius: 22)
+                )
                 .padding(.top, 70)
                 .padding(.horizontal, 20)
                 .offset(x: -size.width * CGFloat(currentIndex - index))
