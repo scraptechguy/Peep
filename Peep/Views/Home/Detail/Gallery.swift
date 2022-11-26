@@ -60,7 +60,7 @@ struct Gallery: View {
                 
                 Text(detailGalleryGuide)
                     .font(.title3)
-                    .padding(.bottom, 100)
+                    .padding(.bottom, 105)
             }.frame(height: screenSize.height)
             
             VStack {
