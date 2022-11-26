@@ -15,7 +15,6 @@ struct Gallery: View {
     
     let screenSize: CGRect = UIScreen.main.bounds
     
-    
     let detailGalleryHeading: LocalizedStringKey = "detailGalleryHeading"
     let detailGalleryGuide: LocalizedStringKey = "detailGalleryGuide"
     
@@ -26,7 +25,7 @@ struct Gallery: View {
                 .frame(width: screenSize.width, height: screenSize.height)
                 .ignoresSafeArea()
             
-            TabView {
+            TabView(selection: $model.index) {
                 ForEach(place.obrazky?.indices ?? [""].indices, id: \.self) { i in
                     GeometryReader { proxy in
                         VStack {
@@ -51,16 +50,12 @@ struct Gallery: View {
                             
                             Spacer()
                         }.frame(width: screenSize.width, height: screenSize.height / 1.5, alignment: .center)
-                    }
+                    }.tag(i)
                 }
             }.tabViewStyle(.page(indexDisplayMode: .never))
                 .frame(width: screenSize.width, height: screenSize.height, alignment: .center)
            
             VStack {
-                Text(detailGalleryHeading)
-                    .font(.title)
-                    .padding(.top, 80)
-                
                 Spacer()
                 
                 Text(detailGalleryGuide)
@@ -75,6 +70,7 @@ struct Gallery: View {
                     Button(action: {
                         withAnimation {
                             model.showingGallery = false
+                            model.index = 0
                         }
                     }, label: {
                         ZStack {

@@ -27,6 +27,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var showingPointer = false
     @Published var showingDial = false
     @Published var showingState = false
+    @Published var index: Int = 0
     
     @Published var annotationSelected = false    
     

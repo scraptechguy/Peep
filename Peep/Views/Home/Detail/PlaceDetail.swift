@@ -244,6 +244,7 @@ struct PlaceDetail: View {
                                     ForEach(place.obrazky?.indices ?? [""].indices, id: \.self) { i in
                                         Button(action: {
                                             withAnimation {
+                                                model.index = i
                                                 model.showingGallery = true
                                             }
                                         }, label: {
