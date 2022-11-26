@@ -1,31 +1,37 @@
 {
   "images" : [
     {
+      "filename" : "PeepAppIcon40x40.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "PeepAppIcon60x60.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
+      "filename" : "PeepAppIcon58x58.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "PeepAppIcon87x87.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
+      "filename" : "PeepAppIcon80x80.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "PeepAppIcon120x120 1.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
@@ -37,6 +43,7 @@
       "size" : "60x60"
     },
     {
+      "filename" : "PeepAppIcon180x180.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
