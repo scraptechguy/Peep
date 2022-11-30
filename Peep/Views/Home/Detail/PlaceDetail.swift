@@ -281,6 +281,7 @@ struct PlaceDetail: View {
                         VStack {
                             Text(detailGuide)
                                 .font(.title3)
+                                .lineLimit(1)
                                 .minimumScaleFactor(0.1)
                             
                             Text(String(localized: "comingSoon"))
