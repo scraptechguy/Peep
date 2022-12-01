@@ -11,7 +11,7 @@ import CoreLocation
 
 class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     
-    // MARK: State vars
+    // MARK: - State vars
     
     @AppStorage("devLogOn") var devLogOn = false
     @AppStorage("isLightMode") var isLightMode = false
@@ -31,7 +31,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     @Published var annotationSelected = false    
     
-    // MARK: Location
+    // MARK: - Location
     
     var locationManager = CLLocationManager()
 
