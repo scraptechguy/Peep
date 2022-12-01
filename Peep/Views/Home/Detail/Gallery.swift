@@ -49,7 +49,6 @@ struct Gallery: View {
                                         ProgressView()
                                         
                                     }
-                                    
                                 }.scaledToFill()
                                     .frame(width: screenSize.width / 1.2, height: screenSize.width / 1.2)
                                     .clipped()
