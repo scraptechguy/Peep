@@ -248,8 +248,23 @@ struct PlaceDetail: View {
                                                 model.showingGallery = true
                                             }
                                         }, label: {
-                                            AsyncImage(url: URL(string: "https://astro.mff.cuni.cz/mira/sh/icons/640x640/\(place.obrazky?[i] ?? "")"))
-                                                .scaledToFill()
+                                            AsyncImage(url: URL(string: "https://astro.mff.cuni.cz/mira/sh/icons/640x640/\(place.obrazky?[i] ?? "")")) { phase in
+                                                
+                                                if let image = phase.image {
+                                                    
+                                                    image
+                                                    
+                                                } else if phase.error != nil {
+                                                    
+                                                    ProgressView()
+                                                    
+                                                } else {
+                                                    
+                                                    ProgressView()
+                                                    
+                                                }
+                                                
+                                            }.scaledToFill()
                                                 .frame(width: 150, height: 150)
                                                 .clipped()
                                                 .mask(
