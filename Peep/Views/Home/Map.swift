@@ -14,6 +14,8 @@ struct Map: UIViewRepresentable {
     @ObservedObject var data = FetchData()
     @Binding var selectedPlace: DataModel?
     
+    // MARK: - getLocations()
+    
     func getLocations(center: CLLocationCoordinate2D) -> [MKPointAnnotation] {
         
         var annotations = [MKPointAnnotation]()
@@ -43,6 +45,8 @@ struct Map: UIViewRepresentable {
         
     }
     
+    // MARK: - makeUIView()
+    
     func makeUIView(context: Context) -> MKMapView {
         
         let mapView = MKMapView()
@@ -60,6 +64,8 @@ struct Map: UIViewRepresentable {
         return mapView
         
     }
+    
+    // MARK: - updateUIView() & dismantleUIView()
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
         
@@ -99,6 +105,8 @@ struct Map: UIViewRepresentable {
             
         }
         
+        // MARK: - mapView(viewFor annotation:)
+        
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             
             // Don't treat user as an annotation
@@ -130,6 +138,8 @@ struct Map: UIViewRepresentable {
             
         }
         
+        // MARK: - mapView(regionDidChangeAnimated:)
+        
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             
             if mapView.region.span.latitudeDelta < model.latlongDelta && mapView.region.span.longitudeDelta < model.latlongDelta {
@@ -150,6 +160,8 @@ struct Map: UIViewRepresentable {
             }
             
         }
+        
+        // MARK: - mapView(calloutAccessoryControlTapped)
         
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             
