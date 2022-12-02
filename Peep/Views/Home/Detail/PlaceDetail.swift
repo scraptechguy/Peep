@@ -272,7 +272,7 @@ struct PlaceDetail: View {
                                                 )
                                         })
                                     }
-                                }.padding([.vertical, .leading])
+                                }.padding([.vertical, .horizontal])
                             }
                             
                             Text(detailSectionInformation)

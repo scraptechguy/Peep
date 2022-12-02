@@ -29,7 +29,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var showingState = false
     @Published var index: Int = 0
     
-    @Published var annotationSelected = false    
+    @Published var annotationSelected = false
     
     // MARK: - Location
     
