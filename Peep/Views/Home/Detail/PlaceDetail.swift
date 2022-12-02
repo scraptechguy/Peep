@@ -48,6 +48,8 @@ struct PlaceDetail: View {
                 ScrollView(showsIndicators: false) {
                     if model.annotationSelected {
                         
+                        // MARK: - Address, x button and description
+                        
                         VStack(alignment: .leading, spacing: 5) {
                             HStack {
                                 ScrollView(.horizontal, showsIndicators: false) {
@@ -91,6 +93,8 @@ struct PlaceDetail: View {
                                     .padding(.horizontal)
                                 
                             }
+                            
+                            // MARK: - Properties
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 18) {
@@ -239,6 +243,8 @@ struct PlaceDetail: View {
                                 }.padding([.top, .leading])
                             }
                             
+                            // MARK: - Image scroll view
+                            
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 18) {
                                     ForEach(place.obrazky?.indices ?? [""].indices, id: \.self) { i in
@@ -275,6 +281,8 @@ struct PlaceDetail: View {
                                 }.padding([.vertical, .horizontal])
                             }
                             
+                            // MARK: - More info
+                            
                             Text(detailSectionInformation)
                                 .textCase(.uppercase)
                                 .font(.system(size: 15))
@@ -292,6 +300,8 @@ struct PlaceDetail: View {
                             }.frame(width: screenSize.width)
                         }
                     } else {
+                        
+                        // MARK: - Place not selected
                         
                         VStack {
                             Text(detailGuide)
@@ -321,6 +331,8 @@ struct PlaceDetail: View {
             .preferredColorScheme(model.isLightMode ? .light : .dark)
     }
     
+    // MARK: - Drag gesture
+    
     @State private var prevDragTranslation = CGSize.zero
     var dragGesture: some Gesture {
         
@@ -346,6 +358,8 @@ struct PlaceDetail: View {
         
     }
 }
+
+// MARK: .cornerRadius() struct and extension
 
 struct RoundedCorner: Shape {
 
