@@ -311,10 +311,10 @@ struct PlaceDetail: View {
             }.frame(height: model.currentHeight)
                 .frame(maxWidth: .infinity)
                 .background {
-                    RoundedRectangle(cornerRadius: 30)
+                    Rectangle()
                         .fill(Color.clear)
                         .overlay(.ultraThinMaterial)
-                        .mask(RoundedRectangle(cornerRadius: 30))
+                        .cornerRadius(30, corners: [.topLeft, .topRight])
                 }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea()
@@ -347,3 +347,24 @@ struct PlaceDetail: View {
     }
 }
 
+struct RoundedCorner: Shape {
+
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        
+        return Path(path.cgPath)
+        
+    }
+}
+
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        
+        clipShape( RoundedCorner(radius: radius, corners: corners) )
+        
+    }
+}
