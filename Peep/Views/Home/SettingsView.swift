@@ -41,6 +41,9 @@ struct SettingsView: View {
             
             NavigationView {
                 List {
+                    
+                    // MARK: - General
+                    
                     Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary), footer: Text(settingsSectionGeneralFooter).foregroundColor(.secondary)) {
                         Toggle(isOn: $model.isLightMode) {
                             Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
@@ -67,6 +70,8 @@ struct SettingsView: View {
                             Label(settingsHelp, systemImage: "questionmark")
                         }
                     }.foregroundColor(.primary)
+                    
+                    // MARK: - Links
                     
                     Section(header: Text(settingsSectionLinks)) {
                         Link(destination: URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/sh.php")!) {
@@ -101,12 +106,14 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                    UIPasteboard.general.string = "https://github.com/filiptronicek/StuduWidgets"
+                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep"
                                 }, label: {
                                     Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
                             })
                         }
                     }
+                    
+                    // MARK: - Developer settings
                     
                     Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
                         Toggle(isOn: $model.devLogOn) {
