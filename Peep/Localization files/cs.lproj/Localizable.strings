@@ -42,7 +42,7 @@
 "settingsSectionGeneral" = "Obecné";
 "settingsColorScheme" = "Světlý režim";
 "settingsReach" = "Rozsah";
-"settingsSectionGeneralFooter" = "Zvětšení rozsahu umožňuje zobrazit více slunečních hodin najednou. Vysoký rozsah může ovlivnit výkon aplikace";
+"settingsSectionGeneralFooter" = "Zvětšení rozsahu umožňuje zobrazit více slunečních hodin najednou";
 
 "settingsSectionInformation" = "Informace";
 "settingsFeedback" = "Zpětná vazba";
