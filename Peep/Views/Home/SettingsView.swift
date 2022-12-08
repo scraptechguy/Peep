@@ -66,7 +66,7 @@ struct SettingsView: View {
                             Label(settingsPrivacyPolicy, systemImage: "person.badge.key")
                         }
                         
-                        NavigationLink(destination: SomethingWentWrong()) {
+                        NavigationLink(destination: HelpView()) {
                             Label(settingsHelp, systemImage: "questionmark")
                         }
                     }.foregroundColor(.primary)
