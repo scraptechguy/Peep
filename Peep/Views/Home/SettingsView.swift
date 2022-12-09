@@ -82,11 +82,11 @@ struct SettingsView: View {
                     }.foregroundColor(.primary)
                     
                     Section(header: Text(settingsSectionInformation).foregroundColor(.secondary)) {
-                        NavigationLink(destination: HelpView().navigationBarTitle("Help")) {
+                        NavigationLink(destination: HelpView().navigationBarTitle(settingsHelp)) {
                             Label(settingsHelp, systemImage: "questionmark")
                         }
                         
-                        NavigationLink(destination: FeedbackView()) {
+                        NavigationLink(destination: FeedbackView().navigationBarTitle(settingsFeedback)) {
                             Label(settingsFeedback, systemImage: "leaf")
                         }
                     }.foregroundColor(.primary)
