@@ -174,7 +174,7 @@ struct SettingsView: View {
                                         .offset(x: 300, y: 0)
                                         .scaleEffect(1)
                                 )
-                        }).simultaneousGesture(LongPressGesture(minimumDuration: 2).onEnded { _ in
+                        }).simultaneousGesture(LongPressGesture(minimumDuration: 1.5).onEnded { _ in
                             model.didLongPressed = true
                         }).sheet(isPresented: {$model.didLongPressed}()) {PeepView()}
                     }.foregroundColor(.secondary)

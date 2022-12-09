@@ -16,8 +16,39 @@ struct PeepView: View {
             Color("Background")
                 .ignoresSafeArea()
             
-            VStack {
-                
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    Image("peep_initial")
+                        .padding(.top, 50)
+                        .padding(.bottom, 20)
+                    
+                    Text("Meet Píp")
+                        .font(.title2.bold())
+                        .foregroundColor(Color("Font"))
+                        .padding(.vertical)
+                    
+                    Text("Píp is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger, but in reality, he's not all that big).")
+                        .foregroundColor(Color("Font"))
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom)
+                    
+                    Text("**peep** *verb* [I usually + adv/prep ] - to secretly look at something for a short time, usually through a hole")
+                        .foregroundColor(Color("Font"))
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom)
+                    
+                    Text("*I saw her peeping into the world of sundials using Píp*.")
+                        .font(.footnote)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom)
+                    
+                    Image("peep_initial")
+                        .scaleEffect(0.2)
+                    
+                    Text("Rare footage of Píp's actual size")
+                        .foregroundColor(Color("Font"))
+                }.padding(.horizontal)
+                    .padding(.horizontal)
             }
             
             VStack {
