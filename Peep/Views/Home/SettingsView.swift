@@ -82,7 +82,7 @@ struct SettingsView: View {
                     }.foregroundColor(.primary)
                     
                     Section(header: Text(settingsSectionInformation).foregroundColor(.secondary)) {
-                        NavigationLink(destination: HelpView()) {
+                        NavigationLink(destination: HelpView().navigationBarTitle("Help")) {
                             Label(settingsHelp, systemImage: "questionmark")
                         }
                         
