@@ -13,6 +13,7 @@ struct SettingsView: View {
     @EnvironmentObject var model: ContentModel
     
     let screenSize: CGRect = UIScreen.main.bounds
+    let pre = Locale.preferredLanguages[0]
     
     let settingsHeading: LocalizedStringKey = "settingsHeading"
     let settingsSectionGeneral: LocalizedStringKey = "settingsSectionGeneral"
@@ -50,6 +51,34 @@ struct SettingsView: View {
                         }
                         
                         HStack {
+                            Label("App language", systemImage: "questionmark.bubble")
+                            
+                            Spacer()
+                            
+                            if pre.prefix(2) == "en" {
+                                
+                                Text("English")
+                                    .foregroundColor(.secondary)
+                                
+                            } else if pre.prefix(2) == "cs" {
+                                
+                                Text("Čeština")
+                                    .foregroundColor(.secondary)
+                                
+                            }
+                                
+                            Image(systemName: "arrow.up.right")
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                        }.onTapGesture {
+                            if let url = URL(string: UIApplication.openSettingsURLString) {
+                                if UIApplication.shared.canOpenURL(url) {
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                }
+                            }
+                        }
+                        
+                        HStack {
                             Label(settingsReach, systemImage: "globe.americas")
                                 .padding(.trailing)
                             
@@ -58,16 +87,12 @@ struct SettingsView: View {
                     }.foregroundColor(.primary)
                     
                     Section(header: Text(settingsSectionInformation).foregroundColor(.secondary)) {
-                        NavigationLink(destination: SomethingWentWrong()) {
-                            Label(settingsFeedback, systemImage: "leaf")
-                        }
-                        
-                        NavigationLink(destination: SomethingWentWrong()) {
-                            Label(settingsPrivacyPolicy, systemImage: "person.badge.key")
-                        }
-                        
                         NavigationLink(destination: HelpView()) {
                             Label(settingsHelp, systemImage: "questionmark")
+                        }
+                        
+                        NavigationLink(destination: SomethingWentWrong()) {
+                            Label(settingsFeedback, systemImage: "leaf")
                         }
                     }.foregroundColor(.primary)
                     
@@ -88,6 +113,25 @@ struct SettingsView: View {
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
                                     UIPasteboard.general.string = "https://astro.troja.mff.cuni.cz/mira/sh/sh.php"
+                                }, label: {
+                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                            })
+                        }
+                        
+                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md")!) {
+                            HStack {
+                                Label(settingsPrivacyPolicy, systemImage: "person.badge.key")
+                                    .foregroundColor(.primary)
+                                
+                                Spacer()
+                                
+                                Image(systemName: "link")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                            }
+                        }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button(action: {
+                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md"
                                 }, label: {
                                     Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
                             })
