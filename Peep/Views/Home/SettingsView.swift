@@ -86,7 +86,7 @@ struct SettingsView: View {
                             Label(settingsHelp, systemImage: "questionmark")
                         }
                         
-                        NavigationLink(destination: SomethingWentWrong()) {
+                        NavigationLink(destination: FeedbackView()) {
                             Label(settingsFeedback, systemImage: "leaf")
                         }
                     }.foregroundColor(.primary)
