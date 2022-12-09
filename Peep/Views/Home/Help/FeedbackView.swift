@@ -23,14 +23,13 @@ struct FeedbackView: View {
                 
                 if #available(iOS 16.0, *) {
                     TextField("Here you can share feedback with the developers!", text: $text, axis: .vertical)
+                        .lineLimit(10, reservesSpace: true)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                         .padding(.horizontal)
-                        .lineLimit(5)
                 } else {
                     TextField("Here you can share feedback with the developers!", text: $text)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                         .padding(.horizontal)
-                        .lineLimit(5)
                 }
                 
                 Button(action: {
