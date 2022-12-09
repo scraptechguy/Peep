@@ -41,6 +41,8 @@
 "settingsHeading" = "Nastavení";
 "settingsSectionGeneral" = "Obecné";
 "settingsColorScheme" = "Světlý režim";
+"settingsAppLanguage" = "Jazyk aplikace";
+"settingsAppLanguageValue" = "Čeština";
 "settingsReach" = "Rozsah";
 "settingsSectionGeneralFooter" = "Zvětšení rozsahu umožňuje zobrazit více slunečních hodin najednou";
 

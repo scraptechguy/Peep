@@ -18,6 +18,8 @@ struct SettingsView: View {
     let settingsHeading: LocalizedStringKey = "settingsHeading"
     let settingsSectionGeneral: LocalizedStringKey = "settingsSectionGeneral"
     let settingsColorScheme: LocalizedStringKey = "settingsColorScheme"
+    let settingsAppLanguage: LocalizedStringKey = "settingsAppLanguage"
+    let settingsAppLanguageValue: LocalizedStringKey = "settingsAppLanguageValue"
     let settingsReach: LocalizedStringKey = "settingsReach"
     let settingsSectionGeneralFooter: LocalizedStringKey = "settingsSectionGeneralFooter"
     
@@ -51,21 +53,12 @@ struct SettingsView: View {
                         }
                         
                         HStack {
-                            Label("App language", systemImage: "questionmark.bubble")
+                            Label(settingsAppLanguage, systemImage: "questionmark.bubble")
                             
                             Spacer()
                             
-                            if pre.prefix(2) == "en" {
-                                
-                                Text("English")
-                                    .foregroundColor(.secondary)
-                                
-                            } else if pre.prefix(2) == "cs" {
-                                
-                                Text("Čeština")
-                                    .foregroundColor(.secondary)
-                                
-                            }
+                           Text(settingsAppLanguageValue)
+                                .foregroundColor(.secondary)
                                 
                             Image(systemName: "arrow.up.right")
                                 .font(.footnote)
