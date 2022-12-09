@@ -39,10 +39,16 @@ struct DeniedView: View {
                     }
                 }
                 
-                Text(deniedGuide)
-                    .padding(15)
-                    .foregroundColor(Color("Font"))
-                    .multilineTextAlignment(.center)
+                Button(action: {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                    }
+                }, label: {
+                    Text(deniedGuide)
+                        .padding(15)
+                })
             }
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
