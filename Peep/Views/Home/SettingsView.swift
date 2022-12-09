@@ -12,8 +12,6 @@ struct SettingsView: View {
     @ObservedObject var data = FetchData()
     @EnvironmentObject var model: ContentModel
     
-    @State var didLongPressed = false
-    
     let screenSize: CGRect = UIScreen.main.bounds
     let pre = Locale.preferredLanguages[0]
     
@@ -176,10 +174,10 @@ struct SettingsView: View {
                                         .offset(x: 300, y: 0)
                                         .scaleEffect(1)
                                 )
-                        }).simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded { _ in
-                            didLongPressed = true
-                        })
-                    }.foregroundColor(didLongPressed ? Color("Blue") : .secondary)
+                        }).simultaneousGesture(LongPressGesture(minimumDuration: 2).onEnded { _ in
+                            model.didLongPressed = true
+                        }).sheet(isPresented: {$model.didLongPressed}()) {PeepView()}
+                    }.foregroundColor(.secondary)
                 }.listStyle(.insetGrouped)
                     .navigationTitle(settingsHeading)
             }
