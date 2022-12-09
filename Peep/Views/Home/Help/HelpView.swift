@@ -26,19 +26,17 @@ struct HelpView: View {
                     Image("Help1")
                         .resizable()
                         .scaledToFit()
-                        .padding(.bottom, 50)
                         .tag(0)
                     
                     Image("Help2")
                         .resizable()
                         .scaledToFit()
-                        .padding(.bottom, 50)
                         .tag(1)
                     
                     Image("dangerous_initial")
                         .tag(2)
-                }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                    .frame(height: 650)
+                }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    .frame(maxHeight: .infinity)
                     .ignoresSafeArea()
             }
         }.preferredColorScheme(model.isLightMode ? .dark : .light)
@@ -49,6 +47,5 @@ struct HelpView_Previews: PreviewProvider {
     static var previews: some View {
         HelpView()
             .environmentObject(ContentModel())
-            .preferredColorScheme(.dark)
     }
 }
