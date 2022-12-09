@@ -12,6 +12,8 @@ struct SettingsView: View {
     @ObservedObject var data = FetchData()
     @EnvironmentObject var model: ContentModel
     
+    @State var didLongPressed = false
+    
     let screenSize: CGRect = UIScreen.main.bounds
     let pre = Locale.preferredLanguages[0]
     
@@ -164,14 +166,20 @@ struct SettingsView: View {
                     }.foregroundColor(.primary)
                     
                     Section(footer: HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}.padding(.bottom, 60)) {
-                        Label("Version 0.0.1", systemImage: "server.rack")
-                            .background(
-                                AnimatedBlobView()
-                                    .frame(width: 400, height: 414)
-                                    .offset(x: 300, y: 0)
-                                    .scaleEffect(1)
-                            )
-                    }.foregroundColor(.secondary)
+                        Button(action: {
+                            
+                        }, label: {
+                            Label("Version 0.0.1", systemImage: "server.rack")
+                                .background(
+                                    AnimatedBlobView()
+                                        .frame(width: 400, height: 414)
+                                        .offset(x: 300, y: 0)
+                                        .scaleEffect(1)
+                                )
+                        }).simultaneousGesture(LongPressGesture(minimumDuration: 1).onEnded { _ in
+                            didLongPressed = true
+                        })
+                    }.foregroundColor(didLongPressed ? Color("Blue") : .secondary)
                 }.listStyle(.insetGrouped)
                     .navigationTitle(settingsHeading)
             }
