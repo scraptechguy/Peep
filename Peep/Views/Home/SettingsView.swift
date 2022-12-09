@@ -53,7 +53,7 @@ struct SettingsView: View {
                         }
                         
                         HStack {
-                            Label(settingsAppLanguage, systemImage: "questionmark.bubble")
+                            Label(settingsAppLanguage, systemImage: "character.book.closed")
                             
                             Spacer()
                             
