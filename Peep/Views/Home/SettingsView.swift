@@ -35,7 +35,6 @@ struct SettingsView: View {
     let settingsOfflineDB: LocalizedStringKey = "settingsOfflineDB"
     let settingsSectionDeveloperSettingsSubtitle: LocalizedStringKey = "settingsSectionDeveloperSettingsSubtitle"
     
-    let settingsVersion: LocalizedStringKey = "settingsVersion"
     let settingsFooter: LocalizedStringKey = "settingsFooter"
     
     var body: some View {
@@ -174,7 +173,7 @@ struct SettingsView: View {
                             Button(action: {
                                 
                             }, label: {
-                                Label("Version 0.0.1", systemImage: "server.rack")
+                                Label("\(String(localized: "settingsVersion")) 1.0.0", systemImage: "server.rack")
                                     .background(
                                         AnimatedBlobView()
                                             .frame(width: 400, height: 414)
@@ -320,7 +319,7 @@ struct SettingsView: View {
                             Button(action: {
                                 
                             }, label: {
-                                Label("Version 0.0.1", systemImage: "server.rack")
+                                Label("\(String(localized: "settingsVersion")) 1.0.0", systemImage: "server.rack")
                                     .background(
                                         AnimatedBlobView()
                                             .frame(width: 400, height: 414)
