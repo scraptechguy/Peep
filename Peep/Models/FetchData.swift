@@ -14,19 +14,42 @@ class FetchData: ObservableObject {
     init() {
         
         let url = URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/json3.php")!
-        
+            
         URLSession.shared.dataTask(with: url) {(data, response, error) in
             do {
                 
-                if let todoData = data {
+                if !ContentModel().useOfflineDatabase {
                     
-                    ContentModel().devLog = "Downloading online data..."
-                    
-                    let decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
-                    
-                    DispatchQueue.main.async {
-                        self.dataList = decodedData
-                        ContentModel().devLog = "Online data downloaded, using online database..."
+                    if let todoData = data {
+                        
+                        print("using online data cos I can")
+                        
+                        let decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
+                        
+                        DispatchQueue.main.async {
+                            self.dataList = decodedData
+                        }
+                        
+                    } else {
+                        
+                        print("using offline data cos I have to")
+                        
+                        guard let url = Bundle.main.url(forResource: "OfflineDatabase", withExtension: "geojson")
+                        else {
+                            
+                            print("Json file not found")
+                            
+                            return
+                            
+                        }
+                        
+                        let data = try Data(contentsOf: url)
+                        let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
+                        
+                        DispatchQueue.main.async {
+                            self.dataList = decodedData
+                        }
+                        
                     }
                     
                 } else {
@@ -39,6 +62,8 @@ class FetchData: ObservableObject {
                         return
                         
                     }
+                    
+                    print("using offline data cos user said so")
                     
                     let data = try Data(contentsOf: url)
                     let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
@@ -54,6 +79,5 @@ class FetchData: ObservableObject {
                 
             }
         }.resume()
-        
     }
 }

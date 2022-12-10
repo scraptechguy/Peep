@@ -87,11 +87,7 @@ struct SettingsView: View {
                         NavigationLink(destination: FeedbackView().navigationBarTitle(settingsFeedback)) {
                             Label(settingsFeedback, systemImage: "leaf")
                         }
-                    }.foregroundColor(.primary)
-                    
-                    // MARK: - Links
-                    
-                    Section(header: Text(settingsSectionLinks)) {
+                        
                         Link(destination: URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/sh.php")!) {
                             HStack {
                                 Label(settingsWebsite, systemImage: "sun.min")
@@ -148,11 +144,15 @@ struct SettingsView: View {
                                     Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
                             })
                         }
-                    }
+                    }.foregroundColor(.primary)
                     
                     // MARK: - Developer settings
                     
                     Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
+                        Toggle(isOn: $model.useOfflineDatabase) {
+                            Label("Always use offline DB", systemImage: "icloud.and.arrow.down")
+                        }
+                        
                         Toggle(isOn: $model.devLogOn) {
                             HStack(spacing: 0) {
                                 Label("Dev log ", systemImage: "pc")
@@ -213,7 +213,6 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
-            .preferredColorScheme(.dark)
             .environmentObject(ContentModel())
     }
 }
