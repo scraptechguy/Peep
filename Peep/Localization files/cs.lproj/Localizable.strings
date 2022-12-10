@@ -130,3 +130,11 @@
 // MARK: - Prompts
 
 "comingSoon" = "Již brzy...";
+
+// MARK: - ???
+
+"peepTitle" = "Tohle je Píp";
+"peepText1" = "Píp je velmi pracovitý pták, stará se o sluneční hodiny po celé zeměkouli. Když se chce cítit veliký, říká si pan Peep (ve skutečnosti ale tak veliký není)";
+"peepText2" = "**peep** *sloveso* - tajně se na krátkou chvíli na něco podívat, obvykle dírou";
+"peepText3" = "*I saw her peeping into the world of sundials using Píp*.";
+"peepText4" = "Vzácná fotografie Pípovi skutečné velikosti";

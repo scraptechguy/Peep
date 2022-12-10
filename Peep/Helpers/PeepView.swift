@@ -11,6 +11,12 @@ struct PeepView: View {
     
     @EnvironmentObject var model: ContentModel
     
+    let peepTitle: LocalizedStringKey = "peepTitle"
+    let peepText1: LocalizedStringKey = "peepText1"
+    let peepText2: LocalizedStringKey = "peepText2"
+    let peepText3: LocalizedStringKey = "peepText3"
+    let peepText4: LocalizedStringKey = "peepText4"
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -22,30 +28,32 @@ struct PeepView: View {
                         .padding(.top, 50)
                         .padding(.bottom, 20)
                     
-                    Text("Meet Píp")
+                    Text(peepTitle)
                         .font(.title2.bold())
                         .foregroundColor(Color("Font"))
                         .padding(.vertical)
                     
-                    Text("Píp is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger, but in reality, he's not all that big).")
+                    Text(peepText1)
                         .foregroundColor(Color("Font"))
                         .multilineTextAlignment(.center)
                         .padding(.bottom)
                     
-                    Text("**peep** *verb* [I usually + adv/prep ] - to secretly look at something for a short time, usually through a hole")
+                    Text(peepText2)
                         .foregroundColor(Color("Font"))
                         .multilineTextAlignment(.center)
                         .padding(.bottom)
                     
-                    Text("*I saw her peeping into the world of sundials using Píp*.")
+                    Text(peepText3)
                         .font(.footnote)
                         .multilineTextAlignment(.center)
                         .padding(.bottom)
                     
                     Image("peep_initial")
-                        .scaleEffect(0.2)
+                        .resizable()
+                        .frame(width: 24, height: 20)
+                        .padding(.bottom)
                     
-                    Text("Rare footage of Píp's actual size")
+                    Text(peepText4)
                         .foregroundColor(Color("Font"))
                 }.padding(.horizontal)
                     .padding(.horizontal)
@@ -82,5 +90,6 @@ struct PeepView: View {
 struct PeepView_Previews: PreviewProvider {
     static var previews: some View {
         PeepView()
+            .environmentObject(ContentModel())
     }
 }
