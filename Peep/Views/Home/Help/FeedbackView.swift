@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FeedbackView: View {
     
+    @EnvironmentObject var model: ContentModel
+    
     @State var text: String = ""
     
     let screenSize: CGRect = UIScreen.main.bounds
@@ -59,7 +61,7 @@ struct FeedbackView: View {
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 25)
             }
-        }
+        }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }
 

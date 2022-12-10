@@ -75,7 +75,7 @@ struct PeepView: View {
                 
                 Spacer()
             }
-        }
+        }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }
 
