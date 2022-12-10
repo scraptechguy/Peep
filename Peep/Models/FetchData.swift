@@ -67,9 +67,10 @@ class FetchData: ObservableObject {
                     
                     let data = try Data(contentsOf: url)
                     let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
-                    self.dataList = decodedData
                     
-                    ContentModel().devLog = "No data received, using offline database..."
+                    DispatchQueue.main.async {
+                        self.dataList = decodedData
+                    }
                     
                 }
                 
