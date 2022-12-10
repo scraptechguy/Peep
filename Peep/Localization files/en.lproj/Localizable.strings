@@ -55,6 +55,7 @@
 "settingsWebsite" = "Website";
 
 "settingsSectionDeveloperSettings" = "Developer settings";
+"settingsOfflineDB" = "Always use offline DB";
 "settingsSectionDeveloperSettingsSubtitle" = "Dev log displays what the app is doing at the top of your screen";
 
 "settingsVersion" = "Version";

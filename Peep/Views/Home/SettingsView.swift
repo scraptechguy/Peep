@@ -32,6 +32,7 @@ struct SettingsView: View {
     let settingsWebsite: LocalizedStringKey = "settingsWebsite"
     
     let settingsSectionDeveloperSettings: LocalizedStringKey = "settingsSectionDeveloperSettings"
+    let settingsOfflineDB: LocalizedStringKey = "settingsOfflineDB"
     let settingsSectionDeveloperSettingsSubtitle: LocalizedStringKey = "settingsSectionDeveloperSettingsSubtitle"
     
     let settingsVersion: LocalizedStringKey = "settingsVersion"
@@ -156,7 +157,7 @@ struct SettingsView: View {
                         
                         Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
                             Toggle(isOn: $model.useOfflineDatabase) {
-                                Label("Always use offline DB", systemImage: "wifi.slash")
+                                Label(settingsOfflineDB, systemImage: "wifi.slash")
                             }.listRowBackground(Color("ListRowBackground"))
                             
                             Toggle(isOn: $model.devLogOn) {
@@ -302,7 +303,7 @@ struct SettingsView: View {
                         
                         Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
                             Toggle(isOn: $model.useOfflineDatabase) {
-                                Label("Always use offline DB", systemImage: "wifi.slash")
+                                Label(settingsOfflineDB, systemImage: "wifi.slash")
                             }
                             
                             Toggle(isOn: $model.devLogOn) {
