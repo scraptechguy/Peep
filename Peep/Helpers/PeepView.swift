@@ -65,7 +65,7 @@ struct PeepView: View {
                     
                     Button(action: {
                         withAnimation {
-                            model.showingSettings = false
+                            model.didLongPressed = false
                         }
                     }, label: {
                         ZStack {
