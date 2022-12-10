@@ -150,7 +150,7 @@ struct SettingsView: View {
                     
                     Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
                         Toggle(isOn: $model.useOfflineDatabase) {
-                            Label("Always use offline DB", systemImage: "icloud.and.arrow.down")
+                            Label("Always use offline DB", systemImage: "wifi.slash")
                         }
                         
                         Toggle(isOn: $model.devLogOn) {
