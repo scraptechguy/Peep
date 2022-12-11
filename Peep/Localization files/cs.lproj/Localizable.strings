@@ -61,6 +61,29 @@
 "settingsVersion" = "Verze";
 "settingsFooter" = "Vyrobeno s Ɛ> - ";
 
+// MARK: - Help
+
+"HelpHeading1" = "This is Píp";
+"HelpText1" = "... and this is how the home screen looks like. There's a lot you can do from there...";
+"HelpHeading2" = "Your region";
+"HelpText2" = "At the top, you can see your region. Some day soon, there'll be a search bar 👀";
+"HelpHeading3" = "Annotations aka sundials";
+"HelpText3" = "Look for red points on the map, those represent a sundial. Click on them to learn more!";
+"HelpHeading4" = "Address and description";
+"HelpText4" = "The address and description are right on the top as they're the most important information.";
+"HelpHeading5" = "Sundial properties";
+"HelpText5" = "Here you can learn about what properties a sundial has and what they mean. Every one of those fields will show a sheet full of interesting information after clicking on them!";
+"HelpHeading6" = "Gallery";
+"HelpText6" = "To help you find them, Píp gives you the option to view photos of a given sundial. You can click on each photo and enjoy it in separate gallery view!";
+"HelpHeading7" = "Settings";
+"HelpText7" = "In the top right corner, there's a button that'll take you to settings...";
+"HelpHeading8" = "General";
+"HelpText8" = "In the general section, you can make the app yours. Choose a color scheme you like the best, language you understand the best, or try a different reach!";
+"HelpHeading9" = "Information";
+"HelpText9" = "This section is filled with information. You can get to know the project, give feedback, or go over the Privacy Policy one more time";
+"HelpHeading10" = "Developer settings";
+"HelpText10" = "Those settings are for the tech enthusiasts. You can decide what database will the app use or peep behind the UI and learn about all the different processes.";
+
 // MARK: - Place detail
 
 "detailGuide" = "**Poohlédni se po slunečních hodinách!**";
