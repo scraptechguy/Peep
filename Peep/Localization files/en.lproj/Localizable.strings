@@ -63,14 +63,14 @@
 
 // MARK: - Help
 
-"helpHeading1" = "This is Píp";
+"helpHeading1" = "✨ This is Píp ✨";
 "helpText1" = "...and this is how the home screen looks like. There's a lot you can do and learn from there...";
 "helpHeading2" = "Your region";
 "helpText2" = "At the top, you can see your region. Some day soon, there'll be a search bar 👀";
 "helpHeading3" = "Annotations aka sundials";
 "helpText3" = "Look for red points on the map, those represent a sundial. Click on them to learn more!";
 "helpHeading4" = "Address and description";
-"helpText4" = "The address and description are right on the top as they're the most important information. If the address happens to be too long, don't forget it's scrollable!";
+"helpText4" = "The address and description are right on the top as they're the most important information. If the address happens to be too long, don't forget it's scrollable! 📈";
 "helpHeading5" = "Sundial properties";
 "helpText5" = "Here you can learn about what properties a sundial has and what they mean. Every one of those fields will show a sheet full of interesting information after clicking on them!";
 "helpHeading6" = "Gallery 🌉";
