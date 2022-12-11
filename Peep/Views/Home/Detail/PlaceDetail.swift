@@ -306,6 +306,7 @@ struct PlaceDetail: View {
                         VStack {
                             Text(detailGuide)
                                 .font(.title3)
+                                .padding(.horizontal)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.1)
                             
