@@ -60,6 +60,9 @@ struct HelpView: View {
             Text(guide.text)
                 .multilineTextAlignment(.center)
                 .padding()
+            
+            Text("\(index + 1)/10")
+                .font(.footnote.bold())
         }
     }
 }
