@@ -180,8 +180,14 @@ struct Map: UIViewRepresentable {
             } else {
                 
                 mapView.removeAnnotations(mapView.annotations)
-
-                // TODO: - mapView.selectedAnnotations = [] -> if true, set annotationSelected to false
+                mapView.selectedAnnotations = []
+                
+                DispatchQueue.main.async { [self] in
+                    withAnimation {
+                        model.annotationSelected = false
+                        model.currentHeight = 90
+                    }
+                }
                 
             }
             
