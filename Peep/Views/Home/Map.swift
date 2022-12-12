@@ -210,6 +210,10 @@ struct Map: UIViewRepresentable {
                     mapView.removeAnnotations(mapView.annotations)
                     mapView.addAnnotations(map.getLocations(center: mapView.region.center))
                     
+                    DispatchQueue.main.async { [self] in
+                        model.devLog = "Sufficient zoom, showing annotations"
+                    }
+                    
                 }
                 
             } else {
@@ -222,6 +226,8 @@ struct Map: UIViewRepresentable {
                         model.annotationSelected = false
                         model.currentHeight = 90
                     }
+                    
+                    model.devLog = "Insufficient zoom, not showing annotations"
                 }
                 
             }
