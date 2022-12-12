@@ -101,6 +101,41 @@ struct Map: UIViewRepresentable {
             
         }
         
+        // TODO: #
+        
+        /*
+        if model.annotationSelected {
+            
+            if uiView.selectedAnnotations.count == 0 {
+                
+                DispatchQueue.main.async { [self] in
+                    withAnimation {
+                        model.annotationSelected = false
+                        model.currentHeight = 90
+                    }
+                }
+                
+            }
+            
+        }
+        */
+        
+        // TODO: #32
+        
+        /*
+        onChange(of: model.annotationSelected) { newValue in
+            if !newValue {
+                
+                let span = MKCoordinateSpan.init(latitudeDelta: model.previousSpan.latitudeDelta, longitudeDelta:
+                                                    model.previousSpan.longitudeDelta)
+                let coordinate = CLLocationCoordinate2D.init(latitude: model.previousCoordinate.latitude, longitude: model.previousCoordinate.longitude)
+                let region = MKCoordinateRegion.init(center: coordinate, span: span)
+                uiView.setRegion(region, animated: true)
+                
+            }
+        }
+        */
+        
     }
     
     static func dismantleUIView(_ uiView: MKMapView, coordinator: ()) {
@@ -207,6 +242,8 @@ struct Map: UIViewRepresentable {
                     map.selectedPlace = place
                     model.annotationSelected = true
                     model.devLog = "Annotation selected"
+                    model.previousSpan = MKCoordinateSpan.init(latitudeDelta: mapView.region.span.latitudeDelta, longitudeDelta: mapView.region.span.longitudeDelta)
+                    model.previousCoordinate = CLLocationCoordinate2D.init(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude)
                     
                     withAnimation {
                         model.currentHeight = 400
