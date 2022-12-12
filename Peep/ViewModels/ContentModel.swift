@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreLocation
+import MapKit
 
 class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     
@@ -32,6 +33,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var index: Int = 0
     
     @Published var annotationSelected = false
+    @Published var previousSpan = MKCoordinateSpan.init(latitudeDelta: 2, longitudeDelta:
+                                                            2)
+    @Published var previousCoordinate = CLLocationCoordinate2D.init(latitude: 0, longitude: 0)
     
     // MARK: - Location
     
