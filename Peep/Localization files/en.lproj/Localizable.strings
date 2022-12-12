@@ -84,6 +84,12 @@
 "helpHeading10" = "Developer settings 🚀";
 "helpText10" = "Those settings are for the tech enthusiasts. You can decide what database will the app use or peep behind the UI and learn about all the different processes that take place";
 
+// MARK: - Feedback
+
+"feedbackTextField" = "Here you can share feedback with the developers!";
+"feedbackSend" = "Send feedback";
+"feedbackWarning" = "Do **not** share any personal or sensitive information, feedback is completely annonymous.";
+
 // MARK: - Place detail
 
 "detailGuide" = "**Move around the map to find sundials!**";

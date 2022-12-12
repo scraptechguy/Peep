@@ -84,6 +84,12 @@
 "helpHeading10" = "Developerská nastavení 🚀";
 "helpText10" = "Developerská nastavení jsou pro technické nadšence. Můžeš si vybrat jakou databázi aplikace používá, nebo se podívat za oponu a dozvědět se, co aplikace právě dělá";
 
+// MARK: - Feedback
+
+"feedbackTextField" = "Tady můžeš napsat zpětnou vazbu vývojářům!";
+"feedbackSend" = "Poslat";
+"feedbackWarning" = "**Ne**sdílej žádné osobní nebo citlivé informace, zpětná vazba je kompletně anonymní.";
+
 // MARK: - Place detail
 
 "detailGuide" = "**Poohlédni se po slunečních hodinách!**";

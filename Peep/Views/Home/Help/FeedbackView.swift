@@ -15,6 +15,10 @@ struct FeedbackView: View {
     
     let screenSize: CGRect = UIScreen.main.bounds
     
+    let feedbackTextField: LocalizedStringKey = "feedbackTextField"
+    let feedbackSend: LocalizedStringKey = "feedbackSend"
+    let feedbackWarning: LocalizedStringKey = "feedbackWarning"
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -24,12 +28,12 @@ struct FeedbackView: View {
                 Divider()
                 
                 if #available(iOS 16.0, *) {
-                    TextField("Here you can share feedback with the developers!", text: $text, axis: .vertical)
+                    TextField(feedbackTextField, text: $text, axis: .vertical)
                         .lineLimit(10, reservesSpace: true)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                         .padding(.horizontal)
                 } else {
-                    TextField("Here you can share feedback with the developers!", text: $text)
+                    TextField(feedbackTextField, text: $text)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                         .padding(.horizontal)
                 }
@@ -37,7 +41,7 @@ struct FeedbackView: View {
                 Button(action: {
                     
                 }, label: {
-                    Text("Send feedback")
+                    Text(feedbackSend)
                         .font(.title3.bold())
                         .frame(width: screenSize.width / 1.9, height: 55)
                         .foregroundColor(.white)
@@ -54,7 +58,7 @@ struct FeedbackView: View {
                         }
                 }).padding(.bottom, 5)
                 
-                Text("Do **not** share any personal or sensitive information, feedback is completely annonymous.")
+                Text(feedbackWarning)
                     .font(.footnote)
                     .foregroundColor(.secondary)
                     .padding(.horizontal, 50)
