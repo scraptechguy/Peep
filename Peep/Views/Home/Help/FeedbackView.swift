@@ -68,6 +68,6 @@ struct FeedbackView: View {
 struct FeedbackView_Previews: PreviewProvider {
     static var previews: some View {
         FeedbackView()
-            .preferredColorScheme(.dark)
+            .environmentObject(ContentModel())
     }
 }
