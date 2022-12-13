@@ -216,7 +216,9 @@ struct Map: UIViewRepresentable {
                 
                 mapView.removeAnnotations(mapView.annotations)
                 
-                model.devLog = "Insufficient zoom, not showing annotations"
+                DispatchQueue.main.async { [self] in
+                    model.devLog = "Insufficient zoom, not showing annotations"
+                }
                 
             }
             
