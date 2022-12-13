@@ -384,3 +384,10 @@ extension View {
         
     }
 }
+
+struct PlaceDetail_Previews: PreviewProvider {
+    static var previews: some View {
+        PlaceDetail(place: DataModel())
+            .environmentObject(ContentModel())
+    }
+}
