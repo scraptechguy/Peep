@@ -101,24 +101,20 @@ struct Map: UIViewRepresentable {
             
         }
         
-        // TODO: #
-        
-        /*
         if model.annotationSelected {
             
             if uiView.selectedAnnotations.count == 0 {
                 
-                DispatchQueue.main.async { [self] in
+                DispatchQueue.main.async {
                     withAnimation {
                         model.annotationSelected = false
-                        model.currentHeight = 90
+                        model.currentHeight = UIScreen.main.bounds.height / 10.2
                     }
                 }
                 
             }
             
         }
-        */
         
         // TODO: #32
         
@@ -219,15 +215,22 @@ struct Map: UIViewRepresentable {
             } else {
                 
                 mapView.removeAnnotations(mapView.annotations)
-                mapView.selectedAnnotations = []
                 
-                DispatchQueue.main.async { [self] in
-                    withAnimation {
-                        model.annotationSelected = false
-                        model.currentHeight = UIScreen.main.bounds.height / 10.2
+                model.devLog = "Insufficient zoom, not showing annotations"
+                
+            }
+            
+            if model.annotationSelected {
+                
+                if mapView.selectedAnnotations.count == 0 {
+                    
+                    DispatchQueue.main.async { [self] in
+                        withAnimation {
+                            model.annotationSelected = false
+                            model.currentHeight = UIScreen.main.bounds.height / 10.2
+                        }
                     }
                     
-                    model.devLog = "Insufficient zoom, not showing annotations"
                 }
                 
             }
