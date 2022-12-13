@@ -224,7 +224,7 @@ struct Map: UIViewRepresentable {
                 DispatchQueue.main.async { [self] in
                     withAnimation {
                         model.annotationSelected = false
-                        model.currentHeight = 90
+                        model.currentHeight = UIScreen.main.bounds.height / 10.2
                     }
                     
                     model.devLog = "Insufficient zoom, not showing annotations"

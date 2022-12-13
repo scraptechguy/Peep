@@ -62,7 +62,7 @@ struct PlaceDetail: View {
                                 Button(action: {
                                     withAnimation {
                                         model.annotationSelected = false
-                                        model.currentHeight = 90
+                                        model.currentHeight = UIScreen.main.bounds.height / 10.2
                                     }
                                     
                                     model.devLog = "Annotation deselected"

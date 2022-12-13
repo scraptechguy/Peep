@@ -22,7 +22,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var devLog = "Launching the app"
     @Published var didLongPressed = false
     
-    @Published var currentHeight: CGFloat = 90
+    @Published var currentHeight: CGFloat = UIScreen.main.bounds.height / 10.2
     @Published var showingGallery = false
     @Published var showingSettings = false
     @Published var showingDirections = false

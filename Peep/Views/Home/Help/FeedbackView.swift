@@ -29,7 +29,7 @@ struct FeedbackView: View {
                 
                 if #available(iOS 16.0, *) {
                     TextField(feedbackTextField, text: $text, axis: .vertical)
-                        .lineLimit(10, reservesSpace: true)
+                        .lineLimit(5, reservesSpace: true)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                         .padding(.horizontal)
                 } else {
