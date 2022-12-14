@@ -40,16 +40,16 @@ struct HomeView: View {
                     }, label: {
                         Image(systemName: model.isOnLocation ? "location.fill" : "location")
                             .foregroundColor(.primary)
-                    }).padding()
-                        .background {
-                            Rectangle()
-                                .fill(Color.clear)
-                                .overlay(.ultraThinMaterial)
-                                .mask(
-                                    RoundedRectangle(cornerRadius: 30, style: .circular)
-                                )
-                        }
-                        .padding(.trailing)
+                            .padding()
+                            .background {
+                                Rectangle()
+                                    .fill(Color.clear)
+                                    .overlay(.ultraThinMaterial)
+                                    .mask(
+                                        RoundedRectangle(cornerRadius: 30, style: .circular)
+                                    )
+                            }
+                    }).padding(.trailing)
                 }.padding(.bottom, screenSize.height / 10.2)
                     .padding(.bottom)
             }.ignoresSafeArea()
