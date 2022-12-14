@@ -155,7 +155,7 @@ struct SettingsView: View {
                         // MARK: - Developer settings
                         
                         Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
-                            Toggle(isOn: $model.useOfflineDatabase) {
+                            Toggle(isOn: $data.useOfflineDatabase) {
                                 Label(settingsOfflineDB, systemImage: "wifi.slash")
                             }.listRowBackground(Color("ListRowBackground"))
                             
@@ -301,7 +301,7 @@ struct SettingsView: View {
                         // MARK: - Developer settings
                         
                         Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
-                            Toggle(isOn: $model.useOfflineDatabase) {
+                            Toggle(isOn: $data.useOfflineDatabase) {
                                 Label(settingsOfflineDB, systemImage: "wifi.slash")
                             }
                             
