@@ -47,7 +47,6 @@ struct Map: UIViewRepresentable {
     }
     
     // MARK: - getLocationsToRemove()
-    /*
     
     func getLocationsToRemove(center: CLLocationCoordinate2D) -> [MKPointAnnotation] {
         
@@ -69,7 +68,6 @@ struct Map: UIViewRepresentable {
         return annotationsToRemove
         
     }
-    */
     
     // MARK: - makeUIView()
     
