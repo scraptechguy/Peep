@@ -23,8 +23,36 @@ struct HomeView: View {
             VStack {
                 NavigationBar()
                 
-                Spacer()   
+                Spacer()
             }
+            
+            VStack {
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    Button(action: {
+                        withAnimation {
+                            model.goToLocation = true
+                            model.isOnLocation = true
+                        }
+                    }, label: {
+                        Image(systemName: model.isOnLocation ? "location.fill" : "location")
+                            .foregroundColor(.primary)
+                    }).padding()
+                        .background {
+                            Rectangle()
+                                .fill(Color.clear)
+                                .overlay(.ultraThinMaterial)
+                                .mask(
+                                    RoundedRectangle(cornerRadius: 30, style: .circular)
+                                )
+                        }
+                        .padding(.trailing)
+                }.padding(.bottom, screenSize.height / 10.2)
+                    .padding(.bottom)
+            }.ignoresSafeArea()
             
             PlaceDetail(place: selectedPlace ?? DataModel.init(id: ""))
             
