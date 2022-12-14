@@ -93,6 +93,8 @@ struct Map: UIViewRepresentable {
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
         
+        // - TODO: Add onChange here too... #46
+        
         if !model.annotationSelected {
             
             uiView.selectedAnnotations = []
@@ -212,11 +214,20 @@ struct Map: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             
+            // let annotationSpanIndex: Double = model.latlongDelta * 10 * 0.035
+            
             if mapView.region.span.latitudeDelta < model.latlongDelta && mapView.region.span.longitudeDelta < model.latlongDelta {
                         
                 if !model.annotationSelected {
                     
                     mapView.removeAnnotations(mapView.annotations)
+                    
+                    /*
+                    mapView.removeAnnotations(mapView.annotations.filter({
+                        $0.coordinate.latitude <= mapView.region.center.latitude - annotationSpanIndex && $0.coordinate.latitude >= mapView.region.center.latitude + annotationSpanIndex && $0.coordinate.longitude <= mapView.region.center.longitude - annotationSpanIndex && $0.coordinate.longitude >= mapView.region.center.longitude + annotationSpanIndex
+                    }))
+                    */
+                    
                     mapView.addAnnotations(map.getLocations(center: mapView.region.center))
                     
                     DispatchQueue.main.async { [self] in
