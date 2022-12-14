@@ -45,7 +45,7 @@ struct StateView: View {
                     ExplanationItem(item: "Z", explanation: String(localized: "stateZ"))
                     
                     ExplanationItem(item: "X", explanation: String(localized: "stateX"))
-                }
+                }.padding(.bottom)
             }
             
             VStack {

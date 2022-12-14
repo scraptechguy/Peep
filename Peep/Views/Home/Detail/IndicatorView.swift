@@ -41,7 +41,7 @@ struct IndicatorView: View {
                     
                     Text(indicatorFooter)
                         .frame(maxWidth: .infinity, alignment: .center)
-                }
+                }.padding(.bottom)
             }
             
             VStack {

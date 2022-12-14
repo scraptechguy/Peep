@@ -57,7 +57,7 @@ struct TypeView: View {
                         
                         ExplanationItem(item: "M", explanation: String(localized: "typeM"))
                     }
-                }
+                }.padding(.bottom)
             }
             
             VStack {

@@ -53,7 +53,7 @@ struct DialView: View {
                         
                         ExplanationItem(item: "G", explanation: String(localized: "dialG"))
                     }
-                }
+                }.padding(.bottom)
             }
             
             VStack {
