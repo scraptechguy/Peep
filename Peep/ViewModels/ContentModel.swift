@@ -19,6 +19,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @AppStorage("useOfflineDatabase") var useOfflineDatabase = false
     @AppStorage("latlogDelta") var latlongDelta: Double = 0.15
     
+    @Published var finishedLoading = false
+    
     @Published var devLog = "Launching the app"
     @Published var didLongPressed = false
     

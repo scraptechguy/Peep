@@ -13,6 +13,7 @@ struct PeepApp: App {
         WindowGroup {
             LaunchView()
                 .environmentObject(ContentModel())
+                .environmentObject(FetchData())
         }
     }
 }

@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct NavigationBar: View {
     
     @EnvironmentObject var model: ContentModel
+    @EnvironmentObject var FetchData: FetchData
     
     let screenSize: CGRect = UIScreen.main.bounds
     
@@ -31,7 +33,13 @@ struct NavigationBar: View {
                         Text(model.placemark?.locality ?? "No location found")
                             .foregroundColor(Color("Font"))
                             .lineLimit(1)
-                    }.padding(.leading, 22)
+                        
+                        Spacer()
+                        
+                        if FetchData.finishedLoading == false {
+                            ProgressView()
+                        }
+                    }.padding(.horizontal, 22)
                         .frame(width: screenSize.width / 1.35, alignment: .leading)
                 }
                 

@@ -10,6 +10,7 @@ import Foundation
 class FetchData: ObservableObject {
     
     @Published var dataList = [DataModel]()
+    @Published var finishedLoading = false
     
     init() {
         
@@ -26,7 +27,8 @@ class FetchData: ObservableObject {
                         
                         let decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
                         
-                        DispatchQueue.main.async {
+                        DispatchQueue.main.async { [self] in
+                            finishedLoading = true
                             self.dataList = decodedData
                         }
                         
@@ -46,7 +48,8 @@ class FetchData: ObservableObject {
                         let data = try Data(contentsOf: url)
                         let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
                         
-                        DispatchQueue.main.async {
+                        DispatchQueue.main.async { [self] in
+                            finishedLoading = true
                             self.dataList = decodedData
                         }
                         
@@ -68,7 +71,8 @@ class FetchData: ObservableObject {
                     let data = try Data(contentsOf: url)
                     let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
                     
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [self] in
+                        finishedLoading = true
                         self.dataList = decodedData
                     }
                     
