@@ -160,6 +160,7 @@
 // MARK: - Prompts
 
 "comingSoon" = "Coming soon...";
+"noRegion" = "Couldn't get region";
 
 // MARK: - ???
 

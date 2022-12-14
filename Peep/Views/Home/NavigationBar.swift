@@ -30,7 +30,7 @@ struct NavigationBar: View {
                         Image(systemName: "location")
                             .foregroundColor(Color("Font"))
                         
-                        Text(model.placemark?.locality ?? "No location found")
+                        Text(model.placemark?.locality ?? String(localized: "noRegion"))
                             .foregroundColor(Color("Font"))
                             .lineLimit(1)
                         
