@@ -32,6 +32,7 @@ struct SettingsView: View {
     let settingsWebsite: LocalizedStringKey = "settingsWebsite"
     
     let settingsSectionDeveloperSettings: LocalizedStringKey = "settingsSectionDeveloperSettings"
+    let settingsFeature: LocalizedStringKey = "settingsFeature"
     let settingsOfflineDB: LocalizedStringKey = "settingsOfflineDB"
     let settingsSectionDeveloperSettingsSubtitle: LocalizedStringKey = "settingsSectionDeveloperSettingsSubtitle"
     
@@ -155,6 +156,28 @@ struct SettingsView: View {
                         // MARK: - Developer settings
                         
                         Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
+                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new")!) {
+                                HStack {
+                                    Label(settingsFeature, systemImage: "pencil.and.outline")
+                                    
+                                    Spacer()
+                                    
+                                    Text("GitHub")
+                                        .foregroundColor(.secondary)
+                                    
+                                    Image(systemName: "arrow.up.right")
+                                        .font(.footnote)
+                                        .foregroundColor(.gray)
+                                }
+                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                Button(action: {
+                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new"
+                                }, label: {
+                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                })
+                            }
+                            .listRowBackground(Color("ListRowBackground"))
+                            
                             Toggle(isOn: $model.useOfflineDatabase) {
                                 Label(settingsOfflineDB, systemImage: "wifi.slash")
                             }.listRowBackground(Color("ListRowBackground"))
@@ -301,6 +324,27 @@ struct SettingsView: View {
                         // MARK: - Developer settings
                         
                         Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
+                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new")!) {
+                                HStack {
+                                    Label(settingsFeature, systemImage: "pencil.and.outline")
+                                    
+                                    Spacer()
+                                    
+                                    Text("GitHub")
+                                        .foregroundColor(.secondary)
+                                    
+                                    Image(systemName: "arrow.up.right")
+                                        .font(.footnote)
+                                        .foregroundColor(.gray)
+                                }
+                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                Button(action: {
+                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new"
+                                }, label: {
+                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                })
+                            }
+                            
                             Toggle(isOn: $model.useOfflineDatabase) {
                                 Label(settingsOfflineDB, systemImage: "wifi.slash")
                             }
