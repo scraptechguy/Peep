@@ -27,8 +27,17 @@ struct NavigationBar: View {
                         )
                     
                     HStack {
-                        Image(systemName: "location")
-                            .foregroundColor(Color("Font"))
+                        if model.placemark?.locality != nil {
+                            
+                            Image(systemName: "location.fill.viewfinder")
+                                .foregroundColor(Color("Font"))
+                            
+                        } else {
+                            
+                            Image(systemName: "location.viewfinder")
+                                .foregroundColor(Color("Font"))
+                            
+                        }
                         
                         Text(model.placemark?.locality ?? String(localized: "noRegion"))
                             .foregroundColor(Color("Font"))
