@@ -10,20 +10,18 @@ import SwiftUI
 
 class FetchData: ObservableObject {
     
-    @AppStorage("useOfflineDatabase") var useOfflineDatabase = false
-    
     @Published var dataList = [DataModel]()
     @Published var finishedLoading = false
     
     init() {
         
         let url = URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/json3.php")!
-        
-        if !self.useOfflineDatabase {
             
-            URLSession.shared.dataTask(with: url) {(data, response, error) in
-                do {
-                        
+        URLSession.shared.dataTask(with: url) {(data, response, error) in
+            do {
+                
+                if !ContentModel().useOfflineDatabase {
+                    
                     if let todoData = data {
                         
                         print("using online data cos I can")
@@ -64,36 +62,30 @@ class FetchData: ObservableObject {
                         
                     }
                     
-                } catch let error {
+                } else {
                     
-                    print(error)
-                    
-                }
-            }.resume()
-        } else {
-            
-            do {
-                
-                guard let url = Bundle.main.url(forResource: "OfflineDatabase", withExtension: "geojson")
-                else {
-                    
-                    print("Json file not found")
-                    
-                    return
-                    
-                }
-                
-                print("using offline data cos user said so")
-                
-                let data = try Data(contentsOf: url)
-                let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
-                
-                DispatchQueue.main.async { [self] in
-                    withAnimation {
-                        finishedLoading = true
+                    guard let url = Bundle.main.url(forResource: "OfflineDatabase", withExtension: "geojson")
+                    else {
+                        
+                        print("Json file not found")
+                        
+                        return
+                        
                     }
                     
-                    self.dataList = decodedData
+                    print("using offline data cos user said so")
+                    
+                    let data = try Data(contentsOf: url)
+                    let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
+                    
+                    DispatchQueue.main.async { [self] in
+                        withAnimation {
+                            finishedLoading = true
+                        }
+                        
+                        self.dataList = decodedData
+                    }
+                    
                 }
                 
             } catch let error {
@@ -101,7 +93,6 @@ class FetchData: ObservableObject {
                 print(error)
                 
             }
-
-        }
+        }.resume()
     }
 }
