@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class FetchData: ObservableObject {
     
@@ -28,7 +29,10 @@ class FetchData: ObservableObject {
                         let decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
                         
                         DispatchQueue.main.async { [self] in
-                            finishedLoading = true
+                            withAnimation {
+                                finishedLoading = true
+                            }
+                            
                             self.dataList = decodedData
                         }
                         
@@ -49,7 +53,10 @@ class FetchData: ObservableObject {
                         let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
                         
                         DispatchQueue.main.async { [self] in
-                            finishedLoading = true
+                            withAnimation {
+                                finishedLoading = true
+                            }
+                            
                             self.dataList = decodedData
                         }
                         
@@ -72,7 +79,10 @@ class FetchData: ObservableObject {
                     let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
                     
                     DispatchQueue.main.async { [self] in
-                        finishedLoading = true
+                        withAnimation {
+                            finishedLoading = true
+                        }
+                        
                         self.dataList = decodedData
                     }
                     
