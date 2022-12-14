@@ -50,6 +50,7 @@
 "settingsFeedback" = "Feedback";
 "settingsPrivacyPolicy" = "Privacy Policy";
 "settingsHelp" = "Help";
+"settingsSectionInformationFooter" = "Swipe left on rows to copy the URL to clipboard";
 
 "settingsSectionLinks" = "Links";
 "settingsWebsite" = "Website";

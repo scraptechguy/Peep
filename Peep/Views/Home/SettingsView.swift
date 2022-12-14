@@ -27,6 +27,7 @@ struct SettingsView: View {
     let settingsFeedback: LocalizedStringKey = "settingsFeedback"
     let settingsPrivacyPolicy: LocalizedStringKey = "settingsPrivacyPolicy"
     let settingsHelp: LocalizedStringKey = "settingsHelp"
+    let settingsSectionInformationFooter: LocalizedStringKey = "settingsSectionInformationFooter"
     
     let settingsSectionLinks: LocalizedStringKey = "settingsSectionLinks"
     let settingsWebsite: LocalizedStringKey = "settingsWebsite"
@@ -83,7 +84,7 @@ struct SettingsView: View {
                             }.listRowBackground(Color("ListRowBackground"))
                         }.foregroundColor(.primary)
                         
-                        Section(header: Text(settingsSectionInformation).foregroundColor(.secondary)) {
+                        Section(header: Text(settingsSectionInformation).foregroundColor(.secondary), footer: Text(settingsSectionInformationFooter).foregroundColor(.secondary)) {
                             NavigationLink(destination: HelpView().navigationBarTitle(settingsHelp)) {
                                 Label(settingsHelp, systemImage: "questionmark")
                             }.listRowBackground(Color("ListRowBackground"))
@@ -254,7 +255,7 @@ struct SettingsView: View {
                             }
                         }.foregroundColor(.primary)
                         
-                        Section(header: Text(settingsSectionInformation).foregroundColor(.secondary)) {
+                        Section(header: Text(settingsSectionInformation).foregroundColor(.secondary), footer: Text(settingsSectionInformationFooter).foregroundColor(.secondary)) {
                             NavigationLink(destination: HelpView().navigationBarTitle(settingsHelp)) {
                                 Label(settingsHelp, systemImage: "questionmark")
                             }
