@@ -137,7 +137,7 @@ struct SettingsView: View {
                             
                             Link(destination: URL(string: "https://github.com/scraptechguy/Peep")!) {
                                 HStack {
-                                    Label("GitHub", systemImage: "cloud")
+                                    Label("GitHub", systemImage: "xserve")
                                         .foregroundColor(.primary)
                                     
                                     Spacer()
@@ -308,7 +308,7 @@ struct SettingsView: View {
                             
                             Link(destination: URL(string: "https://github.com/scraptechguy/Peep")!) {
                                 HStack {
-                                    Label("GitHub", systemImage: "cloud")
+                                    Label("GitHub", systemImage: "xserve")
                                         .foregroundColor(.primary)
                                     
                                     Spacer()
