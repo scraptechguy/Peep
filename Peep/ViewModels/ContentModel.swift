@@ -35,6 +35,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var index: Int = 0
     
     @Published var annotationSelected = false
+    @Published var shouldDeselectAnnotations = false
     @Published var previousSpan = MKCoordinateSpan.init(latitudeDelta: 2, longitudeDelta: 2)
     @Published var previousCoordinate = CLLocationCoordinate2D.init(latitude: 0, longitude: 0)
     @Published var goToLocation = false

@@ -62,6 +62,13 @@ struct HomeView: View {
                 
             }
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
+            .onChange(of: model.annotationSelected, perform: { newValue in
+                if !model.annotationSelected {
+                    
+                    model.shouldDeselectAnnotations = true
+                    
+                }
+            })
     }
 }
 

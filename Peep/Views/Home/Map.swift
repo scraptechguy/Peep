@@ -95,9 +95,13 @@ struct Map: UIViewRepresentable {
         
         // - TODO: Add onChange here too... #46
         
-        if !model.annotationSelected {
+        if model.shouldDeselectAnnotations {
             
             uiView.selectedAnnotations = []
+            
+            DispatchQueue.main.async {
+                model.shouldDeselectAnnotations = false
+            }
             
         }
         
@@ -224,7 +228,7 @@ struct Map: UIViewRepresentable {
                     
                     /*
                     mapView.removeAnnotations(mapView.annotations.filter({
-                        $0.coordinate.latitude <= mapView.region.center.latitude - annotationSpanIndex && $0.coordinate.latitude >= mapView.region.center.latitude + annotationSpanIndex && $0.coordinate.longitude <= mapView.region.center.longitude - annotationSpanIndex && $0.coordinate.longitude >= mapView.region.center.longitude + annotationSpanIndex
+                        $0.coordinate.latitude >= mapView.region.center.latitude - annotationSpanIndex && $0.coordinate.latitude <= mapView.region.center.latitude + annotationSpanIndex && $0.coordinate.longitude >= mapView.region.center.longitude - annotationSpanIndex && $0.coordinate.longitude <= mapView.region.center.longitude + annotationSpanIndex
                     }))
                     */
                     
