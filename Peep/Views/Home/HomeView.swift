@@ -36,6 +36,8 @@ struct HomeView: View {
                         withAnimation {
                             model.goToLocation = true
                             model.isOnLocation = true
+                            
+                            model.devLog = "Showing user's location"
                         }
                     }, label: {
                         Image(systemName: model.isOnLocation ? "location.fill" : "location")
