@@ -84,6 +84,8 @@ struct SettingsView: View {
                             }.listRowBackground(Color("ListRowBackground"))
                         }.foregroundColor(.primary)
                         
+                        // MARK: - Information
+                        
                         Section(header: Text(settingsSectionInformation).foregroundColor(.secondary), footer: Text(settingsSectionInformationFooter).foregroundColor(.secondary)) {
                             NavigationLink(destination: HelpView().navigationBarTitle(settingsHelp)) {
                                 Label(settingsHelp, systemImage: "questionmark")
@@ -254,6 +256,8 @@ struct SettingsView: View {
                                 Slider(value: $model.latlongDelta, in: 0.1...0.35)
                             }
                         }.foregroundColor(.primary)
+                        
+                        // MARK: - Information
                         
                         Section(header: Text(settingsSectionInformation).foregroundColor(.secondary), footer: Text(settingsSectionInformationFooter).foregroundColor(.secondary)) {
                             NavigationLink(destination: HelpView().navigationBarTitle(settingsHelp)) {
