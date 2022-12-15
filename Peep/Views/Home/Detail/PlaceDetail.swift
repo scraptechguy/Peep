@@ -124,18 +124,37 @@ struct PlaceDetail: View {
                                         model.showingType = true
                                     }, label: {
                                         VStack {
-                                            Text(place.thodin ?? "?")
-                                                .bold()
-                                                .minimumScaleFactor(0.1)
-                                                .frame(width: 20, height: 20)
-                                                .lineLimit(1)
-                                                .foregroundColor(Color("Font"))
-                                                .padding()
-                                                .background(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(Color("Font"))
-                                                        .frame(width: 52, height: 52)
-                                                )
+                                            if place.thodin == "" {
+                                                
+                                                Text("?")
+                                                    .bold()
+                                                    .minimumScaleFactor(0.1)
+                                                    .frame(width: 20, height: 20)
+                                                    .lineLimit(1)
+                                                    .foregroundColor(Color("Font"))
+                                                    .padding()
+                                                    .background(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                            .stroke(Color("Font"))
+                                                            .frame(width: 52, height: 52)
+                                                    )
+                                                
+                                            } else {
+                                                
+                                                Text(place.thodin ?? "?")
+                                                    .bold()
+                                                    .minimumScaleFactor(0.1)
+                                                    .frame(width: 20, height: 20)
+                                                    .lineLimit(1)
+                                                    .foregroundColor(Color("Font"))
+                                                    .padding()
+                                                    .background(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                            .stroke(Color("Font"))
+                                                            .frame(width: 52, height: 52)
+                                                    )
+                                                
+                                            }
                                             
                                             Text(detailType)
                                                 .font(.system(size: 10))
@@ -150,18 +169,37 @@ struct PlaceDetail: View {
                                         model.showingPointer = true
                                     }, label: {
                                         VStack {
-                                            Text(place.tukazatel ?? "?")
-                                                .bold()
-                                                .minimumScaleFactor(0.1)
-                                                .frame(width: 20, height: 20)
-                                                .lineLimit(1)
-                                                .foregroundColor(Color("Font"))
-                                                .padding()
-                                                .background(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(Color("Font"))
-                                                        .frame(width: 52, height: 52)
-                                                )
+                                            if place.tukazatel == "" {
+                                                
+                                                Text("?")
+                                                    .bold()
+                                                    .minimumScaleFactor(0.1)
+                                                    .frame(width: 20, height: 20)
+                                                    .lineLimit(1)
+                                                    .foregroundColor(Color("Font"))
+                                                    .padding()
+                                                    .background(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                            .stroke(Color("Font"))
+                                                            .frame(width: 52, height: 52)
+                                                    )
+                                                
+                                            } else {
+                                                
+                                                Text(place.tukazatel ?? "?")
+                                                    .bold()
+                                                    .minimumScaleFactor(0.1)
+                                                    .frame(width: 20, height: 20)
+                                                    .lineLimit(1)
+                                                    .foregroundColor(Color("Font"))
+                                                    .padding()
+                                                    .background(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                            .stroke(Color("Font"))
+                                                            .frame(width: 52, height: 52)
+                                                    )
+                                                
+                                            }
                                             
                                             Text(detailIndicator)
                                                 .font(.system(size: 10))
@@ -176,18 +214,37 @@ struct PlaceDetail: View {
                                         model.showingDial = true
                                     }, label: {
                                         VStack {
-                                            Text(place.tciselnik ?? "?")
-                                                .bold()
-                                                .minimumScaleFactor(0.1)
-                                                .frame(width: 20, height: 20)
-                                                .lineLimit(1)
-                                                .foregroundColor(Color("Font"))
-                                                .padding()
-                                                .background(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(Color("Font"))
-                                                        .frame(width: 52, height: 52)
-                                                )
+                                            if place.tciselnik == "" {
+                                                
+                                                Text("?")
+                                                    .bold()
+                                                    .minimumScaleFactor(0.1)
+                                                    .frame(width: 20, height: 20)
+                                                    .lineLimit(1)
+                                                    .foregroundColor(Color("Font"))
+                                                    .padding()
+                                                    .background(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                            .stroke(Color("Font"))
+                                                            .frame(width: 52, height: 52)
+                                                    )
+                                                
+                                            } else {
+                                                
+                                                Text(place.tciselnik ?? "?")
+                                                    .bold()
+                                                    .minimumScaleFactor(0.1)
+                                                    .frame(width: 20, height: 20)
+                                                    .lineLimit(1)
+                                                    .foregroundColor(Color("Font"))
+                                                    .padding()
+                                                    .background(
+                                                        RoundedRectangle(cornerRadius: 15)
+                                                            .stroke(Color("Font"))
+                                                            .frame(width: 52, height: 52)
+                                                    )
+                                                
+                                            }
                                             
                                             Text(detailDial)
                                                 .font(.system(size: 10))
