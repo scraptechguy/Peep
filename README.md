@@ -14,6 +14,10 @@ Píp is currently in active development and is waiting for initial App Store rel
 
 Click <a href="https://testflight.apple.com/join/nrBtEpPi">here</a> or use the Redeem Code: <b>Not set, use link</b>
 
+### Groundwork 
+
+Loads of this project's components came to life thanks to <a href="https://www.youtube.com/@Kavsoft">@Kavsoft</a>, go check out his YouTube channel!
+
 ## About
 
 <div align="center">
