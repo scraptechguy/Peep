@@ -11,7 +11,7 @@ struct PlaceDetail: View {
     
     @EnvironmentObject var model: ContentModel
     
-    let minHeight: CGFloat = 70
+    let minHeight: CGFloat = UIScreen.main.bounds.height / 10.2
     let maxHeight: CGFloat = 600
     
     var place: DataModel
