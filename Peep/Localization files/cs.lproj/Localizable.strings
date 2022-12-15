@@ -25,14 +25,14 @@
 // MARK: - Welcome
 
 "welcomeHeading" = "Eeeeej!";
-"welcomeText" = "Píp chce používat **tvoji lokaci** k doručení přesných údajů, kliknutím na **pokračovat** mu to umožníš";
+"welcomeText" = "Píp chce používat **tvoji polohu** k doručení přesných údajů, kliknutím na **pokračovat** mu to umožníš";
 "nextButton" = "Pokračovat";
 "welcomeSubtitle" = "Pokračovaním souhlasíš s naší ";
 "privacyButton" = "**Privacy Policy**";
 
 // MARK: - Denied view
 
-"deniedMainText" = "Píp potřebuje znát **tvoji lokaci** aby aplikace mohla **dobře fungovat**";
+"deniedMainText" = "Píp potřebuje znát **tvoji polohu** aby mohla aplikace **dobře fungovat**";
 "deniedSubtitle" = "Bude ji používat rozumně... ";
 "deniedGuide" = "Jít do **Nastavení**";
 
