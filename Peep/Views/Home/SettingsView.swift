@@ -91,13 +91,9 @@ struct SettingsView: View {
                                 Label(settingsHelp, systemImage: "questionmark")
                             }.listRowBackground(Color("ListRowBackground"))
                             
-                            NavigationLink(destination: FeedbackView().navigationBarTitle(settingsFeedback)) {
-                                Label(settingsFeedback, systemImage: "leaf")
-                            }.listRowBackground(Color("ListRowBackground"))
-                            
                             Link(destination: URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/sh.php")!) {
                                 HStack {
-                                    Label(settingsWebsite, systemImage: "sun.min")
+                                    Label(settingsWebsite, systemImage: "heart.text.square")
                                         .foregroundColor(.primary)
                                     
                                     Spacer()
@@ -149,6 +145,30 @@ struct SettingsView: View {
                             }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                 Button(action: {
                                     UIPasteboard.general.string = "https://github.com/scraptechguy/Peep"
+                                }, label: {
+                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                })
+                            }
+                            .listRowBackground(Color("ListRowBackground"))
+                            
+                            Link(destination: URL(string: "https://apps.apple.com/us/app/p%C3%ADp/id6444575713")!) {
+                                HStack {
+                                    Label(settingsFeedback, systemImage: "leaf")
+                                        .foregroundColor(.primary)
+                                    
+                                    Spacer()
+                                    
+                                    Text("App Store")
+                                        .foregroundColor(.secondary)
+                                    
+                                    Image(systemName: "arrow.up.right")
+                                        .font(.footnote)
+                                        .foregroundColor(.gray)
+
+                                }
+                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                Button(action: {
+                                    UIPasteboard.general.string = "https://apps.apple.com/us/app/p%C3%ADp/id6444575713"
                                 }, label: {
                                     Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
                                 })
@@ -270,7 +290,7 @@ struct SettingsView: View {
                             
                             Link(destination: URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/sh.php")!) {
                                 HStack {
-                                    Label(settingsWebsite, systemImage: "sun.min")
+                                    Label(settingsWebsite, systemImage: "heart.text.square")
                                         .foregroundColor(.primary)
                                     
                                     Spacer()
