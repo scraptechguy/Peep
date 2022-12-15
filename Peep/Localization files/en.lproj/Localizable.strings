@@ -164,6 +164,14 @@
 "comingSoon" = "Coming soon...";
 "noRegion" = "Couldn't get region";
 
+// MARK: - Dev log
+
+"sufficientZoom" = "Sufficient zoom, showing annotations";
+"insufficientZoom" = "Insufficient zoom, not showing annotations";
+"annotationSelected" = "Annotation selected";
+"annotationDeselected" = "Annotation deselected";
+"userLocation" = "Showing user's location";
+
 // MARK: - ???
 
 "peepTitle" = "Meet Píp";

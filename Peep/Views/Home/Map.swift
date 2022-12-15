@@ -235,7 +235,7 @@ struct Map: UIViewRepresentable {
                     mapView.addAnnotations(map.getLocations(center: mapView.region.center))
                     
                     DispatchQueue.main.async { [self] in
-                        model.devLog = "Sufficient zoom, showing annotations"
+                        model.devLog = String(localized: "sufficientZoom")
                     }
                     
                 }
@@ -245,7 +245,7 @@ struct Map: UIViewRepresentable {
                 mapView.removeAnnotations(mapView.annotations)
                 
                 DispatchQueue.main.async { [self] in
-                    model.devLog = "Insufficient zoom, not showing annotations"
+                    model.devLog = String(localized: "insufficientZoom")
                 }
                 
             }
@@ -298,7 +298,7 @@ struct Map: UIViewRepresentable {
                     
                     map.selectedPlace = place
                     model.annotationSelected = true
-                    model.devLog = "Annotation selected"
+                    model.devLog = String(localized: "annotationSelected")
                     model.previousSpan = MKCoordinateSpan.init(latitudeDelta: mapView.region.span.latitudeDelta, longitudeDelta: mapView.region.span.longitudeDelta)
                     model.previousCoordinate = CLLocationCoordinate2D.init(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude)
                     

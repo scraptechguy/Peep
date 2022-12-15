@@ -164,6 +164,14 @@
 "comingSoon" = "Již brzy...";
 "noRegion" = "Žádný region";
 
+// MARK: - Dev log
+
+"sufficientZoom" = "Dostatečné přiblížení, hodiny jsou viditelné";
+"insufficientZoom" = "Nedostatečné přiblížení, hodiny nejsou vidět";
+"annotationSelected" = "Hodiny vybrány";
+"annotationDeselected" = "Hodiny odvybrány";
+"userLocation" = "Poloha uživatele zobrazena";
+
 // MARK: - ???
 
 "peepTitle" = "Tohle je Píp";
