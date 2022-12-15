@@ -46,29 +46,6 @@ struct Map: UIViewRepresentable {
         
     }
     
-    // MARK: - getLocationsToRemove()
-    
-    func getLocationsToRemove(center: CLLocationCoordinate2D) -> [MKPointAnnotation] {
-        
-        var annotationsToRemove = [MKPointAnnotation]()
-        let annotationSpanIndex: Double = model.latlongDelta * 10 * 0.035
-        
-        // Loop through all places
-        for annotation in MKMapView().annotations {
-                
-            // Create annotations only for places within a certain region
-            if annotation.coordinate.latitude <= center.latitude - annotationSpanIndex && annotation.coordinate.latitude >= center.latitude + annotationSpanIndex && annotation.coordinate.longitude <= center.longitude - annotationSpanIndex && annotation.coordinate.longitude >= center.longitude + annotationSpanIndex {
-                
-                annotationsToRemove.append(MKPointAnnotation(__coordinate: annotation as! CLLocationCoordinate2D))
-                
-            }
-                
-        }
-        
-        return annotationsToRemove
-        
-    }
-    
     // MARK: - makeUIView()
     
     func makeUIView(context: Context) -> MKMapView {
@@ -135,7 +112,7 @@ struct Map: UIViewRepresentable {
             
         }
         
-        // TODO: #32
+        // TODO: - #32
         
         /*
         onChange(of: model.annotationSelected) { newValue in
@@ -225,6 +202,8 @@ struct Map: UIViewRepresentable {
                 if !model.annotationSelected {
                     
                     mapView.removeAnnotations(mapView.annotations)
+                    
+                    // TODO: - #28
                     
                     /*
                     mapView.removeAnnotations(mapView.annotations.filter({
