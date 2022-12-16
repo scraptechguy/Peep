@@ -34,10 +34,14 @@ struct HomeView: View {
                     
                     Button(action: {
                         withAnimation {
-                            model.goToLocation = true
-                            model.isOnLocation = true
-                            
-                            model.devLog = String(localized: "userLocation")
+                            if !model.isOnLocation {
+                                
+                                model.goToLocation = true
+                                model.isOnLocation = true
+                                
+                                model.devLog = String(localized: "userLocation")
+                                
+                            }
                         }
                     }, label: {
                         Image(systemName: model.isOnLocation ? "location.fill" : "location")
