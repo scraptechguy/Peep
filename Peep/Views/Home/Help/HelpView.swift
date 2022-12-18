@@ -61,7 +61,7 @@ struct HelpView: View {
                 .multilineTextAlignment(.center)
                 .padding()
             
-            Text("\(index + 1)/10")
+            Text("\(index + 1)/11")
                 .font(.footnote.bold())
         }
     }

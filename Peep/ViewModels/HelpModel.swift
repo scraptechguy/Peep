@@ -28,5 +28,6 @@ var guides: [Help] = [
     .init(imageName: "Help8", title: String(localized: "helpHeading8"), text: String(localized: "helpText8")),
     .init(imageName: "Help9", title: String(localized: "helpHeading9"), text: String(localized: "helpText9")),
     .init(imageName: "Help10", title: String(localized: "helpHeading10"), text: String(localized: "helpText10")),
+    .init(imageName: "Help11", title: String(localized: "helpHeading11"), text: String(localized: "helpText11")),
 
 ]
