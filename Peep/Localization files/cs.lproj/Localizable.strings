@@ -117,12 +117,12 @@
 "typeV" = "Vodorovné hodiny";
 "typeR" = "Rovníkové hodiny";
 "typeP" = "Polární hodiny";
-"typePP" = "Prstencové polární hodiny";
+"typePP" = "Polární prstencové hodiny";
 "typePJ" = "Polární jižní hodiny";
 "typeK" = "Kulové hodiny";
 "typeA" = "Analematické hodiny";
 "typeE" = "\"Extra\" hodiny";
-"typeY" = "Hodiny pouze se symbolem";
+"typeY" = "Symbol hodin";
 "typeO" = "Orloj (astroláb)";
 "typeM" = "Přenosné hodiny (sbírka)";
 
