@@ -18,7 +18,6 @@
 		9021FA6928BE3D5E00C56CE7 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9021FA6828BE3D5E00C56CE7 /* NavigationBar.swift */; };
 		9021FA6B28BE3F0600C56CE7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9021FA6A28BE3F0600C56CE7 /* Constants.swift */; };
 		90404FDE28BF843C001E4DC9 /* DirectionsMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90404FDD28BF843C001E4DC9 /* DirectionsMap.swift */; };
-		904A180E294F37860037D8C7 /* AnimatableFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A180D294F37860037D8C7 /* AnimatableFontModifier.swift */; };
 		9050070A28BCE70800E64E92 /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050070928BCE70800E64E92 /* DirectionsView.swift */; };
 		9050071528BD49D200E64E92 /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071428BD49D200E64E92 /* StateView.swift */; };
 		9050071728BD49DA00E64E92 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071628BD49DA00E64E92 /* TypeView.swift */; };
@@ -56,7 +55,6 @@
 		9021FA6828BE3D5E00C56CE7 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		9021FA6A28BE3F0600C56CE7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		90404FDD28BF843C001E4DC9 /* DirectionsMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsMap.swift; sourceTree = "<group>"; };
-		904A180D294F37860037D8C7 /* AnimatableFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableFontModifier.swift; sourceTree = "<group>"; };
 		9050070928BCE70800E64E92 /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
 		9050071428BD49D200E64E92 /* StateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		9050071628BD49DA00E64E92 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 		904A180C294F374A0037D8C7 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				904A180D294F37860037D8C7 /* AnimatableFontModifier.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -322,7 +319,6 @@
 				90B36AA828A264AA001C738C /* SettingsView.swift in Sources */,
 				9050070A28BCE70800E64E92 /* DirectionsView.swift in Sources */,
 				9050071D28BDF81200E64E92 /* AnimatedBlobView.swift in Sources */,
-				904A180E294F37860037D8C7 /* AnimatableFontModifier.swift in Sources */,
 				9050071B28BD49F900E64E92 /* DialView.swift in Sources */,
 				901F839B28A121AF006FDC4F /* PeepApp.swift in Sources */,
 				90B36AAA28A28746001C738C /* PlaceDetail.swift in Sources */,
