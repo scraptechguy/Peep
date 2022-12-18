@@ -140,7 +140,7 @@
 "dialC" = "Číselník má čísla";
 "dialZ" = "Číselník má značky";
 "dialR" = "Číselník má rysky (po 1/číslo h)";
-"dialO" = "Orlojní číselník";
+"dialO" = "Orlojní číslice";
 "dialP" = "Polorlojní číselník";
 "dialL" = "Číselník s letním časem";
 "dialD" = "Číselník má datové čáry (počet)";
@@ -150,14 +150,14 @@
 
 // MARK: - State
 
-"stateV" = "Sluneční hodiny jsou ve výborném stavu";
-"stateD" = "Sluneční hodiny jsou v dobrém stavu";
-"stateP" = "Sluneční hodiny jsou poškozeny";
-"statePZ" = "Sluneční hodiny jsou značně poškozeny";
+"stateV" = "Hodiny jsou ve výborném stavu";
+"stateD" = "Hodiny jsou v dobrém stavu";
+"stateP" = "Hodiny jsou poškozeny";
+"statePZ" = "Hodiny jsou značně poškozeny";
 "stateU" = "Zbyl jen ukazatel";
 "stateC" = "Zbyl jen číselník";
-"stateZ" = "Sluneční hodiny jsou zaniklé";
-"stateX" = "Plánované sluneční hodiny";
+"stateZ" = "Hodiny jsou zaniklé";
+"stateX" = "Plánované hodiny";
 
 // MARK: - Prompts
 
