@@ -116,7 +116,6 @@
 				90A625CF28A82857009D9D8A /* LaunchScreen.storyboard */,
 				90B2E362292827BD0047B106 /* Localization files */,
 				90A625C828A556D2009D9D8A /* Helpers */,
-				904A180C294F374A0037D8C7 /* Styles */,
 				901F83A828A1235F006FDC4F /* Views */,
 				901F83AB28A12380006FDC4F /* ViewModels */,
 				90B36AAB28A2A8A8001C738C /* Models */,
@@ -174,13 +173,6 @@
 				901F83B428A165A6006FDC4F /* DeniedView.swift */,
 			);
 			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		904A180C294F374A0037D8C7 /* Styles */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Styles;
 			sourceTree = "<group>";
 		};
 		9050070B28BD48F500E64E92 /* Detail */ = {
