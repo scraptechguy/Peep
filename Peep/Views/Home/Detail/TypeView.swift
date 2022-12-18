@@ -11,8 +11,6 @@ struct TypeView: View {
     
     @EnvironmentObject var model: ContentModel
     
-    @State var hasScrolled: Bool = false
-    
     var place: DataModel
     
     let detailType: LocalizedStringKey = "detailType"
@@ -87,22 +85,6 @@ struct TypeView: View {
                 Spacer()
             }
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
-    }
-    
-    var scrollDetection: some View {
-        GeometryReader { proxy in
-            let offset = proxy.frame(in: .named("scroll")).minY
-            Color.clear.preference(key: ScrollPreferenceKey.self, value: offset)
-        }.frame(height: 0)
-            .onPreferenceChange(ScrollPreferenceKey.self) { value in
-                withAnimation(.easeInOut) {
-                    if value < 0 {
-                        hasScrolled = true
-                    } else {
-                        hasScrolled = false
-                    }
-                }
-            }
     }
 }
 
