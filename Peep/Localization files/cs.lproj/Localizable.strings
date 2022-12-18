@@ -133,7 +133,7 @@
 "indicatorK" = "Kolmý ukazatel (gnómon)";
 "indicatorKN" = "Kolmý ukazatel s nodem";
 
-"indicatorFooter" = "**Nodus** je...";
+"indicatorFooter" = "**Nodus** je kulička na ukazateli, která ukazuje datum";
 
 // MARK: - Dial
 
