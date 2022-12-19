@@ -97,6 +97,15 @@ struct HomeView: View {
                     
                 }
             })
+            .onChange(of: model.authorizationState, perform: { newValue in
+                if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
+                    
+                    model.shouldCheckIsOnLocation = true
+                    
+                }
+                
+                model.shouldDeselectAnnotations = true
+            })
     }
 }
 

@@ -127,6 +127,36 @@ struct Map: UIViewRepresentable {
             
         }
         
+        if model.shouldCheckIsOnLocation {
+            
+            if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
+                
+                if uiView.region.center.latitude >= uiView.userLocation.coordinate.latitude - 0.005 && uiView.region.center.latitude <= uiView.userLocation.coordinate.latitude + 0.005 && uiView.region.center.longitude >= uiView.userLocation.coordinate.longitude - 0.005 && uiView.region.center.longitude <= uiView.userLocation.coordinate.longitude + 0.005 {
+                    
+                    DispatchQueue.main.async { [self] in
+                        withAnimation {
+                            model.isOnLocation = true
+                        }
+                    }
+                    
+                } else {
+                    
+                    DispatchQueue.main.async { [self] in
+                        withAnimation {
+                            model.isOnLocation = false
+                        }
+                    }
+                    
+                }
+                
+            }
+            
+            DispatchQueue.main.async {
+                model.shouldCheckIsOnLocation = false
+            }
+            
+        }
+        
         // TODO: - #32
         
         /*

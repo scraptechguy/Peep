@@ -40,6 +40,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var previousCoordinate = CLLocationCoordinate2D.init(latitude: 0, longitude: 0)
     @Published var goToLocation = false
     @Published var isOnLocation = true
+    @Published var shouldCheckIsOnLocation = false
     
     // MARK: - Location
     
