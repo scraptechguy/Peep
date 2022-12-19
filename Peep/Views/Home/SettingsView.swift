@@ -294,6 +294,22 @@ struct SettingsView: View {
                             }
                         }.foregroundColor(.primary)
                         
+                        if model.authorizationState == .denied || model.authorizationState == .restricted {
+                            
+                            Section(footer: Text(String(localized: "settingsLocationFooter")).foregroundColor(.secondary)) {
+                                Text(String(localized: "settingsLocationHeading"))
+                                    .foregroundColor(Color.blue)
+                                    .onTapGesture {
+                                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                                            if UIApplication.shared.canOpenURL(url) {
+                                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                            }
+                                        }
+                                    }
+                            }
+                            
+                        }
+                        
                         // MARK: - Information
                         
                         Section(header: Text(settingsSectionInformation).foregroundColor(.secondary), footer: Text(settingsSectionInformationFooter).foregroundColor(.secondary)) {
