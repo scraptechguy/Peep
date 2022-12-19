@@ -54,8 +54,13 @@ struct Map: UIViewRepresentable {
         mapView.delegate = context.coordinator
         
         mapView.showsUserLocation = true // Show user on the map
-        mapView.userTrackingMode = .follow // Follow user
         mapView.showsCompass = false // Disable compass indicator
+        
+        if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
+            
+            mapView.userTrackingMode = .follow // Follow user if location is enabled
+            
+        }
         
         let span = MKCoordinateSpan.init(latitudeDelta: 10, longitudeDelta: 10)
         let coordinate = CLLocationCoordinate2D.init(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
