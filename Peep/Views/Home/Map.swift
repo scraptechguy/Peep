@@ -57,8 +57,8 @@ struct Map: UIViewRepresentable {
         
         if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
             
-            mapView.userTrackingMode = .follow // Follow user if location is enabled
             mapView.showsUserLocation = true // Show user on the map
+            mapView.userTrackingMode = .follow // Follow user if location is enabled
             
             let span = MKCoordinateSpan.init(latitudeDelta: 10, longitudeDelta: 10)
             let coordinate = CLLocationCoordinate2D.init(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
@@ -74,6 +74,12 @@ struct Map: UIViewRepresentable {
     // MARK: - updateUIView() & dismantleUIView()
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        
+        if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
+         
+            uiView.showsUserLocation = true // Show user on the map
+            
+        }
         
         // - TODO: Add onChange here too... #46
         
