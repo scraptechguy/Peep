@@ -41,7 +41,7 @@ struct NavigationBar: View {
                         
                         if model.authorizationState == .denied || model.authorizationState == .restricted {
                             
-                            Text("Location turned off")
+                            Text(String(localized: "noLocation"))
                                 .foregroundColor(Color("Font"))
                                 .lineLimit(1)
                             

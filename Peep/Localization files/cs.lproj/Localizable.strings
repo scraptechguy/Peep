@@ -159,6 +159,7 @@
 
 "comingSoon" = "Již brzy...";
 "noRegion" = "Žádný region";
+"noLocation" = "Umístění vypnuto";
 
 // MARK: - Dev log
 
