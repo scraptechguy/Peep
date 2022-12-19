@@ -34,27 +34,49 @@ struct HomeView: View {
                     
                     Button(action: {
                         withAnimation {
-                            if !model.isOnLocation {
+                            if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
                                 
-                                model.goToLocation = true
-                                model.isOnLocation = true
-                                
-                                model.devLog = String(localized: "userLocation")
+                                if !model.isOnLocation {
+                                    
+                                    model.goToLocation = true
+                                    model.isOnLocation = true
+                                    
+                                    model.devLog = String(localized: "userLocation")
+                                    
+                                }
                                 
                             }
                         }
                     }, label: {
-                        Image(systemName: model.isOnLocation ? "location.fill" : "location")
-                            .foregroundColor(.primary)
-                            .padding()
-                            .background {
-                                Rectangle()
-                                    .fill(Color.clear)
-                                    .overlay(.ultraThinMaterial)
-                                    .mask(
-                                        RoundedRectangle(cornerRadius: 30, style: .circular)
-                                    )
-                            }
+                        if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
+                            
+                            Image(systemName: model.isOnLocation ? "location.fill" : "location")
+                                .foregroundColor(.primary)
+                                .padding()
+                                .background {
+                                    Rectangle()
+                                        .fill(Color.clear)
+                                        .overlay(.ultraThinMaterial)
+                                        .mask(
+                                            RoundedRectangle(cornerRadius: 30, style: .circular)
+                                        )
+                                }
+                            
+                        } else {
+                            
+                            Image(systemName: "location")
+                                .foregroundColor(.primary)
+                                .padding()
+                                .background {
+                                    Rectangle()
+                                        .fill(Color.clear)
+                                        .overlay(.ultraThinMaterial)
+                                        .mask(
+                                            RoundedRectangle(cornerRadius: 30, style: .circular)
+                                        )
+                                }
+                            
+                        }
                     }).padding(.trailing)
                 }.padding(.bottom, screenSize.height / 10.2)
                     .padding(.bottom)
