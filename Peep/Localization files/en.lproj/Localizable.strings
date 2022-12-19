@@ -30,12 +30,6 @@
 "welcomeSubtitle" = "By proceeding you agree to our ";
 "privacyButton" = "**Privacy Policy**";
 
-// MARK: - Denied view
-
-"deniedMainText" = "Píp needs to **track your location** in order for the app to **work**";
-"deniedSubtitle" = "He'll use it wisely... ";
-"deniedGuide" = "Go to **iPhone Settings**";
-
 // MARK: - Settings
 
 "settingsHeading" = "Settings";
