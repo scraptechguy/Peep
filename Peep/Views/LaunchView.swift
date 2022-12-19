@@ -16,13 +16,9 @@ struct LaunchView: View {
             
             OnboardingView()
             
-        } else if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
+        } else if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse || model.authorizationState == .denied {
             
             HomeView()
-            
-        } else if model.authorizationState == .denied {
-            
-            DeniedView()
             
         }
     }
