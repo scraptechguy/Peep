@@ -236,7 +236,7 @@ struct SettingsView: View {
                             Button(action: {
                                 
                             }, label: {
-                                Label("\(String(localized: "settingsVersion")) 1.0.0", systemImage: "server.rack")
+                                Label("\(String(localized: "settingsVersion")) 1.1.0", systemImage: "server.rack")
                                     .background(
                                         AnimatedBlobView()
                                             .frame(width: 400, height: 414)
