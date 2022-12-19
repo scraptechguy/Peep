@@ -27,7 +27,7 @@ struct NavigationBar: View {
                         )
                     
                     HStack {
-                        if model.placemark?.locality != nil {
+                        if model.placemark?.locality != nil && model.authorizationState != .denied && model.authorizationState != .restricted {
                             
                             Image(systemName: "location.fill.viewfinder")
                                 .foregroundColor(Color("Font"))
