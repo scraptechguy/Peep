@@ -84,6 +84,23 @@ struct SettingsView: View {
                             }.listRowBackground(Color("ListRowBackground"))
                         }.foregroundColor(.primary)
                         
+                        if model.authorizationState == .denied || model.authorizationState == .restricted {
+                            
+                            Section(footer: Text("Píp can deliver more relevant data with location tracking on").foregroundColor(.secondary)) {
+                                Text("Turn on location tracking")
+                                    .foregroundColor(Color.blue)
+                                    .onTapGesture {
+                                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                                            if UIApplication.shared.canOpenURL(url) {
+                                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                            }
+                                        }
+                                    }
+                                    .listRowBackground(Color("ListRowBackground"))
+                            }
+                            
+                        }
+                        
                         // MARK: - Information
                         
                         Section(header: Text(settingsSectionInformation).foregroundColor(.secondary), footer: Text(settingsSectionInformationFooter).foregroundColor(.secondary)) {
