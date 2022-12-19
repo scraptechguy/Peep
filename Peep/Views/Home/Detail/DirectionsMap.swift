@@ -40,8 +40,13 @@ struct DirectionsMap: UIViewRepresentable {
         // Create map view
         let map = MKMapView()
         map.delegate = context.coordinator
-        map.showsUserLocation = true
-        map.userTrackingMode = .followWithHeading
+        
+        if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
+            
+            map.showsUserLocation = true // Show user on the map
+            map.userTrackingMode = .followWithHeading
+            
+        }
         
         // Route
         let request = MKDirections.Request()

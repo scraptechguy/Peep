@@ -53,19 +53,19 @@ struct Map: UIViewRepresentable {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         
-        mapView.showsUserLocation = true // Show user on the map
         mapView.showsCompass = false // Disable compass indicator
         
         if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
             
             mapView.userTrackingMode = .follow // Follow user if location is enabled
+            mapView.showsUserLocation = true // Show user on the map
+            
+            let span = MKCoordinateSpan.init(latitudeDelta: 10, longitudeDelta: 10)
+            let coordinate = CLLocationCoordinate2D.init(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
+            let region = MKCoordinateRegion.init(center: coordinate, span: span)
+            mapView.setRegion(region, animated: true)
             
         }
-        
-        let span = MKCoordinateSpan.init(latitudeDelta: 10, longitudeDelta: 10)
-        let coordinate = CLLocationCoordinate2D.init(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: coordinate, span: span)
-        mapView.setRegion(region, animated: true)
         
         return mapView
         
@@ -102,17 +102,21 @@ struct Map: UIViewRepresentable {
             
         }
         
-        if model.goToLocation {
+        if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
             
-            let span = MKCoordinateSpan.init(latitudeDelta: 0.05, longitudeDelta: 0.05)
-            let coordinate = CLLocationCoordinate2D.init(latitude: uiView.userLocation.coordinate.latitude, longitude: uiView.userLocation.coordinate.longitude)
-            let region = MKCoordinateRegion.init(center: coordinate, span: span)
-            uiView.setRegion(region, animated: true)
-            
-            DispatchQueue.main.async {
-                withAnimation {
-                    model.goToLocation = false
+            if model.goToLocation {
+                
+                let span = MKCoordinateSpan.init(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                let coordinate = CLLocationCoordinate2D.init(latitude: uiView.userLocation.coordinate.latitude, longitude: uiView.userLocation.coordinate.longitude)
+                let region = MKCoordinateRegion.init(center: coordinate, span: span)
+                uiView.setRegion(region, animated: true)
+                
+                DispatchQueue.main.async {
+                    withAnimation {
+                        model.goToLocation = false
+                    }
                 }
+                
             }
             
         }
@@ -249,24 +253,28 @@ struct Map: UIViewRepresentable {
                 
             }
                 
-            if mapView.region.center.latitude >= mapView.userLocation.coordinate.latitude - 0.005 && mapView.region.center.latitude <= mapView.userLocation.coordinate.latitude + 0.005 && mapView.region.center.longitude >= mapView.userLocation.coordinate.longitude - 0.005 && mapView.region.center.longitude <= mapView.userLocation.coordinate.longitude + 0.005 {
+            if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
                 
-                DispatchQueue.main.async { [self] in
-                    withAnimation {
-                        model.isOnLocation = true
+                if mapView.region.center.latitude >= mapView.userLocation.coordinate.latitude - 0.005 && mapView.region.center.latitude <= mapView.userLocation.coordinate.latitude + 0.005 && mapView.region.center.longitude >= mapView.userLocation.coordinate.longitude - 0.005 && mapView.region.center.longitude <= mapView.userLocation.coordinate.longitude + 0.005 {
+                    
+                    DispatchQueue.main.async { [self] in
+                        withAnimation {
+                            model.isOnLocation = true
+                        }
                     }
-                }
-                
-            } else {
-                
-                DispatchQueue.main.async { [self] in
-                    withAnimation {
-                        model.isOnLocation = false
+                    
+                } else {
+                    
+                    DispatchQueue.main.async { [self] in
+                        withAnimation {
+                            model.isOnLocation = false
+                        }
                     }
+                    
                 }
                 
             }
-            
+                
         }
         
         // MARK: - mapView(calloutAccessoryControlTapped)
