@@ -39,9 +39,19 @@ struct NavigationBar: View {
                             
                         }
                         
-                        Text(model.placemark?.locality ?? String(localized: "noRegion"))
-                            .foregroundColor(Color("Font"))
-                            .lineLimit(1)
+                        if model.authorizationState == .denied || model.authorizationState == .restricted {
+                            
+                            Text("Location turned off")
+                                .foregroundColor(Color("Font"))
+                                .lineLimit(1)
+                            
+                        } else {
+                            
+                            Text(model.placemark?.locality ?? String(localized: "noRegion"))
+                                .foregroundColor(Color("Font"))
+                                .lineLimit(1)
+                            
+                        }
                         
                         Spacer()
                         
