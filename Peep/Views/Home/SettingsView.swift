@@ -86,8 +86,8 @@ struct SettingsView: View {
                         
                         if model.authorizationState == .denied || model.authorizationState == .restricted {
                             
-                            Section(footer: Text("Píp can deliver more relevant data with location tracking on").foregroundColor(.secondary)) {
-                                Text("Turn on location tracking")
+                            Section(footer: Text(String(localized: "settingsLocationFooter")).foregroundColor(.secondary)) {
+                                Text(String(localized: "settingsLocationHeading"))
                                     .foregroundColor(Color.blue)
                                     .onTapGesture {
                                         if let url = URL(string: UIApplication.openSettingsURLString) {

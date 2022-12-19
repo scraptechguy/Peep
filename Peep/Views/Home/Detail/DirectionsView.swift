@@ -45,8 +45,26 @@ struct DirectionsView: View {
                     }
                 }.padding(.vertical)
                 
-                DirectionsMap(place: place)
-                    .ignoresSafeArea()
+                if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
+                    
+                    DirectionsMap(place: place)
+                        .ignoresSafeArea()
+                    
+                } else {
+                    
+                    Text(String(localized: "settingsLocationHeading"))
+                        .foregroundColor(Color.blue)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(maxHeight: .infinity, alignment: .center)
+                        .onTapGesture {
+                            if let url = URL(string: UIApplication.openSettingsURLString) {
+                                if UIApplication.shared.canOpenURL(url) {
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                }
+                            }
+                        }
+                    
+                }
             }
             
             VStack {

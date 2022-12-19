@@ -25,7 +25,7 @@
 // MARK: - Welcome
 
 "welcomeHeading" = "Eeeeej!";
-"welcomeText" = "Píp chce používat **tvoji polohu** k doručení přesných údajů, kliknutím na **pokračovat** mu to umožníš";
+"welcomeText" = "Píp chce používat **tvoji polohu** k doručení relevantních údajů, kliknutím na **pokračovat** mu to umožníš";
 "nextButton" = "Pokračovat";
 "welcomeSubtitle" = "Pokračovaním souhlasíš s naší ";
 "privacyButton" = "**Privacy Policy**";
@@ -39,6 +39,9 @@
 "settingsAppLanguageValue" = "Čeština";
 "settingsReach" = "Rozsah";
 "settingsSectionGeneralFooter" = "Zvětšení rozsahu umožňuje zobrazit více slunečních hodin najednou";
+
+"settingsLocationHeading" = "Zapnout sledování polohy";
+"settingsLocationFooter" = "Píp může poskytovat relevantnější data se zapnutým sledováním polohy";
 
 "settingsSectionInformation" = "Informace";
 "settingsFeedback" = "Napsat recenzi";

@@ -25,7 +25,7 @@
 // MARK: - Welcome
 
 "welcomeHeading" = "Ayooo!";
-"welcomeText" = "Píp wants to use **your location** to deliver accurate data, click **next** to allow him to do so";
+"welcomeText" = "Píp wants to use **your location** to deliver relevant data, click **next** to allow him to do so";
 "nextButton" = "Next";
 "welcomeSubtitle" = "By proceeding you agree to our ";
 "privacyButton" = "**Privacy Policy**";
@@ -39,6 +39,9 @@
 "settingsAppLanguageValue" = "English";
 "settingsReach" = "Reach";
 "settingsSectionGeneralFooter" = "Increasing reach allows you to view more sundials at once";
+
+"settingsLocationHeading" = "Turn on location tracking";
+"settingsLocationFooter" = "Píp can deliver more relevant data with location tracking on";
 
 "settingsSectionInformation" = "Information";
 "settingsFeedback" = "Write a review";
