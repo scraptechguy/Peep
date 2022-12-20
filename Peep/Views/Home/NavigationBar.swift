@@ -40,10 +40,12 @@ struct NavigationBar: View {
                         }
                         
                         if model.authorizationState == .denied || model.authorizationState == .restricted {
-                            
+                                
                             Text(String(localized: "noLocation"))
+                                .tracking(model.didClickOnLocationButtonWhenLocationOff ? 2 : 0)
                                 .foregroundColor(Color("Font"))
                                 .lineLimit(1)
+                                .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5), value: model.didClickOnLocationButtonWhenLocationOff)
                             
                         } else {
                             

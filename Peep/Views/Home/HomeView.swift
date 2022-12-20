@@ -33,9 +33,9 @@ struct HomeView: View {
                     Spacer()
                     
                     Button(action: {
-                        withAnimation {
-                            if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
+                        if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
                                 
+                            withAnimation {
                                 if !model.isOnLocation {
                                     
                                     model.goToLocation = true
@@ -44,8 +44,20 @@ struct HomeView: View {
                                     model.devLog = String(localized: "userLocation")
                                     
                                 }
-                                
                             }
+                                
+                        } else {
+                            
+                            withAnimation(.spring(blendDuration: 0.5)) {
+                                model.didClickOnLocationButtonWhenLocationOff = true
+                            }
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                withAnimation(.spring(blendDuration: 0.5)) {
+                                    model.didClickOnLocationButtonWhenLocationOff = false
+                                }
+                            }
+                            
                         }
                     }, label: {
                         if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {

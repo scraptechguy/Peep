@@ -41,6 +41,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var goToLocation = false
     @Published var isOnLocation = true
     @Published var shouldCheckIsOnLocation = false
+    @Published var didClickOnLocationButtonWhenLocationOff = false
     
     // MARK: - Location
     
