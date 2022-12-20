@@ -54,12 +54,6 @@ struct DirectionsView: View {
                 } else {
                     
                     VStack {
-                        Image("broken_initial")
-                            .padding()
-                            .padding(.top)
-                            .scaleEffect(0.8)
-                            .minimumScaleFactor(0.5)
-                        
                         Text(unavailableFeatureLocation)
                             .foregroundColor(Color("Font"))
                             .multilineTextAlignment(.center)
@@ -76,7 +70,7 @@ struct DirectionsView: View {
                                 }
                             }
                     }.frame(maxWidth: .infinity, alignment: .center)
-                        .frame(maxHeight: .infinity, alignment: .top)
+                        .frame(maxHeight: .infinity, alignment: .center)
                     
                 }
             }
