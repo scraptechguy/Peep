@@ -15,6 +15,7 @@ struct DirectionsView: View {
     let screenSize: CGRect = UIScreen.main.bounds
     
     let detailDirections: LocalizedStringKey = "detailDirections"
+    let unavailableFeatureLocation: LocalizedStringKey = "unavailableFeatureLocation"
     
     var body: some View {
         ZStack {
@@ -53,7 +54,13 @@ struct DirectionsView: View {
                 } else {
                     
                     VStack {
-                        Text("This feature is only available with location tracking turned on")
+                        Image("broken_initial")
+                            .padding()
+                            .padding(.top)
+                            .scaleEffect(0.8)
+                            .minimumScaleFactor(0.5)
+                        
+                        Text(unavailableFeatureLocation)
                             .foregroundColor(Color("Font"))
                             .multilineTextAlignment(.center)
                             .padding()
@@ -69,7 +76,7 @@ struct DirectionsView: View {
                                 }
                             }
                     }.frame(maxWidth: .infinity, alignment: .center)
-                        .frame(maxHeight: .infinity, alignment: .center)
+                        .frame(maxHeight: .infinity, alignment: .top)
                     
                 }
             }

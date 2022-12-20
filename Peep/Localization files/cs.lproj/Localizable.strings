@@ -163,6 +163,7 @@
 "comingSoon" = "Již brzy...";
 "noRegion" = "Žádný region";
 "noLocation" = "Umístění vypnuto";
+"unavailableFeatureLocation" = "Tahle funkce je dostupná pouze se zapnutým sledováním polohy";
 
 // MARK: - Dev log
 

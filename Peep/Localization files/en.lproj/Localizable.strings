@@ -163,6 +163,7 @@
 "comingSoon" = "Coming soon...";
 "noRegion" = "Couldn't get region";
 "noLocation" = "Location turned off";
+"unavailableFeatureLocation" = "This feature is only available with location tracking on";
 
 // MARK: - Dev log
 
