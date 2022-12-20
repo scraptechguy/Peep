@@ -52,17 +52,24 @@ struct DirectionsView: View {
                     
                 } else {
                     
-                    Text(String(localized: "settingsLocationHeading"))
-                        .foregroundColor(Color.blue)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .frame(maxHeight: .infinity, alignment: .center)
-                        .onTapGesture {
-                            if let url = URL(string: UIApplication.openSettingsURLString) {
-                                if UIApplication.shared.canOpenURL(url) {
-                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    VStack {
+                        Text("This feature is only available with location tracking turned on")
+                            .foregroundColor(Color("Font"))
+                            .multilineTextAlignment(.center)
+                            .padding()
+                        
+                        Text(String(localized: "settingsLocationHeading"))
+                            .foregroundColor(Color.blue)
+                            .multilineTextAlignment(.center)
+                            .onTapGesture {
+                                if let url = URL(string: UIApplication.openSettingsURLString) {
+                                    if UIApplication.shared.canOpenURL(url) {
+                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                    }
                                 }
                             }
-                        }
+                    }.frame(maxWidth: .infinity, alignment: .center)
+                        .frame(maxHeight: .infinity, alignment: .center)
                     
                 }
             }
