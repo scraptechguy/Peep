@@ -40,8 +40,8 @@
 "settingsReach" = "Reach";
 "settingsSectionGeneralFooter" = "Increasing reach allows you to view more sundials at once";
 
-"settingsLocationHeading" = "Allow location access";
-"settingsLocationFooter" = "Píp can deliver more relevant data with allowed location access";
+"settingsLocationHeading" = "Enable location access";
+"settingsLocationFooter" = "Píp can deliver more relevant data with location access enabled";
 
 "settingsSectionInformation" = "Information";
 "settingsFeedback" = "Write a review";
@@ -163,7 +163,7 @@
 "comingSoon" = "Coming soon...";
 "noRegion" = "Couldn't get region";
 "noLocation" = "Location turned off";
-"unavailableFeatureLocation" = "This feature is only available with allowed location access";
+"unavailableFeatureLocation" = "This feature is only available with location access enabled";
 
 // MARK: - Dev log
 
