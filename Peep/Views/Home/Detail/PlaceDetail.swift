@@ -347,7 +347,8 @@ struct PlaceDetail: View {
                                 .foregroundColor(.secondary)
                                 .padding(.leading)
                                 .padding(.bottom, 8)
-                            
+                           
+                            /*
                             HStack {
                                 Spacer()
                                 
@@ -376,7 +377,7 @@ struct PlaceDetail: View {
                                     
                                 }, label: {
                                     VStack {
-                                        Image(systemName: "clock")
+                                        Compass()
                                             .frame(width: screenSize.width / 2.5, height: screenSize.width / 2.5)
                                             .background {
                                                 Rectangle()
@@ -394,6 +395,8 @@ struct PlaceDetail: View {
                                 Spacer()
                             }.frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.top)
+                                .padding(.bottom, 50)
+                            */
                         }
                     } else {
                         
