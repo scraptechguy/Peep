@@ -475,7 +475,7 @@
 				INFOPLIST_FILE = Peep/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Píp";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Peep needs to know your location to deliver accurate data";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Peep needs to know your location to deliver relevant data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -512,7 +512,7 @@
 				INFOPLIST_FILE = Peep/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Píp";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Peep needs to know your location to deliver accurate data";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Peep needs to know your location to deliver relevant data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
