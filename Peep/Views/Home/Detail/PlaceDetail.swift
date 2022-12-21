@@ -347,6 +347,15 @@ struct PlaceDetail: View {
                                 .foregroundColor(.secondary)
                                 .padding(.leading)
                                 .padding(.bottom, 8)
+                            
+                            VStack(alignment: .center) {
+                               HStack {
+                                   Text(String(localized: "comingSoon"))
+                                       .bold()
+                                       .font(.title3)
+                                       .padding(.bottom, 50)
+                               }.padding(.top, 5)
+                           }.frame(width: screenSize.width)
                            
                             /*
                             HStack {

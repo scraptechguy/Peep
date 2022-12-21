@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import CoreLocation
 
+/*
 class CompassHeading: NSObject, ObservableObject, CLLocationManagerDelegate {
     var objectWillChange = PassthroughSubject<Void, Never>()
     var degrees: Double = .zero {
@@ -38,3 +39,4 @@ class CompassHeading: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.degrees = -1 * newHeading.magneticHeading
     }
 }
+*/

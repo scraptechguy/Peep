@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/*
 struct Compass: View {
     
     @ObservedObject var compassHeading = CompassHeading()
@@ -111,3 +112,4 @@ struct Compass_Previews: PreviewProvider {
         Compass()
     }
 }
+*/
