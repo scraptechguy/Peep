@@ -178,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				9050070928BCE70800E64E92 /* DirectionsView.swift */,
-				90EBDB86295343B1001F9FBF /* Compass.swift */,
+				90EBDB88295346D9001F9FBF /* Compass */,
 				90404FDD28BF843C001E4DC9 /* DirectionsMap.swift */,
 				90B36AA928A28746001C738C /* PlaceDetail.swift */,
 				9050071628BD49DA00E64E92 /* TypeView.swift */,
@@ -227,6 +227,14 @@
 				90A625CD28A7A1D1009D9D8A /* DataModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		90EBDB88295346D9001F9FBF /* Compass */ = {
+			isa = PBXGroup;
+			children = (
+				90EBDB86295343B1001F9FBF /* Compass.swift */,
+			);
+			path = Compass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
