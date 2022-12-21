@@ -348,14 +348,52 @@ struct PlaceDetail: View {
                                 .padding(.leading)
                                 .padding(.bottom, 8)
                             
-                            VStack(alignment: .center) {
-                                HStack {
-                                    Text(String(localized: "comingSoon"))
-                                        .bold()
-                                        .font(.title3)
-                                        .padding(.bottom, 50)
-                                }.padding(.top, 5)
-                            }.frame(width: screenSize.width)
+                            HStack {
+                                Spacer()
+                                
+                                Button(action: {
+                                    
+                                }, label: {
+                                    VStack {
+                                        Image(systemName: "clock")
+                                            .frame(width: screenSize.width / 2.5, height: screenSize.width / 2.5)
+                                            .background {
+                                                Rectangle()
+                                                    .foregroundColor(Color.clear)
+                                                    .overlay(.thinMaterial)
+                                                    .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                                            }
+                                        
+                                        Text("Appearance")
+                                            .font(.system(size: 10))
+                                            .foregroundColor(Color("Font"))
+                                    }
+                                })
+                                
+                                Spacer()
+                                
+                                Button(action: {
+                                    
+                                }, label: {
+                                    VStack {
+                                        Image(systemName: "clock")
+                                            .frame(width: screenSize.width / 2.5, height: screenSize.width / 2.5)
+                                            .background {
+                                                Rectangle()
+                                                    .foregroundColor(Color.clear)
+                                                    .overlay(.thinMaterial)
+                                                    .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                                            }
+                                        
+                                        Text("Azimuth")
+                                            .font(.system(size: 10))
+                                            .foregroundColor(Color("Font"))
+                                    }
+                                })
+                                
+                                Spacer()
+                            }.frame(maxWidth: .infinity, alignment: .center)
+                                .padding(.top)
                         }
                     } else {
                         
