@@ -40,6 +40,7 @@
 		90C38567292CB634009060B3 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C38566292CB633009060B3 /* Gallery.swift */; };
 		90C3856B292EAEE7009060B3 /* ExplanationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C3856A292EAEE7009060B3 /* ExplanationItem.swift */; };
 		90EBDB87295343B1001F9FBF /* Compass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EBDB86295343B1001F9FBF /* Compass.swift */; };
+		90EBDB8A295346FB001F9FBF /* CompassHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EBDB89295346FB001F9FBF /* CompassHeading.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		90C38566292CB633009060B3 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		90C3856A292EAEE7009060B3 /* ExplanationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationItem.swift; sourceTree = "<group>"; };
 		90EBDB86295343B1001F9FBF /* Compass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compass.swift; sourceTree = "<group>"; };
+		90EBDB89295346FB001F9FBF /* CompassHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassHeading.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				90EBDB86295343B1001F9FBF /* Compass.swift */,
+				90EBDB89295346FB001F9FBF /* CompassHeading.swift */,
 			);
 			path = Compass;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				909445CF2943AE3700C57E77 /* FeedbackView.swift in Sources */,
 				901F83B328A1659C006FDC4F /* OnboardingView.swift in Sources */,
 				9050071F28BE062200E64E92 /* DevLog.swift in Sources */,
+				90EBDB8A295346FB001F9FBF /* CompassHeading.swift in Sources */,
 				90B2E3612928260A0047B106 /* OnboardingModel.swift in Sources */,
 				901F83AD28A1239B006FDC4F /* ContentModel.swift in Sources */,
 				90404FDE28BF843C001E4DC9 /* DirectionsMap.swift in Sources */,
