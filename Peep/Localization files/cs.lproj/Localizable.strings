@@ -40,8 +40,8 @@
 "settingsReach" = "Rozsah";
 "settingsSectionGeneralFooter" = "Zvětšení rozsahu umožňuje zobrazit více slunečních hodin najednou";
 
-"settingsLocationHeading" = "Zapnout sledování polohy";
-"settingsLocationFooter" = "Píp může poskytovat relevantnější data se zapnutým sledováním polohy";
+"settingsLocationHeading" = "Povolit přístup k poloze";
+"settingsLocationFooter" = "Píp může poskytovat relevantnější data s povoleným přístupem k poloze";
 
 "settingsSectionInformation" = "Informace";
 "settingsFeedback" = "Napsat recenzi";
@@ -163,7 +163,7 @@
 "comingSoon" = "Již brzy...";
 "noRegion" = "Žádný region";
 "noLocation" = "Umístění vypnuto";
-"unavailableFeatureLocation" = "Tahle funkce je dostupná pouze se zapnutým sledováním polohy";
+"unavailableFeatureLocation" = "Tahle funkce je dostupná pouze s povoleným přístupem k poloze";
 
 // MARK: - Dev log
 
