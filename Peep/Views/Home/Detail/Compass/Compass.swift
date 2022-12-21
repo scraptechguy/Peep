@@ -13,16 +13,9 @@ struct Compass: View {
     
     var body: some View {
         VStack {
-            Capsule()
-                .frame(width: 5,
-                       height: 50)
-
-            // 1
             ZStack {
-                // 2
                 ForEach(Marker.markers(), id: \.self) { marker in
-                    CompassMarkerView(marker: marker,
-                                      compassDegress: 0)
+                    CompassMarkerView(marker: marker, compassDegress: 0)
                 }
             }
             .frame(width: 300,
