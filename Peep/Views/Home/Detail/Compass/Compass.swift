@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct Compass: View {
+    
+    @ObservedObject var compassHeading = CompassHeading()
+    
     var body: some View {
         VStack {
             Capsule()
@@ -24,7 +27,7 @@ struct Compass: View {
             }
             .frame(width: 300,
                    height: 300)
-            .rotationEffect(Angle(degrees: 0)) // 3
+            .rotationEffect(Angle(degrees: self.compassHeading.degrees))
             .statusBar(hidden: true)
         }
     }
