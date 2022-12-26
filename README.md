@@ -1,6 +1,6 @@
-## Píp is an iOS app that keeps track of sundials around the globe, driven by MFFUK's DB
+## Píp allows you to discover the amazing world of sundials. Find sundials close to you, learn about their features, and plan out your trip! 
 
-Píp is currently in active development and is waiting for initial App Store release
+There's over 7,000 sundials documented around the world. Zoom in and find them all!
 
 ![PeepMockups](https://user-images.githubusercontent.com/75474651/204228188-7a09e2dc-b968-4d64-bb11-e9f17908baf4.png)
 
