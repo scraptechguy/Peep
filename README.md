@@ -2,7 +2,7 @@
 
 There's over 7,000 sundials documented around the world. Zoom in and find them all!
 
-![PeepMockups](https://user-images.githubusercontent.com/75474651/204228188-7a09e2dc-b968-4d64-bb11-e9f17908baf4.png)
+![Group 99](https://user-images.githubusercontent.com/75474651/209583866-9bbfe36b-7add-4639-ba4d-846729f009c7.png)
 
 ### Latest release on the App Store: 
 
