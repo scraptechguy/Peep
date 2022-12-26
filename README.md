@@ -6,7 +6,7 @@ There's over 7,000 sundials documented around the world. Zoom in and find them a
 
 ### Latest release on the App Store: 
 
-<a href="https://testflight.apple.com/join/nrBtEpPi" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
+<a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
 
   - App Store® and the Apple logo® are trademarks of Apple Inc.
 
