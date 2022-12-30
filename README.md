@@ -17,6 +17,12 @@ There's over 7,000 sundials documented around the world. Zoom in and find them a
   </a>
 </div>
 
+<p align="center">
+  <a href="https://github.com/scraptechguy/Peep#readme">English </a>
+  ·
+  <a href="/docs/README_cz.md">Čeština</a>
+</p>
+
 ![Group 99](https://user-images.githubusercontent.com/75474651/209583866-9bbfe36b-7add-4639-ba4d-846729f009c7.png)
 
 ### Latest release on the App Store: 
