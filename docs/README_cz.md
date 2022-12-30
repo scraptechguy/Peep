@@ -35,10 +35,6 @@ Kolem světa je zdokumentováno přes 7 000 slunečních hodin. Přiblížením 
 
 Klikni <a href="https://testflight.apple.com/join/nrBtEpPi">zde</a> nebo použij tento kód pro uplatnění: <b>Není nastaveno, použij link</b>
 
-### Podklady
-
-Spoustu komponent tohoto projektu pomohl přivést k životu <a href="https://www.youtube.com/@Kavsoft">@Kavsoft</a>, tímto mu díky!
-
 ## O projektu
 
 <div align="center">
@@ -59,3 +55,5 @@ Vzácná fotografie Pípovi skutečné velikosti
 </div>
 
 <img src="https://github.com/scraptechguy/Peep/blob/main/docs/FullPeepMockups.png">
+
+Spoustu komponent tohoto projektu pomohl přivést k životu <a href="https://www.youtube.com/@Kavsoft">@Kavsoft</a>, tímto mu díky!
