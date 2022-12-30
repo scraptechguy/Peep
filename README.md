@@ -25,12 +25,15 @@ There's over 7,000 sundials documented around the world. Zoom in and find them a
 
 ![Group 99](https://user-images.githubusercontent.com/75474651/209583866-9bbfe36b-7add-4639-ba4d-846729f009c7.png)
 
-### Latest releases: 
+### Latest release on the App Store: 
 
-<a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> <img height="100" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
-<a href="https://testflight.apple.com/join/nrBtEpPi" target="_blank"> <img height="100" alt="Download on the App Store" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd33wubrfki0l68.cloudfront.net%2F46401cd9177a06b7b34eab3baa1345ead4f966ea%2F83293%2Fassets%2Fimages%2Ftestflight-icon.png&f=1&nofb=1&ipt=eb3aa4d1ed86ae30a09c3cd845cd2c94bb972049161c849ee82787fe16df8396&ipo=images"> </a>
+<a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
 
   - App Store® and the Apple logo® are trademarks of Apple Inc.
+
+### Latest TestFlight release:
+
+Click <a href="https://testflight.apple.com/join/nrBtEpPi">here</a> or use the Redeem Code: <b>Not set, use link</b>
 
 ## About
 
