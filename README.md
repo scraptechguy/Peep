@@ -4,6 +4,12 @@ There's over 7,000 sundials documented around the world. Zoom in and find them a
 
 ![Group 99](https://user-images.githubusercontent.com/75474651/209583866-9bbfe36b-7add-4639-ba4d-846729f009c7.png)
 
+<div align="center">
+  <a href="https://github.com/scraptechguy/Peep/actions">
+    <img src="https://github.com/scraptechguy/Peep/actions/workflows/ios.yml/badge.svg">
+  </a>
+</div>
+
 ### Latest release on the App Store: 
 
 <a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
