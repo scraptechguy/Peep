@@ -17,6 +17,12 @@ Kolem světa je zdokumentováno přes 7 000 slunečních hodin. Přiblížením 
   </a>
 </div>
 
+<p align="center">
+  <a href="https://github.com/scraptechguy/Peep#readme">English </a>
+  ·
+  <a href="/docs/README_cz.md">Čeština</a>
+</p>
+
 ![Group 99](https://user-images.githubusercontent.com/75474651/209583866-9bbfe36b-7add-4639-ba4d-846729f009c7.png)
 
 ### Poslední verze na App Storu: 
