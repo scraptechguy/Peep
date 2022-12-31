@@ -29,7 +29,7 @@ Kolem světa je zdokumentováno přes 7 000 slunečních hodin. Přiblížením 
 
 <a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
 
-  - App Store® a Apple logo® jsou ochrannými známkami společnosti Apple Inc.
+> App Store® a Apple logo® jsou ochrannými známkami společnosti Apple Inc.
 
 ### Poslední TestFlight verze:
 
