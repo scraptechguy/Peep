@@ -1,4 +1,4 @@
-## Píp allows you to discover the amazing world of sundials. Find sundials close to you, learn about their features, and plan out your trip! 
+<p style="font-size:60px;"><b>Píp allows you to discover the amazing world of sundials. Find sundials close to you, learn about their features, and plan out your trip!</b></p>
 
 There's over 7,000 sundials documented around the world. Zoom in and find them all!
 
