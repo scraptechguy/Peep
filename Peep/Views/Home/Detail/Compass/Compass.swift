@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-/*
 struct Compass: View {
     
-    @ObservedObject var compassHeading = CompassHeading()
+    @ObservedObject var compassHeading = ContentModel()
     
     let screenSize: CGRect = UIScreen.main.bounds
     
@@ -26,21 +25,17 @@ struct Compass: View {
         }
     }
 }
-
-
 struct CompassMarkerView: View {
     
-    @ObservedObject var compassHeading = CompassHeading()
+    @ObservedObject var compassHeading = ContentModel()
     
     let marker: Marker
     let compassDegress: Double
-
     var body: some View {
         VStack {
             Capsule()
                 .frame(width: self.capsuleWidth(), height: self.capsuleHeight())
                 .foregroundColor(self.capsuleColor())
-
             Text(marker.label)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
@@ -52,25 +47,19 @@ struct CompassMarkerView: View {
     private func capsuleWidth() -> CGFloat {
         return marker.degrees == 0 ? 4 : 1
     }
-
     private func capsuleHeight() -> CGFloat {
         return marker.degrees == 0 ? 22 : 12
     }
-
     private func capsuleColor() -> Color {
         return marker.degrees == 0 ? .green : .primary
     }
-
     private func textAngle() -> Angle {
         return Angle(degrees: -self.compassDegress - self.marker.degrees)
     }
 }
-
-
 struct Marker: Hashable {
     let degrees: Double
     let label: String
-
     init(degrees: Double, label: String = "") {
         self.degrees = degrees
         self.label = label
@@ -105,11 +94,9 @@ struct Marker: Hashable {
         ]
     }
 }
-
-
 struct Compass_Previews: PreviewProvider {
     static var previews: some View {
         Compass()
+            .environmentObject(ContentModel())
     }
 }
-*/

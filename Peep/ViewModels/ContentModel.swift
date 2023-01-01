@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 import CoreLocation
 import MapKit
 
@@ -67,6 +68,14 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         
     }
     
+    // Publish degrees value on it's change
+    var objectWillChange = PassthroughSubject<Void, Never>()
+    var degrees: Double = .zero {
+        didSet {
+            objectWillChange.send()
+        }
+    }
+    
     // MARK - Location Manager Delegate Methods
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -82,6 +91,13 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
             
             
         }
+        
+        if CLLocationManager.headingAvailable() {
+            
+            locationManager.startUpdatingHeading()
+            
+        }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -107,5 +123,13 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
             }
             
         }
+        
     }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        
+        self.degrees = -1 * newHeading.magneticHeading
+        
+    }
+    
 }
