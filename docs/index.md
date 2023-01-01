@@ -50,6 +50,6 @@ Loads of this project's components came to life thanks to <a href="https://www.y
 
 <div align="center">
   <br>
-  <p style="font-size:30px;"><a href="https://github.com/scraptechguy/Peep">Visit on github</a></p>
+  <p style="font-size:30px;"><a href="https://github.com/scraptechguy/Peep"><b>Visit on github</b></a></p>
   <br>
 </div>
