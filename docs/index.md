@@ -17,12 +17,6 @@ There's over 7,000 sundials documented around the world. Zoom in and find them a
   </a>
 </div>
 
-<p align="center">
-  <a href="https://github.com/scraptechguy/Peep#readme">English </a>
-  ·
-  <a href="/docs/README_cz.md">Čeština</a>
-</p>
-
 ![Group 99](https://user-images.githubusercontent.com/75474651/209583866-9bbfe36b-7add-4639-ba4d-846729f009c7.png)
 
 ### Latest release on the App Store: 
@@ -41,15 +35,11 @@ Click <a href="https://testflight.apple.com/join/nrBtEpPi">here</a> or use the R
   <img src="https://user-images.githubusercontent.com/75474651/202924529-86a4beb5-4266-409b-85d5-9f7308d91a94.svg" width="200">
   
 <h4>Meet Píp</h4>
-
-Píp is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger,  but in reality, he's not all that big). <br>
-
-<b>peep</b> <i>verb</i> [I usually + adv/prep ] - to secretly look at something for a short time, usually through a hole <br>
-
-*I saw her peeping into the world of sundials using Píp.* <br>
-
-<img src="https://user-images.githubusercontent.com/75474651/202924529-86a4beb5-4266-409b-85d5-9f7308d91a94.svg" width="20">
-
+  
+Píp is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger,  but in reality, he's not all that big). <br><br>
+<b>peep</b> <i>verb</i> [I usually + adv/prep ] - to secretly look at something for a short time, usually through a hole <br><br>
+*I saw her peeping into the world of sundials using Píp.* <br><br>
+<img src="https://user-images.githubusercontent.com/75474651/202924529-86a4beb5-4266-409b-85d5-9f7308d91a94.svg" width="20"> <br><br>
 Rare footage of Píp's actual size
 
 </div>
@@ -57,3 +47,9 @@ Rare footage of Píp's actual size
 <img src="https://github.com/scraptechguy/Peep/blob/main/docs/FullPeepMockups.png">
 
 Loads of this project's components came to life thanks to <a href="https://www.youtube.com/@Kavsoft">@Kavsoft</a>, go check out his YouTube channel!
+
+<div align="center">
+  <br>
+  <h3><a href="https://github.com/scraptechguy/Peep">Visit on github</a></h3>
+  <br>
+</div>
