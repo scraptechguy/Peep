@@ -1,4 +1,4 @@
-<p style="font-size:60px;"><b>Píp allows you to discover the amazing world of sundials. Find sundials close to you, learn about their features, and plan out your trip!</b></p>
+<p style="font-size:35px;"><b>Píp allows you to discover the amazing world of sundials. Find sundials close to you, learn about their features, and plan out your trip!</b></p>
 
 There's over 7,000 sundials documented around the world. Zoom in and find them all!
 
@@ -50,6 +50,6 @@ Loads of this project's components came to life thanks to <a href="https://www.y
 
 <div align="center">
   <br>
-  <h3><a href="https://github.com/scraptechguy/Peep">Visit on github</a></h3>
+  <h2><a href="https://github.com/scraptechguy/Peep">Visit on github</a></h2>
   <br>
 </div>
