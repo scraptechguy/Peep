@@ -40,13 +40,13 @@ Click <a href="https://testflight.apple.com/join/nrBtEpPi">here</a> or use the R
 <div align="center">
   <img src="https://user-images.githubusercontent.com/75474651/202924529-86a4beb5-4266-409b-85d5-9f7308d91a94.svg" width="200">
   
-#### Meet Píp
+<h4>Meet Píp</h4>
 
-Píp is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger,  but in reality, he's not all that big). 
+Píp is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger,  but in reality, he's not all that big). </br>
 
-**peep** *verb* [I usually + adv/prep ] - to secretly look at something for a short time, usually through a hole
+<b>peep</b> <i>verb</i> [I usually + adv/prep ] - to secretly look at something for a short time, usually through a hole </br>
 
-*I saw her peeping into the world of sundials using Píp.*
+*I saw her peeping into the world of sundials using Píp.* </br>
 
 <img src="https://user-images.githubusercontent.com/75474651/202924529-86a4beb5-4266-409b-85d5-9f7308d91a94.svg" width="20">
 
