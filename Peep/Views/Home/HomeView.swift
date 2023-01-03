@@ -68,7 +68,7 @@ struct HomeView: View {
                                 .background {
                                     Rectangle()
                                         .fill(Color.clear)
-                                        .overlay(.thinMaterial)
+                                        .overlay(.ultraThinMaterial)
                                         .mask(
                                             RoundedRectangle(cornerRadius: 30, style: .circular)
                                         )
@@ -82,7 +82,7 @@ struct HomeView: View {
                                 .background {
                                     Rectangle()
                                         .fill(Color.clear)
-                                        .overlay(.thinMaterial)
+                                        .overlay(.ultraThinMaterial)
                                         .mask(
                                             RoundedRectangle(cornerRadius: 30, style: .circular)
                                         )

@@ -432,7 +432,7 @@ struct PlaceDetail: View {
                 .background {
                     Rectangle()
                         .fill(Color.clear)
-                        .overlay(.thinMaterial)
+                        .overlay(.ultraThinMaterial)
                         .cornerRadius(30, corners: [.topLeft, .topRight])
                 }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
