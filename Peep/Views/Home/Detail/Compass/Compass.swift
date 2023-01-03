@@ -4,7 +4,7 @@
 //
 //  Created by Rostislav Brož on 12/21/22.
 //
-
+/*
 import SwiftUI
 
 struct Compass: View {
@@ -100,3 +100,4 @@ struct Compass_Previews: PreviewProvider {
             .environmentObject(ContentModel())
     }
 }
+*/

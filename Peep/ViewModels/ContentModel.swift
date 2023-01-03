@@ -68,14 +68,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         
     }
     
-    // Publish degrees value on it's change
-    var objectWillChange = PassthroughSubject<Void, Never>()
-    var degrees: Double = .zero {
-        didSet {
-            objectWillChange.send()
-        }
-    }
-    
     // MARK - Location Manager Delegate Methods
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -89,12 +81,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         } else if locationManager.authorizationStatus == .denied {
             
             
-            
-        }
-        
-        if CLLocationManager.headingAvailable() {
-            
-            locationManager.startUpdatingHeading()
             
         }
         
@@ -123,12 +109,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
             }
             
         }
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        
-        self.degrees = -1 * newHeading.magneticHeading
         
     }
     
