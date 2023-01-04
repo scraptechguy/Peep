@@ -33,6 +33,7 @@ struct SettingsView: View {
     let settingsWebsite: LocalizedStringKey = "settingsWebsite"
     
     let settingsSectionDeveloperSettings: LocalizedStringKey = "settingsSectionDeveloperSettings"
+    let settingsBug: LocalizedStringKey = "settingsBug"
     let settingsFeature: LocalizedStringKey = "settingsFeature"
     let settingsOfflineDB: LocalizedStringKey = "settingsOfflineDB"
     let settingsSectionDeveloperSettingsSubtitle: LocalizedStringKey = "settingsSectionDeveloperSettingsSubtitle"
@@ -198,7 +199,7 @@ struct SettingsView: View {
                         Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
                             Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title=")!) {
                                 HStack {
-                                    Label("Report a bug", systemImage: "exclamationmark.triangle")
+                                    Label(settingsBug, systemImage: "exclamationmark.triangle")
                                     
                                     Spacer()
                                     
@@ -406,7 +407,7 @@ struct SettingsView: View {
                         Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
                             Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title=")!) {
                                 HStack {
-                                    Label("Report a bug", systemImage: "exclamationmark.triangle")
+                                    Label(settingsBug, systemImage: "exclamationmark.triangle")
                                     
                                     Spacer()
                                     

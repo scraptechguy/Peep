@@ -53,6 +53,7 @@
 "settingsWebsite" = "Webová stránka";
 
 "settingsSectionDeveloperSettings" = "Developerská nastavení";
+"settingsBug" = "Nahlásit chybu";
 "settingsFeature" = "Navrhnout funkci";
 "settingsOfflineDB" = "Vždy používat offline DB";
 "settingsSectionDeveloperSettingsSubtitle" = "Dev log ukazuje na vršku obrazovky co aplikace právě dělá";

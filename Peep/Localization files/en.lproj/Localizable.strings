@@ -53,6 +53,7 @@
 "settingsWebsite" = "Website";
 
 "settingsSectionDeveloperSettings" = "Developer settings";
+"settingsBug" = "Report a bug";
 "settingsFeature" = "Suggest a feature";
 "settingsOfflineDB" = "Always use offline DB";
 "settingsSectionDeveloperSettingsSubtitle" = "Dev log displays what the app is doing at the top of your screen";
