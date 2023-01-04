@@ -400,6 +400,29 @@ struct SettingsView: View {
                                     Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
                                 })
                             }
+                            
+                            Link(destination: URL(string: "https://apps.apple.com/us/app/p%C3%ADp/id6444575713")!) {
+                                HStack {
+                                    Label(settingsFeedback, systemImage: "leaf")
+                                        .foregroundColor(.primary)
+                                    
+                                    Spacer()
+                                    
+                                    Text("App Store")
+                                        .foregroundColor(.secondary)
+                                    
+                                    Image(systemName: "arrow.up.right")
+                                        .font(.footnote)
+                                        .foregroundColor(.gray)
+
+                                }
+                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                Button(action: {
+                                    UIPasteboard.general.string = "https://apps.apple.com/us/app/p%C3%ADp/id6444575713"
+                                }, label: {
+                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                })
+                            }
                         }.foregroundColor(.primary)
                         
                         // MARK: - Developer settings
