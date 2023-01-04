@@ -39,7 +39,6 @@
 		90B36AAA28A28746001C738C /* PlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B36AA928A28746001C738C /* PlaceDetail.swift */; };
 		90C38567292CB634009060B3 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C38566292CB633009060B3 /* Gallery.swift */; };
 		90C3856B292EAEE7009060B3 /* ExplanationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C3856A292EAEE7009060B3 /* ExplanationItem.swift */; };
-		90EBDB87295343B1001F9FBF /* Compass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EBDB86295343B1001F9FBF /* Compass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,7 +77,6 @@
 		90C38565292ABCE0009060B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		90C38566292CB633009060B3 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		90C3856A292EAEE7009060B3 /* ExplanationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationItem.swift; sourceTree = "<group>"; };
-		90EBDB86295343B1001F9FBF /* Compass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				9050070928BCE70800E64E92 /* DirectionsView.swift */,
-				90EBDB88295346D9001F9FBF /* Compass */,
 				90404FDD28BF843C001E4DC9 /* DirectionsMap.swift */,
 				90B36AA928A28746001C738C /* PlaceDetail.swift */,
 				9050071628BD49DA00E64E92 /* TypeView.swift */,
@@ -227,14 +224,6 @@
 				90A625CD28A7A1D1009D9D8A /* DataModel.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		90EBDB88295346D9001F9FBF /* Compass */ = {
-			isa = PBXGroup;
-			children = (
-				90EBDB86295343B1001F9FBF /* Compass.swift */,
-			);
-			path = Compass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,7 +318,6 @@
 				9050071928BD49EA00E64E92 /* IndicatorView.swift in Sources */,
 				901F83AA28A12372006FDC4F /* LaunchView.swift in Sources */,
 				9050071728BD49DA00E64E92 /* TypeView.swift in Sources */,
-				90EBDB87295343B1001F9FBF /* Compass.swift in Sources */,
 				90C38567292CB634009060B3 /* Gallery.swift in Sources */,
 				9021FA6928BE3D5E00C56CE7 /* NavigationBar.swift in Sources */,
 				909445CF2943AE3700C57E77 /* FeedbackView.swift in Sources */,
