@@ -44,6 +44,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var shouldCheckIsOnLocation = false
     @Published var didClickOnLocationButtonWhenLocationOff = false
     
+    @Published var compassOffset: CGFloat = 0
+    @Published var locationButtonSize: CGFloat = 0
+    
     // MARK: - Location
     
     var locationManager = CLLocationManager()

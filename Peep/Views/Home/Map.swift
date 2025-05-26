@@ -53,7 +53,23 @@ struct Map: UIViewRepresentable {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         
-        mapView.showsCompass = false // Disable compass indicator
+        mapView.showsCompass = false // Required to use MKCompassButton manually
+        
+        // Delay the compass setup to avoid preview crashes
+        DispatchQueue.main.async {
+            let compass = MKCompassButton(mapView: mapView)
+            compass.compassVisibility = .visible
+            compass.translatesAutoresizingMaskIntoConstraints = false
+            compass.transform = CGAffineTransform(scaleX: model.locationButtonSize / 40, y: model.locationButtonSize / 40)
+            mapView.addSubview(compass)
+            
+            NSLayoutConstraint.activate([
+                compass.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -model.compassOffset),
+                compass.trailingAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+                compass.widthAnchor.constraint(equalToConstant: 40),
+                compass.heightAnchor.constraint(equalToConstant: 40)
+            ])
+        }
         
         if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
             
