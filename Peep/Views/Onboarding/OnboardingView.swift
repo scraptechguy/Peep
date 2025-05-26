@@ -42,14 +42,18 @@ struct OnboardingView: View {
     
     var body: some View {
         ZStack {
-            Color("Background")
-                .ignoresSafeArea()
+            RequestView()
             
-            IntroScreen()
-            
-            OnboardingScreens()
-            
-            NavigationBar()
+            ZStack {
+                Color("Background")
+                    .ignoresSafeArea()
+                
+                IntroScreen()
+                
+                OnboardingScreens()
+                
+                NavigationBar()
+            }.opacity(model.didShowOnboarding ? 0 : 1)
         }.animation(.interactiveSpring(response: 1.1, dampingFraction: 0.85, blendDuration: 1), value: showOnboardingScreens)
             .preferredColorScheme(model.isLightMode ? .light : .dark)
     }
@@ -249,7 +253,7 @@ struct OnboardingView: View {
                                 .font(.system(size: 14))
                                 .foregroundColor(Color("Font"))
                         }
-                    }.offset(y: screenIsLast ? -12 : 100)
+                    }.offset(y: screenIsLast ? 0 : size.height)
                         .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5), value: screenIsLast)
                 }
                 .offset(y: showOnboardingScreens ? 0 : size.height)

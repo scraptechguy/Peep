@@ -15,6 +15,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     // MARK: - State vars
     
+    @AppStorage("didShowOnboarding") var didShowOnboarding = false
     @AppStorage("devLogOn") var devLogOn = false
     @AppStorage("isLightMode") var isLightMode = false
     @AppStorage("useOfflineDatabase") var useOfflineDatabase = false

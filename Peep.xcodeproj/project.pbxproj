@@ -24,6 +24,7 @@
 		9050071B28BD49F900E64E92 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071A28BD49F900E64E92 /* DialView.swift */; };
 		9050071D28BDF81200E64E92 /* AnimatedBlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071C28BDF81200E64E92 /* AnimatedBlobView.swift */; };
 		9050071F28BE062200E64E92 /* DevLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071E28BE062200E64E92 /* DevLog.swift */; };
+		905F3D772DE4D739002D19CF /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905F3D762DE4D72C002D19CF /* RequestView.swift */; };
 		90707DD4292FF2BD00F4D7CE /* OfflineDatabase.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 90707DD3292FF2BD00F4D7CE /* OfflineDatabase.geojson */; };
 		909445C829420E1000C57E77 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909445C729420E1000C57E77 /* HelpView.swift */; };
 		909445CD2943222D00C57E77 /* HelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909445CC2943222D00C57E77 /* HelpModel.swift */; };
@@ -61,6 +62,7 @@
 		9050071A28BD49F900E64E92 /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
 		9050071C28BDF81200E64E92 /* AnimatedBlobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedBlobView.swift; sourceTree = "<group>"; };
 		9050071E28BE062200E64E92 /* DevLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevLog.swift; sourceTree = "<group>"; };
+		905F3D762DE4D72C002D19CF /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
 		90707DD3292FF2BD00F4D7CE /* OfflineDatabase.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = OfflineDatabase.geojson; sourceTree = "<group>"; };
 		909445C729420E1000C57E77 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		909445CC2943222D00C57E77 /* HelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpModel.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		901F83B128A16377006FDC4F /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				905F3D762DE4D72C002D19CF /* RequestView.swift */,
 				901F83B228A1659C006FDC4F /* OnboardingView.swift */,
 			);
 			path = Onboarding;
@@ -307,6 +310,7 @@
 				9050071528BD49D200E64E92 /* StateView.swift in Sources */,
 				909445C829420E1000C57E77 /* HelpView.swift in Sources */,
 				90B36AA628A17A55001C738C /* Map.swift in Sources */,
+				905F3D772DE4D739002D19CF /* RequestView.swift in Sources */,
 				909445D12943F0FD00C57E77 /* PeepView.swift in Sources */,
 				90B36AA828A264AA001C738C /* SettingsView.swift in Sources */,
 				9050070A28BCE70800E64E92 /* DirectionsView.swift in Sources */,
