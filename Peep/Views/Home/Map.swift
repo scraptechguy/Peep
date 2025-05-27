@@ -23,6 +23,11 @@ struct Map: UIViewRepresentable {
         
         // Loop through all places
         for place in data.dataList {
+            if model.searchableAddresses.count < data.dataList.count {
+                
+                model.searchableAddresses.append(place.adresa ?? "")
+                
+            }
             
             // If the place does have lat and long, create an annotation
             if let lat = place.zsirka, let long = place.zdelka {

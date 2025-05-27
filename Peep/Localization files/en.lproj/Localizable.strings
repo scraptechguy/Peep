@@ -30,6 +30,10 @@
 "welcomeSubtitle" = "By proceeding you agree to our ";
 "privacyButton" = "**Privacy Policy**";
 
+// MARK: - Home Screen
+
+"homeSearch" = "Search for an address";
+
 // MARK: - Settings
 
 "settingsHeading" = "Settings";

@@ -50,6 +50,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var compassOffset: CGFloat = 0
     @Published var locationButtonSize: CGFloat = 0
     
+    @Published var searchableAddresses: [String] = []
+    
     // MARK: - Location
     
     var locationManager = CLLocationManager()

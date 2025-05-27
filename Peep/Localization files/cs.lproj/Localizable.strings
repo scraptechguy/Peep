@@ -30,6 +30,10 @@
 "welcomeSubtitle" = "Pokračovaním souhlasíš s naší ";
 "privacyButton" = "**Privacy Policy**";
 
+// MARK: - Home Screen
+
+"homeSearch" = "Vyhledat adresu";
+
 // MARK: - Settings
 
 "settingsHeading" = "Nastavení";
