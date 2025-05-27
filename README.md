@@ -56,4 +56,4 @@ Rare footage of Píp's actual size
 
 <img src="https://github.com/scraptechguy/Peep/blob/main/docs/FullPeepMockups.png">
 
-Loads of this project's components came to life thanks to <a href="https://www.youtube.com/@Kavsoft">@Kavsoft</a>, go check out his YouTube channel!
+Loads of this project's components came to life thanks to <a href="https://www.youtube.com/@Kavsoft">@Kavsoft</a> and <a href="https://www.youtube.com/@CodeWithChris">@CodeWithChris</a>, go check out their YouTube channels!
