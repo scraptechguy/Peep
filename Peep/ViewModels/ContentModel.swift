@@ -29,6 +29,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var currentHeight: CGFloat = UIScreen.main.bounds.height / 10.2
     @Published var showingGallery = false
     @Published var showingSettings = false
+    @Published var showingSearch = false
+    @Published var searchKeyboardIsFocused = false
     @Published var showingDirections = false
     @Published var showingType = false
     @Published var showingPointer = false

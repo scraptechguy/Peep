@@ -27,17 +27,8 @@ struct NavigationBar: View {
                         )
                     
                     HStack {
-                        if model.placemark?.locality != nil && model.authorizationState != .denied && model.authorizationState != .restricted {
-                            
-                            Image(systemName: "location.fill.viewfinder")
-                                .foregroundColor(Color("Font"))
-                            
-                        } else {
-                            
-                            Image(systemName: "location.viewfinder")
-                                .foregroundColor(Color("Font"))
-                            
-                        }
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(Color("Font"))
                         
                         if model.authorizationState == .denied || model.authorizationState == .restricted {
                                 
@@ -62,6 +53,11 @@ struct NavigationBar: View {
                         }
                     }.padding(.horizontal, 22)
                         .frame(width: screenSize.width / 1.35, alignment: .leading)
+                }.onTapGesture {
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        model.showingSearch = true
+                        model.searchKeyboardIsFocused = true
+                    }
                 }
                 
                 Button(action: {

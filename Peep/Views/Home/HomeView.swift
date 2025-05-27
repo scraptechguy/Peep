@@ -143,6 +143,10 @@ struct HomeView: View {
                         model.compassOffset = CGFloat(geo.size.height) / 6
                     }
             }
+                
+            SearchView()
+                .opacity(model.showingSearch ? 1 : 0)
+                .animation(.easeInOut(duration: 0.2), value: model.showingSearch)
         }
     }
 }
