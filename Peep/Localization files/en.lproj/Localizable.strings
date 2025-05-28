@@ -114,6 +114,10 @@
 
 "detailGalleryHeading" = "**Gallery**";
 "detailGalleryGuide" = "**Swipe to browse**";
+"detailGalleryPromptDenied" = "Give permission to save images in";
+"detailGalleryPromptSettings" = "**Settings**";
+"detailGalleryPromptSucceeded" = "Saved to Photos ✅";
+"detailGalleryPromptFailed" = "Download failed ❌";
 
 // MARK: - Type
 

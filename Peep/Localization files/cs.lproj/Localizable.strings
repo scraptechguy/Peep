@@ -114,6 +114,11 @@
 
 "detailGalleryHeading" = "**Galerie**";
 "detailGalleryGuide" = "**Prohlížej přejetím prstu**";
+"detailGalleryPromptDenied" = "Povol ukládání obrázků v";
+"detailGalleryPromptSettings" = "**Nastavení**";
+"detailGalleryPromptSucceeded" = "Uloženo do Fotek ✅";
+"detailGalleryPromptFailed" = "Stahování se nezdařilo ❌";
+
 
 // MARK: - Type
 
