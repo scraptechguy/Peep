@@ -11,6 +11,8 @@ struct Gallery: View {
     
     @EnvironmentObject var model: ContentModel
     
+    @State private var uiImages: [Int: UIImage] = [:]
+    
     var place: DataModel
     
     let screenSize: CGRect = UIScreen.main.bounds
@@ -28,42 +30,10 @@ struct Gallery: View {
             TabView(selection: $model.index) {
                 ForEach(place.obrazky?.indices ?? [""].indices, id: \.self) { i in
                     GeometryReader { proxy in
-                        VStack {
-                            Spacer()
-                            
-                            HStack {
-                                Spacer()
-                                
-                                AsyncImage(url: URL(string: "https://astro.mff.cuni.cz/mira/sh/icons/640x640/\(place.obrazky?[i] ?? "")")) { phase in
-                                    
-                                    if let image = phase.image {
-                                        
-                                        image
-                                        
-                                    } else if phase.error != nil {
-                                        
-                                        ProgressView()
-                                        
-                                    } else {
-                                        
-                                        ProgressView()
-                                        
-                                    }
-                                }.scaledToFill()
-                                    .frame(width: screenSize.width / 1.2, height: screenSize.width / 1.2)
-                                    .clipped()
-                                    .mask(
-                                        RoundedRectangle(cornerRadius: 22)
-                                    )
-                                    .rotation3DEffect(.degrees(proxy.frame(in: .global).minX / -10), axis: (x: 0, y: 1, z: 0))
-                                    .shadow(color: Color.gray.opacity(0.3), radius: 10, x: 0, y: 10)
-                                    .blur(radius: abs(proxy.frame(in: .global).minX / 40))
-                                
-                                Spacer()
-                            }
-                            
-                            Spacer()
-                        }.frame(width: screenSize.width, height: screenSize.height / 1.5, alignment: .center)
+                        if let imageName = place.obrazky?[i],
+                           let url = URL(string: "https://astro.mff.cuni.cz/mira/sh/icons/640x640/\(imageName)") {
+                            GalleryImageView(index: i, screenSize: screenSize, imageURL: url, proxy: proxy, uiImages: $uiImages)
+                        }
                     }.tag(i)
                 }
             }.tabViewStyle(.page(indexDisplayMode: .never))
@@ -84,7 +54,10 @@ struct Gallery: View {
                     Button(action: {
                         withAnimation {
                             model.showingGallery = false
-                            model.index = 0
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                model.index = 0
+                            }
                         }
                     }, label: {
                         ZStack {
@@ -103,5 +76,49 @@ struct Gallery: View {
                 Spacer()
             }
         }
+    }
+}
+
+struct GalleryImageView: View {
+    let index: Int
+    let screenSize: CGRect
+    let imageURL: URL
+    let proxy: GeometryProxy
+
+    @Binding var uiImages: [Int: UIImage]
+
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                if let uiImage = uiImages[index] {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: screenSize.width / 1.2, height: screenSize.width / 1.2)
+                        .clipped()
+                        .mask(RoundedRectangle(cornerRadius: 22))
+                        .rotation3DEffect(.degrees(proxy.frame(in: .global).minX / -10), axis: (x: 0, y: 1, z: 0))
+                        .shadow(color: Color.gray.opacity(0.3), radius: 10, x: 0, y: 10)
+                        .blur(radius: abs(proxy.frame(in: .global).minX / 40))
+                } else {
+                    ProgressView()
+                        .task {
+                            do {
+                                let (data, _) = try await URLSession.shared.data(from: imageURL)
+                                if let image = UIImage(data: data) {
+                                    uiImages[index] = image
+                                }
+                            } catch {
+                                print("Download failed: \(error)")
+                            }
+                        }
+                }
+                Spacer()
+            }
+            Spacer()
+        }
+        .frame(width: screenSize.width, height: screenSize.height / 1.5)
     }
 }
