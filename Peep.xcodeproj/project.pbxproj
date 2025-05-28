@@ -18,6 +18,7 @@
 		9021FA6B28BE3F0600C56CE7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9021FA6A28BE3F0600C56CE7 /* Constants.swift */; };
 		90404FDE28BF843C001E4DC9 /* DirectionsMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90404FDD28BF843C001E4DC9 /* DirectionsMap.swift */; };
 		9045E6542DE5BF7100D2A4C5 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9045E6532DE5BF6D00D2A4C5 /* SearchView.swift */; };
+		9045E6592DE76C1400D2A4C5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9045E6572DE76C1400D2A4C5 /* InfoPlist.strings */; };
 		9050070A28BCE70800E64E92 /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050070928BCE70800E64E92 /* DirectionsView.swift */; };
 		9050071528BD49D200E64E92 /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071428BD49D200E64E92 /* StateView.swift */; };
 		9050071728BD49DA00E64E92 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071628BD49DA00E64E92 /* TypeView.swift */; };
@@ -57,6 +58,8 @@
 		9021FA6A28BE3F0600C56CE7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		90404FDD28BF843C001E4DC9 /* DirectionsMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsMap.swift; sourceTree = "<group>"; };
 		9045E6532DE5BF6D00D2A4C5 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		9045E6582DE76C1400D2A4C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/Documents/GitHub/Peep/Peep/Localization files/en.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		9045E65A2DE76C3600D2A4C5 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/Documents/GitHub/Peep/Peep/Localization files/cs.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9050070928BCE70800E64E92 /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
 		9050071428BD49D200E64E92 /* StateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		9050071628BD49DA00E64E92 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
@@ -222,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				90B2E367292827F30047B106 /* Localizable.strings */,
+				9045E6572DE76C1400D2A4C5 /* InfoPlist.strings */,
 			);
 			path = "Localization files";
 			sourceTree = "<group>";
@@ -295,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90707DD4292FF2BD00F4D7CE /* OfflineDatabase.geojson in Resources */,
+				9045E6592DE76C1400D2A4C5 /* InfoPlist.strings in Resources */,
 				90A625D028A82857009D9D8A /* LaunchScreen.storyboard in Resources */,
 				90B2E365292827F30047B106 /* Localizable.strings in Resources */,
 				901F83A228A121B2006FDC4F /* Preview Assets.xcassets in Resources */,
@@ -345,6 +350,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		9045E6572DE76C1400D2A4C5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9045E6582DE76C1400D2A4C5 /* en */,
+				9045E65A2DE76C3600D2A4C5 /* cs */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		90B2E367292827F30047B106 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
