@@ -56,10 +56,11 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     var locationManager = CLLocationManager()
 
-    @Published var authorizationState = CLAuthorizationStatus.notDetermined
+    @Published var authorizationState: CLAuthorizationStatus
     @Published var placemark: CLPlacemark?
     
     override init() {
+        self.authorizationState = locationManager.authorizationStatus
         
         // Init method of NSObject
         super.init()
