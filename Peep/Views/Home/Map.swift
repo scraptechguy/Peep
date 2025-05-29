@@ -54,8 +54,10 @@ struct Map: UIViewRepresentable {
     // MARK: - makeUIView()
     
     func makeUIView(context: Context) -> MKMapView {
-        
         let mapView = MKMapView()
+        
+        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: Constants.annotationReusedId)
+        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "cluster")
         mapView.delegate = context.coordinator
         
         mapView.showsCompass = false // Required to use MKCompassButton manually
@@ -237,23 +239,20 @@ struct Map: UIViewRepresentable {
                 
             }
             
-            // Check for reusable annotations
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationReusedId)
-            
-            // If none found, create a new one
-            if annotationView == nil {
+            if let cluster = annotation as? MKClusterAnnotation {
                 
-                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: Constants.annotationReusedId)
+                // dequeue the “cluster” view we registered above
+                let clusterView = mapView.dequeueReusableAnnotationView(withIdentifier: "cluster", for: cluster) as! MKMarkerAnnotationView
+                clusterView.markerTintColor = .systemRed
+                clusterView.glyphText = "\(cluster.memberAnnotations.count)"
                 
-                annotationView!.canShowCallout = true
-                annotationView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-                
-            } else {
-                
-                // Carry on with reusable annotation
-                annotationView!.annotation = annotation
-                
+                return clusterView
             }
+            
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationReusedId, for: annotation) as! MKMarkerAnnotationView
+            annotationView.clusteringIdentifier = "place"
+            annotationView.canShowCallout = true
+            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             
             return annotationView
             
@@ -274,19 +273,18 @@ struct Map: UIViewRepresentable {
                         
             if !model.annotationSelected {
                 
-                // ── compute diff instead of blanket remove/add ──
-               // 1️⃣ current non-user annotations
-                let current = mapView.annotations.filter { !($0 is MKUserLocation) }
+               // current non-user annotations
+                let current = mapView.annotations.compactMap { $0 as? MKPointAnnotation }
     
-               // 2️⃣ what *should* be here now
+               // what should be here
                 let updated = map.getLocations(center: mapView.region.center)
     
-               // 3️⃣ remove those that disappeared
+               // remove those that disappeared
                 let toRemove = current.filter { old in
                     !updated.contains(where: { $0.coordinate.latitude == old.coordinate.latitude && $0.coordinate.longitude == old.coordinate.longitude })
                 }
     
-               // 4️⃣ add the brand-new ones
+               // add new ones
                 let toAdd = updated.filter { new in
                     !current.contains(where: { $0.coordinate.latitude == new.coordinate.latitude && $0.coordinate.longitude == new.coordinate.longitude })
                 }
