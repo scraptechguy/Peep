@@ -42,18 +42,14 @@ struct OnboardingView: View {
     
     var body: some View {
         ZStack {
-            RequestView()
+            Color("Background")
+                .ignoresSafeArea()
             
-            ZStack {
-                Color("Background")
-                    .ignoresSafeArea()
-                
-                IntroScreen()
-                
-                OnboardingScreens()
-                
-                NavigationBar()
-            }.opacity(model.didShowOnboarding ? 0 : 1)
+            IntroScreen()
+            
+            OnboardingScreens()
+            
+            NavigationBar()
         }.animation(.interactiveSpring(response: 1.1, dampingFraction: 0.85, blendDuration: 1), value: showOnboardingScreens)
             .preferredColorScheme(model.isLightMode ? .light : .dark)
     }

@@ -12,9 +12,13 @@ struct LaunchView: View {
     @EnvironmentObject var model: ContentModel
     
     var body: some View {
-        if model.authorizationState == .notDetermined {
+        if !model.didShowOnboarding {
             
             OnboardingView()
+            
+        } else if model.authorizationState == .notDetermined && model.didShowOnboarding {
+            
+            RequestView()
             
         } else if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse || model.authorizationState == .denied {
             
