@@ -86,6 +86,8 @@ struct Map: UIViewRepresentable {
             let region = MKCoordinateRegion.init(center: coordinate, span: span)
             mapView.setRegion(region, animated: true)
             
+            let initialAnnotations = getLocations(center: coordinate)
+            mapView.addAnnotations(initialAnnotations)
         }
         
         return mapView
@@ -260,37 +262,40 @@ struct Map: UIViewRepresentable {
         // MARK: - mapView(regionDidChangeAnimated:)
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            
-            // let annotationSpanIndex: Double = model.latlongDelta * 10 * 0.035
-            
-            if mapView.region.span.latitudeDelta < model.latlongDelta && mapView.region.span.longitudeDelta < model.latlongDelta {
-                        
-                if !model.annotationSelected {
-                    
-                    mapView.removeAnnotations(mapView.annotations)
-                    
-                    // TODO: - #28
-                    
-                    /*
-                    mapView.removeAnnotations(mapView.annotations.filter({
-                        $0.coordinate.latitude >= mapView.region.center.latitude - annotationSpanIndex && $0.coordinate.latitude <= mapView.region.center.latitude + annotationSpanIndex && $0.coordinate.longitude >= mapView.region.center.longitude - annotationSpanIndex && $0.coordinate.longitude <= mapView.region.center.longitude + annotationSpanIndex
-                    }))
-                    */
-                    
-                    mapView.addAnnotations(map.getLocations(center: mapView.region.center))
-                    
-                    DispatchQueue.main.async { [self] in
-                        model.devLog = String(localized: "sufficientZoom")
-                    }
-                    
-                }
-                
-            } else {
-                
+            guard mapView.region.span.latitudeDelta < model.latlongDelta && mapView.region.span.longitudeDelta < model.latlongDelta else {
                 mapView.removeAnnotations(mapView.annotations)
-                
+                // nothing to do if zoom is out-of-range
                 DispatchQueue.main.async { [self] in
                     model.devLog = String(localized: "insufficientZoom")
+                }
+                
+                return
+            }
+                        
+            if !model.annotationSelected {
+                
+                // ── compute diff instead of blanket remove/add ──
+               // 1️⃣ current non-user annotations
+                let current = mapView.annotations.filter { !($0 is MKUserLocation) }
+    
+               // 2️⃣ what *should* be here now
+                let updated = map.getLocations(center: mapView.region.center)
+    
+               // 3️⃣ remove those that disappeared
+                let toRemove = current.filter { old in
+                    !updated.contains(where: { $0.coordinate.latitude == old.coordinate.latitude && $0.coordinate.longitude == old.coordinate.longitude })
+                }
+    
+               // 4️⃣ add the brand-new ones
+                let toAdd = updated.filter { new in
+                    !current.contains(where: { $0.coordinate.latitude == new.coordinate.latitude && $0.coordinate.longitude == new.coordinate.longitude })
+                }
+                
+                mapView.removeAnnotations(toRemove)
+                mapView.addAnnotations(toAdd)
+    
+                DispatchQueue.main.async { [self] in
+                    model.devLog = String(localized: "sufficientZoom")
                 }
                 
             }
