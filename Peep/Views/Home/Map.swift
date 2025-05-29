@@ -336,6 +336,19 @@ struct Map: UIViewRepresentable {
             }
                 
         }
+        // MARK: - mapView(didSelect)
+        
+        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+            guard let cluster = view.annotation as? MKClusterAnnotation else { return }
+            
+            // compute a tighter region centered on the cluster
+            let newSpan = MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta  / 2, longitudeDelta: mapView.region.span.longitudeDelta / 2)
+            let zoomRegion = MKCoordinateRegion(center: cluster.coordinate, span: newSpan)
+            mapView.setRegion(zoomRegion, animated: true)
+        
+            // deselect so the cluster pin goes away immediately
+            mapView.deselectAnnotation(cluster, animated: false)
+        }
         
         // MARK: - mapView(calloutAccessoryControlTapped)
         
