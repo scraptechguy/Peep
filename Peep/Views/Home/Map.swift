@@ -221,6 +221,9 @@ struct Map: UIViewRepresentable {
         var model: ContentModel
         var map: Map
         
+        private var regionChangeWorkItem: DispatchWorkItem?
+        private var annotationCache = [String: MKPointAnnotation]()
+        
         init(model: ContentModel, map: Map) {
             
             self.model = model
@@ -272,30 +275,64 @@ struct Map: UIViewRepresentable {
             }
                         
             if !model.annotationSelected {
-                
-               // current non-user annotations
-                let current = mapView.annotations.compactMap { $0 as? MKPointAnnotation }
-    
-               // what should be here
-                let updated = map.getLocations(center: mapView.region.center)
-    
-               // remove those that disappeared
-                let toRemove = current.filter { old in
-                    !updated.contains(where: { $0.coordinate.latitude == old.coordinate.latitude && $0.coordinate.longitude == old.coordinate.longitude })
+                regionChangeWorkItem?.cancel()
+                        
+                // 3) Create a new one
+                let workItem = DispatchWorkItem { [weak self] in
+                    guard let self = self else { return }
+                    let center = mapView.region.center
+                    let spanIndex = self.model.latlongDelta * 10 * 0.035
+                    
+                    // 4) Do heavy filtering OFF the main thread
+                    struct Hit { let key: String; let lat: Double; let lon: Double; let title: String? }
+                    let hits: [Hit] = self.map.data.dataList.compactMap { place in
+                        guard let latS = place.zsirka,
+                              let lonS = place.zdelka,
+                              let lat = Double(latS),
+                              let lon = Double(lonS) else { return nil }
+                        guard abs(lat - center.latitude)  <= spanIndex,
+                              abs(lon - center.longitude) <= spanIndex else { return nil }
+                        let key = place.adresa ?? UUID().uuidString
+                        return Hit(key: key, lat: lat, lon: lon, title: place.adresa)
+                    }
+                    
+                    // 5) Now *back* on the main thread to mutate MapKit/UI
+                    DispatchQueue.main.async {
+                        var newAnnotations: [MKPointAnnotation] = []
+                        
+                        for hit in hits {
+                            let annotation: MKPointAnnotation
+                            if let cached = self.annotationCache[hit.key] {
+                                annotation = cached
+                                // safe to update coordinate on main thread
+                                annotation.coordinate = CLLocationCoordinate2D(latitude: hit.lat,
+                                                                             longitude: hit.lon)
+                            } else {
+                                let a = MKPointAnnotation()
+                                a.coordinate = CLLocationCoordinate2D(latitude: hit.lat,
+                                                                      longitude: hit.lon)
+                                a.title = hit.title
+                                self.annotationCache[hit.key] = a
+                                annotation = a
+                            }
+                            newAnnotations.append(annotation)
+                        }
+                        
+                        // Diff against what's on the map now
+                        let current = mapView.annotations.compactMap { $0 as? MKPointAnnotation }
+                        let toRemove = current.filter { old in !newAnnotations.contains(where: { $0 === old }) }
+                        let toAdd    = newAnnotations.filter { new in !current.contains(where: { $0 === new }) }
+                        
+                        mapView.removeAnnotations(toRemove)
+                        mapView.addAnnotations(toAdd)
+                        
+                        self.model.devLog = "sufficientZoom"
+                    }
                 }
-    
-               // add new ones
-                let toAdd = updated.filter { new in
-                    !current.contains(where: { $0.coordinate.latitude == new.coordinate.latitude && $0.coordinate.longitude == new.coordinate.longitude })
-                }
                 
-                mapView.removeAnnotations(toRemove)
-                mapView.addAnnotations(toAdd)
-    
-                DispatchQueue.main.async { [self] in
-                    model.devLog = String(localized: "sufficientZoom")
-                }
-                
+                // 6) Debounce at 0.2s
+                regionChangeWorkItem = workItem
+                DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 0.2, execute: workItem)
             }
             
             if model.annotationSelected {
