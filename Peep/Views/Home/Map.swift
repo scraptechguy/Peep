@@ -65,10 +65,12 @@ struct Map: UIViewRepresentable {
         // Delay the compass setup to avoid preview crashes
         DispatchQueue.main.async {
             let compass = MKCompassButton(mapView: mapView)
-            compass.compassVisibility = .visible
+            compass.compassVisibility = model.showCompass ? .visible : .hidden
             compass.translatesAutoresizingMaskIntoConstraints = false
             compass.transform = CGAffineTransform(scaleX: model.locationButtonSize / 40, y: model.locationButtonSize / 40)
+            
             mapView.addSubview(compass)
+            context.coordinator.compassButton = compass
             
             NSLayoutConstraint.activate([
                 compass.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -model.compassOffset),
@@ -99,6 +101,9 @@ struct Map: UIViewRepresentable {
     // MARK: - updateUIView() & dismantleUIView()
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        DispatchQueue.main.async {
+            context.coordinator.compassButton?.compassVisibility = model.showCompass ? .visible : .hidden
+        }
         
         if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
          
@@ -220,6 +225,7 @@ struct Map: UIViewRepresentable {
         var region = MKCoordinateRegion.self
         var model: ContentModel
         var map: Map
+        var compassButton: MKCompassButton?
         
         private var regionChangeWorkItem: DispatchWorkItem?
         private var annotationCache = [String: MKPointAnnotation]()

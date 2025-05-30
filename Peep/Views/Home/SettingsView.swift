@@ -20,8 +20,11 @@ struct SettingsView: View {
     let settingsColorScheme: LocalizedStringKey = "settingsColorScheme"
     let settingsAppLanguage: LocalizedStringKey = "settingsAppLanguage"
     let settingsAppLanguageValue: LocalizedStringKey = "settingsAppLanguageValue"
+    
+    let settingsSectionMap: LocalizedStringKey = "settingsSectionMap"
+    let settingsShowCompass: LocalizedStringKey = "settingsShowCompass"
     let settingsReach: LocalizedStringKey = "settingsReach"
-    let settingsSectionGeneralFooter: LocalizedStringKey = "settingsSectionGeneralFooter"
+    let settingsSectionMapFooter: LocalizedStringKey = "settingsSectionMapFooter"
     
     let settingsSectionInformation: LocalizedStringKey = "settingsSectionInformation"
     let settingsFeedback: LocalizedStringKey = "settingsFeedback"
@@ -52,10 +55,10 @@ struct SettingsView: View {
                         
                         // MARK: - General
                         
-                        Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary), footer: Text(settingsSectionGeneralFooter).foregroundColor(.secondary)) {
+                        Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary)) {
                             Toggle(isOn: $model.isLightMode) {
                                 Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
-                            }.listRowBackground(Color("ListRowBackground"))
+                            }
                             
                             HStack {
                                 Label(settingsAppLanguage, systemImage: "character.book.closed")
@@ -75,14 +78,19 @@ struct SettingsView: View {
                                     }
                                 }
                             }
-                            .listRowBackground(Color("ListRowBackground"))
+                        }.foregroundColor(.primary)
+                        
+                        Section(header: Text(settingsSectionMap).foregroundColor(.secondary), footer: Text(settingsSectionMapFooter).foregroundColor(.secondary)) {
+                            Toggle(isOn: $model.showCompass) {
+                                Label(settingsShowCompass, systemImage: model.showCompass ? "safari.fill" : "safari")
+                            }
                             
                             HStack {
                                 Label(settingsReach, systemImage: "globe.americas")
                                     .padding(.trailing)
                                 
                                 Slider(value: $model.latlongDelta, in: 0.1...0.35)
-                            }.listRowBackground(Color("ListRowBackground"))
+                            }
                         }.foregroundColor(.primary)
                         
                         if model.authorizationState == .denied || model.authorizationState == .restricted {
@@ -285,7 +293,7 @@ struct SettingsView: View {
                         
                         // MARK: - General
                         
-                        Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary), footer: Text(settingsSectionGeneralFooter).foregroundColor(.secondary)) {
+                        Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary)) {
                             Toggle(isOn: $model.isLightMode) {
                                 Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
                             }
@@ -307,6 +315,12 @@ struct SettingsView: View {
                                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                                     }
                                 }
+                            }
+                        }.foregroundColor(.primary)
+                        
+                        Section(header: Text(settingsSectionMap).foregroundColor(.secondary), footer: Text(settingsSectionMapFooter).foregroundColor(.secondary)) {
+                            Toggle(isOn: $model.showCompass) {
+                                Label(settingsShowCompass, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
                             }
                             
                             HStack {

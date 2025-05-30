@@ -41,8 +41,11 @@
 "settingsColorScheme" = "Světlý režim";
 "settingsAppLanguage" = "Jazyk aplikace";
 "settingsAppLanguageValue" = "Čeština";
+
+"settingsSectionMap" = "Mapa";
+"settingsShowCompass" = "Zobrazit kompas";
 "settingsReach" = "Rozsah";
-"settingsSectionGeneralFooter" = "Zvětšení rozsahu umožňuje zobrazit více slunečních hodin najednou";
+"settingsSectionMapFooter" = "Zvětšení rozsahu umožňuje zobrazit více slunečních hodin najednou";
 
 "settingsLocationHeading" = "Povolit přístup k poloze";
 "settingsLocationFooter" = "Píp může poskytovat relevantnější data s povoleným přístupem k poloze";

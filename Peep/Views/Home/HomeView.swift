@@ -13,6 +13,8 @@ struct HomeView: View {
     @EnvironmentObject var model: ContentModel
     
     @State var selectedPlace: DataModel?
+    @State private var zoomLevel: Double = 0.05
+    @State private var mapCenter = CLLocationCoordinate2D()
     
     let screenSize: CGRect = UIScreen.main.bounds
     
