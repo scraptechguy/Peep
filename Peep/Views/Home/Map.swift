@@ -261,7 +261,16 @@ struct Map: UIViewRepresentable {
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationReusedId, for: annotation) as! MKMarkerAnnotationView
             annotationView.clusteringIdentifier = "place"
             annotationView.canShowCallout = true
-            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            
+            let detailLabel = UILabel()
+            detailLabel.text = String(localized: "annotationCalloutLabel")
+            detailLabel.font = UIFont.systemFont(ofSize: 12)
+            detailLabel.textColor = UIColor.secondaryLabel
+            annotationView.detailCalloutAccessoryView = detailLabel
+            
+            let detailButton = UIButton(type: .detailDisclosure)
+            detailButton.tintColor = UIColor.label
+            annotationView.rightCalloutAccessoryView = detailButton
             
             return annotationView
             

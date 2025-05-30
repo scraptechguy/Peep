@@ -33,6 +33,7 @@
 // MARK: - Home Screen
 
 "homeSearch" = "Search for an address";
+"annotationCalloutLabel" = "Tap for detail";
 
 // MARK: - Settings
 

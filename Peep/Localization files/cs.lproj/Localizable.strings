@@ -33,6 +33,7 @@
 // MARK: - Home Screen
 
 "homeSearch" = "Vyhledat adresu";
+"annotationCalloutLabel" = "Kliknutím zobrazíte podrobnosti";
 
 // MARK: - Settings
 
