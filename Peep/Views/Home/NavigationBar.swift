@@ -21,7 +21,7 @@ struct NavigationBar: View {
                 ZStack(alignment: .leading) {
                     Rectangle()
                         .fill(.ultraThinMaterial)
-                        .frame(width: screenSize.width / 1.35, height: screenSize.width / 6)
+                        .frame(width: screenSize.width / 1.35, height: screenSize.width / 8)
                         .mask(
                             RoundedRectangle(cornerRadius: 22, style: .continuous)
                         )
@@ -66,14 +66,12 @@ struct NavigationBar: View {
                     ZStack {
                         Rectangle()
                             .fill(.thinMaterial)
-                            .frame(width: screenSize.width / 6, height: screenSize.width / 6)
+                            .frame(width: screenSize.width / 8, height: screenSize.width / 8)
                             .mask(
                                 RoundedRectangle(cornerRadius: 22, style: .continuous)
                             )
                         
                         Image(systemName: "gear")
-                            .resizable()
-                            .frame(width: 25, height: 25)
                             .foregroundColor(Color("Font"))
                     }
                 }).sheet(isPresented: {$model.showingSettings}()) {SettingsView()}

@@ -60,7 +60,7 @@ struct SearchView: View {
                 ZStack(alignment: .leading) {
                     Rectangle()
                         .fill(.ultraThinMaterial)
-                        .frame(width: screenSize.width / 1.1, height: screenSize.width / 6)
+                        .frame(width: screenSize.width / 1.1, height: screenSize.width / 8)
                         .mask(
                             RoundedRectangle(cornerRadius: 22, style: .continuous)
                         )
