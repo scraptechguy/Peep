@@ -84,16 +84,18 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         
         authorizationState = locationManager.authorizationStatus
         
-        if locationManager.authorizationStatus == .authorizedAlways || locationManager.authorizationStatus == .authorizedWhenInUse {
-            
-            locationManager.startUpdatingLocation()
-            
-        } else if locationManager.authorizationStatus == .denied {
-            
-            
-            
+        DispatchQueue.main.async {
+            if self.locationManager.authorizationStatus == .authorizedAlways || self.locationManager.authorizationStatus == .authorizedWhenInUse {
+                
+                self.locationManager.startUpdatingLocation()
+                self.didShowOnboarding = true
+                
+            } else if self.locationManager.authorizationStatus == .denied {
+                
+                self.didShowOnboarding = true
+                
+            }
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

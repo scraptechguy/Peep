@@ -12,21 +12,29 @@ struct LaunchView: View {
     @EnvironmentObject var model: ContentModel
     
     var body: some View {
-        if !model.didShowOnboarding {
-            
-            OnboardingView()
-            
-        } else if model.authorizationState == .notDetermined && model.didShowOnboarding {
-            
-            RequestView()
-            
-        } else if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse || model.authorizationState == .denied {
-            
-            HomeView()
-                .onAppear {
-                    model.didShowOnboarding = true
-                }
-            
+        Group {
+            // If user is already authorized (or denied), go straight to HomeView.
+            if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse || model.authorizationState == .denied {
+                
+                HomeView()
+                
+            }
+            // Otherwise, if onboarding has never been shown yet, show onboarding:
+            else if !model.didShowOnboarding {
+                
+                OnboardingView()
+                
+            }
+            // If onboarding was shown but we still have .notDetermined (user never tapped Allow/Deny), go to a “Request permission” screen (or simply re-run the request).
+            else {
+                
+                RequestView()
+                
+            }
+        }
+        .onAppear {
+            // Always sync the published state from the system’s current authorizationStatus.
+            model.authorizationState = model.locationManager.authorizationStatus
         }
     }
 }
