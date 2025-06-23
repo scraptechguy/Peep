@@ -27,6 +27,8 @@ struct PlaceDetail: View {
     let detailDial: LocalizedStringKey = "detailDial"
     let detailState: LocalizedStringKey = "detailState"
     
+    let detailImagesCaption: LocalizedStringKey = "detailImagesCaption"
+    
     let detailSectionInformation: LocalizedStringKey = "detailSectionInformation"
     let detailAzimuth: LocalizedStringKey = "detailAzimuth"
     
@@ -336,8 +338,14 @@ struct PlaceDetail: View {
                                                 )
                                         })
                                     }
-                                }.padding([.vertical, .horizontal])
+                                }.padding([.top, .horizontal])
                             }
+                            
+                            Text(detailImagesCaption)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                                .padding(.leading)
+                                .padding(.bottom, 8)
                             
                             // MARK: - More info
                             

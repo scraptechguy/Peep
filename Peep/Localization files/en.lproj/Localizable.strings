@@ -113,6 +113,8 @@
 "detailDial" = "Dial";
 "detailState" = "State";
 
+"detailImagesCaption" = "Tap images to view them in detail";
+
 "detailSectionInformation" = "MORE INFORMATION";
 "detailAzimuth" = "Azimuth";
 

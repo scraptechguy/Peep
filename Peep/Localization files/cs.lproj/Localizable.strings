@@ -113,6 +113,8 @@
 "detailDial" = "Číselník";
 "detailState" = "Stav";
 
+"detailImagesCaption" = "Klikni na obrázky pro detailní prohlížení";
+
 "detailSectionInformation" = "VÍCE INFORMACÍ";
 "detailAzimuth" = "Azimut";
 
