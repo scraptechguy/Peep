@@ -20,7 +20,7 @@ struct NavigationBar: View {
             HStack {
                 ZStack(alignment: .leading) {
                     Rectangle()
-                        .fill(.ultraThinMaterial)
+                        .fill(.thinMaterial)
                         .frame(width: screenSize.width / 1.35, height: screenSize.width / 8)
                         .mask(
                             RoundedRectangle(cornerRadius: 22, style: .continuous)
