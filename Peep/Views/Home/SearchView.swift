@@ -10,6 +10,9 @@ import SwiftUI
 struct SearchView: View {
     
     @EnvironmentObject var model: ContentModel
+    @EnvironmentObject var data: FetchData
+    
+    @Binding var selectedPlace: DataModel?
     
     @State private var searchText: String = ""
     
@@ -95,19 +98,7 @@ struct SearchView: View {
                     ScrollView {
                         LazyVStack(spacing: 0) { // spacing: 0 to match List row style
                             ForEach(filteredPlaces, id: \.self) { item in
-                                Button(action: {
-                                    
-                                }, label: {
-                                    VStack(alignment: .leading, spacing: 0) {
-                                        Text(item)
-                                            .foregroundColor(Color("Font"))
-                                            .padding(.vertical, 12)
-                                            .padding(.horizontal)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                        
-                                        Divider() // Matches default List row separator
-                                    }
-                                })
+                                placeRow(for: item)
                             }
                         }
 
@@ -121,7 +112,25 @@ struct SearchView: View {
                     }
                 }
             }
-        }.onChange(of: model.searchKeyboardIsFocused) { newValue in
+        }.onAppear {
+            if data.dataList.count > 0 {
+                model.loadSearchableAddresses(from: data)
+            }
+        }
+        .onChange(of: data.dataList.count) { newValue in
+            if newValue > 0 {
+                model.loadSearchableAddresses(from: data)
+            }
+        }
+        .onChange(of: model.searchKeyboardIsFocused) { newValue in
+            if model.searchKeyboardIsFocused {
+                isFocused = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                searchText = ""
+            }
+        }
+        .onChange(of: model.searchKeyboardIsFocused) { newValue in
             if model.searchKeyboardIsFocused {
                 
                 isFocused = true
@@ -133,11 +142,30 @@ struct SearchView: View {
             }
         }
     }
+    
+    @ViewBuilder
+    func placeRow(for item: String) -> some View {
+        Button(action: {
+            model.showingSearch = false
+            model.searchKeyboardIsFocused = false
+            isFocused = false
+        }, label: {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(item)
+                    .foregroundColor(Color("Font"))
+                    .padding(.vertical, 12)
+                    .padding(.horizontal)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Divider()
+            }
+        })
+    }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(selectedPlace: .constant(nil))
             .environmentObject(ContentModel())
+            .environmentObject(FetchData())
     }
 }

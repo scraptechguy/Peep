@@ -124,4 +124,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         
     }
     
+    func loadSearchableAddresses(from data: FetchData) {
+        guard searchableAddresses.isEmpty else { return }
+        searchableAddresses = data.dataList.compactMap { $0.adresa }
+    }
 }

@@ -12,6 +12,8 @@ struct HomeView: View {
     
     @EnvironmentObject var model: ContentModel
     
+    @ObservedObject var data = FetchData()
+    
     @State var selectedPlace: DataModel?
     @State private var zoomLevel: Double = 0.05
     @State private var mapCenter = CLLocationCoordinate2D()
@@ -146,7 +148,8 @@ struct HomeView: View {
                     }
             }
                 
-            SearchView()
+            SearchView(selectedPlace: $selectedPlace)
+                .environmentObject(data)
                 .opacity(model.showingSearch ? 1 : 0)
                 .animation(.easeInOut(duration: 0.2), value: model.showingSearch)
         }
