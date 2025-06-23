@@ -10,7 +10,7 @@ import SwiftUI
 struct LaunchView: View {
     
     @EnvironmentObject var model: ContentModel
-    @ObservedObject var data = FetchData()
+    @EnvironmentObject var data: FetchData
     
     var body: some View {
         Group {
