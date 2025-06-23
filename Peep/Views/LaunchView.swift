@@ -10,6 +10,7 @@ import SwiftUI
 struct LaunchView: View {
     
     @EnvironmentObject var model: ContentModel
+    @ObservedObject var data = FetchData()
     
     var body: some View {
         Group {
@@ -35,6 +36,19 @@ struct LaunchView: View {
         .onAppear {
             // Always sync the published state from the system’s current authorizationStatus.
             model.authorizationState = model.locationManager.authorizationStatus
+        }
+        .onAppear {
+            // 1) Restore cache
+            model.loadCachedSearchableAddresses()
+            // 2) As soon as our dataList is non-empty, repopulate & persist
+            if data.dataList.count > 0 {
+                model.loadSearchableAddresses(from: data)
+            }
+        }
+        .onChange(of: data.dataList.count) { newCount in
+            if newCount > 0 {
+                model.loadSearchableAddresses(from: data)
+            }
         }
     }
 }

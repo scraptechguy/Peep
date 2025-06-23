@@ -21,6 +21,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @AppStorage("showCompass") var showCompass: Bool = false
     @AppStorage("useOfflineDatabase") var useOfflineDatabase = false
     @AppStorage("latlogDelta") var latlongDelta: Double = 0.15
+    @AppStorage("cachedSearchableAddresses") private var _cachedAddressesData: Data?
     
     @Published var finishedLoading = false
     
@@ -68,7 +69,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         
         // Make ContentModel the delegate of the location manager
         locationManager.delegate = self
-        
+        loadCachedSearchableAddresses()
     }
     
     // Request permission
@@ -124,8 +125,29 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         
     }
     
+    // Load the last-saved addresses from disk into memory
+    func loadCachedSearchableAddresses() {
+        guard let data = _cachedAddressesData else { return }
+        if let addresses = try? JSONDecoder().decode([String].self, from: data) {
+            searchableAddresses = addresses
+        }
+    }
+
+    // Save current in-memory addresses out to disk
+    func persistSearchableAddresses() {
+        if let data = try? JSONEncoder().encode(searchableAddresses) {
+            _cachedAddressesData = data
+        }
+    }
+
+    // Populate from your FetchData and then persist
     func loadSearchableAddresses(from data: FetchData) {
-        guard searchableAddresses.isEmpty else { return }
-        searchableAddresses = data.dataList.compactMap { $0.adresa }
+        DispatchQueue.global(qos: .background).async {
+            let addresses = data.dataList.compactMap { $0.adresa }
+            DispatchQueue.main.async {
+                self.searchableAddresses = addresses
+                self.persistSearchableAddresses()
+            }
+        }
     }
 }
