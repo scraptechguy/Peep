@@ -11,7 +11,7 @@ import MapKit
 struct Map: UIViewRepresentable {
     
     @EnvironmentObject var model: ContentModel
-    @ObservedObject var data = FetchData()
+    @EnvironmentObject var data: FetchData
     @Binding var selectedPlace: DataModel?
     
     // MARK: - makeUIView()

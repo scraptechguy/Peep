@@ -11,8 +11,7 @@ import MapKit
 struct HomeView: View {
     
     @EnvironmentObject var model: ContentModel
-    
-    @ObservedObject var data = FetchData()
+    @EnvironmentObject var data: FetchData
     
     @State var selectedPlace: DataModel?
     @State private var zoomLevel: Double = 0.05
