@@ -14,43 +14,6 @@ struct Map: UIViewRepresentable {
     @ObservedObject var data = FetchData()
     @Binding var selectedPlace: DataModel?
     
-    // MARK: - getLocations()
-    
-    func getLocations(center: CLLocationCoordinate2D) -> [MKPointAnnotation] {
-        
-        var annotations = [MKPointAnnotation]()
-        let annotationSpanIndex: Double = model.latlongDelta * 10 * 0.035
-        
-        // Loop through all places
-        for place in data.dataList {
-            if model.searchableAddresses.count < data.dataList.count {
-                
-                model.searchableAddresses.append(place.adresa ?? "")
-                
-            }
-            
-            // If the place does have lat and long, create an annotation
-            if let lat = place.zsirka, let long = place.zdelka {
-                
-                // Create annotations only for places within a certain region
-                if Double(lat)! >= center.latitude - annotationSpanIndex && Double(lat)! <= center.latitude + annotationSpanIndex && Double(long)! >= center.longitude - annotationSpanIndex && Double(long)! <= center.longitude + annotationSpanIndex {
-                    
-                    // Create an annotation
-                    let a = MKPointAnnotation()
-                    a.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(long)!)
-                    a.title = place.adresa ?? ""
-                    
-                    annotations.append(a)
-                    
-                }
-                
-            }
-        }
-        
-        return annotations
-        
-    }
-    
     // MARK: - makeUIView()
     
     func makeUIView(context: Context) -> MKMapView {
@@ -90,8 +53,9 @@ struct Map: UIViewRepresentable {
             let region = MKCoordinateRegion.init(center: coordinate, span: span)
             mapView.setRegion(region, animated: true)
             
-            let initialAnnotations = getLocations(center: coordinate)
-            mapView.addAnnotations(initialAnnotations)
+            mapView.addAnnotations(model.cachedAnnotationHits.map { hit in
+                context.coordinator.annotationCache[hit.key]!
+            })
         }
         
         return mapView
@@ -228,12 +192,23 @@ struct Map: UIViewRepresentable {
         var compassButton: MKCompassButton?
         
         private var regionChangeWorkItem: DispatchWorkItem?
-        private var annotationCache = [String: MKPointAnnotation]()
+        public var annotationCache = [String: MKPointAnnotation]()
         
         init(model: ContentModel, map: Map) {
             
             self.model = model
             self.map = map
+            
+            // Build a fresh MKPointAnnotation for every hit
+            var cache = [String: MKPointAnnotation]()
+            for hit in model.cachedAnnotationHits {
+              let a = MKPointAnnotation()
+              a.coordinate = CLLocationCoordinate2D(latitude: hit.latitude,
+                                                    longitude: hit.longitude)
+              a.title = hit.title
+              cache[hit.key] = a
+            }
+            self.annotationCache = cache
             
         }
         

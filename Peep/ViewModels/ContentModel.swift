@@ -12,6 +12,13 @@ import CoreLocation
 import MapKit
 
 class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
+    // Define a Codable “hit” type for annotations
+    struct AnnotationHit: Codable {
+        let key: String
+        let latitude: Double
+        let longitude: Double
+        let title: String?
+    }
     
     // MARK: - State vars
     
@@ -21,10 +28,12 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @AppStorage("showCompass") var showCompass: Bool = false
     @AppStorage("useOfflineDatabase") var useOfflineDatabase = false
     @AppStorage("latlogDelta") var latlongDelta: Double = 0.15
+    @AppStorage("cachedAnnotationHits") private var _cachedAnnotationData: Data?
     @AppStorage("cachedSearchableAddresses") private var _cachedAddressesData: Data?
     
-    @Published var finishedLoading = false
+    @Published var cachedAnnotationHits: [AnnotationHit] = []
     
+    @Published var finishedLoading = false
     @Published var devLog = "Launching the app"
     @Published var didLongPressed = false
     
@@ -70,6 +79,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         // Make ContentModel the delegate of the location manager
         locationManager.delegate = self
         loadCachedSearchableAddresses()
+        // …and your annotation cache
+        loadCachedAnnotationHits()
     }
     
     // Request permission
@@ -123,6 +134,39 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
             
         }
         
+    }
+    
+    // MARK: – Annotation and Address Caching
+
+    // Decode last-saved annotation hits
+    func loadCachedAnnotationHits() {
+        guard let data = _cachedAnnotationData else { return }
+        if let hits = try? JSONDecoder().decode([AnnotationHit].self, from: data) {
+            self.cachedAnnotationHits = hits
+        }
+    }
+
+    // Build fresh hits from your master list and persist
+    func persistAnnotationHits(from dataList: [DataModel]) {
+        DispatchQueue.global(qos: .background).async {
+            let hits = dataList.compactMap { place -> AnnotationHit? in
+                guard
+                  let latS = place.zsirka, let lonS = place.zdelka,
+                  let lat = Double(latS),       let lon = Double(lonS)
+                else { return nil }
+                let key = place.adresa ?? UUID().uuidString
+                return AnnotationHit(key: key,
+                                     latitude: lat,
+                                     longitude: lon,
+                                     title:  place.adresa)
+            }
+            if let blob = try? JSONEncoder().encode(hits) {
+                DispatchQueue.main.async {
+                    self._cachedAnnotationData = blob
+                    self.cachedAnnotationHits = hits
+                }
+            }
+        }
     }
     
     // Load the last-saved addresses from disk into memory
