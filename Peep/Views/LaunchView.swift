@@ -50,6 +50,12 @@ struct LaunchView: View {
               model.persistAnnotationHits(from: data.dataList)
             }
         }
+        .onReceive(data.$dataList) { list in
+            guard !list.isEmpty else { return }
+            // …rebuild both caches from the freshly fetched list
+            model.loadSearchableAddresses(from: data)
+            model.persistAnnotationHits(from: list)
+        }
     }
 }
 
