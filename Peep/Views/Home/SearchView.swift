@@ -72,8 +72,8 @@ struct SearchView: View {
                     
                     ScrollView {
                         LazyVStack(spacing: 0) { // spacing: 0 to match List row style
-                            ForEach(filteredPlaces, id: \.self) { item in
-                                placeRow(for: item)
+                            ForEach(Array(filteredPlaces.enumerated()), id: \.offset) { index, place in
+                                placeRow(for: place)
                             }
                         }
 
@@ -119,14 +119,14 @@ struct SearchView: View {
     }
     
     @ViewBuilder
-    func placeRow(for item: String) -> some View {
+    func placeRow(for place: String) -> some View {
         Button(action: {
             model.showingSearch = false
             model.searchKeyboardIsFocused = false
             isFocused = false
         }, label: {
             VStack(alignment: .leading, spacing: 0) {
-                Text(item)
+                Text(place)
                     .foregroundColor(Color("Font"))
                     .padding(.vertical, 12)
                     .padding(.horizontal)
