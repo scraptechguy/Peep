@@ -37,31 +37,17 @@ struct LaunchView: View {
             // Always sync the published state from the system’s current authorizationStatus.
             model.authorizationState = model.locationManager.authorizationStatus
         }
-        // MARK: Load annotations
+        // MARK: Load annotations and searchable addresses
         .onAppear {
-          if data.dataList.count > 0 {
-            model.loadSearchableAddresses(from: data)
-            model.persistAnnotationHits(from: data.dataList)
-          }
-        }
-        .onChange(of: data.dataList.count) { newCount in
-          if newCount > 0 {
-            model.loadSearchableAddresses(from: data)
-            model.persistAnnotationHits(from: data.dataList)
-          }
-        }
-        // MARK: Load searchable addresses
-        .onAppear {
-            // 1) Restore cache
-            model.loadCachedSearchableAddresses()
-            // 2) As soon as our dataList is non-empty, repopulate & persist
             if data.dataList.count > 0 {
                 model.loadSearchableAddresses(from: data)
+                model.persistAnnotationHits(from: data.dataList)
             }
         }
         .onChange(of: data.dataList.count) { newCount in
             if newCount > 0 {
-                model.loadSearchableAddresses(from: data)
+              model.loadSearchableAddresses(from: data)
+              model.persistAnnotationHits(from: data.dataList)
             }
         }
     }

@@ -23,35 +23,10 @@ struct SearchView: View {
     let homeSearch: LocalizedStringKey = "homeSearch"
     
     var filteredPlaces: [String] {
-        if searchText.isEmpty {
-            
-            var addresses: [String] = []
-            
-            for place in model.searchableAddresses {
-                
-                addresses.append(place)
-                
-            }
-            
-            return addresses.filter {
-                $0.localizedCaseInsensitiveContains(model.placemark?.locality ?? "")
-            }
-            
-        } else {
-            
-            var addresses: [String] = []
-            
-            for place in model.searchableAddresses {
-                
-                addresses.append(place)
-                
-            }
-            
-            return addresses.filter {
-                $0.localizedCaseInsensitiveContains(searchText)
-            }
-            
-        }
+      let base = searchText.isEmpty
+        ? model.searchableAddresses.filter { $0.localizedCaseInsensitiveContains(model.placemark?.locality ?? "") }
+        : model.searchableAddresses.filter { $0.localizedCaseInsensitiveContains(searchText) }
+      return base
     }
     
     var body: some View {
