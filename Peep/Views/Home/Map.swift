@@ -202,11 +202,11 @@ struct Map: UIViewRepresentable {
             // Build a fresh MKPointAnnotation for every hit
             var cache = [String: MKPointAnnotation]()
             for hit in model.cachedAnnotationHits {
-              let a = MKPointAnnotation()
-              a.coordinate = CLLocationCoordinate2D(latitude: hit.latitude,
-                                                    longitude: hit.longitude)
-              a.title = hit.title
-              cache[hit.key] = a
+                let a = MKPointAnnotation()
+                a.coordinate = CLLocationCoordinate2D(latitude: hit.latitude,
+                                                      longitude: hit.longitude)
+                a.title = hit.title
+                cache[hit.key] = a
             }
             self.annotationCache = cache
             
@@ -252,78 +252,121 @@ struct Map: UIViewRepresentable {
         }
         
         // MARK: - mapView(regionDidChangeAnimated:)
-        
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            guard mapView.region.span.latitudeDelta < model.latlongDelta && mapView.region.span.longitudeDelta < model.latlongDelta else {
-                mapView.removeAnnotations(mapView.annotations)
-                // nothing to do if zoom is out-of-range
-                DispatchQueue.main.async { [self] in
-                    model.devLog = String(localized: "insufficientZoom")
+            guard !model.annotationSelected else { return }
+            regionChangeWorkItem?.cancel()
+
+            let workItem = DispatchWorkItem { [weak self] in
+                guard let self = self else { return }
+                let center = mapView.region.center
+                let span   = mapView.region.span
+
+                // — calculate which raw data points *would* be in our preload box:
+                let preloadFactor: Double = 3.0
+                let latReach = span.latitudeDelta  * preloadFactor / 2.0
+                let lonReach = span.longitudeDelta * preloadFactor / 2.0
+
+                struct Hit { let key: String; let lat: Double; let lon: Double; let title: String? }
+                let hits: [Hit] = self.map.data.dataList.compactMap { place in
+                    guard let lat = Double(place.zsirka ?? ""),
+                          let lon = Double(place.zdelka ?? "")
+                    else { return nil }
+                    guard abs(lat - center.latitude)   <= latReach,
+                          abs(lon - center.longitude)  <= lonReach
+                    else { return nil }
+                    return Hit(
+                        key: place.adresa ?? UUID().uuidString,
+                        lat: lat, lon: lon,
+                        title: place.adresa
+                    )
                 }
-                
-                return
-            }
-                        
-            if !model.annotationSelected {
-                regionChangeWorkItem?.cancel()
-                        
-                // 3) Create a new one
-                let workItem = DispatchWorkItem { [weak self] in
-                    guard let self = self else { return }
-                    let center = mapView.region.center
-                    let spanIndex = self.model.latlongDelta * 10 * 0.035
-                    
-                    // 4) Do heavy filtering OFF the main thread
-                    struct Hit { let key: String; let lat: Double; let lon: Double; let title: String? }
-                    let hits: [Hit] = self.map.data.dataList.compactMap { place in
-                        guard let latS = place.zsirka,
-                              let lonS = place.zdelka,
-                              let lat = Double(latS),
-                              let lon = Double(lonS) else { return nil }
-                        guard abs(lat - center.latitude)  <= spanIndex,
-                              abs(lon - center.longitude) <= spanIndex else { return nil }
-                        let key = place.adresa ?? UUID().uuidString
-                        return Hit(key: key, lat: lat, lon: lon, title: place.adresa)
-                    }
-                    
-                    // 5) Now *back* on the main thread to mutate MapKit/UI
-                    DispatchQueue.main.async {
-                        var newAnnotations: [MKPointAnnotation] = []
-                        
+
+                DispatchQueue.main.async {
+                    // — determine if we should show *clusters* or *raw annotations*
+                    //    here we pick a span-based threshold; tune as needed
+                    let clusterSpanThreshold: CLLocationDegrees = 1.0
+
+                    if span.latitudeDelta > clusterSpanThreshold {
+                        // ================================
+                        //  CLUSTER MODE (zoomed out)
+                        // ================================
+                        // build a simple grid clusters (one cluster per ~50pt cell)
+
+                        // 1) bin hits into grid
+                        struct GridCell: Hashable {
+                            let col: Int
+                            let row: Int
+                       }
+
+                        // — compute the size of each “cell” in map points
+                        let scale    = mapView.visibleMapRect.size.width / Double(mapView.bounds.width)
+                        let cellSize = scale * 50  // 50 screen-points per cell
+
+                        // — bin our hits into a grid
+                        /// OLD: var grid = [ (Int,Int) : [Hit] ]()
+                        var grid = [GridCell: [Hit]]()
+                        for h in hits {
+                            let mp  = MKMapPoint(CLLocationCoordinate2D(latitude: h.lat, longitude: h.lon))
+                            let col = Int(floor(mp.x / cellSize))
+                            let row = Int(floor(mp.y / cellSize))
+
+                            /// OLD: grid[(col,row), default: []].append(h)
+                            let cell = GridCell(col: col, row: row)
+                            grid[cell, default: []].append(h)
+                        }
+
+                        // — build one cluster annotation per cell
+                        let clusters: [MKPointAnnotation] = grid.values.map { bucket in
+                            let avgLat = bucket.map{$0.lat}.reduce(0,+) / Double(bucket.count)
+                            let avgLon = bucket.map{$0.lon}.reduce(0,+) / Double(bucket.count)
+                            let ann    = MKPointAnnotation()
+                            ann.coordinate = CLLocationCoordinate2D(latitude: avgLat, longitude: avgLon)
+                            ann.title      = "\(bucket.count) items"
+                            return ann
+                        }
+
+                        // drop existing and show only clusters
+                        mapView.removeAnnotations(mapView.annotations)
+                        mapView.addAnnotations(clusters)
+                        self.model.devLog = "showingClusters"
+
+                    } else {
+                        // ================================
+                        //  RAW MODE (zoomed in)
+                        // ================================
+                        // same as before: reconcile individual annotations
+
+                        var newAnns: [MKPointAnnotation] = []
                         for hit in hits {
-                            let annotation: MKPointAnnotation
+                            let ann: MKPointAnnotation
                             if let cached = self.annotationCache[hit.key] {
-                                annotation = cached
-                                // safe to update coordinate on main thread
-                                annotation.coordinate = CLLocationCoordinate2D(latitude: hit.lat,
-                                                                             longitude: hit.lon)
+                                ann = cached
+                                ann.coordinate = CLLocationCoordinate2D(latitude: hit.lat, longitude: hit.lon)
                             } else {
                                 let a = MKPointAnnotation()
-                                a.coordinate = CLLocationCoordinate2D(latitude: hit.lat,
-                                                                      longitude: hit.lon)
+                                a.coordinate = CLLocationCoordinate2D(latitude: hit.lat, longitude: hit.lon)
                                 a.title = hit.title
                                 self.annotationCache[hit.key] = a
-                                annotation = a
+                                ann = a
                             }
-                            newAnnotations.append(annotation)
+                            newAnns.append(ann)
                         }
-                        
-                        // Diff against what's on the map now
+
                         let current = mapView.annotations.compactMap { $0 as? MKPointAnnotation }
-                        let toRemove = current.filter { old in !newAnnotations.contains(where: { $0 === old }) }
-                        let toAdd    = newAnnotations.filter { new in !current.contains(where: { $0 === new }) }
-                        
+                        let toRemove = current.filter { old in !newAnns.contains(where: { $0 === old }) }
+                        let toAdd    = newAnns.filter     { new in !current.contains(where: { $0 === new }) }
+
                         mapView.removeAnnotations(toRemove)
                         mapView.addAnnotations(toAdd)
-                        
-                        self.model.devLog = "sufficientZoom"
+                        self.model.devLog = "showingRaw"
                     }
                 }
-                
-                // 6) Debounce at 0.2s
-                regionChangeWorkItem = workItem
-                DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 0.2, execute: workItem)
             }
+
+            regionChangeWorkItem = workItem
+            DispatchQueue.global(qos: .userInitiated)
+               .asyncAfter(deadline: .now() + 0.01, execute: workItem)
+    
             
             if model.annotationSelected {
                 
