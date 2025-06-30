@@ -33,6 +33,8 @@
 // MARK: - Home Screen
 
 "homeSearch" = "Vyhledat adresu";
+"homeSearchLoading" = "Načítání...";
+"homeSearchNoMatches" = "Zdá se, že na tomto místě nejsou\nžádné sluneční hodiny";
 "annotationCalloutLabel" = "Kliknutím zobrazíte podrobnosti";
 
 // MARK: - Settings

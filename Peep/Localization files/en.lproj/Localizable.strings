@@ -33,6 +33,8 @@
 // MARK: - Home Screen
 
 "homeSearch" = "Search for an address";
+"homeSearchLoading" = "Loading...";
+"homeSearchNoMatches" = "There seems to be no sundials\nat this location";
 "annotationCalloutLabel" = "Tap for detail";
 
 // MARK: - Settings

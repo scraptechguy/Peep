@@ -21,6 +21,8 @@ struct SearchView: View {
     let screenSize: CGRect = UIScreen.main.bounds
     
     let homeSearch: LocalizedStringKey = "homeSearch"
+    let homeSearchLoading: LocalizedStringKey = "homeSearchLoading"
+    let homeSearchNoMatches: LocalizedStringKey = "homeSearchNoMatches"
     
     var filteredPlaces: [String] {
       let base = searchText.isEmpty
@@ -63,7 +65,7 @@ struct SearchView: View {
                 
                 if model.searchableAddresses.isEmpty {
                     
-                    ProgressView("Loading...")
+                    ProgressView(homeSearchLoading)
                         .padding(.top)
                     
                     Spacer()
@@ -72,7 +74,7 @@ struct SearchView: View {
                     
                     Spacer()
                     
-                    Text("There seems to be no sundials\nat that location")
+                    Text(homeSearchNoMatches)
                         .foregroundColor(.secondary)
                         .bold()
                         .multilineTextAlignment(.center)
