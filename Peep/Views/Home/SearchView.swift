@@ -68,10 +68,21 @@ struct SearchView: View {
                     
                     Spacer()
                     
+                } else if !searchText.trimmingCharacters(in: .whitespaces).isEmpty && filteredPlaces.isEmpty {
+                    
+                    Spacer()
+                    
+                    Text("There seems to be no sundials\nat that location")
+                        .foregroundColor(.secondary)
+                        .bold()
+                        .multilineTextAlignment(.center)
+                    
+                    Spacer()
+                    
                 } else {
                     
                     ScrollView {
-                        LazyVStack(spacing: 0) { // spacing: 0 to match List row style
+                        LazyVStack(spacing: 0) {
                             ForEach(Array(filteredPlaces.enumerated()), id: \.offset) { index, place in
                                 placeRow(for: place)
                             }
@@ -85,6 +96,7 @@ struct SearchView: View {
                             .listRowSeparator(.hidden)
                             .disabled(true) // Prevent any interaction
                     }
+                    
                 }
             }
         }.onAppear {
