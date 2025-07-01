@@ -87,14 +87,15 @@ struct SearchView: View {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(Color("Font"))
                                 .onTapGesture {
-                                    model.showingSearch = false
                                     model.searchKeyboardIsFocused = false
+                                    model.showingSearch = false
                                     isFocused = false
                                 }
                             
                             TextField(homeSearch, text: $searchText)
                                 .foregroundColor(Color("Font"))
                                 .focused($isFocused)
+                                .keyboardType(.asciiCapable)
                             
                             Spacer()
                         }.padding(.horizontal, 22)
