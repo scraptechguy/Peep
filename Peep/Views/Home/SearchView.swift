@@ -140,15 +140,34 @@ struct SearchView: View {
     func placeRow(for place: DataModel) -> some View {
         Button(action: {
             // hide search view and keyboard
-            model.showingSearch = false
             model.searchKeyboardIsFocused = false
+            model.showingSearch = false
             isFocused = false
             
             // move the map to the place location
             if let latStr = place.zsirka, let lonStr = place.zdelka, let lat = Double(latStr), let lon = Double(lonStr) {
                 
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                model.mapView.region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+                let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+                
+                DispatchQueue.main.async {
+                    // Set the map region
+                    model.mapView.setRegion(region, animated: true)
+
+                    // Try selecting the annotation using the Coordinator's cache
+                    if let coordinator = model.mapView.delegate as? Map.Coordinator {
+                        let key = place.adresa ?? ""
+                        if let annotation = coordinator.annotationCache[key] {
+                            if !model.mapView.annotations.contains(where: { $0 === annotation }) {
+                                model.mapView.addAnnotation(annotation)
+                            }
+
+                            model.mapView.selectAnnotation(annotation, animated: true)
+                        } else {
+                            print("No cached annotation for key: \(key)")
+                        }
+                    }
+                }
                 
             }
         }, label: {

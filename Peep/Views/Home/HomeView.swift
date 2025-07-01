@@ -172,8 +172,8 @@ struct HomeView: View {
             
             regionChangeWorkItem = workItem
             
-            // Execute after 0.1 seconds if not cancelled
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: workItem)
+            // Execute after 2 seconds if not cancelled
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: workItem)
         }
     }
 }
