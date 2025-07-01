@@ -71,7 +71,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     @Published var authorizationState: CLAuthorizationStatus = .notDetermined
     @Published var placemark: CLPlacemark?
     
-    override init() {        
+    override init() {
+        // precondition(Thread.isMainThread, "ContentModel must be initialized on the main thread")
+        
         self.mapView = MKMapView()
         self.locationManager = CLLocationManager()
 
