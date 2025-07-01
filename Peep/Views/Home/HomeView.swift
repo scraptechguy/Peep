@@ -17,6 +17,9 @@ struct HomeView: View {
     @State private var zoomLevel: Double = 0.05
     @State private var mapCenter = CLLocationCoordinate2D()
     
+    @State private var centerPlacemark: CLPlacemark?
+    @State private var regionChangeWorkItem: DispatchWorkItem?
+    
     let screenSize: CGRect = UIScreen.main.bounds
     
     var body: some View {
@@ -25,7 +28,7 @@ struct HomeView: View {
                 .ignoresSafeArea()
             
             VStack {
-                NavigationBar()
+                NavigationBar(centerPlacemark: $centerPlacemark)
                 
                 Spacer()
             }
@@ -147,11 +150,41 @@ struct HomeView: View {
                     }
             }
                 
-            SearchView(selectedPlace: $selectedPlace)
+            SearchView(centerPlacemark: $centerPlacemark)
                 .environmentObject(data)
                 .opacity(model.showingSearch ? 1 : 0)
                 .animation(.easeInOut(duration: 0.2), value: model.showingSearch)
+        }.onChange(of: EquatableCoordinate(model.mapView.region.center)) { newCenter in
+            // Cancel the previous task if it exists
+            regionChangeWorkItem?.cancel()
+            
+            // Create a new debounced task
+            let workItem = DispatchWorkItem {
+                let location = CLLocation(latitude: newCenter.latitude, longitude: newCenter.longitude)
+                CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+                    if let placemark = placemarks?.first, error == nil {
+                        withAnimation {
+                            centerPlacemark = placemark
+                        }
+                    }
+                }
+            }
+            
+            regionChangeWorkItem = workItem
+            
+            // Execute after 0.1 seconds if not cancelled
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: workItem)
         }
+    }
+}
+
+struct EquatableCoordinate: Equatable {
+    var latitude: Double
+    var longitude: Double
+
+    init(_ coord: CLLocationCoordinate2D) {
+        self.latitude = coord.latitude
+        self.longitude = coord.longitude
     }
 }
 

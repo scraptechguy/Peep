@@ -9,11 +9,10 @@ import SwiftUI
 import MapKit
 
 struct SearchView: View {
-    
     @EnvironmentObject var model: ContentModel
     @EnvironmentObject var data: FetchData
     
-    @Binding var selectedPlace: DataModel?
+    @Binding var centerPlacemark: CLPlacemark?
     
     @State private var searchText: String = ""
     
@@ -28,7 +27,7 @@ struct SearchView: View {
     var filteredPlaces: [DataModel] {
         if searchText.isEmpty {
             return data.dataList.filter { place in
-                place.adresa?.localizedCaseInsensitiveContains(model.placemark?.locality ?? "") ?? false
+                place.adresa?.localizedCaseInsensitiveContains(centerPlacemark?.locality ?? "") ?? false
             }
         } else {
             return data.dataList.filter { place in
@@ -139,10 +138,18 @@ struct SearchView: View {
     @ViewBuilder
     func placeRow(for place: DataModel) -> some View {
         Button(action: {
+            // hide search view and keyboard
             model.showingSearch = false
             model.searchKeyboardIsFocused = false
             isFocused = false
-            model.mapView.region = .init(center: CLLocationCoordinate2D(latitude: 50.0755, longitude: 14.4378), latitudinalMeters: 1000, longitudinalMeters: 1000)
+            
+            // move the map to the place location
+            if let latStr = place.zsirka, let lonStr = place.zdelka, let lat = Double(latStr), let lon = Double(lonStr) {
+                
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                model.mapView.region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+                
+            }
         }, label: {
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
@@ -174,13 +181,5 @@ struct SearchView: View {
                 Divider()
             }
         })
-    }
-}
-
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView(selectedPlace: .constant(nil))
-            .environmentObject(ContentModel())
-            .environmentObject(FetchData())
     }
 }

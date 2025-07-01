@@ -13,6 +13,8 @@ struct NavigationBar: View {
     @EnvironmentObject var model: ContentModel
     @EnvironmentObject var FetchData: FetchData
     
+    @Binding var centerPlacemark: CLPlacemark?
+    
     let screenSize: CGRect = UIScreen.main.bounds
     
     var body: some View {
@@ -40,7 +42,7 @@ struct NavigationBar: View {
                             
                         } else {
                             
-                            Text(model.placemark?.locality ?? String(localized: "noRegion"))
+                            Text(centerPlacemark?.locality ?? String(localized: "noRegion"))
                                 .foregroundColor(Color("Font"))
                                 .lineLimit(1)
                             
@@ -81,13 +83,5 @@ struct NavigationBar: View {
                 DevLog()
             }
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
-    }
-}
-
-struct NavigationBar_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationBar()
-            .environmentObject(ContentModel())
-            .environmentObject(FetchData())
     }
 }
