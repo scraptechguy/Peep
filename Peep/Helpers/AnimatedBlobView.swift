@@ -27,12 +27,12 @@ struct AnimatedBlobView: View {
                 path.addCurve(to: CGPoint(x: 0.9923*width, y: 0.42593*height), control1: CGPoint(x: 0.67924*width, y: -0.10364*height*angle1), control2: CGPoint(x: 1.05906*width, y: 0.07436*height*angle2))
                 path.closeSubpath()
                 
-                context.fill(path, with: .linearGradient(Gradient(colors: [Color("Pink"), Color("Blue")]), startPoint: .init(x: 0, y: 0), endPoint: .init(x: 400, y: 400)))
+                context.fill(path, with: .linearGradient(Gradient(colors: [Color("Yellow"), Color("Blue")]), startPoint: .init(x: 0, y: 0), endPoint: .init(x: 400, y: 400)))
             }
         }
         .rotationEffect(.degrees(appear ? 360 : 0))
         .onAppear {
-            withAnimation(.linear(duration: 20).repeatForever(autoreverses: false)) {
+            withAnimation(.linear(duration: 10).repeatForever(autoreverses: false)) {
                 appear = true
             }
         }

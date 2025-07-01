@@ -87,8 +87,10 @@ struct OnboardingView: View {
                     .foregroundColor(.white)
                     .background(.ultraThinMaterial)
                     .background(
-                        Image("Blob")
-                            .scaleEffect(1.2)
+                        AnimatedBlobView()
+                            .frame(width: 600, height: 414)
+                            .offset(x: 100)
+                            .scaleEffect(1)
                     )
                     .mask(
                         RoundedRectangle(cornerRadius: 15, style: .continuous)
