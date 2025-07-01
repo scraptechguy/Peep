@@ -8,8 +8,8 @@
 
 // MARK: - Intro
 
-"introHeading" = "Píp says hi!";
-"introText" = "Píp is a very busy bird, he keeps track of sundials all around the globe";
+"introHeading" = "Peep says hi!";
+"introText" = "Peep is a very busy bird, he keeps track of sundials all around the globe";
 "introButton" = "Let's dive in";
 
 // MARK: - Onboarding
@@ -25,7 +25,7 @@
 // MARK: - Welcome
 
 "welcomeHeading" = "Ayooo!";
-"welcomeText" = "Píp wants to use **your location** to deliver relevant data, click **next** to allow him to do so";
+"welcomeText" = "Peep wants to use **your location** to deliver relevant data, click **next** to allow him to do so";
 "nextButton" = "Next";
 "welcomeSubtitle" = "By proceeding you agree to our ";
 "privacyButton" = "**Privacy Policy**";
@@ -51,7 +51,7 @@
 "settingsSectionMapFooter" = "Increasing reach allows you to view more sundials at once";
 
 "settingsLocationHeading" = "Enable location access";
-"settingsLocationFooter" = "Píp can deliver more relevant data with location access enabled";
+"settingsLocationFooter" = "Peep can deliver more relevant data with location access enabled";
 
 "settingsSectionInformation" = "Information";
 "settingsFeedback" = "Write a review";
@@ -73,7 +73,7 @@
 
 // MARK: - Help
 
-"helpHeading1" = "✨ This is Píp ✨";
+"helpHeading1" = "✨ This is Peep ✨";
 "helpText1" = "...and this is how the home screen looks like. There's a lot you can do and learn from there...";
 "helpHeading2" = "Your region";
 "helpText2" = "At the top, you can see your region. Some day soon, there'll be a search bar 👀";
@@ -86,7 +86,7 @@
 "helpHeading6" = "Sundial properties";
 "helpText6" = "Here you can learn about what properties a sundial has and what they mean. Every one of those fields will show a sheet full of interesting information after clicking on them!";
 "helpHeading7" = "Gallery 🌉";
-"helpText7" = "To help you find them, Píp gives you the option to view photos of given sundial. You can click on each photo and enjoy it in separate gallery view!";
+"helpText7" = "To help you find them, Peep gives you the option to view photos of given sundial. You can click on each photo and enjoy it in separate gallery view!";
 "helpHeading8" = "Settings";
 "helpText8" = "In the top right corner, there's a button that'll take you to settings... (duh)";
 "helpHeading9" = "General";
@@ -192,8 +192,8 @@
 
 // MARK: - ???
 
-"peepTitle" = "Meet Píp";
-"peepText1" = "Píp is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger, but in reality, he's not all that big)";
+"peepTitle" = "Meet Peep";
+"peepText1" = "Peep is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger, but in reality, he's not all that big)";
 "peepText2" = "**peep** *verb* [I usually + adv/prep ] - to secretly look at something for a short time, usually through a hole";
-"peepText3" = "*I saw her peeping into the world of sundials using Píp*.";
-"peepText4" = "Rare footage of Píp's actual size";
+"peepText3" = "*I saw her peeping into the world of sundials using Peep*.";
+"peepText4" = "Rare footage of Peep's actual size";
