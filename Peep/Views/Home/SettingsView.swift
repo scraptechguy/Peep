@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @ObservedObject var data = FetchData()
+    @EnvironmentObject var data: FetchData
     @EnvironmentObject var model: ContentModel
     
     let screenSize: CGRect = UIScreen.main.bounds
@@ -537,7 +537,6 @@ struct SettingsView: View {
                                 .foregroundColor(.secondary)
                         }.frame(width: 35, height: 35)
                             .padding(.trailing)
-                            .padding(.top, 12)
                     })
                 }
                 

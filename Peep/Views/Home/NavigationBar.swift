@@ -76,7 +76,7 @@ struct NavigationBar: View {
                         Image(systemName: "gear")
                             .foregroundColor(Color("Font"))
                     }
-                }).sheet(isPresented: {$model.showingSettings}()) {SettingsView()}
+                })
             }
             
             if model.devLogOn {

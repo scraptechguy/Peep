@@ -154,6 +154,10 @@ struct HomeView: View {
                 .environmentObject(data)
                 .opacity(model.showingSearch ? 1 : 0)
                 .animation(.easeInOut(duration: 0.2), value: model.showingSearch)
+            
+            SettingsView()
+                .opacity(model.showingSettings ? 1 : 0)
+                .animation(.easeInOut(duration: 0.2), value: model.showingSettings)
         }.onChange(of: EquatableCoordinate(model.mapView.region.center)) { newCenter in
             // Cancel the previous task if it exists
             regionChangeWorkItem?.cancel()
