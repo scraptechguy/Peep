@@ -17,7 +17,7 @@ struct Map: UIViewRepresentable {
     // MARK: - makeUIView()
     
     func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
+        let mapView = model.mapView
         
         mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: Constants.annotationReusedId)
         mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "cluster")

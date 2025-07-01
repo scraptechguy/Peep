@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class FetchData: ObservableObject {
-    
+    @Published var useOfflineDatabase1 = false
     @Published var dataList = [DataModel]()
     @Published var finishedLoading = false
     
@@ -20,7 +20,7 @@ class FetchData: ObservableObject {
         URLSession.shared.dataTask(with: url) {(data, response, error) in
             do {
                 
-                if !ContentModel().useOfflineDatabase {
+                if !self.useOfflineDatabase1 {
                     
                     if let todoData = data {
                         

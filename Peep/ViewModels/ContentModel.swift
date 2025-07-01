@@ -11,7 +11,7 @@ import Combine
 import CoreLocation
 import MapKit
 
-class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
+class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, ObservableObject {
     // Define a Codable “hit” type for annotations
     struct AnnotationHit: Codable {
         let key: String
@@ -65,21 +65,24 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     // MARK: - Location
     
-    var locationManager = CLLocationManager()
+    @Published var mapView: MKMapView
+    @Published var locationManager: CLLocationManager
 
-    @Published var authorizationState: CLAuthorizationStatus
+    @Published var authorizationState: CLAuthorizationStatus = .notDetermined
     @Published var placemark: CLPlacemark?
     
-    override init() {
-        self.authorizationState = locationManager.authorizationStatus
-        
-        // Init method of NSObject
+    override init() {        
+        self.mapView = MKMapView()
+        self.locationManager = CLLocationManager()
+
         super.init()
         
-        // Make ContentModel the delegate of the location manager
-        locationManager.delegate = self
+        self.authorizationState = self.locationManager.authorizationStatus
+
+        self.mapView.delegate = self
+        self.locationManager.delegate = self
+
         loadCachedSearchableAddresses()
-        // …and your annotation cache
         loadCachedAnnotationHits()
     }
     
