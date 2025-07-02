@@ -192,9 +192,19 @@ struct SearchView: View {
                         }
                     }.padding(.vertical)
                     
-                    Text(place.stav ?? "")
-                        .foregroundColor(Color("Font"))
-                        .padding(.trailing)
+                    if place.stav == "Z" {
+                        
+                        Text(place.stav ?? "")
+                            .foregroundColor(.red)
+                            .padding(.trailing)
+                        
+                    } else {
+                        
+                        Text(place.stav ?? "")
+                            .foregroundColor(Color("Font"))
+                            .padding(.trailing)
+                        
+                    }
                 }
                 
                 

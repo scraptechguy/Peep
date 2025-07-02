@@ -16,7 +16,6 @@ struct HomeView: View {
     @State var selectedPlace: DataModel?
     @State private var zoomLevel: Double = 0.05
     @State private var mapCenter = CLLocationCoordinate2D()
-    
     @State private var centerPlacemark: CLPlacemark?
     @State private var regionChangeWorkItem: DispatchWorkItem?
     
@@ -176,8 +175,8 @@ struct HomeView: View {
             
             regionChangeWorkItem = workItem
             
-            // Execute after 2 seconds if not cancelled
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: workItem)
+            // Execute after 1 seconds if not cancelled
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: workItem)
         }
     }
 }

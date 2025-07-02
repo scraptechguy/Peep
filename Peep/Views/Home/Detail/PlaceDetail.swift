@@ -10,12 +10,16 @@ import SwiftUI
 struct PlaceDetail: View {
     
     @EnvironmentObject var model: ContentModel
-    
-    let minHeight: CGFloat = UIScreen.main.bounds.height / 10.2
-    let maxHeight: CGFloat = 600
+
+    @State private var dragOffset = CGSize.zero
+    @State private var prevDragTranslation = CGSize.zero
     
     var place: DataModel
     let screenSize: CGRect = UIScreen.main.bounds
+    
+    let minHeight: CGFloat = UIScreen.main.bounds.height / 10.2 // Collapsed
+    let midHeight: CGFloat = UIScreen.main.bounds.height * 0.45// Mid-height
+    let maxHeight: CGFloat = UIScreen.main.bounds.height * 0.85 // Fully expanded
     
     let detailGuide: LocalizedStringKey = "detailGuide"
     
@@ -435,7 +439,7 @@ struct PlaceDetail: View {
                         
                     }
                 }
-            }.frame(height: model.currentHeight)
+            }.frame(height: model.currentHeight - dragOffset.height)
                 .frame(maxWidth: .infinity)
                 .background {
                     Rectangle()
@@ -450,29 +454,25 @@ struct PlaceDetail: View {
     
     // MARK: - Drag gesture
     
-    @State private var prevDragTranslation = CGSize.zero
     var dragGesture: some Gesture {
-        
-        DragGesture(minimumDistance: 0, coordinateSpace: .global)
+        DragGesture(minimumDistance: 10, coordinateSpace: .global)
             .onChanged { value in
-                let dragAmount = value.translation.height - prevDragTranslation.height
-                
-                if model.currentHeight < maxHeight && model.currentHeight > minHeight {
-                    
-                    model.currentHeight -= dragAmount
-                    
-                } else {
-                    
-                    model.currentHeight -= dragAmount / 20
-                    
-                }
-                
-                prevDragTranslation = value.translation
+                dragOffset = value.translation
             }
             .onEnded { value in
-                prevDragTranslation = .zero
+                withAnimation(.spring()) {
+                    if dragOffset.height < 0 {
+                        // dragged up → pick the next greater height
+                        let nextUps = [midHeight, maxHeight]
+                        model.currentHeight = nextUps.first { $0 > model.currentHeight } ?? maxHeight
+                    } else {
+                        // dragged down → pick the next lower height
+                        let nextDowns = [midHeight, minHeight]
+                        model.currentHeight = nextDowns.first { $0 < model.currentHeight } ?? minHeight
+                    }
+                    dragOffset = .zero
+                }
             }
-        
     }
 }
 
