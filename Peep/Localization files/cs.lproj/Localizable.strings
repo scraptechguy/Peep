@@ -35,6 +35,9 @@
 "homeSearch" = "Vyhledat adresu";
 "homeSearchLoading" = "Načítání...";
 "homeSearchNoMatches" = "Zdá se, že na tomto místě nejsou\nžádné sluneční hodiny";
+"homeSearchGuideAddress" = "Adresa místa se slunečními hodinami";
+"homeSearchGuideDescription" = "Krátký popis, pokud je k dispozici";
+"homeSearchGuideState" = "Stav\nslunečních hodin";
 "annotationCalloutLabel" = "Kliknutím zobrazíte podrobnosti";
 
 // MARK: - Settings

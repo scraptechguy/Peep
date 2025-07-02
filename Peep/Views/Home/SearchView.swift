@@ -23,6 +23,9 @@ struct SearchView: View {
     let homeSearch: LocalizedStringKey = "homeSearch"
     let homeSearchLoading: LocalizedStringKey = "homeSearchLoading"
     let homeSearchNoMatches: LocalizedStringKey = "homeSearchNoMatches"
+    let homeSearchGuideAddress: LocalizedStringKey = "homeSearchGuideAddress"
+    let homeSearchGuideDescription: LocalizedStringKey = "homeSearchGuideDescription"
+    let homeSearchGuideState: LocalizedStringKey = "homeSearchGuideState"
     
     var filteredPlaces: [DataModel] {
         if searchText.isEmpty {
@@ -65,6 +68,40 @@ struct SearchView: View {
                     ScrollView {
                         LazyVStack(spacing: 0) {
                             Spacer().frame(height: screenSize.width / 7.5)
+                            
+                            if model.showSearchGuide < 5 {
+                                
+                                VStack(alignment: .leading, spacing: 0) {
+                                    HStack {
+                                        VStack {
+                                            Text(homeSearchGuideAddress)
+                                                .padding(.leading)
+                                                .foregroundStyle(.blue)
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                                .multilineTextAlignment(.leading)
+                                                
+                                            Text(homeSearchGuideDescription)
+                                                .font(.footnote)
+                                                .foregroundStyle(.blue)
+                                                .padding(.leading)
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                                .multilineTextAlignment(.leading)
+                                        }.padding(.vertical)
+         
+                                        Text(homeSearchGuideState)
+                                            .multilineTextAlignment(.center)
+                                            .font(.footnote)
+                                            .foregroundStyle(.blue)
+                                            .padding(.trailing)
+                                            
+                                    }
+                                    
+                                    Divider()
+                                }.onAppear {
+                                    model.showSearchGuide = model.showSearchGuide + 1
+                                }
+                                
+                            }
                             
                             ForEach(Array(filteredPlaces.enumerated()), id: \.offset) { index, place in
                                 placeRow(for: place)
