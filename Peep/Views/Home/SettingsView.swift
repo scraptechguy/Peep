@@ -49,474 +49,241 @@ struct SettingsView: View {
                 .ignoresSafeArea()
             
             NavigationView {
-                if #available(iOS 16.0, *) {
+                List {
                     
-                    List {
-                        
-                        // MARK: - General
-                        
-                        Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary)) {
-                            Toggle(isOn: $model.isLightMode) {
-                                Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
-                            }
-                            
-                            HStack {
-                                Label(settingsAppLanguage, systemImage: "character.book.closed")
-                                
-                                Spacer()
-                                
-                                Text(settingsAppLanguageValue)
-                                    .foregroundColor(.secondary)
-                                
-                                Image(systemName: "arrow.up.right")
-                                    .font(.footnote)
-                                    .foregroundColor(.gray)
-                            }.onTapGesture {
-                                if let url = URL(string: UIApplication.openSettingsURLString) {
-                                    if UIApplication.shared.canOpenURL(url) {
-                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                    }
-                                }
-                            }
-                        }.foregroundColor(.primary)
-                        
-                        Section(header: Text(settingsSectionMap).foregroundColor(.secondary), footer: Text(settingsSectionMapFooter).foregroundColor(.secondary)) {
-                            Toggle(isOn: $model.showCompass) {
-                                Label(settingsShowCompass, systemImage: model.showCompass ? "safari.fill" : "safari")
-                            }
-                            
-                            HStack {
-                                Label(settingsReach, systemImage: "globe.americas")
-                                    .padding(.trailing)
-                                
-                                Slider(value: $model.latlongDelta, in: 0.1...0.35)
-                            }
-                        }.foregroundColor(.primary)
-                        
-                        if model.authorizationState == .denied || model.authorizationState == .restricted {
-                            
-                            Section(footer: Text(String(localized: "settingsLocationFooter")).foregroundColor(.secondary)) {
-                                Text(String(localized: "settingsLocationHeading"))
-                                    .foregroundColor(Color.blue)
-                                    .onTapGesture {
-                                        if let url = URL(string: UIApplication.openSettingsURLString) {
-                                            if UIApplication.shared.canOpenURL(url) {
-                                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                            }
-                                        }
-                                    }
-                                    .listRowBackground(Color("ListRowBackground"))
-                            }
-                            
+                    // MARK: - General
+                    
+                    Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary)) {
+                        Toggle(isOn: $model.isLightMode) {
+                            Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
                         }
                         
-                        // MARK: - Information
+                        HStack {
+                            Label(settingsAppLanguage, systemImage: "character.book.closed")
+                            
+                            Spacer()
+                            
+                            Text(settingsAppLanguageValue)
+                                .foregroundColor(.secondary)
+                            
+                            Image(systemName: "arrow.up.right")
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                        }.onTapGesture {
+                            if let url = URL(string: UIApplication.openSettingsURLString) {
+                                if UIApplication.shared.canOpenURL(url) {
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                }
+                            }
+                        }
+                    }.foregroundColor(.primary)
+                    
+                    Section(header: Text(settingsSectionMap).foregroundColor(.secondary), footer: Text(settingsSectionMapFooter).foregroundColor(.secondary)) {
+                        Toggle(isOn: $model.showCompass) {
+                            Label(settingsShowCompass, systemImage: model.showCompass ? "safari.fill" : "safari")
+                        }
                         
-                        Section(header: Text(settingsSectionInformation).foregroundColor(.secondary), footer: Text(settingsSectionInformationFooter).foregroundColor(.secondary)) {
-                            NavigationLink(destination: HelpView().navigationBarTitle(settingsHelp)) {
-                                Label(settingsHelp, systemImage: "questionmark")
-                            }.listRowBackground(Color("ListRowBackground"))
+                        HStack {
+                            Label(settingsReach, systemImage: "globe.americas")
+                                .padding(.trailing)
                             
-                            Link(destination: URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/sh.php")!) {
-                                HStack {
-                                    Label(settingsWebsite, systemImage: "heart.text.square")
-                                        .foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "link")
-                                        .font(.footnote)
-                                        .foregroundColor(.secondary)
-                                }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://astro.troja.mff.cuni.cz/mira/sh/sh.php"
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
-                            }
-                            .listRowBackground(Color("ListRowBackground"))
-                            
-                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md")!) {
-                                HStack {
-                                    Label(settingsPrivacyPolicy, systemImage: "person.badge.key")
-                                        .foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "link")
-                                        .font(.footnote)
-                                        .foregroundColor(.secondary)
-                                }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md"
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
-                            }
-                            .listRowBackground(Color("ListRowBackground"))
-                            
-                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep")!) {
-                                HStack {
-                                    Label("GitHub", systemImage: "xserve")
-                                        .foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "link")
-                                        .font(.footnote)
-                                        .foregroundColor(.secondary)
-                                }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep"
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
-                            }
-                            .listRowBackground(Color("ListRowBackground"))
-                            
-                            Link(destination: URL(string: "https://apps.apple.com/us/app/p%C3%ADp/id6444575713")!) {
-                                HStack {
-                                    Label(settingsFeedback, systemImage: "leaf")
-                                        .foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                    
-                                    Text("App Store")
-                                        .foregroundColor(.secondary)
-                                    
-                                    Image(systemName: "arrow.up.right")
-                                        .font(.footnote)
-                                        .foregroundColor(.gray)
-
-                                }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://apps.apple.com/us/app/p%C3%ADp/id6444575713"
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
-                            }
-                            .listRowBackground(Color("ListRowBackground"))
-                        }.foregroundColor(.primary)
+                            Slider(value: $model.latlongDelta, in: 0.1...0.35)
+                        }
+                    }.foregroundColor(.primary)
+                    
+                    if model.authorizationState == .denied || model.authorizationState == .restricted {
                         
-                        // MARK: - Developer settings
-                        
-                        Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
-                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title=")!) {
-                                HStack {
-                                    Label(settingsBug, systemImage: "exclamationmark.triangle")
-                                    
-                                    Spacer()
-                                    
-                                    Text("GitHub")
-                                        .foregroundColor(.secondary)
-                                    
-                                    Image(systemName: "arrow.up.right")
-                                        .font(.footnote)
-                                        .foregroundColor(.gray)
+                        Section(footer: Text(String(localized: "settingsLocationFooter")).foregroundColor(.secondary)) {
+                            Text(String(localized: "settingsLocationHeading"))
+                                .foregroundColor(Color.blue)
+                                .onTapGesture {
+                                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                                        if UIApplication.shared.canOpenURL(url) {
+                                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                        }
+                                    }
                                 }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title="
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
-                            }
-                            .listRowBackground(Color("ListRowBackground"))
-                            
-                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=feature_request.md&title=")!) {
-                                HStack {
-                                    Label(settingsFeature, systemImage: "pencil.and.outline")
-                                    
-                                    Spacer()
-                                    
-                                    Text("GitHub")
-                                        .foregroundColor(.secondary)
-                                    
-                                    Image(systemName: "arrow.up.right")
-                                        .font(.footnote)
-                                        .foregroundColor(.gray)
-                                }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=feature_request.md&title="
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
-                            }
-                            .listRowBackground(Color("ListRowBackground"))
-                            
-                            Toggle(isOn: $model.useOfflineDatabase) {
-                                Label(settingsOfflineDB, systemImage: "wifi.slash")
-                            }.listRowBackground(Color("ListRowBackground"))
-                            
-                            Toggle(isOn: $model.devLogOn) {
-                                HStack(spacing: 0) {
-                                    Label("Dev log ", systemImage: "pc")
-                                    
-                                    Text("beta")
-                                        .foregroundColor(Color("Green"))
-                                }
-                            }.listRowBackground(Color("ListRowBackground"))
-                        }.foregroundColor(.primary)
-                        
-                        Section(footer: HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}.padding(.bottom, 60)) {
-                            Button(action: {
-                                
-                            }, label: {
-                                Label("\(String(localized: "settingsVersion")) 1.1.0", systemImage: "server.rack")
-                                    .background(
-                                        AnimatedBlobView()
-                                            .frame(width: 400, height: 414)
-                                            .offset(x: 300, y: 0)
-                                            .scaleEffect(1)
-                                    )
-                            }).simultaneousGesture(LongPressGesture(minimumDuration: 1.5).onEnded { _ in
-                                model.didLongPressed = true
-                            }).sheet(isPresented: {$model.didLongPressed}()) {PeepView()}
                                 .listRowBackground(Color("ListRowBackground"))
-                        }.foregroundColor(.secondary)
-                    }.listStyle(.insetGrouped)
-                        .navigationTitle(settingsHeading)
-                        .background {
-                            Color("Background")
-                                .ignoresSafeArea()
                         }
-                        .scrollContentBackground(.hidden)
-                    
-                } else {
-                    
-                    List {
                         
-                        // MARK: - General
+                    }
+                    
+                    // MARK: - Information
+                    
+                    Section(header: Text(settingsSectionInformation).foregroundColor(.secondary), footer: Text(settingsSectionInformationFooter).foregroundColor(.secondary)) {
+                        NavigationLink(destination: HelpView().navigationBarTitle(settingsHelp)) {
+                            Label(settingsHelp, systemImage: "questionmark")
+                        }.listRowBackground(Color("ListRowBackground"))
                         
-                        Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary)) {
-                            Toggle(isOn: $model.isLightMode) {
-                                Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
-                            }
-                            
+                        Link(destination: URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/sh.php")!) {
                             HStack {
-                                Label(settingsAppLanguage, systemImage: "character.book.closed")
+                                Label(settingsWebsite, systemImage: "heart.text.square")
+                                    .foregroundColor(.primary)
                                 
                                 Spacer()
                                 
-                                Text(settingsAppLanguageValue)
+                                Image(systemName: "link")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                            }
+                        }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button(action: {
+                                UIPasteboard.general.string = "https://astro.troja.mff.cuni.cz/mira/sh/sh.php"
+                            }, label: {
+                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                            })
+                        }
+                        .listRowBackground(Color("ListRowBackground"))
+                        
+                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md")!) {
+                            HStack {
+                                Label(settingsPrivacyPolicy, systemImage: "person.badge.key")
+                                    .foregroundColor(.primary)
+                                
+                                Spacer()
+                                
+                                Image(systemName: "link")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                            }
+                        }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button(action: {
+                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md"
+                            }, label: {
+                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                            })
+                        }
+                        .listRowBackground(Color("ListRowBackground"))
+                        
+                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep")!) {
+                            HStack {
+                                Label("GitHub", systemImage: "xserve")
+                                    .foregroundColor(.primary)
+                                
+                                Spacer()
+                                
+                                Image(systemName: "link")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                            }
+                        }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button(action: {
+                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep"
+                            }, label: {
+                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                            })
+                        }
+                        .listRowBackground(Color("ListRowBackground"))
+                        
+                        Link(destination: URL(string: "https://apps.apple.com/us/app/p%C3%ADp/id6444575713")!) {
+                            HStack {
+                                Label(settingsFeedback, systemImage: "leaf")
+                                    .foregroundColor(.primary)
+                                
+                                Spacer()
+                                
+                                Text("App Store")
                                     .foregroundColor(.secondary)
                                 
                                 Image(systemName: "arrow.up.right")
                                     .font(.footnote)
                                     .foregroundColor(.gray)
-                            }.onTapGesture {
-                                if let url = URL(string: UIApplication.openSettingsURLString) {
-                                    if UIApplication.shared.canOpenURL(url) {
-                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                    }
-                                }
-                            }
-                        }.foregroundColor(.primary)
-                        
-                        Section(header: Text(settingsSectionMap).foregroundColor(.secondary), footer: Text(settingsSectionMapFooter).foregroundColor(.secondary)) {
-                            Toggle(isOn: $model.showCompass) {
-                                Label(settingsShowCompass, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
-                            }
-                            
-                            HStack {
-                                Label(settingsReach, systemImage: "globe.americas")
-                                    .padding(.trailing)
-                                
-                                Slider(value: $model.latlongDelta, in: 0.1...0.35)
-                            }
-                        }.foregroundColor(.primary)
-                        
-                        if model.authorizationState == .denied || model.authorizationState == .restricted {
-                            
-                            Section(footer: Text(String(localized: "settingsLocationFooter")).foregroundColor(.secondary)) {
-                                Text(String(localized: "settingsLocationHeading"))
-                                    .foregroundColor(Color.blue)
-                                    .onTapGesture {
-                                        if let url = URL(string: UIApplication.openSettingsURLString) {
-                                            if UIApplication.shared.canOpenURL(url) {
-                                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                            }
-                                        }
-                                    }
-                            }
-                            
-                        }
-                        
-                        // MARK: - Information
-                        
-                        Section(header: Text(settingsSectionInformation).foregroundColor(.secondary), footer: Text(settingsSectionInformationFooter).foregroundColor(.secondary)) {
-                            NavigationLink(destination: HelpView().navigationBarTitle(settingsHelp)) {
-                                Label(settingsHelp, systemImage: "questionmark")
-                            }
-                            
-                            NavigationLink(destination: FeedbackView().navigationBarTitle(settingsFeedback)) {
-                                Label(settingsFeedback, systemImage: "leaf")
-                            }
-                            
-                            Link(destination: URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/sh.php")!) {
-                                HStack {
-                                    Label(settingsWebsite, systemImage: "heart.text.square")
-                                        .foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "link")
-                                        .font(.footnote)
-                                        .foregroundColor(.secondary)
-                                }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://astro.troja.mff.cuni.cz/mira/sh/sh.php"
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
-                            }
-                            
-                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md")!) {
-                                HStack {
-                                    Label(settingsPrivacyPolicy, systemImage: "person.badge.key")
-                                        .foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "link")
-                                        .font(.footnote)
-                                        .foregroundColor(.secondary)
-                                }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md"
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
-                            }
-                            
-                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep")!) {
-                                HStack {
-                                    Label("GitHub", systemImage: "xserve")
-                                        .foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "link")
-                                        .font(.footnote)
-                                        .foregroundColor(.secondary)
-                                }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep"
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
-                            }
-                            
-                            Link(destination: URL(string: "https://apps.apple.com/us/app/p%C3%ADp/id6444575713")!) {
-                                HStack {
-                                    Label(settingsFeedback, systemImage: "leaf")
-                                        .foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                    
-                                    Text("App Store")
-                                        .foregroundColor(.secondary)
-                                    
-                                    Image(systemName: "arrow.up.right")
-                                        .font(.footnote)
-                                        .foregroundColor(.gray)
 
-                                }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://apps.apple.com/us/app/p%C3%ADp/id6444575713"
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
                             }
-                        }.foregroundColor(.primary)
-                        
-                        // MARK: - Developer settings
-                        
-                        Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
-                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title=")!) {
-                                HStack {
-                                    Label(settingsBug, systemImage: "exclamationmark.triangle")
-                                    
-                                    Spacer()
-                                    
-                                    Text("GitHub")
-                                        .foregroundColor(.secondary)
-                                    
-                                    Image(systemName: "arrow.up.right")
-                                        .font(.footnote)
-                                        .foregroundColor(.gray)
-                                }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title="
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
-                            }
-                            
-                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=feature_request.md&title=")!) {
-                                HStack {
-                                    Label(settingsFeature, systemImage: "pencil.and.outline")
-                                    
-                                    Spacer()
-                                    
-                                    Text("GitHub")
-                                        .foregroundColor(.secondary)
-                                    
-                                    Image(systemName: "arrow.up.right")
-                                        .font(.footnote)
-                                        .foregroundColor(.gray)
-                                }
-                            }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button(action: {
-                                    UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=feature_request.md&title="
-                                }, label: {
-                                    Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
-                                })
-                            }
-                            
-                            Toggle(isOn: $model.useOfflineDatabase) {
-                                Label(settingsOfflineDB, systemImage: "wifi.slash")
-                            }
-                            
-                            Toggle(isOn: $model.devLogOn) {
-                                HStack(spacing: 0) {
-                                    Label("Dev log ", systemImage: "pc")
-                                    
-                                    Text("beta")
-                                        .foregroundColor(Color("Green"))
-                                }
-                            }
-                        }.foregroundColor(.primary)
-                        
-                        Section(footer: HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}) {
+                        }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                
+                                UIPasteboard.general.string = "https://apps.apple.com/us/app/p%C3%ADp/id6444575713"
                             }, label: {
-                                Label("\(String(localized: "settingsVersion")) 1.0.0", systemImage: "server.rack")
-                                    .background(
-                                        AnimatedBlobView()
-                                            .frame(width: 400, height: 414)
-                                            .offset(x: 300, y: 0)
-                                            .scaleEffect(1)
-                                    )
-                            }).simultaneousGesture(LongPressGesture(minimumDuration: 1.5).onEnded { _ in
-                                model.didLongPressed = true
-                            }).sheet(isPresented: {$model.didLongPressed}()) {PeepView()}
-                        }.foregroundColor(.secondary)
-                    }.listStyle(.insetGrouped)
-                        .navigationTitle(settingsHeading)
+                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                            })
+                        }
+                        .listRowBackground(Color("ListRowBackground"))
+                    }.foregroundColor(.primary)
                     
-                }
+                    // MARK: - Developer settings
+                    
+                    Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
+                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title=")!) {
+                            HStack {
+                                Label(settingsBug, systemImage: "exclamationmark.triangle")
+                                
+                                Spacer()
+                                
+                                Text("GitHub")
+                                    .foregroundColor(.secondary)
+                                
+                                Image(systemName: "arrow.up.right")
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
+                            }
+                        }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button(action: {
+                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title="
+                            }, label: {
+                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                            })
+                        }
+                        .listRowBackground(Color("ListRowBackground"))
+                        
+                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=feature_request.md&title=")!) {
+                            HStack {
+                                Label(settingsFeature, systemImage: "pencil.and.outline")
+                                
+                                Spacer()
+                                
+                                Text("GitHub")
+                                    .foregroundColor(.secondary)
+                                
+                                Image(systemName: "arrow.up.right")
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
+                            }
+                        }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button(action: {
+                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=feature_request.md&title="
+                            }, label: {
+                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                            })
+                        }
+                        .listRowBackground(Color("ListRowBackground"))
+                        
+                        Toggle(isOn: $model.useOfflineDatabase) {
+                            Label(settingsOfflineDB, systemImage: "wifi.slash")
+                        }.listRowBackground(Color("ListRowBackground"))
+                        
+                        Toggle(isOn: $model.devLogOn) {
+                            HStack(spacing: 0) {
+                                Label("Dev log ", systemImage: "pc")
+                                
+                                Text("beta")
+                                    .foregroundColor(Color("Green"))
+                            }
+                        }.listRowBackground(Color("ListRowBackground"))
+                    }.foregroundColor(.primary)
+                    
+                    Section(footer: HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}.padding(.bottom, 60)) {
+                        Button(action: {
+                            
+                        }, label: {
+                            Label("\(String(localized: "settingsVersion")) 1.1.0", systemImage: "server.rack")
+                                .background(
+                                    AnimatedBlobView()
+                                        .frame(width: 400, height: 414)
+                                        .offset(x: 300, y: 0)
+                                        .scaleEffect(1)
+                                )
+                        }).simultaneousGesture(LongPressGesture(minimumDuration: 1.5).onEnded { _ in
+                            model.didLongPressed = true
+                        }).sheet(isPresented: {$model.didLongPressed}()) {PeepView()}
+                            .listRowBackground(Color("ListRowBackground"))
+                    }.foregroundColor(.secondary)
+                }.listStyle(.insetGrouped)
+                    .navigationTitle(settingsHeading)
+                    .background {
+                        Color("Background")
+                            .ignoresSafeArea()
+                    }
+                    .scrollContentBackground(.hidden)
             }
             
             VStack {
