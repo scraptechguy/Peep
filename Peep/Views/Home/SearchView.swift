@@ -46,23 +46,16 @@ struct SearchView: View {
         }
 
         // check if we have a user location, sort by distance
-        guard let userLoc = centerPlacemark?.location else {
+        guard let userLoc = model.mapView.userLocation.location else {
             return matches
         }
 
         return matches.sorted { a, b in
-            // build CLLocation for each place (or default to a very large distance)
-            let aLoc = CLLocation(
-                latitude: Double(a.zsirka ?? "") ?? 0,
-                longitude: Double(a.zdelka ?? "") ?? 0
-            )
-            let bLoc = CLLocation(
-                latitude: Double(b.zsirka ?? "") ?? 0,
-                longitude: Double(b.zdelka ?? "") ?? 0
-            )
+            // build CLLocation for each place
+            let aLoc = CLLocation(latitude: Double(a.zsirka ?? "") ?? 0, longitude: Double(a.zdelka ?? "") ?? 0)
+            let bLoc = CLLocation(latitude: Double(b.zsirka ?? "") ?? 0, longitude: Double(b.zdelka ?? "") ?? 0)
 
-            return userLoc.distance(from: aLoc)
-                 < userLoc.distance(from: bLoc)
+            return userLoc.distance(from: aLoc) < userLoc.distance(from: bLoc)
         }
     }
     
@@ -235,7 +228,7 @@ struct SearchView: View {
                         }
                     }.padding(.vertical)
                     
-                    if let userLocation = centerPlacemark?.location, let lat = Double(place.zsirka ?? ""), let long = Double(place.zdelka ?? "") {
+                    if let userLocation = model.mapView.userLocation.location, let lat = Double(place.zsirka ?? ""), let long = Double(place.zdelka ?? "") {
                         let placeLoc = CLLocation(latitude: lat, longitude: long)
                         let km = userLocation.distance(from: placeLoc) / 1_000
                         
