@@ -127,15 +127,10 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
             
             // Get the placemark of the user
             let geoCoder = CLGeocoder()
-            
-            geoCoder.reverseGeocodeLocation(userLocation!) { (placemarks, error) in
-                
-                // Check for errors
-                if error == nil && placemarks != nil {
-                    
-                    self.placemark = placemarks?.first
-                    
-                }
+            let csLocale = Locale(identifier: "cs-CZ")
+            geoCoder.reverseGeocodeLocation(userLocation!, preferredLocale: csLocale) { placemarks, error in
+                guard let pm = placemarks?.first, error == nil else { return }
+                self.placemark = pm
             }
             
         }
