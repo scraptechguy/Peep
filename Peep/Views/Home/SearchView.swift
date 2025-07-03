@@ -28,14 +28,41 @@ struct SearchView: View {
     let stateZ: LocalizedStringKey = "stateZ"
     
     var filteredPlaces: [DataModel] {
+        let matches: [DataModel]
+        
         if searchText.isEmpty {
-            return data.dataList.filter { place in
-                place.adresa?.localizedCaseInsensitiveContains(centerPlacemark?.locality ?? "") ?? false
+            
+            let region = centerPlacemark?.locality ?? ""
+            matches = data.dataList.filter {
+                $0.adresa?.localizedCaseInsensitiveContains(region) ?? false
             }
+            
         } else {
-            return data.dataList.filter { place in
-                place.adresa?.localizedCaseInsensitiveContains(searchText) ?? false
+            
+            matches = data.dataList.filter {
+                $0.adresa?.localizedCaseInsensitiveContains(searchText) ?? false
             }
+            
+        }
+
+        // check if we have a user location, sort by distance
+        guard let userLoc = centerPlacemark?.location else {
+            return matches
+        }
+
+        return matches.sorted { a, b in
+            // build CLLocation for each place (or default to a very large distance)
+            let aLoc = CLLocation(
+                latitude: Double(a.zsirka ?? "") ?? 0,
+                longitude: Double(a.zdelka ?? "") ?? 0
+            )
+            let bLoc = CLLocation(
+                latitude: Double(b.zsirka ?? "") ?? 0,
+                longitude: Double(b.zdelka ?? "") ?? 0
+            )
+
+            return userLoc.distance(from: aLoc)
+                 < userLoc.distance(from: bLoc)
         }
     }
     
