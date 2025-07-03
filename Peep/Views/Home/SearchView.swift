@@ -25,7 +25,7 @@ struct SearchView: View {
     let homeSearchNoMatches: LocalizedStringKey = "homeSearchNoMatches"
     let homeSearchGuideAddress: LocalizedStringKey = "homeSearchGuideAddress"
     let homeSearchGuideDescription: LocalizedStringKey = "homeSearchGuideDescription"
-    let homeSearchGuideState: LocalizedStringKey = "homeSearchGuideState"
+    let stateZ: LocalizedStringKey = "stateZ"
     
     var filteredPlaces: [DataModel] {
         if searchText.isEmpty {
@@ -68,40 +68,6 @@ struct SearchView: View {
                     ScrollView {
                         LazyVStack(spacing: 0) {
                             Spacer().frame(height: screenSize.width / 7.5)
-                            
-                            if model.showSearchGuide < 5 {
-                                
-                                VStack(alignment: .leading, spacing: 0) {
-                                    HStack {
-                                        VStack {
-                                            Text(homeSearchGuideAddress)
-                                                .padding(.leading)
-                                                .foregroundStyle(.blue)
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                                .multilineTextAlignment(.leading)
-                                                
-                                            Text(homeSearchGuideDescription)
-                                                .font(.footnote)
-                                                .foregroundStyle(.blue)
-                                                .padding(.leading)
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                                .multilineTextAlignment(.leading)
-                                        }.padding(.vertical)
-         
-                                        Text(homeSearchGuideState)
-                                            .multilineTextAlignment(.center)
-                                            .font(.footnote)
-                                            .foregroundStyle(.blue)
-                                            .padding(.trailing)
-                                            
-                                    }
-                                    
-                                    Divider()
-                                }.onAppear {
-                                    model.showSearchGuide = model.showSearchGuide + 1
-                                }
-                                
-                            }
                             
                             ForEach(Array(filteredPlaces.enumerated()), id: \.offset) { index, place in
                                 placeRow(for: place)
@@ -219,28 +185,36 @@ struct SearchView: View {
                         
                         if place.umisteni != "" {
                             
-                            Text(place.umisteni ?? "")
-                                .foregroundColor(.secondary)
-                                .font(.footnote)
-                                .padding(.horizontal)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .multilineTextAlignment(.leading)
+                            if place.stav == "Z" {
+                                
+                                Text(stateZ)
+                                    .foregroundColor(.red)
+                                    .font(.footnote)
+                                    .padding(.horizontal)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .multilineTextAlignment(.leading)
+                                
+                            } else {
+                                
+                                Text(place.umisteni ?? "")
+                                    .foregroundColor(.secondary)
+                                    .font(.footnote)
+                                    .padding(.horizontal)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .multilineTextAlignment(.leading)
+                                
+                            }
                             
                         }
                     }.padding(.vertical)
                     
-                    if place.stav == "Z" {
+                    if let userLocation = centerPlacemark?.location, let lat = Double(place.zsirka ?? ""), let long = Double(place.zdelka ?? "") {
+                        let placeLoc = CLLocation(latitude: lat, longitude: long)
+                        let km = userLocation.distance(from: placeLoc) / 1_000
                         
-                        Text(place.stav ?? "")
-                            .foregroundColor(.red)
+                        Text(String(format: "%.1f km", km))
+                            .foregroundColor(.secondary)
                             .padding(.trailing)
-                        
-                    } else {
-                        
-                        Text(place.stav ?? "")
-                            .foregroundColor(Color("Font"))
-                            .padding(.trailing)
-                        
                     }
                 }
                 

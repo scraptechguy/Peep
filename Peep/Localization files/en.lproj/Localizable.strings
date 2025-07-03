@@ -35,9 +35,6 @@
 "homeSearch" = "Search for an address";
 "homeSearchLoading" = "Loading...";
 "homeSearchNoMatches" = "There seems to be no sundials\nat this location";
-"homeSearchGuideAddress" = "Address of a place with a sundial";
-"homeSearchGuideDescription" = "Short description of the place if available";
-"homeSearchGuideState" = "State\nof the sundial";
 "annotationCalloutLabel" = "Tap for detail";
 
 // MARK: - Settings

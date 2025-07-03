@@ -23,7 +23,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     // MARK: - State vars
     
     @AppStorage("didShowOnboarding") var didShowOnboarding = false
-    @AppStorage("showSearchGuide") var showSearchGuide = 0
     @AppStorage("devLogOn") var devLogOn = false
     @AppStorage("isLightMode") var isLightMode = false
     @AppStorage("showCompass") var showCompass: Bool = false
