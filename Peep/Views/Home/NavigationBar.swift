@@ -42,7 +42,7 @@ struct NavigationBar: View {
                             
                         } else {
                             
-                            Text(centerPlacemark?.locality ?? String(localized: "noRegion"))
+                            Text(centerPlacemark == nil ? model.placemark?.locality ?? String(localized: "noRegion") : centerPlacemark?.locality ?? String(localized: "noRegion"))
                                 .foregroundColor(Color("Font"))
                                 .lineLimit(1)
                             
