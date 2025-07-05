@@ -15,6 +15,7 @@ struct SearchView: View {
     @Binding var centerPlacemark: CLPlacemark?
     
     @State private var searchText: String = ""
+    @State private var filteredResults: [DataModel] = [] 
     
     @FocusState private var isFocused: Bool
     
@@ -28,33 +29,32 @@ struct SearchView: View {
     let stateZ: LocalizedStringKey = "stateZ"
     
     var filteredPlaces: [DataModel] {
-        let matches: [DataModel]
-        
-        if searchText.isEmpty {
-            
-            let region = centerPlacemark?.locality ?? ""
-            matches = data.dataList.filter {
-                $0.adresa?.localizedCaseInsensitiveContains(region) ?? false
-            }
-            
-        } else {
-            
-            matches = data.dataList.filter {
-                $0.adresa?.localizedCaseInsensitiveContains(searchText) ?? false
-            }
-            
-        }
+        // Grab the list of places
+        let source = model.searchablePlaces
 
-        // check if we have a user location, sort by distance
-        guard let userLoc = model.mapView.userLocation.location else {
-            return matches
-        }
+        // Normalize the user query
+        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        // Do your “empty search = region” vs “typed search” filter
+        let matches: [DataModel] = {
+            if query.isEmpty {
+                
+                let region = centerPlacemark?.locality ?? ""
+                return source.filter { $0.adresa?.localizedCaseInsensitiveContains(region) ?? false }
+                
+            } else {
+                
+                return source.filter { $0.adresa?.localizedCaseInsensitiveContains(query) ?? false }
+            }
+        }()
+
+        // If we have a user location, sort by distance, otherwise return the raw matches
+        guard let userLoc = model.mapView.userLocation.location else { return matches }
 
         return matches.sorted { a, b in
-            // build CLLocation for each place
             let aLoc = CLLocation(latitude: Double(a.zsirka ?? "") ?? 0, longitude: Double(a.zdelka ?? "") ?? 0)
             let bLoc = CLLocation(latitude: Double(b.zsirka ?? "") ?? 0, longitude: Double(b.zdelka ?? "") ?? 0)
-
+            
             return userLoc.distance(from: aLoc) < userLoc.distance(from: bLoc)
         }
     }
@@ -65,7 +65,7 @@ struct SearchView: View {
                 .ignoresSafeArea()
             
             ZStack {
-                if model.searchableAddresses.isEmpty {
+                if model.searchablePlaces.isEmpty {
                     
                     ProgressView(homeSearchLoading)
                         .padding(.top)
@@ -129,13 +129,15 @@ struct SearchView: View {
                 }
             }
         }.onAppear {
-            if data.dataList.count > 0 {
-                model.loadSearchableAddresses(from: data)
+            model.loadCachedSearchablePlaces()
+            
+            if !data.dataList.isEmpty {
+                model.loadSearchablePlaces(from: data)
             }
         }
         .onChange(of: data.dataList.count) { newValue in
             if newValue > 0 {
-                model.loadSearchableAddresses(from: data)
+                model.loadSearchablePlaces(from: data)
             }
         }
         .onChange(of: model.searchKeyboardIsFocused) { newValue in
@@ -155,6 +157,40 @@ struct SearchView: View {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 searchText = ""
+            }
+        }
+    }
+    
+    // Computes your “filteredPlaces” logic off the main thread,
+    // then dispatches the final array back onto the main queue.
+    private func computeFilteredResults() {
+        // capture current inputs
+        let allPlaces = data.dataList
+        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let regionName = centerPlacemark?.locality ?? ""
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            // Filter by region or searchText:
+            let matches: [DataModel] = allPlaces.filter {
+                let address = $0.adresa ?? ""
+                return query.isEmpty ? address.localizedCaseInsensitiveContains(regionName) : address.localizedCaseInsensitiveContains(query)
+            }
+
+            // Sort by distance (if we have the user’s location):
+            let sorted: [DataModel]
+            if let userLoc = model.mapView.userLocation.location {
+                sorted = matches.sorted { a, b in
+                    let aLoc = CLLocation(latitude: Double(a.zsirka ?? "") ?? 0, longitude: Double(a.zdelka ?? "") ?? 0)
+                    let bLoc = CLLocation(latitude: Double(b.zsirka ?? "") ?? 0, longitude: Double(b.zdelka ?? "") ?? 0)
+                    return userLoc.distance(from: aLoc) < userLoc.distance(from: bLoc)
+                }
+            } else {
+                sorted = matches
+            }
+
+            // Back to the main thread to update your @State:
+            DispatchQueue.main.async {
+                self.filteredResults = sorted
             }
         }
     }

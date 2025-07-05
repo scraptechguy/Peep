@@ -39,21 +39,26 @@ struct LaunchView: View {
         }
         // MARK: Load annotations and searchable addresses
         .onAppear {
-            if data.dataList.count > 0 {
-                model.loadSearchableAddresses(from: data)
+            if !data.dataList.isEmpty {
+                
+                model.loadSearchablePlaces(from: data)
                 model.persistAnnotationHits(from: data.dataList)
+                
             }
         }
         .onChange(of: data.dataList.count) { newCount in
             if newCount > 0 {
-              model.loadSearchableAddresses(from: data)
-              model.persistAnnotationHits(from: data.dataList)
+                
+                model.loadSearchablePlaces(from: data)
+                model.persistAnnotationHits(from: data.dataList)
+                
             }
         }
         .onReceive(data.$dataList) { list in
             guard !list.isEmpty else { return }
+            
             // …rebuild both caches from the freshly fetched list
-            model.loadSearchableAddresses(from: data)
+            model.loadSearchablePlaces(from: data)
             model.persistAnnotationHits(from: list)
         }
     }

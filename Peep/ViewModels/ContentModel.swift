@@ -29,7 +29,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     @AppStorage("useOfflineDatabase") var useOfflineDatabase = false
     @AppStorage("latlogDelta") var latlongDelta: Double = 0.15
     @AppStorage("cachedAnnotationHits") private var _cachedAnnotationData: Data?
-    @AppStorage("cachedSearchableAddresses") private var _cachedAddressesData: Data?
     
     @Published var cachedAnnotationHits: [AnnotationHit] = []
     
@@ -61,7 +60,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     @Published var compassOffset: CGFloat = 0
     @Published var locationButtonSize: CGFloat = 0
     
-    @Published var searchableAddresses: [String] = []
+    @Published var searchablePlaces: [DataModel] = []
     
     // MARK: - Location
     
@@ -84,7 +83,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
         self.mapView.delegate = self
         self.locationManager.delegate = self
 
-        loadCachedSearchableAddresses()
+        loadCachedSearchablePlaces()
         loadCachedAnnotationHits()
     }
     
@@ -136,7 +135,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
         
     }
     
-    // MARK: – Annotation and Address Caching
+    // MARK: – Annotation and places caching
 
     // Decode last-saved annotation hits
     func loadCachedAnnotationHits() {
@@ -169,28 +168,76 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
         }
     }
     
-    // Load the last-saved addresses from disk into memory
-    func loadCachedSearchableAddresses() {
-        guard let data = _cachedAddressesData else { return }
-        if let addresses = try? JSONDecoder().decode([String].self, from: data) {
-            searchableAddresses = addresses
+    // Build (and create) cache folder at runtime
+    private lazy var cacheDir: URL = {
+        let fm = FileManager.default
+
+        // a) Get the system Caches directory for your sandbox:
+        let caches = fm.urls(for: .cachesDirectory, in: .userDomainMask).first!
+
+        // b) Append your own folder name:
+        let dir = caches.appendingPathComponent("PeepCache", isDirectory: true)
+
+        // c) Create it if it doesn’t exist:
+        if !fm.fileExists(atPath: dir.path) {
+            
+            do {
+                try fm.createDirectory(at: dir, withIntermediateDirectories: true, attributes: nil)
+                print("Created PeepCache at:", dir.path)
+            } catch {
+                print("Failed to create PeepCache:", error)
+            }
+            
+        }
+
+        return dir
+    }()
+    
+    // File URL in Application Support
+    private var cacheURL: URL {
+        cacheDir.appendingPathComponent("searchablePlaces.json")
+    }
+    
+    // Load cached DataModels from disk (if any)
+    func loadCachedSearchablePlaces() {
+        let path = cacheURL.path
+        guard FileManager.default.fileExists(atPath: path) else {
+            // No cache file yet, that’s fine on first launch
+            print("No cache file at \(path).")
+            return
+        }
+        
+        do {
+            let raw = try Data(contentsOf: cacheURL)
+            searchablePlaces = try JSONDecoder().decode([DataModel].self, from: raw)
+            print("Loaded \(searchablePlaces.count) places from cache")
+        }
+        catch {
+            // If file doesn’t exist or decode fails, just start empty
+            print("No cache to load or failed decode:", error)
         }
     }
 
-    // Save current in-memory addresses out to disk
-    func persistSearchableAddresses() {
-        if let data = try? JSONEncoder().encode(searchableAddresses) {
-            _cachedAddressesData = data
-        }
-    }
-
-    // Populate from your FetchData and then persist
-    func loadSearchableAddresses(from data: FetchData) {
+    // Persist current DataModels out to disk
+    func persistSearchablePlaces() {
         DispatchQueue.global(qos: .background).async {
-            let addresses = data.dataList.compactMap { $0.adresa }
+            do {
+                let data = try JSONEncoder().encode(self.searchablePlaces)
+                try data.write(to: self.cacheURL, options: .atomic)
+                print("Persisted \(self.searchablePlaces.count) places to cache")
+            } catch {
+                print("Failed to write cache:", error)
+            }
+        }
+    }
+
+    // Populate from your FetchData, then persist
+    func loadSearchablePlaces(from fetcher: FetchData) {
+        DispatchQueue.global(qos: .background).async {
+            let places = fetcher.dataList   // grab full models
             DispatchQueue.main.async {
-                self.searchableAddresses = addresses
-                self.persistSearchableAddresses()
+                self.searchablePlaces = places
+                self.persistSearchablePlaces()
             }
         }
     }
