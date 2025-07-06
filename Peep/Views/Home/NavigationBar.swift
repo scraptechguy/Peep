@@ -79,9 +79,19 @@ struct NavigationBar: View {
                 })
             }
             
-            if model.devLogOn {
-                DevLog()
-            }
+            Button(action: {
+                model.searchCurrentMapArea()
+            }, label: {
+                Text("Search this area")
+                    .bold()
+                    .foregroundColor(Color("Font"))
+                    .frame(width: screenSize.width / 3, height: screenSize.height / 25)
+                    .padding(.horizontal)
+                    .background(.thinMaterial)
+                    .mask(
+                        RoundedRectangle(cornerRadius: 22, style: .continuous)
+                    )
+            })
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }
