@@ -70,8 +70,6 @@ struct PlaceDetail: View {
                                         model.annotationSelected = false
                                         model.currentHeight = UIScreen.main.bounds.height / 10.2
                                     }
-                                    
-                                    model.devLog = String(localized: "annotationDeselected")
                                 }, label: {
                                     ZStack {
                                         Circle()

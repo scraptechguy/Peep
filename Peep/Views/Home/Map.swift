@@ -316,7 +316,6 @@ struct Map: UIViewRepresentable {
                     
                     map.selectedPlace = place
                     model.annotationSelected = true
-                    model.devLog = String(localized: "annotationSelected")
                     model.previousSpan = MKCoordinateSpan.init(latitudeDelta: mapView.region.span.latitudeDelta, longitudeDelta: mapView.region.span.longitudeDelta)
                     model.previousCoordinate = CLLocationCoordinate2D.init(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude)
                     

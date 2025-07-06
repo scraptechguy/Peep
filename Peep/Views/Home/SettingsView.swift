@@ -250,15 +250,6 @@ struct SettingsView: View {
                         Toggle(isOn: $model.useOfflineDatabase) {
                             Label(settingsOfflineDB, systemImage: "wifi.slash")
                         }.listRowBackground(Color("ListRowBackground"))
-                        
-                        Toggle(isOn: $model.devLogOn) {
-                            HStack(spacing: 0) {
-                                Label("Dev log ", systemImage: "pc")
-                                
-                                Text("beta")
-                                    .foregroundColor(Color("Green"))
-                            }
-                        }.listRowBackground(Color("ListRowBackground"))
                     }.foregroundColor(.primary)
                     
                     Section(footer: HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}.padding(.bottom, 60)) {

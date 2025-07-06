@@ -49,8 +49,6 @@ struct HomeView: View {
                                             model.goToLocation = true
                                             model.isOnLocation = true
                                             
-                                            model.devLog = String(localized: "userLocation")
-                                            
                                         }
                                     }
                                     

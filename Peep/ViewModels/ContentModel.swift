@@ -23,7 +23,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     // MARK: - State vars
     
     @AppStorage("didShowOnboarding") var didShowOnboarding = false
-    @AppStorage("devLogOn") var devLogOn = false
     @AppStorage("isLightMode") var isLightMode = false
     @AppStorage("showCompass") var showCompass: Bool = false
     @AppStorage("useOfflineDatabase") var useOfflineDatabase = false
@@ -33,7 +32,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     @Published var cachedAnnotationHits: [AnnotationHit] = []
     
     @Published var finishedLoading = false
-    @Published var devLog = "Launching the app"
     @Published var didLongPressed = false
     
     @Published var currentHeight: CGFloat = UIScreen.main.bounds.height / 10.2
