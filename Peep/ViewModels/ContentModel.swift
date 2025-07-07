@@ -27,7 +27,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     @AppStorage("showCompass") var showCompass: Bool = false
     @AppStorage("useOfflineDatabase") var useOfflineDatabase = false
     @AppStorage("latlogDelta") var latlongDelta: Double = 0.15
-    @AppStorage("cachedAnnotationHits") private var _cachedAnnotationData: Data?
     
     @Published var cachedAnnotationHits: [AnnotationHit] = []
     
@@ -83,7 +82,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
         self.locationManager.delegate = self
         
         loadCachedSearchablePlaces()
-        loadCachedAnnotationHits()
     }
     
     // Request permission
@@ -134,38 +132,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
         
     }
     
-    // MARK: – Annotation and places caching
-    
-    // Decode last-saved annotation hits
-    func loadCachedAnnotationHits() {
-        guard let data = _cachedAnnotationData else { return }
-        if let hits = try? JSONDecoder().decode([AnnotationHit].self, from: data) {
-            self.cachedAnnotationHits = hits
-        }
-    }
-    
-    // Build fresh hits from your master list and persist
-    func persistAnnotationHits(from dataList: [DataModel]) {
-        DispatchQueue.global(qos: .background).async {
-            let hits = dataList.compactMap { place -> AnnotationHit? in
-                guard
-                    let latS = place.zsirka, let lonS = place.zdelka,
-                    let lat = Double(latS),       let lon = Double(lonS)
-                else { return nil }
-                let key = place.adresa ?? UUID().uuidString
-                return AnnotationHit(key: key,
-                                     latitude: lat,
-                                     longitude: lon,
-                                     title:  place.adresa)
-            }
-            if let blob = try? JSONEncoder().encode(hits) {
-                DispatchQueue.main.async {
-                    self._cachedAnnotationData = blob
-                    self.cachedAnnotationHits = hits
-                }
-            }
-        }
-    }
+    // MARK: – Cache places
     
     // Build (and create) cache folder at runtime
     private lazy var cacheDir: URL = {
@@ -250,7 +217,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
         let latSpan = region.span.latitudeDelta  / 2
         let lonSpan = region.span.longitudeDelta / 2
         
-        // filter your dataList by the region’s bounding box
+        // filter searchablePlaces by the region’s bounding box
         let hits: [MKPointAnnotation] = self.searchablePlaces.compactMap { place in
             guard let latS = place.zsirka, let lonS = place.zdelka, let lat  = Double(latS), let lon  = Double(lonS) else { return nil }
             guard abs(lat - region.center.latitude)  <= latSpan, abs(lon - region.center.longitude) <= lonSpan else { return nil }

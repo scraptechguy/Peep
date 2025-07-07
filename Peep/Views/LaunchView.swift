@@ -42,7 +42,6 @@ struct LaunchView: View {
             if !data.dataList.isEmpty {
                 
                 model.loadSearchablePlaces(from: data)
-                model.persistAnnotationHits(from: data.dataList)
                 
             }
         }
@@ -50,7 +49,6 @@ struct LaunchView: View {
             if newCount > 0 {
                 
                 model.loadSearchablePlaces(from: data)
-                model.persistAnnotationHits(from: data.dataList)
                 
             }
         }
@@ -59,7 +57,6 @@ struct LaunchView: View {
             
             // …rebuild both caches from the freshly fetched list
             model.loadSearchablePlaces(from: data)
-            model.persistAnnotationHits(from: list)
         }
     }
 }

@@ -198,33 +198,38 @@ struct SearchView: View {
     @ViewBuilder
     func placeRow(for place: DataModel) -> some View {
         Button(action: {
-            // hide search view and keyboard
+            // Hide search view and keyboard
             model.searchKeyboardIsFocused = false
             model.showingSearch = false
             isFocused = false
             
-            // move the map to the place location
+            // Move the map to the place location
             if let latStr = place.zsirka, let lonStr = place.zdelka, let lat = Double(latStr), let lon = Double(lonStr) {
                 
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
                 
                 DispatchQueue.main.async {
-                    // Set the map region
+                    // Center the map
                     model.mapView.setRegion(region, animated: true)
-
-                    // Try selecting the annotation using the Coordinator's cache
-                    if let coordinator = model.mapView.delegate as? Map.Coordinator {
-                        let key = place.adresa ?? ""
-                        if let annotation = coordinator.annotationCache[key] {
-                            if !model.mapView.annotations.contains(where: { $0 === annotation }) {
-                                model.mapView.addAnnotation(annotation)
-                            }
-
-                            model.mapView.selectAnnotation(annotation, animated: true)
-                        } else {
-                            print("No cached annotation for key: \(key)")
-                        }
+                    
+                    // Look for an existing annotation with this title
+                    let existing = model.mapView.annotations.compactMap { $0 as? MKPointAnnotation }.first { $0.title == place.adresa }
+                    
+                    if let annotation = existing {
+                        
+                        // Found one, just select it
+                        model.mapView.selectAnnotation(annotation, animated: true)
+                        
+                    } else {
+                        
+                        // None found — create, add, and select
+                        let a = MKPointAnnotation()
+                        a.coordinate = coordinate
+                        a.title = place.adresa
+                        model.mapView.addAnnotation(a)
+                        model.mapView.selectAnnotation(a, animated: true)
+                        
                     }
                 }
                 

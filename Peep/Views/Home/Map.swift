@@ -19,8 +19,8 @@ struct Map: UIViewRepresentable {
     func makeUIView(context: Context) -> MKMapView {
         let mapView = model.mapView
         
+        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
         mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: Constants.annotationReusedId)
-        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "cluster")
         mapView.delegate = context.coordinator
         
         mapView.showsCompass = false // Required to use MKCompassButton manually
@@ -189,23 +189,11 @@ struct Map: UIViewRepresentable {
         var compassButton: MKCompassButton?
         
         private var regionChangeWorkItem: DispatchWorkItem?
-        public var annotationCache = [String: MKPointAnnotation]()
         
         init(model: ContentModel, map: Map) {
             
             self.model = model
             self.map = map
-            
-            // Build a fresh MKPointAnnotation for every hit
-            var cache = [String: MKPointAnnotation]()
-            for hit in model.cachedAnnotationHits {
-              let a = MKPointAnnotation()
-              a.coordinate = CLLocationCoordinate2D(latitude: hit.latitude,
-                                                    longitude: hit.longitude)
-              a.title = hit.title
-              cache[hit.key] = a
-            }
-            self.annotationCache = cache
             
         }
         
@@ -214,23 +202,19 @@ struct Map: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             
             // Don't treat user as an annotation
-            if annotation is MKUserLocation {
-                
-                return nil
-                
-            }
+            if annotation is MKUserLocation { return nil }
             
             if let cluster = annotation as? MKClusterAnnotation {
+                let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier, for: cluster) as! MKMarkerAnnotationView
+                view.markerTintColor = .systemRed
+                view.glyphText = "\(cluster.memberAnnotations.count)"
                 
-                // dequeue the “cluster” view we registered above
-                let clusterView = mapView.dequeueReusableAnnotationView(withIdentifier: "cluster", for: cluster) as! MKMarkerAnnotationView
-                clusterView.markerTintColor = .systemRed
-                clusterView.glyphText = "\(cluster.memberAnnotations.count)"
-                
-                return clusterView
+                return view
             }
-            
+
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationReusedId, for: annotation) as! MKMarkerAnnotationView
+
+            // *** Changed: enable native clustering by assigning an identifier
             annotationView.clusteringIdentifier = "place"
             annotationView.canShowCallout = true
             
