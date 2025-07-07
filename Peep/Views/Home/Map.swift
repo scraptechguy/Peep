@@ -235,6 +235,29 @@ struct Map: UIViewRepresentable {
         // MARK: - mapView(regionDidChangeAnimated:)
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+            if model.shouldSearchAfterRegionChange {
+                
+                model.shouldSearchAfterRegionChange = false
+                
+                // Filter & show only those pins
+                model.searchCurrentMapArea()
+
+                // If we stored a pending place, select its annotation
+                if let place = model.pendingSelectionPlace {
+                    
+                    if let annotation = mapView.annotations.compactMap({ $0 as? MKPointAnnotation }).first(where: { $0.title == place.adresa }) {
+                        
+                        mapView.selectAnnotation(annotation, animated: true)
+                        
+                    }
+                    
+                }
+
+                // Clear out the pending place
+                model.pendingSelectionPlace = nil
+                
+            }
+            
             if model.annotationSelected {
                 
                 if mapView.selectedAnnotations.count == 0 {

@@ -46,6 +46,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     @Published var index: Int = 0
     
     @Published var shouldShowAreaSearchButton = false
+    @Published var shouldSearchAfterRegionChange = false
+    @Published var pendingSelectionPlace: DataModel?
     @Published var annotationSelected = false
     @Published var shouldDeselectAnnotations = false
     @Published var previousSpan = MKCoordinateSpan.init(latitudeDelta: 2, longitudeDelta: 2)
