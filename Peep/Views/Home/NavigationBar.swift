@@ -17,6 +17,25 @@ struct NavigationBar: View {
     
     let screenSize: CGRect = UIScreen.main.bounds
     
+    @State private var lastSearchedMapRect: MKMapRect?
+    
+    // Fractional padding to apply around the *last* rect
+    private let paddingFraction: Double = 0.1
+    var hasUnsearchedArea: Bool {
+        guard let last = lastSearchedMapRect else { return true }
+        let current = model.mapView.visibleMapRect
+        
+        // Compute padding based on the last rect’s size
+        let padX = last.size.width  * paddingFraction
+        let padY = last.size.height * paddingFraction
+
+        // Expand last rect by padding
+        let paddedLast = last.insetBy(dx: -padX, dy: -padY)
+
+        // If paddedLast fully contains current, there's no unsearched area
+        return !paddedLast.contains(current)
+    }
+    
     var body: some View {
         VStack(spacing: 10) {
             HStack {
@@ -81,6 +100,9 @@ struct NavigationBar: View {
             
             Button(action: {
                 model.searchCurrentMapArea()
+                
+                // record *exactly* what the map is showing right now
+                lastSearchedMapRect = model.mapView.visibleMapRect
             }, label: {
                 Text("Search this area")
                     .bold()
@@ -91,6 +113,8 @@ struct NavigationBar: View {
                     .mask(
                         RoundedRectangle(cornerRadius: 22, style: .continuous)
                     )
+                    .opacity(hasUnsearchedArea ? 1 : 0)
+                    .animation(.easeInOut(duration: 0.1), value: hasUnsearchedArea)
             })
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }

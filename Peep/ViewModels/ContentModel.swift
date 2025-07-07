@@ -46,6 +46,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     @Published var showingState = false
     @Published var index: Int = 0
     
+    @Published var shouldShowAreaSearchButton = false
     @Published var annotationSelected = false
     @Published var shouldDeselectAnnotations = false
     @Published var previousSpan = MKCoordinateSpan.init(latitudeDelta: 2, longitudeDelta: 2)
@@ -64,7 +65,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     
     @Published var mapView: MKMapView
     @Published var locationManager: CLLocationManager
-
+    
     @Published var authorizationState: CLAuthorizationStatus = .notDetermined
     @Published var placemark: CLPlacemark?
     
@@ -73,14 +74,14 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
         
         self.mapView = MKMapView()
         self.locationManager = CLLocationManager()
-
+        
         super.init()
         
         self.authorizationState = self.locationManager.authorizationStatus
-
+        
         self.mapView.delegate = self
         self.locationManager.delegate = self
-
+        
         loadCachedSearchablePlaces()
         loadCachedAnnotationHits()
     }
@@ -134,7 +135,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     }
     
     // MARK: – Annotation and places caching
-
+    
     // Decode last-saved annotation hits
     func loadCachedAnnotationHits() {
         guard let data = _cachedAnnotationData else { return }
@@ -142,14 +143,14 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
             self.cachedAnnotationHits = hits
         }
     }
-
+    
     // Build fresh hits from your master list and persist
     func persistAnnotationHits(from dataList: [DataModel]) {
         DispatchQueue.global(qos: .background).async {
             let hits = dataList.compactMap { place -> AnnotationHit? in
                 guard
-                  let latS = place.zsirka, let lonS = place.zdelka,
-                  let lat = Double(latS),       let lon = Double(lonS)
+                    let latS = place.zsirka, let lonS = place.zdelka,
+                    let lat = Double(latS),       let lon = Double(lonS)
                 else { return nil }
                 let key = place.adresa ?? UUID().uuidString
                 return AnnotationHit(key: key,
@@ -169,13 +170,13 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     // Build (and create) cache folder at runtime
     private lazy var cacheDir: URL = {
         let fm = FileManager.default
-
+        
         // a) Get the system Caches directory for your sandbox:
         let caches = fm.urls(for: .cachesDirectory, in: .userDomainMask).first!
-
+        
         // b) Append your own folder name:
         let dir = caches.appendingPathComponent("PeepCache", isDirectory: true)
-
+        
         // c) Create it if it doesn’t exist:
         if !fm.fileExists(atPath: dir.path) {
             
@@ -187,7 +188,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
             }
             
         }
-
+        
         return dir
     }()
     
@@ -215,7 +216,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
             print("No cache to load or failed decode:", error)
         }
     }
-
+    
     // Persist current DataModels out to disk
     func persistSearchablePlaces() {
         DispatchQueue.global(qos: .background).async {
@@ -228,7 +229,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
             }
         }
     }
-
+    
     // Populate from your FetchData, then persist
     func loadSearchablePlaces(from fetcher: FetchData) {
         DispatchQueue.global(qos: .background).async {
@@ -240,31 +241,30 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
         }
     }
     
-    // MARK: - searchCurrentMapArea()
-    
+    // MARK: - searchCurrentMapArea()    
     func searchCurrentMapArea() {
         let mapView = mapView
         let region  = mapView.region
-
+        
         // use the map’s own span (half on either side of center)
         let latSpan = region.span.latitudeDelta  / 2
         let lonSpan = region.span.longitudeDelta / 2
-
+        
         // filter your dataList by the region’s bounding box
         let hits: [MKPointAnnotation] = self.searchablePlaces.compactMap { place in
             guard let latS = place.zsirka, let lonS = place.zdelka, let lat  = Double(latS), let lon  = Double(lonS) else { return nil }
             guard abs(lat - region.center.latitude)  <= latSpan, abs(lon - region.center.longitude) <= lonSpan else { return nil }
-
+            
             let pin = MKPointAnnotation()
             pin.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
             pin.title = place.adresa
             return pin
         }
-
+        
         // clear out old pins (but keep the user location)
         let oldPins = mapView.annotations.filter { !($0 is MKUserLocation) }
         mapView.removeAnnotations(oldPins)
-
+        
         // drop in your new set
         mapView.addAnnotations(hits)
     }
