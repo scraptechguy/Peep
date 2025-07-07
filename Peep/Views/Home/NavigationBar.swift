@@ -114,7 +114,7 @@ struct NavigationBar: View {
                         RoundedRectangle(cornerRadius: 22, style: .continuous)
                     )
                     .opacity(hasUnsearchedArea ? 1 : 0)
-                    .animation(.easeInOut(duration: 0.1), value: hasUnsearchedArea)
+                    .animation(.easeInOut(duration: 0.2), value: hasUnsearchedArea)
             })
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
