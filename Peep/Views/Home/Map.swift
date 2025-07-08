@@ -55,8 +55,10 @@ struct Map: UIViewRepresentable {
         
         }
         
-        return mapView
+        let overlay = PointOverlay(dataPoints: model.searchablePlaces)
+        mapView.addOverlay(overlay)
         
+        return mapView
     }
     
     // MARK: - updateUIView() & dismantleUIView()
@@ -187,6 +189,7 @@ struct Map: UIViewRepresentable {
         var model: ContentModel
         var map: Map
         var compassButton: MKCompassButton?
+        var pointOverlay: PointOverlay?
         
         private var regionChangeWorkItem: DispatchWorkItem?
         
@@ -208,15 +211,17 @@ struct Map: UIViewRepresentable {
                 let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier, for: cluster) as! MKMarkerAnnotationView
                 view.markerTintColor = .systemRed
                 view.glyphText = "\(cluster.memberAnnotations.count)"
+                view.displayPriority = .defaultLow
                 
                 return view
             }
 
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationReusedId, for: annotation) as! MKMarkerAnnotationView
 
-            // *** Changed: enable native clustering by assigning an identifier
+            // Enable native clustering by assigning an identifier
             annotationView.clusteringIdentifier = "place"
             annotationView.canShowCallout = true
+            annotationView.displayPriority = .defaultLow
             
             let detailLabel = UILabel()
             detailLabel.text = String(localized: "annotationCalloutLabel")
@@ -347,6 +352,51 @@ struct Map: UIViewRepresentable {
             }
         }
         
+        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+            if let ov = overlay as? PointOverlay {
+                
+                return PointOverlayRenderer(overlay: ov)
+                
+            }
+            
+            return MKOverlayRenderer(overlay: overlay)
+        }
     }
 }
 
+// Overlay that holds your DataModel items
+class PointOverlay: NSObject, MKOverlay {
+    let dataPoints: [DataModel]
+
+    // Cover the whole world (or you can compute a tighter rect)
+    var boundingMapRect: MKMapRect = .world
+
+    // Required by MKOverlay, but we don’t use it for positioning
+    var coordinate: CLLocationCoordinate2D = .init(latitude: 0, longitude: 0)
+
+    init(dataPoints: [DataModel]) {
+        self.dataPoints = dataPoints
+        super.init()
+    }
+}
+
+// Renderer that draws each DataModel as a dot
+class PointOverlayRenderer: MKOverlayRenderer {
+    override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
+        // choose a dot size that scales with zoom
+        let radius: CGFloat = max(2, 8 / zoomScale)
+        context.setFillColor(UIColor.systemRed.cgColor)
+
+        // Loop over the DataModel array
+        let overlay = self.overlay as! PointOverlay
+        for model in overlay.dataPoints {
+            // Safely unwrap & convert string lat/long
+            guard let latStr = model.zsirka, let lonStr = model.zdelka, let lat = Double(latStr), let lon = Double(lonStr) else { continue }
+
+            let coord = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            let point = self.point(for: MKMapPoint(coord))
+            let rect = CGRect(x: point.x - radius, y: point.y - radius, width: radius * 2, height: radius * 2)
+            context.fillEllipse(in: rect)
+        }
+    }
+}
