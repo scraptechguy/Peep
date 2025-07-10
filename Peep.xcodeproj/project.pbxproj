@@ -152,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				901F83AC28A1239B006FDC4F /* ContentModel.swift */,
+				90A625CB28A7A187009D9D8A /* FetchData.swift */,
 				90B2E3602928260A0047B106 /* OnboardingModel.swift */,
 				909445CC2943222D00C57E77 /* HelpModel.swift */,
 			);
@@ -230,7 +231,6 @@
 		90B36AAB28A2A8A8001C738C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				90A625CB28A7A187009D9D8A /* FetchData.swift */,
 				90A625CD28A7A1D1009D9D8A /* DataModel.swift */,
 			);
 			path = Models;
