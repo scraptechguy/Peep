@@ -11,7 +11,6 @@ import MapKit
 struct Map: UIViewRepresentable {
     
     @EnvironmentObject var model: ContentModel
-    @EnvironmentObject var data: FetchData
     @Binding var selectedPlace: DataModel?
     
     // MARK: - makeUIView()
@@ -322,7 +321,7 @@ struct Map: UIViewRepresentable {
             // User tapped on the annotation...
             
             // Loop through places to look for a match
-            for place in map.data.dataList {
+            for place in model.searchablePlaces {
                 
                 if place.adresa == view.annotation?.title {
                     
