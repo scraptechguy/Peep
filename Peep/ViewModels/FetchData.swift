@@ -15,7 +15,7 @@ class FetchData: ObservableObject {
     
     init() {
         
-        let url = URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/json3.php")!
+        let url = URL(string: "https://raw.githubusercontent.com/scraptechguy/Peep/refs/heads/main/Database/database3.json")!
             
         URLSession.shared.dataTask(with: url) {(data, response, error) in
             do {
@@ -24,7 +24,7 @@ class FetchData: ObservableObject {
                     
                     if let todoData = data {
                         
-                        print("using online data cos I can")
+                        print("using online data")
                         
                         let decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
                         
@@ -38,7 +38,7 @@ class FetchData: ObservableObject {
                         
                     } else {
                         
-                        print("using offline data cos I have to")
+                        print("using offline data")
                         
                         guard let url = Bundle.main.url(forResource: "OfflineDatabase", withExtension: "geojson")
                         else {
@@ -73,7 +73,7 @@ class FetchData: ObservableObject {
                         
                     }
                     
-                    print("using offline data cos user said so")
+                    print("using offline data (user request)")
                     
                     let data = try Data(contentsOf: url)
                     let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
