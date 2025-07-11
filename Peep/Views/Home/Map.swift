@@ -89,17 +89,20 @@ struct Map: UIViewRepresentable {
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
         if model.initialRegionCentered {
+            
+            DispatchQueue.main.async {
+                model.initialRegionCentered = false
+            }
+            
             let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
             let coordinate = model.locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
             let region = MKCoordinateRegion(center: coordinate, span: span)
             uiView.setRegion(region, animated: false)
             
             let initialAnnotations = getAnnotations(center: coordinate)
+            uiView.removeAnnotations(uiView.annotations.filter { !($0 is MKUserLocation) })
             uiView.addAnnotations(initialAnnotations)
-            
-            DispatchQueue.main.async {
-                model.initialRegionCentered = false
-            }
+        
         }
         
         DispatchQueue.main.async {
