@@ -1,0 +1,9 @@
+//
+//  InfoPlist.strings
+//  Peep
+//
+//  Created by Rostislav Brož on 11.07.2025.
+//
+
+"NSPhotoLibraryAddUsageDescription" = "Píp potřebuje povolení aby mohl ukládat fotky";
+"NSLocationWhenInUseUsageDescription" = "Píp chce používat tvoji polohu k doručení relevantních údajů";

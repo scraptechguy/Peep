@@ -1,0 +1,9 @@
+//
+//  InfoPlist.strings
+//  Peep
+//
+//  Created by Rostislav Brož on 11.07.2025.
+//
+
+"NSPhotoLibraryAddUsageDescription" = "Peep needs permission to save images to your photo library";
+"NSLocationWhenInUseUsageDescription" = "Peep needs to know your location to deliver relevant data";
