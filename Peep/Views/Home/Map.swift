@@ -13,6 +13,35 @@ struct Map: UIViewRepresentable {
     @EnvironmentObject var model: ContentModel
     @Binding var selectedPlace: DataModel?
     
+    func getAnnotations(center: CLLocationCoordinate2D) -> [MKPointAnnotation] {
+        
+        var annotations = [MKPointAnnotation]()
+        let annotationSpanIndex: Double = model.latlongDelta * 10 * 0.035
+        
+        // Loop through all places
+        for place in model.searchablePlaces {
+            // If the place does have lat and long, create an annotation
+            if let lat = place.zsirka, let long = place.zdelka {
+                
+                // Create annotations only for places within a certain region
+                if Double(lat)! >= center.latitude - annotationSpanIndex && Double(lat)! <= center.latitude + annotationSpanIndex && Double(long)! >= center.longitude - annotationSpanIndex && Double(long)! <= center.longitude + annotationSpanIndex {
+                    
+                    // Create an annotation
+                    let a = MKPointAnnotation()
+                    a.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(long)!)
+                    a.title = place.adresa ?? ""
+                    
+                    annotations.append(a)
+                    
+                }
+                
+            }
+        }
+        
+        return annotations
+        
+    }
+    
     // MARK: - makeUIView()
     
     func makeUIView(context: Context) -> MKMapView {
@@ -45,17 +74,13 @@ struct Map: UIViewRepresentable {
         if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
             
             mapView.showsUserLocation = true // Show user on the map
-            mapView.userTrackingMode = .follow // Follow user if location is enabled
             
-            let span = MKCoordinateSpan.init(latitudeDelta: 10, longitudeDelta: 10)
-            let coordinate = CLLocationCoordinate2D.init(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
-            let region = MKCoordinateRegion.init(center: coordinate, span: span)
-            mapView.setRegion(region, animated: true)
-        
+        } else {
+            
+            let overlay = PointOverlay(dataPoints: model.searchablePlaces)
+            mapView.addOverlay(overlay)
+            
         }
-        
-        let overlay = PointOverlay(dataPoints: model.searchablePlaces)
-        mapView.addOverlay(overlay)
         
         return mapView
     }
@@ -63,6 +88,20 @@ struct Map: UIViewRepresentable {
     // MARK: - updateUIView() & dismantleUIView()
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        if model.initialRegionCentered {
+            let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            let coordinate = model.locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+            let region = MKCoordinateRegion(center: coordinate, span: span)
+            uiView.setRegion(region, animated: false)
+            
+            let initialAnnotations = getAnnotations(center: coordinate)
+            uiView.addAnnotations(initialAnnotations)
+            
+            DispatchQueue.main.async {
+                model.initialRegionCentered = false
+            }
+        }
+        
         DispatchQueue.main.async {
             context.coordinator.compassButton?.compassVisibility = model.showCompass ? .visible : .hidden
         }
@@ -210,7 +249,6 @@ struct Map: UIViewRepresentable {
                 let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier, for: cluster) as! MKMarkerAnnotationView
                 view.markerTintColor = .systemRed
                 view.glyphText = "\(cluster.memberAnnotations.count)"
-                view.displayPriority = .defaultLow
                 
                 return view
             }
@@ -220,7 +258,6 @@ struct Map: UIViewRepresentable {
             // Enable native clustering by assigning an identifier
             annotationView.clusteringIdentifier = "place"
             annotationView.canShowCallout = true
-            annotationView.displayPriority = .defaultLow
             
             let detailLabel = UILabel()
             detailLabel.text = String(localized: "annotationCalloutLabel")

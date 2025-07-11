@@ -28,9 +28,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     @AppStorage("useOfflineDatabase") var useOfflineDatabase = false
     @AppStorage("latlogDelta") var latlongDelta: Double = 0.15
     
-    @Published var cachedAnnotationHits: [AnnotationHit] = []
-    
     @Published var finishedLoading = false
+    @Published var initialRegionCentered = false
     @Published var didLongPressed = false
     
     @Published var currentHeight: CGFloat = UIScreen.main.bounds.height / 10.2
@@ -114,10 +113,13 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         let userLocation = locations.first
         
         if userLocation != nil {
+            
+            DispatchQueue.main.async {
+                self.initialRegionCentered = true
+            }
             
             // Stop updating location after received once
             locationManager.stopUpdatingLocation()

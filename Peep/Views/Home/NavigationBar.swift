@@ -97,25 +97,6 @@ struct NavigationBar: View {
                     }
                 })
             }
-            
-            Button(action: {
-                model.searchCurrentMapArea()
-                
-                // record *exactly* what the map is showing right now
-                lastSearchedMapRect = model.mapView.visibleMapRect
-            }, label: {
-                Text("Search this area")
-                    .bold()
-                    .foregroundColor(Color("Font"))
-                    .frame(width: screenSize.width / 3, height: screenSize.height / 25)
-                    .padding(.horizontal)
-                    .background(.thinMaterial)
-                    .mask(
-                        RoundedRectangle(cornerRadius: 22, style: .continuous)
-                    )
-                    .opacity(hasUnsearchedArea ? 1 : 0)
-                    .animation(.easeInOut(duration: 0.2), value: hasUnsearchedArea)
-            })
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
     }
 }
