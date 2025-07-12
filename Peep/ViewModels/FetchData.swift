@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 class FetchData: ObservableObject {
-    @Published var useOfflineDatabase1 = false
     @Published var dataList = [DataModel]()
     @Published var finishedLoading = false
     
@@ -19,50 +18,23 @@ class FetchData: ObservableObject {
             
         URLSession.shared.dataTask(with: url) {(data, response, error) in
             do {
-                
-                if !self.useOfflineDatabase1 {
+                if let todoData = data {
                     
-                    if let todoData = data {
-                        
-                        print("using online data")
-                        
-                        let decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
-                        
-                        DispatchQueue.main.async { [self] in
-                            withAnimation {
-                                finishedLoading = true
-                            }
-                            
-                            self.dataList = decodedData
+                    print("using online data")
+                    
+                    let decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
+                    
+                    DispatchQueue.main.async { [self] in
+                        withAnimation {
+                            finishedLoading = true
                         }
                         
-                    } else {
-                        
-                        print("using offline data")
-                        
-                        guard let url = Bundle.main.url(forResource: "OfflineDatabase", withExtension: "geojson")
-                        else {
-                            
-                            print("Json file not found")
-                            
-                            return
-                            
-                        }
-                        
-                        let data = try Data(contentsOf: url)
-                        let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
-                        
-                        DispatchQueue.main.async { [self] in
-                            withAnimation {
-                                finishedLoading = true
-                            }
-                            
-                            self.dataList = decodedData
-                        }
-                        
+                        self.dataList = decodedData
                     }
                     
                 } else {
+                    
+                    print("using offline data")
                     
                     guard let url = Bundle.main.url(forResource: "OfflineDatabase", withExtension: "geojson")
                     else {
@@ -72,8 +44,6 @@ class FetchData: ObservableObject {
                         return
                         
                     }
-                    
-                    print("using offline data (user request)")
                     
                     let data = try Data(contentsOf: url)
                     let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
@@ -87,7 +57,6 @@ class FetchData: ObservableObject {
                     }
                     
                 }
-                
             } catch let error {
                 
                 print(error)

@@ -121,8 +121,19 @@ struct SearchView: View {
                                 .keyboardType(.asciiCapable)
                             
                             Spacer()
+                            
+                            if !searchText.trimmingCharacters(in: .whitespaces).isEmpty {
+                                
+                                Button(action: {
+                                    searchText = ""
+                                }, label: {
+                                    Image(systemName: "multiply")
+                                        .foregroundStyle(Color.secondary)
+                                })
+                                
+                            }
                         }.padding(.horizontal, 22)
-                            .frame(width: screenSize.width / 1.35, alignment: .leading)
+                            .frame(width: screenSize.width / 1.1, alignment: .leading)
                     }
                     
                     Spacer()
