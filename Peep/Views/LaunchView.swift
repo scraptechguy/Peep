@@ -17,7 +17,7 @@ struct LaunchView: View {
             // If user is already authorized (or denied), go straight to HomeView.
             if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse || model.authorizationState == .denied {
                 
-                HomeView()
+                OnboardingView()
                 
             }
             // Otherwise, if onboarding has never been shown yet, show onboarding:

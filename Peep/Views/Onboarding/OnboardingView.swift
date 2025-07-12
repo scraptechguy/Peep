@@ -99,6 +99,7 @@ struct OnboardingView: View {
                         showOnboardingScreens = true
                     }
                     .padding(.top, 75)
+                    .padding(.bottom)
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .offset(y: showOnboardingScreens ? -size.height * 1.5 : 0)
         }
@@ -235,8 +236,9 @@ struct OnboardingView: View {
                                 
                             }
                         }
-                        .offset(y: screenIsLast ? -40 : -90)
+                        .offset(y: screenIsLast ? -28 : -90)
                         .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5), value: screenIsLast)
+                        .padding(.bottom)
                 }
                 .overlay(alignment: .bottom) {
                     let screenIsLast = currentIndex == intros.count
@@ -253,6 +255,7 @@ struct OnboardingView: View {
                         }
                     }.offset(y: screenIsLast ? 0 : size.height)
                         .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5), value: screenIsLast)
+                        .padding(.bottom)
                 }
                 .offset(y: showOnboardingScreens ? 0 : size.height)
         }
