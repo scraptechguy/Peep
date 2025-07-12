@@ -22,13 +22,15 @@ class FetchData: ObservableObject {
                     
                     print("using online data")
                     
-                    let decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
+                    var decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
+                    // Remove duplicates
+                    decodedData = Dictionary(grouping: decodedData, by: { "\($0.adresa ?? "")|\($0.zsirka ?? "")|\($0.zdelka ?? "")" }).compactMap { $0.value.first }
                     
                     DispatchQueue.main.async { [self] in
                         withAnimation {
                             finishedLoading = true
                         }
-                        
+                    
                         self.dataList = decodedData
                     }
                     
@@ -46,7 +48,9 @@ class FetchData: ObservableObject {
                     }
                     
                     let data = try Data(contentsOf: url)
-                    let decodedData = try JSONDecoder().decode([DataModel].self, from: data)
+                    var decodedData = try JSONDecoder().decode([DataModel].self, from: data)
+                    // Remove duplicates
+                    decodedData = Dictionary(grouping: decodedData, by: { "\($0.adresa ?? "")|\($0.zsirka ?? "")|\($0.zdelka ?? "")" }).compactMap { $0.value.first }
                     
                     DispatchQueue.main.async { [self] in
                         withAnimation {
