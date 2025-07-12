@@ -14,33 +14,37 @@ struct Map: UIViewRepresentable {
     @Binding var selectedPlace: DataModel?
     
     func getAnnotations(center: CLLocationCoordinate2D, cache: inout [String: MKPointAnnotation]) -> [MKPointAnnotation] {
-        let spanIndex: Double = model.latlongDelta * 10 * 0.035
+        let visibleSpan = model.mapView.region.span
+        let paddingFactor: Double = 2.0  // <- you can adjust this
+        let latRange = visibleSpan.latitudeDelta * paddingFactor / 2
+        let lonRange = visibleSpan.longitudeDelta * paddingFactor / 2
+        
         var annotations: [MKPointAnnotation] = []
 
         for place in model.searchablePlaces {
-            guard let latStr = place.zsirka,
-                  let lonStr = place.zdelka,
-                  let lat = Double(latStr),
-                  let lon = Double(lonStr) else { continue }
+            guard let latStr = place.zsirka, let lonStr = place.zdelka, let lat = Double(latStr), let lon = Double(lonStr) else { continue }
 
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
 
             // Keep only pins inside visible area + span padding
-            guard abs(lat - center.latitude) <= spanIndex,
-                  abs(lon - center.longitude) <= spanIndex else { continue }
+            guard abs(lat - center.latitude) <= latRange && abs(lon - center.longitude) <= lonRange else { continue }
 
             let key = place.adresa ?? UUID().uuidString
 
             if let annotation = cache[key] {
+                
                 // Already cached, update coordinate if needed
                 annotation.coordinate = coordinate
                 annotations.append(annotation)
+                
             } else {
+                
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = coordinate
                 annotation.title = place.adresa ?? ""
                 cache[key] = annotation
                 annotations.append(annotation)
+                
             }
         }
 
@@ -231,6 +235,8 @@ struct Map: UIViewRepresentable {
     
     class Coordinator: NSObject, MKMapViewDelegate {
         
+        let zoomThreshold: CLLocationDegrees = 0.15
+        
         var region = MKCoordinateRegion.self
         var model: ContentModel
         var map: Map
@@ -286,15 +292,43 @@ struct Map: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             let center = mapView.region.center
-            let newAnnotations = map.getAnnotations(center: center, cache: &self.annotationCache)
+            let latDelta = mapView.region.span.latitudeDelta
 
-            // Diffing by identity
-            let current = mapView.annotations.compactMap { $0 as? MKPointAnnotation }
-            let toRemove = current.filter { old in !newAnnotations.contains(where: { $0 === old }) }
-            let toAdd = newAnnotations.filter { new in !current.contains(where: { $0 === new }) }
+            // Zoomed out — show overlay, remove annotations
+            if latDelta > zoomThreshold {
+                
+                mapView.removeAnnotations(mapView.annotations.filter { !($0 is MKUserLocation) })
 
-            mapView.removeAnnotations(toRemove)
-            mapView.addAnnotations(toAdd)
+                if pointOverlay == nil {
+                    
+                    pointOverlay = PointOverlay(dataPoints: model.searchablePlaces)
+                    mapView.addOverlay(pointOverlay!)
+                    
+                }
+
+            // Zoomed in — remove overlay, show annotations
+            } else {
+                
+                if let overlay = pointOverlay {
+                    
+                    mapView.removeOverlay(overlay)
+                    pointOverlay = nil
+                    
+                }
+
+                // Get annotations without flickering
+                var cache = annotationCache
+                let newAnnotations = map.getAnnotations(center: center, cache: &cache)
+                annotationCache = cache
+
+                let current = mapView.annotations.compactMap { $0 as? MKPointAnnotation }
+                let toRemove = current.filter { old in !newAnnotations.contains(where: { $0 === old }) }
+                let toAdd = newAnnotations.filter { new in !current.contains(where: { $0 === new }) }
+
+                mapView.removeAnnotations(toRemove)
+                mapView.addAnnotations(toAdd)
+                
+            }
             
             if model.shouldSearchAfterRegionChange {
                 
