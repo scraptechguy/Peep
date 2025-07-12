@@ -122,6 +122,7 @@
 
 "detailGalleryHeading" = "**Galerie**";
 "detailGalleryGuide" = "**Prohlížej přejetím prstu**";
+"detailGalleryFailedToLoad" = "Obrázek se nepodařilo načíst";
 "detailGalleryPromptDenied" = "Povol ukládání obrázků v";
 "detailGalleryPromptSettings" = "**Nastavení**";
 "detailGalleryPromptSucceeded" = "Uloženo do Fotek ✅";

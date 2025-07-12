@@ -95,8 +95,11 @@ struct GalleryImageView: View {
     let proxy: GeometryProxy
 
     @State var prompt: String = ""
+    @State private var failedToLoad: Bool = false
+    
     @Binding var uiImages: [Int: UIImage]
     
+    let detailGalleryFailedToLoad: LocalizedStringKey = "detailGalleryFailedToLoad"
     let detailGalleryPromptDenied: LocalizedStringKey = "detailGalleryPromptDenied"
     let detailGalleryPromptSettings: LocalizedStringKey = "detailGalleryPromptSettings"
     let detailGalleryPromptSucceeded: LocalizedStringKey = "detailGalleryPromptSucceeded"
@@ -116,27 +119,37 @@ struct GalleryImageView: View {
                             .clipped()
                             .mask(RoundedRectangle(cornerRadius: 22))
                     } else {
-                        ProgressView()
-                            .task {
-                                do {
-                                    let (data, _) = try await URLSession.shared.data(from: imageURL)
-                                    if let image = UIImage(data: data) {
-                                        uiImages[index] = image
-                                    }
-                                } catch {
-                                    withAnimation {
-                                        prompt = "failed save"
-                                    }
-                                        
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                        withAnimation {
-                                            prompt = ""
-                                        }
-                                    }
-                                    
-                                    print("Download failed: \(error)")
-                                }
+                        if failedToLoad {
+                            VStack(spacing: 10) {
+                                Image(systemName: "xmark.octagon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .foregroundColor(.red)
+
+                                Text(detailGalleryFailedToLoad)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
                             }
+                            .frame(width: screenSize.width / 1.2, height: screenSize.width / 1.2)
+                            .background(Color.gray.opacity(0.1))
+                            .clipShape(RoundedRectangle(cornerRadius: 22))
+                        } else {
+                            ProgressView()
+                                .task {
+                                    do {
+                                        let (data, _) = try await URLSession.shared.data(from: imageURL)
+                                        if let image = UIImage(data: data) {
+                                            uiImages[index] = image
+                                        } else {
+                                            failedToLoad = true
+                                        }
+                                    } catch {
+                                        failedToLoad = true
+                                        print("Download failed: \(error)")
+                                    }
+                                }
+                        }
                     }
                     Spacer()
                 }

@@ -324,7 +324,16 @@ struct PlaceDetail: View {
                                                     
                                                 } else if phase.error != nil {
                                                     
-                                                    ProgressView()
+                                                    VStack(spacing: 10) {
+                                                        Image(systemName: "xmark.octagon")
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 30, height: 30)
+                                                            .foregroundColor(.red)
+                                                    }
+                                                    .frame(width: screenSize.width / 1.2, height: screenSize.width / 1.2)
+                                                    .background(Color.gray.opacity(0.1))
+                                                    .clipShape(RoundedRectangle(cornerRadius: 22))
                                                     
                                                 } else {
                                                     
