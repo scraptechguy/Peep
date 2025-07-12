@@ -13,33 +13,38 @@ struct Map: UIViewRepresentable {
     @EnvironmentObject var model: ContentModel
     @Binding var selectedPlace: DataModel?
     
-    func getAnnotations(center: CLLocationCoordinate2D) -> [MKPointAnnotation] {
-        
-        var annotations = [MKPointAnnotation]()
-        let annotationSpanIndex: Double = model.latlongDelta * 10 * 0.035
-        
-        // Loop through all places
+    func getAnnotations(center: CLLocationCoordinate2D, cache: inout [String: MKPointAnnotation]) -> [MKPointAnnotation] {
+        let spanIndex: Double = model.latlongDelta * 10 * 0.035
+        var annotations: [MKPointAnnotation] = []
+
         for place in model.searchablePlaces {
-            // If the place does have lat and long, create an annotation
-            if let lat = place.zsirka, let long = place.zdelka {
-                
-                // Create annotations only for places within a certain region
-                if Double(lat)! >= center.latitude - annotationSpanIndex && Double(lat)! <= center.latitude + annotationSpanIndex && Double(long)! >= center.longitude - annotationSpanIndex && Double(long)! <= center.longitude + annotationSpanIndex {
-                    
-                    // Create an annotation
-                    let a = MKPointAnnotation()
-                    a.coordinate = CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(long)!)
-                    a.title = place.adresa ?? ""
-                    
-                    annotations.append(a)
-                    
-                }
-                
+            guard let latStr = place.zsirka,
+                  let lonStr = place.zdelka,
+                  let lat = Double(latStr),
+                  let lon = Double(lonStr) else { continue }
+
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+
+            // Keep only pins inside visible area + span padding
+            guard abs(lat - center.latitude) <= spanIndex,
+                  abs(lon - center.longitude) <= spanIndex else { continue }
+
+            let key = place.adresa ?? UUID().uuidString
+
+            if let annotation = cache[key] {
+                // Already cached, update coordinate if needed
+                annotation.coordinate = coordinate
+                annotations.append(annotation)
+            } else {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = place.adresa ?? ""
+                cache[key] = annotation
+                annotations.append(annotation)
             }
         }
-        
+
         return annotations
-        
     }
     
     // MARK: - makeUIView()
@@ -99,7 +104,7 @@ struct Map: UIViewRepresentable {
             let region = MKCoordinateRegion(center: coordinate, span: span)
             uiView.setRegion(region, animated: false)
             
-            let initialAnnotations = getAnnotations(center: coordinate)
+            let initialAnnotations = getAnnotations(center: coordinate, cache: &context.coordinator.annotationCache)
             uiView.removeAnnotations(uiView.annotations.filter { !($0 is MKUserLocation) })
             uiView.addAnnotations(initialAnnotations)
         
@@ -231,6 +236,7 @@ struct Map: UIViewRepresentable {
         var map: Map
         var compassButton: MKCompassButton?
         var pointOverlay: PointOverlay?
+        var annotationCache: [String: MKPointAnnotation] = [:]
         
         private var regionChangeWorkItem: DispatchWorkItem?
         
@@ -279,12 +285,20 @@ struct Map: UIViewRepresentable {
         // MARK: - mapView(regionDidChangeAnimated:)
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+            let center = mapView.region.center
+            let newAnnotations = map.getAnnotations(center: center, cache: &self.annotationCache)
+
+            // Diffing by identity
+            let current = mapView.annotations.compactMap { $0 as? MKPointAnnotation }
+            let toRemove = current.filter { old in !newAnnotations.contains(where: { $0 === old }) }
+            let toAdd = newAnnotations.filter { new in !current.contains(where: { $0 === new }) }
+
+            mapView.removeAnnotations(toRemove)
+            mapView.addAnnotations(toAdd)
+            
             if model.shouldSearchAfterRegionChange {
                 
                 model.shouldSearchAfterRegionChange = false
-                
-                // Filter & show only those pins
-                model.searchCurrentMapArea()
 
                 // If we stored a pending place, select its annotation
                 if let place = model.pendingSelectionPlace {
