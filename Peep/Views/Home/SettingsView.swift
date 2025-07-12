@@ -21,11 +21,6 @@ struct SettingsView: View {
     let settingsAppLanguage: LocalizedStringKey = "settingsAppLanguage"
     let settingsAppLanguageValue: LocalizedStringKey = "settingsAppLanguageValue"
     
-    let settingsSectionMap: LocalizedStringKey = "settingsSectionMap"
-    let settingsShowCompass: LocalizedStringKey = "settingsShowCompass"
-    let settingsReach: LocalizedStringKey = "settingsReach"
-    let settingsSectionMapFooter: LocalizedStringKey = "settingsSectionMapFooter"
-    
     let settingsSectionInformation: LocalizedStringKey = "settingsSectionInformation"
     let settingsFeedback: LocalizedStringKey = "settingsFeedback"
     let settingsPrivacyPolicy: LocalizedStringKey = "settingsPrivacyPolicy"
@@ -38,8 +33,6 @@ struct SettingsView: View {
     let settingsSectionDeveloperSettings: LocalizedStringKey = "settingsSectionDeveloperSettings"
     let settingsBug: LocalizedStringKey = "settingsBug"
     let settingsFeature: LocalizedStringKey = "settingsFeature"
-    let settingsOfflineDB: LocalizedStringKey = "settingsOfflineDB"
-    let settingsSectionDeveloperSettingsSubtitle: LocalizedStringKey = "settingsSectionDeveloperSettingsSubtitle"
     
     let settingsFooter: LocalizedStringKey = "settingsFooter"
     
@@ -75,19 +68,6 @@ struct SettingsView: View {
                                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                                 }
                             }
-                        }
-                    }.foregroundColor(.primary)
-                    
-                    Section(header: Text(settingsSectionMap).foregroundColor(.secondary), footer: Text(settingsSectionMapFooter).foregroundColor(.secondary)) {
-                        Toggle(isOn: $model.showCompass) {
-                            Label(settingsShowCompass, systemImage: model.showCompass ? "safari.fill" : "safari")
-                        }
-                        
-                        HStack {
-                            Label(settingsReach, systemImage: "globe.americas")
-                                .padding(.trailing)
-                            
-                            Slider(value: $model.latlongDelta, in: 0.1...0.35)
                         }
                     }.foregroundColor(.primary)
                     
@@ -202,7 +182,7 @@ struct SettingsView: View {
                     
                     // MARK: - Developer settings
                     
-                    Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsSubtitle).foregroundColor(.secondary)) {
+                    Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary)) {
                         Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title=")!) {
                             HStack {
                                 Label(settingsBug, systemImage: "exclamationmark.triangle")
@@ -246,17 +226,13 @@ struct SettingsView: View {
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
-                        
-                        Toggle(isOn: $model.useOfflineDatabase) {
-                            Label(settingsOfflineDB, systemImage: "wifi.slash")
-                        }.listRowBackground(Color("ListRowBackground"))
                     }.foregroundColor(.primary)
                     
                     Section(footer: HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}.padding(.bottom, 60)) {
                         Button(action: {
                             
                         }, label: {
-                            Label("\(String(localized: "settingsVersion")) 1.1.0", systemImage: "server.rack")
+                            Label("\(String(localized: "settingsVersion")) 1.2.0", systemImage: "server.rack")
                                 .background(
                                     AnimatedBlobView()
                                         .frame(width: 400, height: 414)

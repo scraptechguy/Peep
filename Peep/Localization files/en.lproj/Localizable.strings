@@ -45,11 +45,6 @@
 "settingsAppLanguage" = "App language";
 "settingsAppLanguageValue" = "English";
 
-"settingsSectionMap" = "Map";
-"settingsShowCompass" = "Show compass";
-"settingsReach" = "Reach";
-"settingsSectionMapFooter" = "Increasing reach allows you to view more sundials at once";
-
 "settingsLocationHeading" = "Enable location access";
 "settingsLocationFooter" = "Peep can deliver more relevant data with location access enabled";
 
@@ -65,8 +60,6 @@
 "settingsSectionDeveloperSettings" = "Developer settings";
 "settingsBug" = "Report a bug";
 "settingsFeature" = "Suggest a feature";
-"settingsOfflineDB" = "Always use offline DB";
-"settingsSectionDeveloperSettingsSubtitle" = "Dev log displays what the app is doing at the top of your screen";
 
 "settingsVersion" = "Version";
 "settingsFooter" = "Made with Ɛ> by ";
@@ -182,14 +175,6 @@
 "noRegion" = "Couldn't get region";
 "noLocation" = "Location turned off";
 "unavailableFeatureLocation" = "This feature is only available with location access enabled";
-
-// MARK: - Dev log
-
-"sufficientZoom" = "Sufficient zoom, showing annotations";
-"insufficientZoom" = "Insufficient zoom, not showing annotations";
-"annotationSelected" = "Annotation selected";
-"annotationDeselected" = "Annotation deselected";
-"userLocation" = "Showing user's location";
 
 // MARK: - ???
 

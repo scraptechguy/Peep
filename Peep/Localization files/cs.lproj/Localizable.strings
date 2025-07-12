@@ -45,11 +45,6 @@
 "settingsAppLanguage" = "Jazyk aplikace";
 "settingsAppLanguageValue" = "Čeština";
 
-"settingsSectionMap" = "Mapa";
-"settingsShowCompass" = "Zobrazit kompas";
-"settingsReach" = "Rozsah";
-"settingsSectionMapFooter" = "Zvětšení rozsahu umožňuje zobrazit více slunečních hodin najednou";
-
 "settingsLocationHeading" = "Povolit přístup k poloze";
 "settingsLocationFooter" = "Píp může poskytovat relevantnější data s povoleným přístupem k poloze";
 
@@ -65,8 +60,6 @@
 "settingsSectionDeveloperSettings" = "Developerská nastavení";
 "settingsBug" = "Nahlásit chybu";
 "settingsFeature" = "Navrhnout funkci";
-"settingsOfflineDB" = "Vždy používat offline DB";
-"settingsSectionDeveloperSettingsSubtitle" = "Dev log ukazuje na vršku obrazovky co aplikace právě dělá";
 
 "settingsVersion" = "Verze";
 "settingsFooter" = "Vyrobeno s Ɛ> - ";
@@ -183,14 +176,6 @@
 "noRegion" = "Žádný region";
 "noLocation" = "Umístění vypnuto";
 "unavailableFeatureLocation" = "Tahle funkce je dostupná pouze s povoleným přístupem k poloze";
-
-// MARK: - Dev log
-
-"sufficientZoom" = "Dostatečné přiblížení, hodiny jsou viditelné";
-"insufficientZoom" = "Nedostatečné přiblížení, hodiny nejsou vidět";
-"annotationSelected" = "Hodiny vybrány";
-"annotationDeselected" = "Hodiny odvybrány";
-"userLocation" = "Poloha uživatele zobrazena";
 
 // MARK: - ???
 
