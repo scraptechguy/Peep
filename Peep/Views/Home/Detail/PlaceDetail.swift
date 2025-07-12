@@ -17,7 +17,7 @@ struct PlaceDetail: View {
     var place: DataModel
     let screenSize: CGRect = UIScreen.main.bounds
     
-    let minHeight: CGFloat = UIScreen.main.bounds.height / 10.2 // Collapsed
+    let minHeight: CGFloat = UIScreen.main.bounds.height / 11 // Collapsed
     let midHeight: CGFloat = UIScreen.main.bounds.height * 0.45// Mid-height
     let maxHeight: CGFloat = UIScreen.main.bounds.height * 0.85 // Fully expanded
     
@@ -436,7 +436,7 @@ struct PlaceDetail: View {
                         }
                         
                     }
-                }
+                }.scrollDisabled(model.currentHeight == minHeight)
             }.frame(height: model.currentHeight - dragOffset.height)
                 .frame(maxWidth: .infinity)
                 .background {
@@ -477,24 +477,19 @@ struct PlaceDetail: View {
 // MARK: .cornerRadius() struct and extension
 
 struct RoundedCorner: Shape {
-
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
 
     func path(in rect: CGRect) -> Path {
-        
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         
         return Path(path.cgPath)
-        
     }
 }
 
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        
-        clipShape( RoundedCorner(radius: radius, corners: corners) )
-        
+        clipShape(RoundedCorner(radius: radius, corners: corners))
     }
 }
 

@@ -32,7 +32,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     @Published var initialRegionCentered = false
     @Published var didLongPressed = false
     
-    @Published var currentHeight: CGFloat = UIScreen.main.bounds.height / 10.2
+    @Published var currentHeight: CGFloat = UIScreen.main.bounds.height / 11
     @Published var showingGallery = false
     @Published var showingSettings = false
     @Published var showingSearch = false
