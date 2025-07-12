@@ -79,7 +79,7 @@ struct Gallery: View {
                                 .foregroundColor(.secondary)
                         }.frame(width: 35, height: 35)
                             .padding(.trailing)
-                            .padding(.top, 45)
+                            .padding(.top, screenSize.height / 18)
                     }
                 }
                 Spacer()
@@ -155,7 +155,7 @@ struct GalleryImageView: View {
                 }
                 Spacer()
             }.shadow(color: Color.gray.opacity(0.3), radius: 10, x: 0, y: 10)
-            .frame(width: screenSize.width, height: screenSize.height / 1.5)
+                .frame(width: screenSize.width, height: screenSize.height / 1.5)
             
             VStack {
                 if let uiImage = uiImages[index] {
@@ -198,7 +198,7 @@ struct GalleryImageView: View {
                                 .font(.title3)
                                 .foregroundColor(Color("Font"))
                         }.frame(width: 45, height: 45)
-                    }).padding(.top, screenSize.height / 2)
+                    }).padding(.top, screenSize.height / 1.7)
                 }
                 
                 switch prompt {
