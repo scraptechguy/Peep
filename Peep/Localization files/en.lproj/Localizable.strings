@@ -34,7 +34,7 @@
 
 "homeSearch" = "Search for an address";
 "homeSearchLoading" = "Loading...";
-"homeSearchNoMatches" = "There seems to be no sundials\nat this location";
+"homeSearchNoMatches" = "There seem to be no sundials\nat this location";
 "annotationCalloutLabel" = "Tap for detail";
 
 // MARK: - Settings
