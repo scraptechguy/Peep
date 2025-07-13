@@ -65,11 +65,6 @@ struct Map: UIViewRepresentable {
             
             mapView.showsUserLocation = true // Show user on the map
             
-        } else {
-            
-            let overlay = PointOverlay(dataPoints: model.searchablePlaces)
-            mapView.addOverlay(overlay)
-            
         }
         
         return mapView
