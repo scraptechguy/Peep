@@ -1,12 +1,10 @@
-<p align="center">
-  <span>
+<div align="center">
+  <a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> 
     <img width="100" height="100" alt="LaunchScreenImage1200x1200" src="https://github.com/user-attachments/assets/76011207-e401-4a51-8895-18e2c66a7573"/>
-  </span>
-  &nbsp;&nbsp;&nbsp;
-  <span>
-    <a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
-  </span>
-</p>
+  </a>
+  
+  <b>Peep</b>
+</div>
 
 ## Peep allows you to discover the amazing world of sundials. Find sundials close to you, learn about their features, and plan out your trip! 
 
@@ -34,6 +32,10 @@ There's over 7,000 sundials documented around the world. Zoom in and find them a
 </p>
 
 ![Group 99](https://user-images.githubusercontent.com/75474651/209583866-9bbfe36b-7add-4639-ba4d-846729f009c7.png)
+
+<div align="center">
+  <a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
+</div>
 
 ### Latest TestFlight release:
 
