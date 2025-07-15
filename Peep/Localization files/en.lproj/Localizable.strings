@@ -68,26 +68,26 @@
 
 "helpHeading1" = "✨ This is Peep ✨";
 "helpText1" = "...and this is how the home screen looks like. There's a lot you can do and learn from there...";
-"helpHeading2" = "Your region";
-"helpText2" = "At the top, you can see your region. Some day soon, there'll be a search bar 👀";
-"helpHeading3" = "Your location 📬";
-"helpText3" = "If you ever get lost, click on the location button in the bottom right corner. It will take you right to where you're at";
-"helpHeading4" = "Annotations aka sundials 📍";
-"helpText4" = "Look for red points on the map, those represent a sundial. Click on them to learn more!";
-"helpHeading5" = "Address and description";
-"helpText5" = "The address and description are right on the top as they're the most important information. If the address happens to be too long, don't forget it's scrollable! 📈";
-"helpHeading6" = "Sundial properties";
-"helpText6" = "Here you can learn about what properties a sundial has and what they mean. Every one of those fields will show a sheet full of interesting information after clicking on them!";
-"helpHeading7" = "Gallery 🌉";
-"helpText7" = "To help you find them, Peep gives you the option to view photos of given sundial. You can click on each photo and enjoy it in separate gallery view!";
-"helpHeading8" = "Settings";
-"helpText8" = "In the top right corner, there's a button that'll take you to settings... (duh)";
-"helpHeading9" = "General";
-"helpText9" = "In the general section, you can make the app yours. Choose a color scheme you like the best, language you understand the most, or try a different reach! 😮‍💨";
-"helpHeading10" = "Information";
-"helpText10" = "This section is filled with information. You can get to know the project, give feedback, or go over the Privacy Policy one more time 🫢";
-"helpHeading11" = "Developer settings 🚀";
-"helpText11" = "Those settings are for the tech enthusiasts. You can decide what database will the app use or peep behind the UI and learn about all the different processes that take place";
+"helpHeading2" = "Your location 🗺️";
+"helpText2" = "If you ever get lost, click on the location button in the bottom right corner. It will take you right to where you're at";
+"helpHeading3" = "Current region and search 🧭";
+"helpText3" = "At the top, you can see the name of the region you're viewing. Click this field and search for sundials by address!";
+"helpHeading4" = "Search view 🔍";
+"helpText4" = "You can search more then 7,000 sundials by address here. Search results also provide a distance as the crow flies and a short description if available";
+"helpHeading5" = "Map pins aka sundials 📍";
+"helpText5" = "Look for red points on the map, those represent a sundial. Zoom in on a red point until a pin appears, click on it and learn more!";
+"helpHeading6" = "Sundial detail 🔬";
+"helpText6" = "After clicking a pin, a sheet with information appears. You can snap the sheet into three different heights by dragging it";
+"helpHeading7" = "Address, description,\nand other properties";
+"helpText7" = "Here you can learn about what properties a sundial has and what they mean. Properties under the address and description (such as state) are expandable with a click. A sheet that then pops up explains what the properties mean in detail";
+"helpHeading8" = "Gallery 🌉";
+"helpText8" = "To help you find them, Peep gives you the option to view photos of almost all of the sundials. You can click on each photo and enjoy it in separate gallery view!";
+"helpHeading9" = "Gallery view 🖼️";
+"helpText9" = "The gallery view allows you to browse images in greater detail and also to save images into your camera roll ⇣";
+"helpHeading10" = "Directions 🚗";
+"helpText10" = "Peep plans the route to your desired sundial for you. Follow the directions inside the app or open the route in Apple Maps";
+"helpHeading11" = "Settings ⚙️";
+"helpText11" = "In settings, you can switch to light mode, change the preffered language of the app, and interact with the Peep project";
 
 // MARK: - Feedback
 

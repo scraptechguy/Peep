@@ -66,28 +66,28 @@
 
 // MARK: - Help
 
-"helpHeading1" = "✨ Tohle je Píp ✨";
-"helpText1" = "... a takhle vypadá domovská obrazovka, ze které toho jde spoustu udělat a spoustu se dozvědět...";
-"helpHeading2" = "Tvůj region";
-"helpText2" = "Na vršku obrazovky je vidět tvůj region. Brzo tam ale bude lišta pro vyhledávání 👀";
-"helpHeading3" = "Tvoje poloha 📬";
-"helpText3" = "Kdyby ses náhodou někdy ztratil, klikni na tlačítko v pravém dolním rohu. Vezme tě přímo tam, kde právě jsi";
-"helpHeading4" = "Body na mapě 📍";
-"helpText4" = "Na mapě hledej červené body, každý z nich značí jedny sluneční hodiny. Klikni na ně a prohlédni si všechny možné vlastnosti!";
-"helpHeading5" = "Adresa a popis";
-"helpText5" = "Adresa a popis jsou hned nahoře. Ještě aby ne, jsou to přeci nejdůležitější informace. Kdyby byla adresa náhodou moc dlouhá, nezapomeň že se s ní dá hýbat! 📈";
-"helpHeading6" = "Vlastnosti slunečních hodin";
-"helpText6" = "Tady se můžeš dozvědět všechno možné o vlastnostech slunešních hodin a o tom, co která znamená. Na každé z těchto políček jde kliknout a otevřít tak vysvětlivky";
-"helpHeading7" = "Galerie 🌉";
-"helpText7" = "Aby se ti dobře hledali, Píp každé sluneční hodiny vyfotil. Na fotky můžeš kliknout a užít si je zvětšené na další obrazovce!";
-"helpHeading8" = "Nastavení";
-"helpText8" = "V pravém horním rohu je tlačítko, které tě vezme do nastavení... (duh)";
-"helpHeading9" = "Obecné";
-"helpText9" = "V obecných nastaveních si můžeš aplikaci přizpůsobit. Vyber si režim, který se ti líbí nejvíce, jazyk, kterému rozumíš nejlépe, nebo vyzkoušej jiný rozsah! 😮‍💨";
-"helpHeading10" = "Informace";
-"helpText10" = "Tahle sekce je plná informací. Můžeš se seznámit s projektem Píp, dát zpětnou vazbu, nebo si znovu projít Privacy Policy 🫢";
-"helpHeading11" = "Developerská nastavení 🚀";
-"helpText11" = "Developerská nastavení jsou pro technické nadšence. Můžeš si vybrat jakou databázi aplikace používá, nebo se podívat za oponu a dozvědět se, co aplikace právě dělá";
+"helpHeading1" = "✨ Tohle je Peep ✨";
+"helpText1" = "... a takhle vypadá domovská obrazovka, ze které toho jde spoustu udělat a spoustu se toho dozvědět...";
+"helpHeading2" = "Tvoje poloha 🗺️";
+"helpText2" = "Kdyby ses náhodou někdy ztratil, klikni na tlačítko v pravém dolním rohu. Vezme tě přímo tam, kde právě jsi";
+"helpHeading3" = "Tvůj region a vyhledávání 🧭";
+"helpText3" = "Na vršku obrazovky je vidět region, na který se právě díváš. Kliknutím na tohle pole můžeš sluneční hodiny vyhledávat";
+"helpHeading4" = "Vyhledávání 🔍";
+"helpText4" = "Zde můžeš vyhledávat z více než 7 000 slunečních hodin podle adresy. Výsledky vyhledávání také uvádějí vzdálenost vzdušnou čarou a krátký popis, pokud je k dispozici";
+"helpHeading5" = "Body na mapě 📍";
+"helpText5" = "Na mapě hledej červené body, každý z nich značí jedny sluneční hodiny. Červený bod si přibližuj, dokud se neobjeví špendlík, na něj pak můžeš kliknout a dozvědět se více!";
+"helpHeading6" = "Detail slunečních hodin 🔬";
+"helpText6" = "Po kliknutí na špendlík se zobrazí list informací. List můžeš připnout do tří různých výšek přetažením";
+"helpHeading7" = "Adresa, popisek,\na další parametry";
+"helpText7" = "Tady se můžeš dozvědět všechno možné o vlastnostech slunešních hodin a o tom, co která znamená. Na každé z políček pod adresou a popiskem jde kliknout a otevřít tak vysvětlivky";
+"helpHeading8" = "Galerie 🌉";
+"helpText8" = "Aby se ti dobře hledali, Peep má téměř každé sluneční hodiny vyfocené. Na fotky můžeš kliknout a užít si je zvětšené na další obrazovce!";
+"helpHeading9" = "Zvětšená galerie? 🖼️";
+"helpText9" = "Zvětšená galerie ti umožňuje prohlížet si fotky ve větším detailu. Dává ti taky možnost uložit si obrázky do aplikace Fotky ⇣";
+"helpHeading10" = "Trasa 🚗";
+"helpText10" = "Peep pro tebe trasu ke slunečním hodinám rád naplánuje. Navigovat k nim pak můžeš přímo z aplikace, nebo si můžeš trasu otevřít v aplikaci Mapy";
+"helpHeading11" = "Nastavení ⚙️";
+"helpText11" = "V nastavení můžeš aplikaci přepnout do světlého režimu, změnit její jazyk a interagovat s projektem Peep";
 
 // MARK: - Feedback
 
