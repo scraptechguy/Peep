@@ -11,7 +11,7 @@ import MapKit
 struct NavigationBar: View {
     
     @EnvironmentObject var model: ContentModel
-    @EnvironmentObject var FetchData: FetchData
+    @EnvironmentObject var data: FetchData
     
     @Binding var centerPlacemark: CLPlacemark?
     
@@ -69,7 +69,7 @@ struct NavigationBar: View {
                         
                         Spacer()
                         
-                        if FetchData.finishedLoading == false {
+                        if !data.finishedLoading {
                             ProgressView()
                         }
                     }.padding(.horizontal, 22)

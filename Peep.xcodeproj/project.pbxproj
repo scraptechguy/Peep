@@ -24,6 +24,7 @@
 		9050071928BD49EA00E64E92 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071828BD49EA00E64E92 /* IndicatorView.swift */; };
 		9050071B28BD49F900E64E92 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071A28BD49F900E64E92 /* DialView.swift */; };
 		9050071D28BDF81200E64E92 /* AnimatedBlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050071C28BDF81200E64E92 /* AnimatedBlobView.swift */; };
+		905EFA432E26D9C20092F0D5 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905EFA422E26D9BD0092F0D5 /* NetworkMonitor.swift */; };
 		905F3D772DE4D739002D19CF /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905F3D762DE4D72C002D19CF /* RequestView.swift */; };
 		90707DD4292FF2BD00F4D7CE /* OfflineDatabase.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 90707DD3292FF2BD00F4D7CE /* OfflineDatabase.geojson */; };
 		909445C829420E1000C57E77 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909445C729420E1000C57E77 /* HelpView.swift */; };
@@ -63,6 +64,7 @@
 		9050071828BD49EA00E64E92 /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		9050071A28BD49F900E64E92 /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
 		9050071C28BDF81200E64E92 /* AnimatedBlobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedBlobView.swift; sourceTree = "<group>"; };
+		905EFA422E26D9BD0092F0D5 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		905F3D762DE4D72C002D19CF /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
 		90707DD3292FF2BD00F4D7CE /* OfflineDatabase.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = OfflineDatabase.geojson; sourceTree = "<group>"; };
 		909445C729420E1000C57E77 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		901F83AB28A12380006FDC4F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				905EFA422E26D9BD0092F0D5 /* NetworkMonitor.swift */,
 				901F83AC28A1239B006FDC4F /* ContentModel.swift */,
 				90A625CB28A7A187009D9D8A /* FetchData.swift */,
 				90B2E3602928260A0047B106 /* OnboardingModel.swift */,
@@ -318,6 +321,7 @@
 				905F3D772DE4D739002D19CF /* RequestView.swift in Sources */,
 				909445D12943F0FD00C57E77 /* PeepView.swift in Sources */,
 				90B36AA828A264AA001C738C /* SettingsView.swift in Sources */,
+				905EFA432E26D9C20092F0D5 /* NetworkMonitor.swift in Sources */,
 				9050070A28BCE70800E64E92 /* DirectionsView.swift in Sources */,
 				9050071D28BDF81200E64E92 /* AnimatedBlobView.swift in Sources */,
 				9050071B28BD49F900E64E92 /* DialView.swift in Sources */,

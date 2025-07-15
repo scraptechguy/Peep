@@ -7,15 +7,20 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class FetchData: ObservableObject {
     @Published var dataList = [DataModel]()
+    
     @Published var finishedLoading = false
     
     init() {
+        fetchData()
+    }
         
+    func fetchData() {
         let url = URL(string: "https://raw.githubusercontent.com/scraptechguy/Peep/refs/heads/main/Database/database3.json")!
-            
+        
         URLSession.shared.dataTask(with: url) {(data, response, error) in
             do {
                 if let todoData = data {
@@ -30,35 +35,13 @@ class FetchData: ObservableObject {
                         withAnimation {
                             finishedLoading = true
                         }
-                    
+                        
                         self.dataList = decodedData
                     }
                     
                 } else {
                     
-                    print("using offline data")
-                    
-                    guard let url = Bundle.main.url(forResource: "OfflineDatabase", withExtension: "geojson")
-                    else {
-                        
-                        print("Json file not found")
-                        
-                        return
-                        
-                    }
-                    
-                    let data = try Data(contentsOf: url)
-                    var decodedData = try JSONDecoder().decode([DataModel].self, from: data)
-                    // Remove duplicates and validate coordinates
-                    decodedData = self.deduplicatedAndValidated(decodedData)
-                    
-                    DispatchQueue.main.async { [self] in
-                        withAnimation {
-                            finishedLoading = true
-                        }
-                        
-                        self.dataList = decodedData
-                    }
+                    print("offline")
                     
                 }
             } catch let error {

@@ -14,6 +14,7 @@ struct PeepApp: App {
             LaunchView()
                 .environmentObject(ContentModel())
                 .environmentObject(FetchData())
+                .environmentObject(NetworkMonitor.shared)
         }
     }
 }
