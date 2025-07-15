@@ -17,25 +17,6 @@ struct NavigationBar: View {
     
     let screenSize: CGRect = UIScreen.main.bounds
     
-    @State private var lastSearchedMapRect: MKMapRect?
-    
-    // Fractional padding to apply around the *last* rect
-    private let paddingFraction: Double = 0.1
-    var hasUnsearchedArea: Bool {
-        guard let last = lastSearchedMapRect else { return true }
-        let current = model.mapView.visibleMapRect
-        
-        // Compute padding based on the last rect’s size
-        let padX = last.size.width  * paddingFraction
-        let padY = last.size.height * paddingFraction
-
-        // Expand last rect by padding
-        let paddedLast = last.insetBy(dx: -padX, dy: -padY)
-
-        // If paddedLast fully contains current, there's no unsearched area
-        return !paddedLast.contains(current)
-    }
-    
     var body: some View {
         VStack(spacing: 10) {
             HStack {
