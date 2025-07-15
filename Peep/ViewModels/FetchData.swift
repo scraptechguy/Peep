@@ -23,8 +23,8 @@ class FetchData: ObservableObject {
                     print("using online data")
                     
                     var decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
-                    // Remove duplicates
-                    decodedData = Dictionary(grouping: decodedData, by: { "\($0.adresa ?? "")|\($0.zsirka ?? "")|\($0.zdelka ?? "")" }).compactMap { $0.value.first }
+                    // Remove duplicates and validate coordinates
+                    decodedData = self.deduplicatedAndValidated(decodedData)
                     
                     DispatchQueue.main.async { [self] in
                         withAnimation {
@@ -49,8 +49,8 @@ class FetchData: ObservableObject {
                     
                     let data = try Data(contentsOf: url)
                     var decodedData = try JSONDecoder().decode([DataModel].self, from: data)
-                    // Remove duplicates
-                    decodedData = Dictionary(grouping: decodedData, by: { "\($0.adresa ?? "")|\($0.zsirka ?? "")|\($0.zdelka ?? "")" }).compactMap { $0.value.first }
+                    // Remove duplicates and validate coordinates
+                    decodedData = self.deduplicatedAndValidated(decodedData)
                     
                     DispatchQueue.main.async { [self] in
                         withAnimation {
@@ -67,5 +67,30 @@ class FetchData: ObservableObject {
                 
             }
         }.resume()
+    }
+    
+    private func deduplicatedAndValidated(_ data: [DataModel]) -> [DataModel] {
+        let grouped = Dictionary(grouping: data, by: {
+            "\($0.adresa?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? "")|" +
+            "\($0.zsirka?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")|" +
+            "\($0.zdelka?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")"
+        })
+        
+        let unique = grouped.compactMap { $0.value.first }
+        
+        let valid = unique.filter { place in
+            guard let latStr = place.zsirka,
+                  let lonStr = place.zdelka,
+                  let lat = Double(latStr),
+                  let lon = Double(lonStr),
+                  lat >= -90, lat <= 90,
+                  lon >= -180, lon <= 180 else {
+                print("Invalid coords in: \(place.adresa ?? "[no address]") — lat: \(place.zsirka ?? "nil"), lon: \(place.zdelka ?? "nil")")
+                return false
+            }
+            return true
+        }
+        
+        return valid
     }
 }
