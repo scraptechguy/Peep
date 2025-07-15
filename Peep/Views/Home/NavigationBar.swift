@@ -12,6 +12,7 @@ struct NavigationBar: View {
     
     @EnvironmentObject var model: ContentModel
     @EnvironmentObject var data: FetchData
+    @EnvironmentObject var net: NetworkMonitor
     
     @Binding var centerPlacemark: CLPlacemark?
     
@@ -39,6 +40,12 @@ struct NavigationBar: View {
                                 .foregroundColor(Color("Font"))
                                 .lineLimit(1)
                                 .animation(.interactiveSpring(response: 0.9, dampingFraction: 0.8, blendDuration: 0.5), value: model.didClickOnLocationButtonWhenLocationOff)
+                            
+                        } else if !net.isOnline {
+                            
+                            Text(String(localized: "offline"))
+                                .foregroundColor(Color("Font"))
+                                .lineLimit(1)
                             
                         } else {
                             

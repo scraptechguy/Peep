@@ -32,6 +32,7 @@
 
 // MARK: - Home Screen
 
+"offline" = "Aplikace je offline";
 "offlineAlert" = "Pro načtení slunečních hodin do mezipaměti musí být Peep při prvním spuštění připojen k internetu. Po tomto jednom připojení můžeš používat Peep už navždy i offline!";
 "homeSearch" = "Vyhledat adresu";
 "homeSearchLoading" = "Načítání...";
