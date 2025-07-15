@@ -9,7 +9,7 @@
 // MARK: - Intro
 
 "introHeading" = "Peep says hi!";
-"introText" = "Peep is a very busy bird, he keeps track of sundials all around the globe";
+"introText" = "Peep is a very busy bird, he keeps track of **sundials** all around the globe";
 "introButton" = "Let's dive in";
 
 // MARK: - Onboarding
