@@ -76,19 +76,6 @@ struct RequestView: View {
                             model.requestGeolocationPermission()
                         }
                 }.frame(width: screenSize.width / 1, height: 50)
-                    .overlay(alignment: .bottom) {
-                        HStack(spacing: 5) {
-                            Text(welcomeSubtitle)
-                                .font(.system(size: 14))
-                                .foregroundColor(.secondary)
-                            
-                            Link(destination: URL(string: "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md")!) {
-                                Text(privacyButton)
-                                    .font(.system(size: 14))
-                                    .foregroundColor(Color("Font"))
-                            }
-                        }.offset(y: screenSize.height / 28)
-                    }
             }.offset(y: -30)
                 .preferredColorScheme(model.isLightMode ? .light : .dark)
         }
