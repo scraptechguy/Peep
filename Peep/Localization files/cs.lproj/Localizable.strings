@@ -8,8 +8,8 @@
 
 // MARK: - Intro
 
-"introHeading" = "Píp říká ahoj!";
-"introText" = "Píp je velmi pracovitý pták, stará se o **sluneční hodiny** po celé zeměkouli";
+"introHeading" = "Peep říká ahoj!";
+"introText" = "Peep je velmi pracovitý pták, stará se o **sluneční hodiny** po celé zeměkouli";
 "introButton" = "Jdem na to skočit";
 
 // MARK: - Onboarding
@@ -25,7 +25,7 @@
 // MARK: - Welcome
 
 "welcomeHeading" = "Eeeeej!";
-"welcomeText" = "Píp chce používat **tvoji polohu** k doručení relevantních údajů, kliknutím na **pokračovat** mu to umožníš";
+"welcomeText" = "Peep chce používat **tvoji polohu** k doručení relevantních údajů, kliknutím na **pokračovat** mu to umožníš";
 "nextButton" = "Pokračovat";
 "welcomeSubtitle" = "Pokračovaním souhlasíš s naší ";
 "privacyButton" = "**Privacy Policy**";
@@ -47,7 +47,7 @@
 "settingsAppLanguageValue" = "Čeština";
 
 "settingsLocationHeading" = "Povolit přístup k poloze";
-"settingsLocationFooter" = "Píp může poskytovat relevantnější data s povoleným přístupem k poloze";
+"settingsLocationFooter" = "Peep může poskytovat relevantnější data s povoleným přístupem k poloze";
 
 "settingsSectionInformation" = "Informace";
 "settingsFeedback" = "Napsat recenzi";
@@ -180,8 +180,8 @@
 
 // MARK: - ???
 
-"peepTitle" = "Tohle je Píp";
-"peepText1" = "Píp je velmi pracovitý pták, stará se o sluneční hodiny po celé zeměkouli. Když se chce cítit veliký, říká si pan Peep (ve skutečnosti ale tak veliký není)";
+"peepTitle" = "Tohle je Peep";
+"peepText1" = "Peep je velmi pracovitý pták, stará se o sluneční hodiny po celé zeměkouli. Když se chce cítit veliký, říká si pan Peep (ve skutečnosti ale tak veliký není)";
 "peepText2" = "**peep** *sloveso* - tajně se na krátkou chvíli na něco podívat, obvykle dírou";
-"peepText3" = "*I saw her peeping into the world of sundials using Píp*.";
-"peepText4" = "Vzácná fotografie Pípovi skutečné velikosti";
+"peepText3" = "*I saw her peeping into the world of sundials using Peep*.";
+"peepText4" = "Vzácná fotografie Peepovi skutečné velikosti";
