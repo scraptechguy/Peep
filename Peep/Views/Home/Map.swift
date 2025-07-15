@@ -90,10 +90,6 @@ struct Map: UIViewRepresentable {
         
         }
         
-        DispatchQueue.main.async {
-            context.coordinator.compassButton?.compassVisibility = model.showCompass ? .visible : .hidden
-        }
-        
         if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
          
             uiView.showsUserLocation = true // Show user on the map

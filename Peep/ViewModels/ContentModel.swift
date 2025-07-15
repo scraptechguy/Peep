@@ -24,9 +24,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     
     @AppStorage("didShowOnboarding") var didShowOnboarding = false
     @AppStorage("isLightMode") var isLightMode = false
-    @AppStorage("showCompass") var showCompass: Bool = false
-    @AppStorage("useOfflineDatabase") var useOfflineDatabase = false
-    @AppStorage("latlogDelta") var latlongDelta: Double = 0.15
     
     @Published var finishedLoading = false
     @Published var initialRegionCentered = false
