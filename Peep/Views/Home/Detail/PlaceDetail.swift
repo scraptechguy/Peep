@@ -36,6 +36,10 @@ struct PlaceDetail: View {
     let detailSectionInformation: LocalizedStringKey = "detailSectionInformation"
     let detailAzimuth: LocalizedStringKey = "detailAzimuth"
     
+    var shouldDisableScroll: Bool {
+        abs(model.currentHeight - minHeight) < 1
+    }
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             Color.clear
@@ -68,7 +72,7 @@ struct PlaceDetail: View {
                                 Button(action: {
                                     withAnimation {
                                         model.annotationSelected = false
-                                        model.currentHeight = UIScreen.main.bounds.height / 10.2
+                                        model.currentHeight = UIScreen.main.bounds.height / 11
                                     }
                                 }, label: {
                                     ZStack {
@@ -368,63 +372,13 @@ struct PlaceDetail: View {
                                 .padding(.bottom, 8)
                             
                             VStack(alignment: .center) {
-                               HStack {
-                                   Text(String(localized: "comingSoon"))
-                                       .bold()
-                                       .font(.title3)
-                                       .padding(.bottom, 50)
-                               }.padding(.top, 5)
-                           }.frame(width: screenSize.width)
-                           
-                            /*
-                            HStack {
-                                Spacer()
-                                
-                                Button(action: {
-                                    
-                                }, label: {
-                                    VStack {
-                                        Image(systemName: "clock")
-                                            .frame(width: screenSize.width / 2.5, height: screenSize.width / 2.5)
-                                            .background {
-                                                Rectangle()
-                                                    .foregroundColor(Color.clear)
-                                                    .overlay(.thinMaterial)
-                                                    .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                                            }
-                                        
-                                        Text("Appearance")
-                                            .font(.system(size: 10))
-                                            .foregroundColor(Color("Font"))
-                                    }
-                                })
-                                
-                                Spacer()
-                                
-                                Button(action: {
-                                    
-                                }, label: {
-                                    VStack {
-                                        Compass()
-                                            .frame(width: screenSize.width / 2.5, height: screenSize.width / 2.5)
-                                            .background {
-                                                Rectangle()
-                                                    .foregroundColor(Color.clear)
-                                                    .overlay(.thinMaterial)
-                                                    .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                                            }
-                                        
-                                        Text("Azimuth")
-                                            .font(.system(size: 10))
-                                            .foregroundColor(Color("Font"))
-                                    }
-                                })
-                                
-                                Spacer()
-                            }.frame(maxWidth: .infinity, alignment: .center)
-                                .padding(.top)
-                                .padding(.bottom, 50)
-                            */
+                                HStack {
+                                    Text(String(localized: "comingSoon"))
+                                        .bold()
+                                        .font(.title3)
+                                        .padding(.bottom, 50)
+                                }.padding(.top, 5)
+                            }.frame(width: screenSize.width)
                         }
                     } else {
                         
@@ -445,7 +399,7 @@ struct PlaceDetail: View {
                         }
                         
                     }
-                }.scrollDisabled(model.currentHeight == minHeight)
+                }.scrollDisabled(shouldDisableScroll)
             }.frame(height: model.currentHeight - dragOffset.height)
                 .frame(maxWidth: .infinity)
                 .background {
