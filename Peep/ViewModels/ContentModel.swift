@@ -226,32 +226,4 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
             }
         }
     }
-    
-    // MARK: - searchCurrentMapArea()    
-    func searchCurrentMapArea() {
-        let mapView = mapView
-        let region  = mapView.region
-        
-        // use the map’s own span (half on either side of center)
-        let latSpan = region.span.latitudeDelta  / 2
-        let lonSpan = region.span.longitudeDelta / 2
-        
-        // filter searchablePlaces by the region’s bounding box
-        let hits: [MKPointAnnotation] = self.searchablePlaces.compactMap { place in
-            guard let latS = place.zsirka, let lonS = place.zdelka, let lat  = Double(latS), let lon  = Double(lonS) else { return nil }
-            guard abs(lat - region.center.latitude)  <= latSpan, abs(lon - region.center.longitude) <= lonSpan else { return nil }
-            
-            let pin = MKPointAnnotation()
-            pin.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-            pin.title = place.adresa
-            return pin
-        }
-        
-        // clear out old pins (but keep the user location)
-        let oldPins = mapView.annotations.filter { !($0 is MKUserLocation) }
-        mapView.removeAnnotations(oldPins)
-        
-        // drop in your new set
-        mapView.addAnnotations(hits)
-    }
 }
