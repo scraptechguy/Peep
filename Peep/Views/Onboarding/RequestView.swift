@@ -69,7 +69,7 @@ struct RequestView: View {
                                         .scaleEffect(1.2)
                                 )
                                 .mask(
-                                    RoundedRectangle(cornerRadius: 15, style: .continuous)
+                                    RoundedRectangle(cornerRadius: 30, style: .continuous)
                                 )
                         }
                         .onTapGesture {
