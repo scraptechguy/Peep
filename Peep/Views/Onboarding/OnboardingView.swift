@@ -93,7 +93,7 @@ struct OnboardingView: View {
                             .scaleEffect(1)
                     )
                     .mask(
-                        RoundedRectangle(cornerRadius: 15, style: .continuous)
+                        RoundedRectangle(cornerRadius: 30, style: .continuous)
                     )
                     .onTapGesture {
                         showOnboardingScreens = true
@@ -222,7 +222,7 @@ struct OnboardingView: View {
                                         .scaleEffect(1.2)
                                 )
                                 .mask(
-                                    RoundedRectangle(cornerRadius: 15, style: .continuous)
+                                    RoundedRectangle(cornerRadius: 30, style: .continuous)
                                 )
                         }
                         .onTapGesture {
