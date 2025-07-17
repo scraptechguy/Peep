@@ -150,9 +150,14 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
             
             do {
                 try fm.createDirectory(at: dir, withIntermediateDirectories: true, attributes: nil)
+                
+                #if DEBUG
                 print("Created PeepCache at:", dir.path)
+                #endif
             } catch {
+                #if DEBUG
                 print("Failed to create PeepCache:", error)
+                #endif
             }
             
         }
@@ -169,19 +174,27 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     func loadCachedSearchablePlaces() {
         let path = cacheURL.path
         guard FileManager.default.fileExists(atPath: path) else {
-            // No cache file yet, that’s fine on first launch
+            // No cache file, that’s fine on first launch
+            #if DEBUG
             print("No cache file at \(path).")
+            #endif
+            
             return
         }
         
         do {
             let raw = try Data(contentsOf: cacheURL)
             searchablePlaces = try JSONDecoder().decode([DataModel].self, from: raw)
+            
+            #if DEBUG
             print("Loaded \(searchablePlaces.count) places from cache")
+            #endif
         }
         catch {
             // If file doesn’t exist or decode fails, just start empty
+            #if DEBUG
             print("No cache to load or failed decode:", error)
+            #endif
         }
     }
     
@@ -191,9 +204,14 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
             do {
                 let data = try JSONEncoder().encode(self.searchablePlaces)
                 try data.write(to: self.cacheURL, options: .atomic)
+                
+                #if DEBUG
                 print("Persisted \(self.searchablePlaces.count) places to cache")
+                #endif
             } catch {
+                #if DEBUG
                 print("Failed to write cache:", error)
+                #endif
             }
         }
     }
