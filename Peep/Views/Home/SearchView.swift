@@ -172,40 +172,6 @@ struct SearchView: View {
         }
     }
     
-    // Computes your “filteredPlaces” logic off the main thread,
-    // then dispatches the final array back onto the main queue.
-    private func computeFilteredResults() {
-        // capture current inputs
-        let allPlaces = data.dataList
-        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        let regionName = centerPlacemark?.locality ?? ""
-
-        DispatchQueue.global(qos: .userInitiated).async {
-            // Filter by region or searchText:
-            let matches: [DataModel] = allPlaces.filter {
-                let address = $0.adresa ?? ""
-                return query.isEmpty ? address.localizedCaseInsensitiveContains(regionName) : address.localizedCaseInsensitiveContains(query)
-            }
-
-            // Sort by distance (if we have the user’s location):
-            let sorted: [DataModel]
-            if let userLoc = model.mapView.userLocation.location {
-                sorted = matches.sorted { a, b in
-                    let aLoc = CLLocation(latitude: Double(a.zsirka ?? "") ?? 0, longitude: Double(a.zdelka ?? "") ?? 0)
-                    let bLoc = CLLocation(latitude: Double(b.zsirka ?? "") ?? 0, longitude: Double(b.zdelka ?? "") ?? 0)
-                    return userLoc.distance(from: aLoc) < userLoc.distance(from: bLoc)
-                }
-            } else {
-                sorted = matches
-            }
-
-            // Back to the main thread to update your @State:
-            DispatchQueue.main.async {
-                self.filteredResults = sorted
-            }
-        }
-    }
-    
     @ViewBuilder
     func placeRow(for place: DataModel) -> some View {
         Button(action: {
