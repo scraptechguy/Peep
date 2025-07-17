@@ -53,9 +53,6 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     @Published var shouldCheckIsOnLocation = false
     @Published var didClickOnLocationButtonWhenLocationOff = false
     
-    @Published var compassOffset: CGFloat = 0
-    @Published var locationButtonSize: CGFloat = 0
-    
     @Published var searchablePlaces: [DataModel] = []
     
     // MARK: - Location
@@ -123,8 +120,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
             
             // Get the placemark of the user
             let geoCoder = CLGeocoder()
-            let csLocale = Locale(identifier: "cs-CZ")
-            geoCoder.reverseGeocodeLocation(userLocation!, preferredLocale: csLocale) { placemarks, error in
+            let locale = Locale.current
+            geoCoder.reverseGeocodeLocation(userLocation!, preferredLocale: locale) { placemarks, error in
                 guard let pm = placemarks?.first, error == nil else { return }
                 self.placemark = pm
             }
