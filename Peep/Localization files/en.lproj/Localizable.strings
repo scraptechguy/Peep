@@ -104,6 +104,7 @@
 "detailNoAddress" = "No address found";
 "detailNoDescription" = "No description found";
 "detailDirections" = "Directions";
+"detailDirectionsWithCar" = "🚗 Directions";
 "detailDirectionsOpen" = "Open in Maps";
 "detailType" = "Type";
 "detailIndicator" = "Indicator";

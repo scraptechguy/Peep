@@ -14,7 +14,7 @@ struct DirectionsView: View {
     var place: DataModel
     let screenSize: CGRect = UIScreen.main.bounds
     
-    let detailDirections: LocalizedStringKey = "detailDirections"
+    let detailDirectionsWithCar: LocalizedStringKey = "detailDirectionsWithCar"
     let unavailableFeatureLocation: LocalizedStringKey = "unavailableFeatureLocation"
     
     var body: some View {
@@ -32,7 +32,7 @@ struct DirectionsView: View {
                     }.frame(width: screenSize.width / 1.25)
                     
                     HStack {
-                        Text(detailDirections)
+                        Text(detailDirectionsWithCar)
                             .font(.system(size: 15))
                             .foregroundColor(.secondary)
                             .padding(.horizontal)

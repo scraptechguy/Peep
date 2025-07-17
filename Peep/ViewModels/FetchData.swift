@@ -11,7 +11,6 @@ import Combine
 
 class FetchData: ObservableObject {
     @Published var dataList = [DataModel]()
-    
     @Published var finishedLoading = false
     
     init() {

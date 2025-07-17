@@ -104,6 +104,7 @@
 "detailNoAddress" = "Adresa chybí";
 "detailNoDescription" = "Popis chybí";
 "detailDirections" = "Trasa";
+"detailDirectionsWithCar" = "🚗 Trasa";
 "detailDirectionsOpen" = "Otevřít v Mapách";
 "detailType" = "Typ";
 "detailIndicator" = "Ukazatel";

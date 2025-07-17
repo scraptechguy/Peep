@@ -91,8 +91,8 @@ struct HomeView: View {
             // Create a new debounced task
             let workItem = DispatchWorkItem {
                 let location = CLLocation(latitude: newCenter.latitude, longitude: newCenter.longitude)
-                let csLocale = Locale(identifier: "cs-CZ")
-                CLGeocoder().reverseGeocodeLocation(location, preferredLocale: csLocale) { placemarks, error in
+                let locale = Locale.current
+                CLGeocoder().reverseGeocodeLocation(location, preferredLocale: locale) { placemarks, error in
                     if let placemark = placemarks?.first, error == nil {
                         withAnimation {
                             centerPlacemark = placemark
