@@ -31,7 +31,8 @@ There's over 7,000 sundials documented around the world. Zoom in and find them a
   <a href="/docs/README_cz.md">Čeština</a>
 </p>
 
-![Group 99](https://github.com/user-attachments/assets/dfd3a6a1-f690-43bc-bd8a-7fd0b5d78877)
+<img width="5424" height="2796" alt="4previews" src="https://github.com/user-attachments/assets/a6335ea2-83a5-4bba-9109-c4fa20ed2e58" />
+
 
 <div align="center">
   <a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
