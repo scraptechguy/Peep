@@ -12,7 +12,7 @@ There's over 7,000 sundials documented around the world. Zoom in and find them a
 
 <div align="center">
   <a href="https://github.com/scraptechguy/Peep/actions">
-    <img src="https://github.com/scraptechguy/Peep/actions/workflows/ios.yml/badge.svg">
+    <img src="https://github.com/scraptechguy/Peep/actions/workflows/objective-c-xcode.yml/badge.svg">
   </a>
   <a href="https://github.com/scraptechguy/Peep/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/scraptechguy/Peep">
