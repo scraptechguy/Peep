@@ -1,4 +1,12 @@
-## Píp ti pomůže objevit úžasný svět slunečních hodin. Najdi sluneční hodiny, prozkoumej informace o nich a naplánuj si výlet! 
+<div align="center">
+  <a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> 
+    <img width="100" height="100" alt="LaunchScreenImage1200x1200" src="https://github.com/user-attachments/assets/76011207-e401-4a51-8895-18e2c66a7573"/>
+  </a>
+  
+  <b>Peep</b>
+</div>
+
+## Peep ti pomůže objevit úžasný svět slunečních hodin. Najdi sluneční hodiny, prozkoumej informace o nich a naplánuj si výlet! 
 
 Kolem světa je zdokumentováno přes 7 000 slunečních hodin. Přiblížením prozkoumávej místa a najdi je všechny!
 
@@ -23,17 +31,15 @@ Kolem světa je zdokumentováno přes 7 000 slunečních hodin. Přiblížením 
   <a href="/docs/README_cz.md">Čeština</a>
 </p>
 
-![Group 99](https://user-images.githubusercontent.com/75474651/209583866-9bbfe36b-7add-4639-ba4d-846729f009c7.png)
+<img width="5424" height="2796" alt="4previews" src="https://github.com/user-attachments/assets/214dfcf0-9ae6-45ed-8d31-3008437df181" />
 
-### Poslední verze na App Storu: 
-
+<div align="center">
 <a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
-
-> App Store® a Apple logo® jsou ochrannými známkami společnosti Apple Inc.
+</div>
 
 ### Poslední TestFlight verze:
 
-Klikni <a href="https://testflight.apple.com/join/nrBtEpPi">zde</a> nebo použij tento kód pro uplatnění: <b>Není nastaveno, použij link</b>
+Klikni <a href="https://testflight.apple.com/join/Fc85W9Fx">zde</a> nebo použij tento kód pro uplatnění: <b>Není nastaveno, použij link</b>
 
 ## O projektu
 
