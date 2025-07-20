@@ -6,7 +6,7 @@
   <b>Peep</b>
 </div>
 
-## Peep allows you to discover the amazing world of sundials. Find sundials close to you, learn about their features, and plan out your trip! 
+## Discover the amazing world of sundials with Peep. Find sundials close to you, learn about their features, and plan out your trip! 
 
 There's over 7,000 sundials documented around the world. Zoom in and find them all!
 
