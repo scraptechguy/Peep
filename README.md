@@ -40,7 +40,7 @@ There's over 7,000 sundials documented around the world. Zoom in and find them a
 
 ### Latest TestFlight release:
 
-Click <a href="https://testflight.apple.com/join/nrBtEpPi">here</a> or use the Redeem Code: <b>Not set, use link</b>
+Click <a href="https://testflight.apple.com/join/Fc85W9Fx">here</a> or use the Redeem Code: <b>Not set, use link</b>
 
 ## About
 
