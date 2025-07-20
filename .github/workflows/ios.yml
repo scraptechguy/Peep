@@ -8,37 +8,49 @@ on:
 
 jobs:
   build:
-    name: Build and Test default scheme using any available iPhone simulator
+    name: Build & Test on iOS Simulator
     runs-on: macos-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set Default Scheme
+
+      - name: Set up Xcode 16
+        uses: apple/actions/setup-xcode@v4
+        with:
+          xcode-version: '16.0'
+
+      - name: Discover Default Scheme
+        id: set-scheme
         run: |
-          scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-          echo $default | cat >default
-          echo Using default scheme: $default
-      - name: Build
+          # grab the first *scheme* from xcodebuild -list -json
+          SCHEME=$(xcodebuild -list -json \
+            | jq -r '.project.schemes[0]')
+          echo "Using scheme: $SCHEME"
+          echo "::set-output name=scheme::$SCHEME"
+
+      - name: Build for testing
         env:
-          scheme: ${{ 'default' }}
-          platform: ${{ 'iOS Simulator' }}
+          SCHEME: ${{ steps.set-scheme.outputs.scheme }}
         run: |
-          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
-          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
-          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
-      - name: Test
+          DEVICE=$(xcrun simctl list devices available \
+            | grep -oE 'iPhone.*?(?= \\()' \
+            | head -1)
+          xcodebuild clean build-for-testing \
+            -scheme "$SCHEME" \
+            -workspace "$(ls *.xcworkspace || true)" \
+            -project "$(ls *.xcodeproj || true)" \
+            -destination "platform=iOS Simulator,name=$DEVICE"
+
+      - name: Run tests
         env:
-          scheme: ${{ 'default' }}
-          platform: ${{ 'iOS Simulator' }}
+          SCHEME: ${{ steps.set-scheme.outputs.scheme }}
         run: |
-          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
-          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
-          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
+          DEVICE=$(xcrun simctl list devices available \
+            | grep -oE 'iPhone.*?(?= \\()' \
+            | head -1)
+          xcodebuild test-without-building \
+            -scheme "$SCHEME" \
+            -workspace "$(ls *.xcworkspace || true)" \
+            -project "$(ls *.xcodeproj || true)" \
+            -destination "platform=iOS Simulator,name=$DEVICE"
