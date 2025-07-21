@@ -49,7 +49,7 @@ struct SettingsView: View {
                     Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary)) {
                         Toggle(isOn: $model.isLightMode) {
                             Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
-                        }
+                        }.listRowBackground(Color("ListRowBackground"))
                         
                         HStack {
                             Label(settingsAppLanguage, systemImage: "character.book.closed")
@@ -69,6 +69,7 @@ struct SettingsView: View {
                                 }
                             }
                         }
+                        .listRowBackground(Color("ListRowBackground"))
                     }.foregroundColor(.primary)
                     
                     if model.authorizationState == .denied || model.authorizationState == .restricted {
