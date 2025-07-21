@@ -229,7 +229,7 @@ struct SettingsView: View {
                         .listRowBackground(Color("ListRowBackground"))
                     }.foregroundColor(.primary)
                     
-                    Section(footer: HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}.padding(.bottom, 60)) {
+                    Section(footer: HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}) {
                         Button(action: {
                             
                         }, label: {
@@ -245,6 +245,14 @@ struct SettingsView: View {
                         }).sheet(isPresented: {$model.didLongPressed}()) {PeepView()}
                             .listRowBackground(Color("ListRowBackground"))
                     }.foregroundColor(.secondary)
+                    
+                    Text("© 2025 Rostislav Brož | Except where otherwise stated, content on this site is licensed under a Creative Commons Attribution 4.0 International License. | Main contact: Rostislav Brož (scraptechguy@gmail.com)")
+                        .multilineTextAlignment(.center)
+                        .font(.footnote)
+                        .foregroundStyle(Color.secondary)
+                        .padding(.horizontal)
+                        .listRowBackground(Color.clear)
+                        .padding(.bottom, 60)
                 }.listStyle(.insetGrouped)
                     .navigationTitle(settingsHeading)
                     .background {
