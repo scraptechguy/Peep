@@ -233,11 +233,11 @@ struct SettingsView: View {
                         Button(action: {
                             
                         }, label: {
-                            Label("\(String(localized: "settingsVersion")) 1.2.1", systemImage: "server.rack")
+                            Label("\(String(localized: "settingsVersion")) \(Bundle.main.versionBuildString)", systemImage: "server.rack")
                                 .background(
                                     AnimatedBlobView()
                                         .frame(width: 400, height: 414)
-                                        .offset(x: 300, y: 0)
+                                        .offset(x: 330, y: 0)
                                         .scaleEffect(1)
                                 )
                         }).simultaneousGesture(LongPressGesture(minimumDuration: 1.5).onEnded { _ in
@@ -278,6 +278,23 @@ struct SettingsView: View {
                 Spacer()
             }
         }.preferredColorScheme(model.isLightMode ? .light : .dark)
+    }
+}
+
+extension Bundle {
+    // CFBundleShortVersionString
+    var appVersion: String {
+        infoDictionary?["CFBundleShortVersionString"] as? String ?? "?"
+    }
+    
+    // CFBundleVersion
+    var buildNumber: String {
+        infoDictionary?["CFBundleVersion"] as? String ?? "?"
+    }
+    
+    // e.g. "v1.2.3 (45)"
+    var versionBuildString: String {
+        "\(appVersion) (\(buildNumber))"
     }
 }
 
