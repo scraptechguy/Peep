@@ -66,6 +66,9 @@
 "settingsVersion" = "Verze";
 "settingsFooter" = "Vyrobeno s Ɛ> - ";
 
+"settingsThanks" = "Tento projekt byl uskutečněn díky přispěvatelům do registru slunečních hodin: **M. Brož, M. Nosek, J. a V. Trebichavští, D. Pecinová, L. Mucha a autoři diplomových prací";
+"settingsCopyright" = "© 2025 Rostislav Brož | Není-li uvedeno jinak, tato aplikace je licencována pod licencí Creative Commons Attribution 4.0 International. | Hlavní kontakt: Rostislav Brož (scraptechguy@gmail.com)";
+
 // MARK: - Help
 
 "helpHeading1" = "✨ Tohle je Peep ✨";

@@ -66,6 +66,9 @@
 "settingsVersion" = "Version";
 "settingsFooter" = "Made with Ɛ> by ";
 
+"settingsThanks" = "Grateful recognition to the contributors to the sundial registry: **M. Brož, M. Nosek, J. a V. Trebichavští, D. Pecinová, L. Mucha and authors of dipl. theses**";
+"settingsCopyright" = "© 2025 Rostislav Brož | Except where otherwise stated, this app is licensed under a Creative Commons Attribution 4.0 International License. | Main contact: Rostislav Brož (scraptechguy@gmail.com)";
+
 // MARK: - Help
 
 "helpHeading1" = "✨ This is Peep ✨";

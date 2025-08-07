@@ -36,6 +36,9 @@ struct SettingsView: View {
     
     let settingsFooter: LocalizedStringKey = "settingsFooter"
     
+    let settingsThanks: LocalizedStringKey = "settingsThanks"
+    let settingsCopyright: LocalizedStringKey = "settingsCopyright"
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -229,7 +232,19 @@ struct SettingsView: View {
                         .listRowBackground(Color("ListRowBackground"))
                     }.foregroundColor(.primary)
                     
-                    Section(footer: HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}) {
+                    Section(footer:
+                        VStack(alignment: .leading, spacing: 10) {
+                            HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) {
+                                    Text("@scraptechguy").foregroundColor(.primary)
+                                }
+                            }
+                        
+                            Text(settingsThanks)
+                                .font(.footnote)
+                                .foregroundStyle(Color.secondary)
+                                .listRowBackground(Color.clear)
+                        }
+                    ) {
                         Button(action: {
                             
                         }, label: {
@@ -246,7 +261,7 @@ struct SettingsView: View {
                             .listRowBackground(Color("ListRowBackground"))
                     }.foregroundColor(.secondary)
                     
-                    Text("© 2025 Rostislav Brož | Except where otherwise stated, content on this site is licensed under a Creative Commons Attribution 4.0 International License. | Main contact: Rostislav Brož (scraptechguy@gmail.com)")
+                    Text(settingsCopyright)
                         .multilineTextAlignment(.center)
                         .font(.footnote)
                         .foregroundStyle(Color.secondary)
