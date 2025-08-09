@@ -25,6 +25,7 @@ struct SettingsView: View {
     let settingsFeedback: LocalizedStringKey = "settingsFeedback"
     let settingsPrivacyPolicy: LocalizedStringKey = "settingsPrivacyPolicy"
     let settingsHelp: LocalizedStringKey = "settingsHelp"
+    let settingsCredits: LocalizedStringKey = "settingsCredits"
     let settingsSectionInformationFooter: LocalizedStringKey = "settingsSectionInformationFooter"
     
     let settingsSectionLinks: LocalizedStringKey = "settingsSectionLinks"
@@ -238,17 +239,12 @@ struct SettingsView: View {
                                     Text("@scraptechguy").foregroundColor(.primary)
                                 }
                             }
-                        
-                            Text(settingsThanks)
-                                .font(.footnote)
-                                .foregroundStyle(Color.secondary)
-                                .listRowBackground(Color.clear)
                         }
                     ) {
                         Button(action: {
                             
                         }, label: {
-                            Label("\(String(localized: "settingsVersion")) \(Bundle.main.versionBuildString)", systemImage: "server.rack")
+                            Text("\(String(localized: "settingsVersion")) \(Bundle.main.versionBuildString)")
                                 .background(
                                     AnimatedBlobView()
                                         .frame(width: 400, height: 414)
@@ -258,8 +254,13 @@ struct SettingsView: View {
                         }).simultaneousGesture(LongPressGesture(minimumDuration: 1.5).onEnded { _ in
                             model.didLongPressed = true
                         }).sheet(isPresented: {$model.didLongPressed}()) {PeepView()}
+                            .foregroundColor(.secondary)
                             .listRowBackground(Color("ListRowBackground"))
-                    }.foregroundColor(.secondary)
+                        
+                        NavigationLink(destination: CreditsView().navigationBarTitle(settingsCredits)) {
+                            Text(settingsCredits)
+                        }.listRowBackground(Color("ListRowBackground"))
+                    }
                     
                     Text(settingsCopyright)
                         .multilineTextAlignment(.center)
