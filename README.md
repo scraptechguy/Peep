@@ -42,24 +42,7 @@ There's over 7,000 sundials documented around the world. Zoom in and find them a
 
 Click <a href="https://testflight.apple.com/join/Fc85W9Fx">here</a> or use the Redeem Code: <b>Not set, use link</b>
 
-## About
-
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/75474651/202924529-86a4beb5-4266-409b-85d5-9f7308d91a94.svg" width="200">
-  
-<h4>Meet Peep</h4>
-
-Peep is a very busy bird, he keeps track of sundials all around the globe. When he feels rather formal, he calls himself Mr. Peep (makes him feel bigger,  but in reality, he's not all that big).
-
-<b>peep</b> <i>verb</i> [I usually + adv/prep ] - to secretly look at something for a short time, usually through a hole
-
-*I saw her peeping into the world of sundials using Peep.*
-
-<img src="https://user-images.githubusercontent.com/75474651/202924529-86a4beb5-4266-409b-85d5-9f7308d91a94.svg" width="20">
-
-Rare footage of Peep's actual size
-
-</div>
+## Preview
 
 <img src="https://github.com/scraptechguy/Peep/blob/main/docs/FullPeepMockups.png">
 
