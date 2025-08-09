@@ -13,18 +13,26 @@ struct CreditsView: View {
     let screenSize: CGRect = UIScreen.main.bounds
     
     let settingsThanks: LocalizedStringKey = "settingsThanks"
+    let settingsInstitutions: LocalizedStringKey = "settingsInstitutions"
     let settingsAuthors: LocalizedStringKey = "settingsAuthors"
     let settingsThanksOthers: LocalizedStringKey = "settingsThanksOthers"
     
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                Text(settingsThanks)
+                Text(settingsInstitutions)
                     .font(.footnote)
                     .foregroundStyle(Color.primary)
                     .listRowBackground(Color.clear)
                     .multilineTextAlignment(.center)
                     .padding(.top, 10)
+                    .padding(.horizontal)
+                
+                Text(settingsThanks)
+                    .font(.footnote)
+                    .foregroundStyle(Color.primary)
+                    .listRowBackground(Color.clear)
+                    .multilineTextAlignment(.center)
                     .padding(.horizontal)
                 
                 Text(settingsAuthors)

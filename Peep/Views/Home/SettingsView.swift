@@ -20,6 +20,7 @@ struct SettingsView: View {
     let settingsColorScheme: LocalizedStringKey = "settingsColorScheme"
     let settingsAppLanguage: LocalizedStringKey = "settingsAppLanguage"
     let settingsAppLanguageValue: LocalizedStringKey = "settingsAppLanguageValue"
+    let settingsSectionGeneralFooter: LocalizedStringKey = "settingsSectionGeneralFooter"
     
     let settingsSectionInformation: LocalizedStringKey = "settingsSectionInformation"
     let settingsFeedback: LocalizedStringKey = "settingsFeedback"
@@ -50,7 +51,7 @@ struct SettingsView: View {
                     
                     // MARK: - General
                     
-                    Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary)) {
+                    Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary), footer: Text(settingsSectionGeneralFooter).foregroundColor(.secondary)) {
                         Toggle(isOn: $model.isLightMode) {
                             Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
                         }.listRowBackground(Color("ListRowBackground"))
