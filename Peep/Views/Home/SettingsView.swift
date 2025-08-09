@@ -234,6 +234,8 @@ struct SettingsView: View {
                         .listRowBackground(Color("ListRowBackground"))
                     }.foregroundColor(.primary)
                     
+                    // MARK: - Footer
+                    
                     Section(footer:
                         VStack(alignment: .leading, spacing: 10) {
                             HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) {
@@ -242,6 +244,10 @@ struct SettingsView: View {
                             }
                         }
                     ) {
+                        NavigationLink(destination: CreditsView().navigationBarTitle(settingsCredits)) {
+                            Text(settingsCredits)
+                        }.listRowBackground(Color("ListRowBackground"))
+                        
                         Button(action: {
                             
                         }, label: {
@@ -257,10 +263,6 @@ struct SettingsView: View {
                         }).sheet(isPresented: {$model.didLongPressed}()) {PeepView()}
                             .foregroundColor(.secondary)
                             .listRowBackground(Color("ListRowBackground"))
-                        
-                        NavigationLink(destination: CreditsView().navigationBarTitle(settingsCredits)) {
-                            Text(settingsCredits)
-                        }.listRowBackground(Color("ListRowBackground"))
                     }
                     
                     Text(settingsCopyright)
