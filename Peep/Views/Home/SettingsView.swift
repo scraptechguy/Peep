@@ -161,7 +161,7 @@ struct SettingsView: View {
                         }
                         .listRowBackground(Color("ListRowBackground"))
                         
-                        Link(destination: URL(string: "https://apps.apple.com/us/app/p%C3%ADp/id6444575713")!) {
+                        Link(destination: URL(string: "https://apps.apple.com/cz/app/peep-the-world-of-sundials/id6747686124?action=write-review")!) {
                             HStack {
                                 Label(settingsFeedback, systemImage: "leaf")
                                     .foregroundColor(.primary)
@@ -178,7 +178,7 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                UIPasteboard.general.string = "https://apps.apple.com/us/app/p%C3%ADp/id6444575713"
+                                UIPasteboard.general.string = "https://apps.apple.com/cz/app/peep-the-world-of-sundials/id6747686124?action=write-review"
                             }, label: {
                                 Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
                             })
