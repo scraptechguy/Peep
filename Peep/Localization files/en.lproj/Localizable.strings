@@ -64,6 +64,8 @@
 "settingsSectionDeveloperSettings" = "Developer";
 "settingsBug" = "Report a bug";
 "settingsFeature" = "Suggest a feature";
+"settingsDatabase" = "Database checks";
+"settingsSectionDeveloperSettingsFooter" = "Database checks: **(1) reachability**, **(2) JSON validity**";
 
 "settingsVersion" = "Version";
 "settingsFooter" = "Made with Ɛ> by ";

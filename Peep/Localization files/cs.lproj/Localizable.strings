@@ -64,6 +64,8 @@
 "settingsSectionDeveloperSettings" = "Developer";
 "settingsBug" = "Nahlásit chybu";
 "settingsFeature" = "Navrhnout funkci";
+"settingsDatabase" = "Kontrolky databáze";
+"settingsSectionDeveloperSettingsFooter" = "Kontrolky: **(1) dostupnost**, **(2) validita JSONu**";
 
 "settingsVersion" = "Verze";
 "settingsFooter" = "Vyrobeno s Ɛ> - ";

@@ -12,49 +12,96 @@ import Combine
 class FetchData: ObservableObject {
     @Published var dataList = [DataModel]()
     @Published var finishedLoading = false
+    @Published var databaseOnline = true
+    @Published var jsonValid = true
     
     init() {
         fetchData()
     }
         
     func fetchData() {
-        let url = URL(string: "https://raw.githubusercontent.com/scraptechguy/Peep/refs/heads/main/Database/database3.json")!
-        
-        URLSession.shared.dataTask(with: url) {(data, response, error) in
-            do {
-                if let todoData = data {
+        let url = URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/json4.php")!
+        let fallbackUrl = URL(string: "https://raw.githubusercontent.com/scraptechguy/Peep/refs/heads/main/Database/database4.json")!
+        var needsFallback = false
+
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let data = data, error == nil {
                     
-                    #if DEBUG
-                    print("using online data")
-                    #endif
-                    
-                    var decodedData = try JSONDecoder().decode([DataModel].self, from: todoData)
-                    // Remove duplicates and validate coordinates
-                    decodedData = self.deduplicatedAndValidated(decodedData)
-                    
-                    DispatchQueue.main.async { [self] in
-                        withAnimation {
-                            finishedLoading = true
-                        }
+                    do {
+                        #if DEBUG
+                        print("Using online data")
+                        #endif
                         
-                        self.dataList = decodedData
+                        var decoded = try JSONDecoder().decode([DataModel].self, from: data)
+                        decoded = self.deduplicatedAndValidated(decoded)
+                        
+                        DispatchQueue.main.async { [self] in
+                            withAnimation {
+                                finishedLoading = true
+                                databaseOnline = true
+                            }
+                            
+                            self.dataList = decoded
+                        }
+                    } catch {
+                        #if DEBUG
+                        print("Primary decode failed: \(error)")
+                        #endif
+                        
+                        needsFallback = true
+                        
+                        DispatchQueue.main.async { [self] in
+                            jsonValid = false
+                        }
                     }
                     
                 } else {
                     
                     #if DEBUG
-                    print("offline")
+                    print("Primary fetch failed: \(error?.localizedDescription ?? "unknown error")")
                     #endif
+                    
+                    needsFallback = true
+                    
+                    DispatchQueue.main.async { [self] in
+                        databaseOnline = false
+                    }
+                    
                 }
-            } catch let error {
-                
-                #if DEBUG
-                print(error)
-                #endif
-                
-            }
-        }.resume()
-    }
+
+                if needsFallback {
+                    
+                    URLSession.shared.dataTask(with: fallbackUrl) { (data2, response2, error2) in
+                        if let data2 = data2, error2 == nil {
+                            
+                            do {
+                                #if DEBUG
+                                print("Using fallback online data")
+                                #endif
+                                var decoded2 = try JSONDecoder().decode([DataModel].self, from: data2)
+                                decoded2 = self.deduplicatedAndValidated(decoded2)
+                                DispatchQueue.main.async { [self] in
+                                    withAnimation { finishedLoading = true }
+                                    self.dataList = decoded2
+                                }
+                            } catch {
+                                #if DEBUG
+                                print("Fallback decode failed: \(error)")
+                                #endif
+                            }
+                            
+                        } else {
+                            
+                            #if DEBUG
+                            print("Fallback fetch failed: \(error2?.localizedDescription ?? "unknown error")")
+                            #endif
+                            
+                        }
+                    }.resume()
+                    
+                }
+            }.resume()
+        }
     
     private func deduplicatedAndValidated(_ data: [DataModel]) -> [DataModel] {
         let grouped = Dictionary(grouping: data, by: { "\($0.adresa?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? "")|" + "\($0.zsirka?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")|" + "\($0.zdelka?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")" })

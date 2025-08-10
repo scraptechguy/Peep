@@ -24,5 +24,11 @@ struct DataModel: Codable, Identifiable {
     var stav: String?
     var evc: String?
     var obrazky: [String]?
+    var pristup: String?
+    var vzhled: String?
+    var zhotovitel: String?
+    var overeni: String?
+    var overitel: String?
+    var poznamka: String?
 
 }

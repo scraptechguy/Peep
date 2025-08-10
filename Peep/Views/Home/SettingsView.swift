@@ -35,6 +35,8 @@ struct SettingsView: View {
     let settingsSectionDeveloperSettings: LocalizedStringKey = "settingsSectionDeveloperSettings"
     let settingsBug: LocalizedStringKey = "settingsBug"
     let settingsFeature: LocalizedStringKey = "settingsFeature"
+    let settingsDatabase: LocalizedStringKey = "settingsDatabase"
+    let settingsSectionDeveloperSettingsFooter: LocalizedStringKey = "settingsSectionDeveloperSettingsFooter"
     
     let settingsFooter: LocalizedStringKey = "settingsFooter"
     
@@ -188,7 +190,7 @@ struct SettingsView: View {
                     
                     // MARK: - Developer settings
                     
-                    Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary)) {
+                    Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsFooter).foregroundStyle(Color.secondary)) {
                         Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title=")!) {
                             HStack {
                                 Label(settingsBug, systemImage: "exclamationmark.triangle")
@@ -232,6 +234,20 @@ struct SettingsView: View {
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
+                        
+                        HStack {
+                            Text(settingsDatabase)
+                            
+                            Spacer()
+                            
+                            Circle()
+                                .foregroundStyle(data.databaseOnline ? Color.green : Color.red)
+                                .frame(width: 10, height: 10)
+                            
+                            Circle()
+                                .foregroundStyle(data.jsonValid ? Color.green : Color.red)
+                                .frame(width: 10, height: 10)
+                        }
                     }.foregroundColor(.primary)
                     
                     // MARK: - Footer
