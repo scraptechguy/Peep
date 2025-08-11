@@ -387,8 +387,6 @@ struct Map: UIViewRepresentable {
                     
                     map.selectedPlace = place
                     model.annotationSelected = true
-                    model.previousSpan = MKCoordinateSpan.init(latitudeDelta: mapView.region.span.latitudeDelta, longitudeDelta: mapView.region.span.longitudeDelta)
-                    model.previousCoordinate = CLLocationCoordinate2D.init(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude)
                     
                     withAnimation {
                         model.currentHeight = 400
