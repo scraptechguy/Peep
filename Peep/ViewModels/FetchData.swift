@@ -10,30 +10,30 @@ import SwiftUI
 import Combine
 
 
-// Handles downloading, validating, and providing the sundial database to the app.
-// Tries the primary live database first, and falls back to a static JSON if unavailable.
-// Also checks database reachability and JSON validity for UI indicators.
+/// Handles downloading, validating, and providing the sundial database to the app.
+/// Tries the primary live database first, and falls back to a static JSON if unavailable.
+/// Also checks database reachability and JSON validity for UI indicators.
 class FetchData: ObservableObject {
-    // The final, deduplicated, and validated list of places available to the app.
+    /// The final, deduplicated, and validated list of places available to the app.
     @Published var dataList = [DataModel]()
     
-    // Signals to the UI that data is ready for use.
+    /// Signals to the UI that data is ready for use.
     @Published var finishedLoading = false
     
-    // True if the primary database endpoint was reachable.
+    /// True if the primary database endpoint was reachable.
     @Published var databaseOnline = true
     
-    // True if the primary database returned valid JSON that could be decoded into `[DataModel]`.
+    /// True if the primary database returned valid JSON that could be decoded into `[DataModel]`.
     @Published var jsonValid = true
     
-    // Immediately starts fetching when created.
+    /// Immediately starts fetching when created.
     init() {
         fetchData()
     }
         
-    // Attempts to load the sundial database.
-    // - Step 1: Try the live database.
-    // - Step 2: If unreachable or invalid, use the fallback hosted on GitHub.
+    /// Attempts to load the sundial database.
+    /// - Step 1: Try the live database.
+    /// - Step 2: If unreachable or invalid, use the fallback hosted on GitHub.
     func fetchData() {
         let url = URL(string: "https://astro.troja.mff.cuni.cz/mira/sh/json4.php")!
         let fallbackUrl = URL(string: "https://raw.githubusercontent.com/scraptechguy/Peep/refs/heads/main/Database/database4.json")!
@@ -117,9 +117,9 @@ class FetchData: ObservableObject {
             }.resume()
         }
     
-    // Removes duplicate places and filters out entries with invalid coordinates.
-    // - Duplicates are grouped by lowercase-trimmed address and exact coordinates.
-    // - Invalid entries are logged in DEBUG mode.
+    /// Removes duplicate places and filters out entries with invalid coordinates.
+    /// - Duplicates are grouped by lowercase-trimmed address and exact coordinates.
+    /// - Invalid entries are logged in DEBUG mode.
     private func deduplicatedAndValidated(_ data: [DataModel]) -> [DataModel] {
         // Group by a composite key of address|latitude|longitude.
         let grouped = Dictionary(grouping: data, by: { "\($0.adresa?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? "")|" + "\($0.zsirka?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")|" + "\($0.zdelka?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")" })
