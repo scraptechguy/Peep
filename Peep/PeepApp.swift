@@ -12,6 +12,7 @@ import SwiftUI
 /// so any descendant view can access them via `@EnvironmentObject`.
 @main
 struct PeepApp: App {
+    // Using @StateObject ensures each model is initialized exactly once per scene.
     @StateObject private var contentModel = ContentModel()
     @StateObject private var fetchData = FetchData()
 
