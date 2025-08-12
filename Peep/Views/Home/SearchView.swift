@@ -31,15 +31,22 @@ struct SearchView: View {
     var filteredPlaces: [DataModel] {
         // Grab the list of places
         let source = model.searchablePlaces
+        
+        // Get the user region (e.g. Prague)
+        let region = centerPlacemark?.locality ?? ""
 
         // Normalize the user query
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
 
+        // Show nothing until we know the region or the user types. 
+        if query.isEmpty && region.isEmpty {
+            return []
+        }
+        
         // Do your “empty search = region” vs “typed search” filter
         let matches: [DataModel] = {
             if query.isEmpty {
                 
-                let region = centerPlacemark?.locality ?? ""
                 return source.filter { $0.adresa?.localizedCaseInsensitiveContains(region) ?? false }
                 
             } else {
@@ -155,17 +162,6 @@ struct SearchView: View {
             if model.searchKeyboardIsFocused {
                 isFocused = true
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                searchText = ""
-            }
-        }
-        .onChange(of: model.searchKeyboardIsFocused) { newValue in
-            if model.searchKeyboardIsFocused {
-                
-                isFocused = true
-                
-            }
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 searchText = ""
             }
