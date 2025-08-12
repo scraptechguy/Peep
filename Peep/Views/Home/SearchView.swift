@@ -38,7 +38,7 @@ struct SearchView: View {
         // Normalize the user query
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
 
-        // Show nothing until we know the region or the user types. 
+        // Show nothing until we know the region or the user types.
         if query.isEmpty && region.isEmpty {
             return []
         }
@@ -240,5 +240,13 @@ struct SearchView: View {
                 Divider()
             }
         })
+    }
+}
+
+struct SearchView_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchView(centerPlacemark: .constant(nil))
+            .environmentObject(ContentModel())
+            .environmentObject(FetchData())
     }
 }
