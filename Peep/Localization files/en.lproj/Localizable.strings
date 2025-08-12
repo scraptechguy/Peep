@@ -37,6 +37,9 @@
 "homeSearch" = "Search for an address";
 "homeSearchLoading" = "Loading...";
 "homeSearchNoMatches" = "There seem to be no sundials\nat this location";
+"homeSearchButtonYourLocation" = "Your location";
+"homeSearchButtonFeatured" = "Featured";
+"homeSearchButtonExplore" = "Explore";
 "annotationCalloutLabel" = "Tap for detail";
 
 // MARK: - Settings

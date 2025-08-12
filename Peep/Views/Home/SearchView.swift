@@ -24,11 +24,22 @@ struct SearchView: View {
     let homeSearch: LocalizedStringKey = "homeSearch"
     let homeSearchLoading: LocalizedStringKey = "homeSearchLoading"
     let homeSearchNoMatches: LocalizedStringKey = "homeSearchNoMatches"
+    let homeSearchButtonYourLocation: LocalizedStringKey = "homeSearchButtonYourLocation"
+    let homeSearchButtonFeatured: LocalizedStringKey = "homeSearchButtonFeatured"
+    let homeSearchButtonExplore: LocalizedStringKey = "homeSearchButtonExplore"
     let homeSearchGuideAddress: LocalizedStringKey = "homeSearchGuideAddress"
     let homeSearchGuideDescription: LocalizedStringKey = "homeSearchGuideDescription"
     let stateZ: LocalizedStringKey = "stateZ"
+    let unavailableFeatureLocation: LocalizedStringKey = "unavailableFeatureLocation"
     
-    var filteredPlaces: [DataModel] {
+    private var isTyping: Bool {
+        !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+    
+    
+    // MARK: - Filtered places
+    
+    private var filteredPlaces: [DataModel] {
         // Grab the list of places
         let source = model.searchablePlaces
         
@@ -66,6 +77,110 @@ struct SearchView: View {
         }
     }
     
+    
+    // MARK: - Close places
+    
+    private var closePlaces: [DataModel] {
+        guard let userLoc = model.mapView.userLocation.location else { return [] }
+        
+        // Grab the list of places
+        let source = model.searchablePlaces
+        
+        if let center = centerPlacemark?.location {
+            let withinKm: Double = 30
+            let matches = source.filter { place in
+                if let latStr = place.zsirka, let lonStr = place.zdelka,
+                   let lat = Double(latStr), let lon = Double(lonStr) {
+                    let dKm = center.distance(from: CLLocation(latitude: lat, longitude: lon)) / 1000.0
+                    return dKm <= withinKm
+                }
+                return false
+            }
+            
+            if !matches.isEmpty {
+                return matches.sorted { a, b in
+                    let aLoc = CLLocation(latitude: Double(a.zsirka ?? "") ?? 0, longitude: Double(a.zdelka ?? "") ?? 0)
+                    let bLoc = CLLocation(latitude: Double(b.zsirka ?? "") ?? 0, longitude: Double(b.zdelka ?? "") ?? 0)
+                    
+                    return userLoc.distance(from: aLoc) < userLoc.distance(from: bLoc)
+                }
+            }
+        }
+        
+        return []
+    }
+    
+    
+    // MARK: - Random places
+    
+    @State private var randomSeed: Int = Int(Date().timeIntervalSinceReferenceDate)
+    
+    private func stableID(for p: DataModel) -> String {
+        if let id = p.id, !id.isEmpty { return id }
+        return "\((p.zsirka ?? ""))|\((p.zdelka ?? ""))|\((p.adresa ?? ""))"
+    }
+    
+    // Bumps whenever randomSeed changes → new order on each refresh.
+    private var randomPlaces: [DataModel] {
+        let source = model.searchablePlaces
+        
+        func key(_ p: DataModel) -> Int {
+            var hasher = Hasher()
+            hasher.combine(stableID(for: p)) // stable identity
+            hasher.combine(randomSeed)       // the “refresh” knob
+            return hasher.finalize()
+        }
+
+        let ordered = source.sorted { key($0) < key($1) }
+        guard let userLoc = model.mapView.userLocation.location else { return ordered }
+        
+        return Array(ordered.prefix(15)).sorted { a, b in
+            let aLoc = CLLocation(latitude: Double(a.zsirka ?? "") ?? 0, longitude: Double(a.zdelka ?? "") ?? 0)
+            let bLoc = CLLocation(latitude: Double(b.zsirka ?? "") ?? 0, longitude: Double(b.zdelka ?? "") ?? 0)
+            
+            return userLoc.distance(from: aLoc) < userLoc.distance(from: bLoc)
+        }
+    }
+    
+    
+    // MARK: - Featured places
+    
+    private var featuredPlaces: [DataModel] {
+        let base = model.searchablePlaces.filter { ($0.stav ?? "") != "Z" }
+        let sorted = base.sorted { lhs, rhs in
+            (lhs.adresa ?? "").localizedCaseInsensitiveCompare(rhs.adresa ?? "") == .orderedAscending
+        }
+        
+        return Array(sorted.prefix(15))
+    }
+    
+    
+    // MARK: - Tabs
+    
+    // Which tab is active
+    private enum FilterTab { case location, featured, random }
+
+    // Current selection (default to Location)
+    @State private var selectedTab: FilterTab = .location
+    
+    private var displayedPlaces: [DataModel] {
+        // While typing, always show query results.
+        if isTyping {
+            return filteredPlaces
+        }
+        
+        switch selectedTab {
+        case .location:
+            return closePlaces
+        case .featured:
+            return featuredPlaces
+        case .random:
+            return randomPlaces
+        }
+    }
+    
+    // MARK: - Body
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -79,7 +194,7 @@ struct SearchView: View {
                     
                     Spacer()
                     
-                } else if !searchText.trimmingCharacters(in: .whitespaces).isEmpty && filteredPlaces.isEmpty {
+                } else if isTyping && filteredPlaces.isEmpty {
                     
                     Spacer()
                     
@@ -94,74 +209,159 @@ struct SearchView: View {
                     
                     ScrollView {
                         LazyVStack(spacing: 0) {
-                            Spacer().frame(height: screenSize.width / 7.5)
+                            if closePlaces.isEmpty && selectedTab == .location {
+                                VStack {
+                                    Text(unavailableFeatureLocation)
+                                        .foregroundColor(Color("Font"))
+                                        .multilineTextAlignment(.center)
+                                        .padding()
+                                    
+                                    Text(String(localized: "settingsLocationHeading"))
+                                        .foregroundColor(Color.blue)
+                                        .multilineTextAlignment(.center)
+                                        .onTapGesture {
+                                            if let url = URL(string: UIApplication.openSettingsURLString) {
+                                                if UIApplication.shared.canOpenURL(url) {
+                                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                                }
+                                            }
+                                        }
+                                }.frame(maxWidth: .infinity, alignment: .center)
+                                    .frame(maxHeight: .infinity, alignment: .center)
+                            }
                             
-                            ForEach(Array(filteredPlaces.enumerated()), id: \.offset) { index, place in
+                            ForEach(Array(displayedPlaces.enumerated()), id: \.offset) { index, place in
                                 placeRow(for: place)
                             }
                         }
                     }
-                    
-                }
-                
-                VStack {
-                    ZStack(alignment: .leading) {
-                        Rectangle()
-                            .fill(.ultraThinMaterial)
-                            .frame(width: screenSize.width / 1.1, height: screenSize.width / 8)
-                            .mask(
-                                RoundedRectangle(cornerRadius: 22, style: .continuous)
-                            )
-                        
-                        HStack {
-                            Image(systemName: "chevron.left")
-                                .foregroundColor(Color("Font"))
-                                .onTapGesture {
-                                    model.searchKeyboardIsFocused = false
-                                    model.showingSearch = false
-                                    isFocused = false
-                                }
-                            
-                            TextField(homeSearch, text: $searchText)
-                                .foregroundColor(Color("Font"))
-                                .focused($isFocused)
-                                .keyboardType(.asciiCapable)
-                            
-                            Spacer()
-                            
-                            if !searchText.trimmingCharacters(in: .whitespaces).isEmpty {
-                                
-                                Button(action: {
-                                    searchText = ""
-                                }, label: {
-                                    Image(systemName: "multiply")
-                                        .foregroundStyle(Color.secondary)
-                                })
-                                
-                            }
-                        }.padding(.horizontal, 22)
-                            .frame(width: screenSize.width / 1.1, alignment: .leading)
+                    // enable pull-to-refresh only when Random is active (and not typing)
+                    .conditionalRefreshable(selectedTab == .random && !isTyping) {
+                        // bump the seed to recompute randomPlaces
+                        await MainActor.run { randomSeed &+= 1 }
                     }
                     
-                    Spacer()
                 }
             }
-        }.onAppear {
+        }.safeAreaInset(edge: .top) {
+            VStack(spacing: 10) {
+                ZStack(alignment: .leading) {
+                    Rectangle()
+                        .fill(.ultraThinMaterial)
+                        .frame(width: screenSize.width / 1.1, height: screenSize.width / 8)
+                        .mask(
+                            RoundedRectangle(cornerRadius: 22, style: .continuous)
+                        )
+                    
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color("Font"))
+                            .onTapGesture {
+                                model.searchKeyboardIsFocused = false
+                                model.showingSearch = false
+                                isFocused = false
+                            }
+                        
+                        TextField(homeSearch, text: $searchText)
+                            .foregroundColor(Color("Font"))
+                            .focused($isFocused)
+                            .keyboardType(.asciiCapable)
+                        
+                        Spacer()
+                        
+                        if !searchText.trimmingCharacters(in: .whitespaces).isEmpty {
+                            
+                            Button(action: {
+                                searchText = ""
+                            }, label: {
+                                Image(systemName: "multiply")
+                                    .foregroundStyle(Color.secondary)
+                            })
+                            
+                        }
+                    }.padding(.horizontal, 22)
+                        .frame(width: screenSize.width / 1.1, alignment: .leading)
+                }
+                
+                if !isTyping {
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 5) {
+                            Button(action: {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    selectedTab = .location
+                                }
+                            }, label: {
+                                Label(homeSearchButtonYourLocation, systemImage: selectedTab == .location ? "location.fill" : "location")
+                                    .foregroundStyle(selectedTab == .location ? Color.primary : Color.secondary)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 5)
+                                    .background(
+                                        Rectangle()
+                                            .fill(.ultraThinMaterial)
+                                            .mask(
+                                                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                            )
+                                    )
+                            })
+                            
+                            Button(action: {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    selectedTab = .featured
+                                }
+                            }, label: {
+                                Label(homeSearchButtonFeatured, systemImage: selectedTab == .featured ? "star.fill" : "star")
+                                    .foregroundStyle(selectedTab == .featured ? Color.primary : Color.secondary)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 5)
+                                    .background(
+                                        Rectangle()
+                                            .fill(.ultraThinMaterial)
+                                            .mask(
+                                                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                            )
+                                    )
+                            })
+                            
+                            Button(action: {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    selectedTab = .random
+                                }
+                            }, label: {
+                                Label(homeSearchButtonExplore, systemImage: selectedTab == .random ? "globe.europe.africa.fill" : "globe.europe.africa")
+                                    .foregroundStyle(selectedTab == .random ? Color.primary : Color.secondary)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 5)
+                                    .background(
+                                        Rectangle()
+                                            .fill(.ultraThinMaterial)
+                                            .mask(
+                                                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                            )
+                                    )
+                            })
+                        }.padding(.horizontal)
+                    }.frame(width: screenSize.width)
+                        .scrollIndicators(.hidden)
+                }
+            }
+        }
+        .onAppear {
             model.loadCachedSearchablePlaces()
             
             if !data.dataList.isEmpty {
                 model.loadSearchablePlaces(from: data)
             }
         }
-        .onChange(of: data.dataList.count) { newValue in
+        .onChange(of: data.dataList.count) { oldValue, newValue in
             if newValue > 0 {
                 model.loadSearchablePlaces(from: data)
             }
         }
-        .onChange(of: model.searchKeyboardIsFocused) { newValue in
+        .onChange(of: model.searchKeyboardIsFocused) {
             if model.searchKeyboardIsFocused {
                 isFocused = true
             }
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 searchText = ""
             }
@@ -240,6 +440,20 @@ struct SearchView: View {
                 Divider()
             }
         })
+    }
+}
+
+fileprivate extension View {
+    @ViewBuilder
+    func conditionalRefreshable(
+        _ condition: Bool,
+        action: @escaping () async -> Void
+    ) -> some View {
+        if condition {
+            self.refreshable { await action() }
+        } else {
+            self
+        }
     }
 }
 
