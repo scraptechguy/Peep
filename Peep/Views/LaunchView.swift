@@ -45,7 +45,7 @@ struct LaunchView: View {
                 
             }
         }
-        .onChange(of: data.dataList.count) { newCount in
+        .onChange(of: data.dataList.count) { oldCount, newCount in
             if newCount > 0 {
                 
                 model.loadSearchablePlaces(from: data)
