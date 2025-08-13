@@ -23,6 +23,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     /// User's preference for light/dark mode toggle.
     @AppStorage("isLightMode") var isLightMode = false
     
+    
     // MARK: - App/UI state (in-memory)
     /// `true` once initial database/data loading completes.
     @Published var finishedLoading = false
@@ -108,6 +109,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     /// Reverse-geocoded placemark for the user’s location.
     @Published var placemark: CLPlacemark?
     
+    
     // MARK: - Init
         
     /// Creates a new `ContentModel` and loads any cached searchable places.
@@ -127,6 +129,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
         loadCachedSearchablePlaces()
     }
     
+    
     // MARK: - Permissions
     
     /// Requests location permission from the user.
@@ -134,6 +137,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     func requestGeolocationPermission() {
         locationManager.requestWhenInUseAuthorization()
     }
+    
     
     // MARK: - Location Manager Delegate Methods
     
@@ -179,6 +183,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
             }
         }
     }
+    
     
     // MARK: – Cache Management
     
