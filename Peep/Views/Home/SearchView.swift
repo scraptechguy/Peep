@@ -86,24 +86,22 @@ struct SearchView: View {
         // Grab the list of places
         let source = model.searchablePlaces
         
-        if let center = centerPlacemark?.location {
-            let withinKm: Double = 30
-            let matches = source.filter { place in
-                if let latStr = place.zsirka, let lonStr = place.zdelka,
-                   let lat = Double(latStr), let lon = Double(lonStr) {
-                    let dKm = center.distance(from: CLLocation(latitude: lat, longitude: lon)) / 1000.0
-                    return dKm <= withinKm
-                }
-                return false
+        let withinKm: Double = 30
+        let matches = source.filter { place in
+            if let latStr = place.zsirka, let lonStr = place.zdelka,
+               let lat = Double(latStr), let lon = Double(lonStr) {
+                let dKm = userLoc.distance(from: CLLocation(latitude: lat, longitude: lon)) / 1000.0
+                return dKm <= withinKm
             }
-            
-            if !matches.isEmpty {
-                return matches.sorted { a, b in
-                    let aLoc = CLLocation(latitude: Double(a.zsirka ?? "") ?? 0, longitude: Double(a.zdelka ?? "") ?? 0)
-                    let bLoc = CLLocation(latitude: Double(b.zsirka ?? "") ?? 0, longitude: Double(b.zdelka ?? "") ?? 0)
-                    
-                    return userLoc.distance(from: aLoc) < userLoc.distance(from: bLoc)
-                }
+            return false
+        }
+        
+        if !matches.isEmpty {
+            return matches.sorted { a, b in
+                let aLoc = CLLocation(latitude: Double(a.zsirka ?? "") ?? 0, longitude: Double(a.zdelka ?? "") ?? 0)
+                let bLoc = CLLocation(latitude: Double(b.zsirka ?? "") ?? 0, longitude: Double(b.zdelka ?? "") ?? 0)
+                
+                return userLoc.distance(from: aLoc) < userLoc.distance(from: bLoc)
             }
         }
         
@@ -146,9 +144,15 @@ struct SearchView: View {
     // MARK: - Featured places
     
     private var featuredPlaces: [DataModel] {
-        let base = model.searchablePlaces.filter { ($0.stav ?? "") != "Z" }
-        let sorted = base.sorted { lhs, rhs in
-            (lhs.adresa ?? "").localizedCaseInsensitiveCompare(rhs.adresa ?? "") == .orderedAscending
+        let filtered = model.searchablePlaces.filter { ($0.thodin ?? "") == "E" }
+        
+        guard let userLoc = model.mapView.userLocation.location else { return Array(filtered.prefix(15)) }
+        
+        let sorted = filtered.sorted { a, b in
+            let aLoc = CLLocation(latitude: Double(a.zsirka ?? "") ?? 0, longitude: Double(a.zdelka ?? "") ?? 0)
+            let bLoc = CLLocation(latitude: Double(b.zsirka ?? "") ?? 0, longitude: Double(b.zdelka ?? "") ?? 0)
+            
+            return userLoc.distance(from: aLoc) < userLoc.distance(from: bLoc)
         }
         
         return Array(sorted.prefix(15))
