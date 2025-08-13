@@ -37,6 +37,8 @@
 "homeSearch" = "Search for an address";
 "homeSearchLoading" = "Loading...";
 "homeSearchNoMatches" = "There seem to be no sundials\nat this location";
+"homeSearchButtonHistory" = "History";
+"homeSearchClearHistory" = "Clear recent searches";
 "homeSearchButtonYourLocation" = "Your location";
 "homeSearchButtonFeatured" = "Featured";
 "homeSearchButtonExplore" = "Explore";

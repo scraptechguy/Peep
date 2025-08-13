@@ -24,6 +24,8 @@ struct SearchView: View {
     let homeSearch: LocalizedStringKey = "homeSearch"
     let homeSearchLoading: LocalizedStringKey = "homeSearchLoading"
     let homeSearchNoMatches: LocalizedStringKey = "homeSearchNoMatches"
+    let homeSearchButtonHistory: LocalizedStringKey = "homeSearchButtonHistory"
+    let homeSearchClearHistory: LocalizedStringKey = "homeSearchClearHistory"
     let homeSearchButtonYourLocation: LocalizedStringKey = "homeSearchButtonYourLocation"
     let homeSearchButtonFeatured: LocalizedStringKey = "homeSearchButtonFeatured"
     let homeSearchButtonExplore: LocalizedStringKey = "homeSearchButtonExplore"
@@ -337,7 +339,7 @@ struct SearchView: View {
                                     history.removeAll()
                                     saveHistory()
                                 }, label: {
-                                    Label("Clear recent searches", systemImage: "trash")
+                                    Label(homeSearchClearHistory, systemImage: "trash")
                                         .foregroundStyle(Color.red)
                                         .padding()
                                 })
@@ -405,7 +407,7 @@ struct SearchView: View {
                             Button(action: {
                                 selectedTab = .history
                             }, label: {
-                                Label("History", systemImage: selectedTab == .history ? "magnifyingglass" : "magnifyingglass")
+                                Label(homeSearchButtonHistory, systemImage: selectedTab == .history ? "magnifyingglass" : "magnifyingglass")
                                     .foregroundStyle(selectedTab == .history ? Color.primary : Color.secondary)
                                     .padding(.horizontal)
                                     .padding(.vertical, 5)

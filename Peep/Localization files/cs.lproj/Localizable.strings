@@ -37,7 +37,9 @@
 "homeSearch" = "Vyhledat adresu";
 "homeSearchLoading" = "Načítání...";
 "homeSearchNoMatches" = "Zdá se, že na tomto místě nejsou\nžádné sluneční hodiny";
-"homeSearchButtonYourLocation" = "Vaše poloha";
+"homeSearchButtonHistory" = "Historie";
+"homeSearchClearHistory" = "Vymazat nedávná vyhledávání";
+"homeSearchButtonYourLocation" = "Tvoje poloha";
 "homeSearchButtonFeatured" = "Doporučené";
 "homeSearchButtonExplore" = "Prozkoumat";
 "annotationCalloutLabel" = "Kliknutím zobrazíte podrobnosti";
