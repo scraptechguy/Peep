@@ -391,11 +391,30 @@ struct PlaceDetail: View {
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.1)
                             
-                            Text(String(localized: "comingSoon"))
-                                .bold()
-                                .font(.title3)
-                                .padding(.top, 50)
-                                .padding(.bottom, 30)
+                            HStack {
+                                Text("Map legend")
+                                    .textCase(.uppercase)
+                                    .font(.system(size: 15))
+                                    .foregroundColor(.secondary)
+                                    .padding(.leading)
+                                    .padding(.bottom, 8)
+                                
+                                Spacer()
+                                
+                                Button(action: {
+                                    withAnimation {
+                                        model.currentHeight = screenSize.height / 11
+                                    }
+                                }, label: {
+                                    Image(systemName: "multiply")
+                                        .foregroundStyle(Color.primary)
+                                        .padding(.trailing)
+                                })
+                            }.padding(.top)
+                            
+                            mapLegendRow(for: "annotation", text: "Place with a sundial, tap the pin to see more information.")
+                            
+                            mapLegendRow(for: "cluster", text: "Multiple places close to each other. Tap to break the pin into individual places.")
                         }
                         
                     }
@@ -411,6 +430,25 @@ struct PlaceDetail: View {
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea()
             .preferredColorScheme(model.isLightMode ? .light : .dark)
+    }
+    
+    
+    // MARK: - Map legend row
+    
+    @ViewBuilder
+    func mapLegendRow(for image: String, text: String) -> some View {
+        HStack(spacing: 20) {
+            Image(image)
+                .resizable()
+                .frame(width: 75, height: 75)
+                .mask {
+                    RoundedRectangle(cornerRadius: 22)
+                }
+            
+            Text(text)
+                .foregroundStyle(Color.primary)
+        }.padding(.horizontal)
+        .frame(width: screenSize.width, alignment: .leading)
     }
     
     // MARK: - Drag gesture
