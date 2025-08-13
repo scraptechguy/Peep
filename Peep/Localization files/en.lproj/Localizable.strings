@@ -39,6 +39,7 @@
 "homeSearchNoMatches" = "There seem to be no sundials\nat this location";
 "homeSearchButtonHistory" = "History";
 "homeSearchClearHistory" = "Clear recent searches";
+"homeSearchClearHistoryEntry" = "Remove";
 "homeSearchButtonYourLocation" = "Your location";
 "homeSearchButtonFeatured" = "Featured";
 "homeSearchButtonExplore" = "Explore";

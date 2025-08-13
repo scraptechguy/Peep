@@ -24,11 +24,14 @@ struct SearchView: View {
     let homeSearch: LocalizedStringKey = "homeSearch"
     let homeSearchLoading: LocalizedStringKey = "homeSearchLoading"
     let homeSearchNoMatches: LocalizedStringKey = "homeSearchNoMatches"
+    
     let homeSearchButtonHistory: LocalizedStringKey = "homeSearchButtonHistory"
     let homeSearchClearHistory: LocalizedStringKey = "homeSearchClearHistory"
+    let homeSearchClearHistoryEntry: LocalizedStringKey = "homeSearchClearHistoryEntry"
     let homeSearchButtonYourLocation: LocalizedStringKey = "homeSearchButtonYourLocation"
     let homeSearchButtonFeatured: LocalizedStringKey = "homeSearchButtonFeatured"
     let homeSearchButtonExplore: LocalizedStringKey = "homeSearchButtonExplore"
+    
     let homeSearchGuideAddress: LocalizedStringKey = "homeSearchGuideAddress"
     let homeSearchGuideDescription: LocalizedStringKey = "homeSearchGuideDescription"
     let stateZ: LocalizedStringKey = "stateZ"
@@ -130,6 +133,13 @@ struct SearchView: View {
         )
         history.insert(entry, at: 0)
         if history.count > 15 { history.removeLast(history.count - 15) }
+        saveHistory()
+    }
+    
+    // Helper to remove a single entry and persist
+    private func removeFromHistory(_ place: DataModel) {
+        let key = historyKey(for: place)
+        history.removeAll { $0.key == key }
         saveHistory()
     }
 
@@ -671,7 +681,13 @@ struct SearchView: View {
                 
                 Divider()
             }
-        })
+        }).contextMenu {
+            Button(role: .destructive) {
+                removeFromHistory(place)
+            } label: {
+                Label(homeSearchClearHistoryEntry, systemImage: "trash")
+            }
+        }
     }
 }
 

@@ -39,6 +39,7 @@
 "homeSearchNoMatches" = "Zdá se, že na tomto místě nejsou\nžádné sluneční hodiny";
 "homeSearchButtonHistory" = "Historie";
 "homeSearchClearHistory" = "Vymazat nedávná vyhledávání";
+"homeSearchClearHistoryEntry" = "Odstranit";
 "homeSearchButtonYourLocation" = "Tvoje poloha";
 "homeSearchButtonFeatured" = "Doporučené";
 "homeSearchButtonExplore" = "Prozkoumat";
