@@ -48,7 +48,7 @@ struct Map: UIViewRepresentable {
             guard abs(lat - center.latitude) <= latRange && abs(lon - center.longitude) <= lonRange else { continue }
 
             // Use address as a stable key if available.
-            let key = place.adresa ?? UUID().uuidString
+            let key = place.id ?? UUID().uuidString
 
             if let annotation = cache[key] {
                 // Already cached, update coordinate if needed
