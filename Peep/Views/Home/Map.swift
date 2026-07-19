@@ -278,6 +278,11 @@ struct Map: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             let center = mapView.region.center
             let latDelta = mapView.region.span.latitudeDelta
+            
+            // Updates map heading variable.
+            DispatchQueue.main.async { [self] in
+                model.mapHeading = mapView.camera.heading
+            }
 
             // Zoomed out — show overlay, remove annotations.
             if latDelta > zoomThreshold {
@@ -395,10 +400,8 @@ struct Map: UIViewRepresentable {
                     
                     // Center the map on the selected annotation (with - 0.006 lat offset)
                     if let lat = place.zsirka, let long = place.zdelka {
-                        let span = MKCoordinateSpan.init(latitudeDelta: 0.02, longitudeDelta:
-                                                            0.02)
                         let coordinate = CLLocationCoordinate2D.init(latitude: Double(lat)! - 0.006, longitude: Double(long)!)
-                        let region = MKCoordinateRegion.init(center: coordinate, span: span)
+                        let region = MKCoordinateRegion.init(center: coordinate, span: mapView.region.span)
                         mapView.setRegion(region, animated: true)
                     }
                     
@@ -406,7 +409,7 @@ struct Map: UIViewRepresentable {
                 }
             }
         }
-        
+
         
         // MARK: - Overlay rendering
         
