@@ -400,7 +400,8 @@ struct Map: UIViewRepresentable {
                     
                     // Center the map on the selected annotation (with - 0.006 lat offset)
                     if let lat = place.zsirka, let long = place.zdelka {
-                        let coordinate = CLLocationCoordinate2D.init(latitude: Double(lat)! - 0.006, longitude: Double(long)!)
+                        let relativeOffset = mapView.region.span.latitudeDelta * 0.2
+                        let coordinate = CLLocationCoordinate2D.init(latitude: Double(lat)! - relativeOffset, longitude: Double(long)!)
                         let region = MKCoordinateRegion.init(center: coordinate, span: mapView.region.span)
                         mapView.setRegion(region, animated: true)
                     }
