@@ -25,6 +25,11 @@ struct HomeView: View {
     
     let offlineAlert: LocalizedStringKey = "offlineAlert"
     
+    private var isFacingNorth: Bool {
+        let heading = model.mapHeading
+        return min(heading, 360 - heading) < 1
+    }
+    
     private var cacheExists: Bool {
         let fm = FileManager.default
         // system Caches directory
@@ -140,6 +145,34 @@ struct HomeView: View {
             HStack {
                 Spacer()
                 
+                Button(action: {            
+                    let camera = model.mapView.camera.copy() as! MKMapCamera
+                    camera.heading = 0
+                    
+                    model.mapView.setCamera(camera, animated: true)
+                }, label: {
+                    Text("N")
+                        .bold()
+                        .foregroundColor(isFacingNorth ? .primary : .red)
+                        .animation(.easeInOut(duration: 0.2), value: isFacingNorth)
+                        .frame(width: 18, height: 18)
+                        .padding()
+                        .background {
+                            ZStack {
+                                Rectangle()
+                                    .fill(Color.clear)
+                                    .overlay(.thinMaterial)
+                                    .mask(
+                                        RoundedRectangle(cornerRadius: 30, style: .circular)
+                                    )
+                            }
+                    }
+                }).padding(.trailing)
+            }
+            
+            HStack {
+                Spacer()
+                
                 Button(action: {
                     if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
                         
@@ -170,6 +203,7 @@ struct HomeView: View {
                         
                         Image(systemName: model.isOnLocation ? "location.fill" : "location")
                             .foregroundColor(.primary)
+                            .frame(width: 18, height: 18)
                             .padding()
                             .background {
                                 ZStack {
@@ -186,6 +220,7 @@ struct HomeView: View {
                         
                         Image(systemName: "location")
                             .foregroundColor(.primary)
+                            .frame(width: 18, height: 18)
                             .padding()
                             .background {
                                 ZStack {
