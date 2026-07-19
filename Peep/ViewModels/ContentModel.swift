@@ -85,6 +85,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, MKMapViewDelegate, Obse
     /// `true` if the current map center is near the user’s location.
     @Published var isOnLocation = true
     
+    /// Holds information about the heading of the map.
+    @Published var mapHeading: CLLocationDirection = 0
+    
     /// Tells the coordinator to re-check whether the map is centered on the user.
     @Published var shouldCheckIsOnLocation = false
     
