@@ -15,7 +15,6 @@ struct SearchView: View {
     @Binding var centerPlacemark: CLPlacemark?
     
     @State private var searchText: String = ""
-    @State private var filteredResults: [DataModel] = [] 
     
     @FocusState private var isFocused: Bool
     
@@ -170,30 +169,22 @@ struct SearchView: View {
     
     private var closePlaces: [DataModel] {
         guard let userLoc = model.mapView.userLocation.location else { return [] }
-        
-        // Grab the list of places
-        let source = model.searchablePlaces
-        
-        let withinKm: Double = 30
-        let matches = source.filter { place in
-            if let latStr = place.zsirka, let lonStr = place.zdelka,
-               let lat = Double(latStr), let lon = Double(lonStr) {
-                let dKm = userLoc.distance(from: CLLocation(latitude: lat, longitude: lon)) / 1000.0
-                return dKm <= withinKm
+
+        return model.searchablePlaces
+            .compactMap { place -> (place: DataModel, distance: CLLocationDistance)? in
+                guard let latStr = place.zsirka,
+                      let lonStr = place.zdelka,
+                      let lat = Double(latStr),
+                      let lon = Double(lonStr) else {
+                    return nil
+                }
+
+                let placeLocation = CLLocation(latitude: lat, longitude: lon)
+                return (place, userLoc.distance(from: placeLocation))
             }
-            return false
-        }
-        
-        if !matches.isEmpty {
-            return matches.sorted { a, b in
-                let aLoc = CLLocation(latitude: Double(a.zsirka ?? "") ?? 0, longitude: Double(a.zdelka ?? "") ?? 0)
-                let bLoc = CLLocation(latitude: Double(b.zsirka ?? "") ?? 0, longitude: Double(b.zdelka ?? "") ?? 0)
-                
-                return userLoc.distance(from: aLoc) < userLoc.distance(from: bLoc)
-            }
-        }
-        
-        return []
+            .sorted { $0.distance < $1.distance }
+            .prefix(15)
+            .map { $0.place }
     }
     
     
@@ -218,9 +209,13 @@ struct SearchView: View {
         }
 
         let ordered = source.sorted { key($0) < key($1) }
-        guard let userLoc = model.mapView.userLocation.location else { return ordered }
+        let selection = Array(ordered.prefix(15))
+
+        guard let userLoc = model.mapView.userLocation.location else {
+            return selection
+        }
         
-        return Array(ordered.prefix(15)).sorted { a, b in
+        return selection.sorted { a, b in
             let aLoc = CLLocation(latitude: Double(a.zsirka ?? "") ?? 0, longitude: Double(a.zdelka ?? "") ?? 0)
             let bLoc = CLLocation(latitude: Double(b.zsirka ?? "") ?? 0, longitude: Double(b.zdelka ?? "") ?? 0)
             
@@ -232,7 +227,10 @@ struct SearchView: View {
     // MARK: - Featured places
     
     private var featuredPlaces: [DataModel] {
-        let filtered = model.searchablePlaces.filter { ($0.thodin ?? "") == "E" }
+        let filtered = model.searchablePlaces.filter {
+            ($0.thodin ?? "")
+                .trimmingCharacters(in: .whitespacesAndNewlines) == "E"
+        }
         
         guard let userLoc = model.mapView.userLocation.location else { return Array(filtered.prefix(15)) }
         
@@ -250,7 +248,7 @@ struct SearchView: View {
     // MARK: - Tabs
     
     // Which tab is active
-    private enum FilterTab { case history, location, featured, random }
+    private enum FilterTab: String { case history, location, featured, random }
 
     // Current selection (default to History if not empty, otherwise default to Location)
     @State private var selectedTab: FilterTab = .history
@@ -269,6 +267,27 @@ struct SearchView: View {
             return featuredPlaces
         case .random:
             return randomPlaces
+        }
+    }
+    
+    private struct PlaceRowItem: Identifiable {
+        let id: String
+        let place: DataModel
+    }
+
+    private var displayedPlaceRows: [PlaceRowItem] {
+        let sourceID = isTyping ? "search" : selectedTab.rawValue
+        var occurrences: [String: Int] = [:]
+
+        return displayedPlaces.map { place in
+            let placeID = stableID(for: place)
+            let occurrence = occurrences[placeID, default: 0]
+            occurrences[placeID] = occurrence + 1
+
+            return PlaceRowItem(
+                id: "\(sourceID)|\(placeID)|\(occurrence)",
+                place: place
+            )
         }
     }
     
@@ -320,31 +339,31 @@ struct SearchView: View {
                             }
                             
                             if isTyping {
-                                ForEach(Array(displayedPlaces.enumerated()), id: \.offset) { index, place in
-                                    placeRow(for: place)
+                                ForEach(displayedPlaceRows) { row in
+                                    placeRow(for: row.place)
                                 }
                             } else {
                                 switch selectedTab {
                                 case .history:
-                                    ForEach(Array(displayedPlaces.enumerated()), id: \.offset) { index, place in
-                                        historyPlaceRow(for: place)
+                                    ForEach(displayedPlaceRows) { row in
+                                        historyPlaceRow(for: row.place)
                                     }
                                 case .location:
-                                    ForEach(Array(displayedPlaces.enumerated()), id: \.offset) { index, place in
-                                        placeRow(for: place)
+                                    ForEach(displayedPlaceRows) { row in
+                                        placeRow(for: row.place)
                                     }
                                 case .featured:
-                                    ForEach(Array(displayedPlaces.enumerated()), id: \.offset) { index, place in
-                                        placeRow(for: place)
+                                    ForEach(displayedPlaceRows) { row in
+                                        placeRow(for: row.place)
                                     }
                                 case .random:
-                                    ForEach(Array(displayedPlaces.enumerated()), id: \.offset) { index, place in
-                                        placeRow(for: place)
+                                    ForEach(displayedPlaceRows) { row in
+                                        placeRow(for: row.place)
                                     }
                                 }
                             }
                             
-                            if selectedTab == .history && !history.isEmpty {
+                            if !isTyping && selectedTab == .history && !history.isEmpty {
                                 Button(action: {
                                     history.removeAll()
                                     saveHistory()
@@ -354,10 +373,10 @@ struct SearchView: View {
                                         .padding()
                                 })
                             }
-                        }
+                        }.id(isTyping ? "search" : selectedTab.rawValue)
                     }
                     // enable pull-to-refresh only when Random is active (and not typing)
-                    .conditionalRefreshable(selectedTab == .random) {
+                    .conditionalRefreshable(!isTyping && selectedTab == .random) {
                         // bump the seed to recompute randomPlaces
                         await MainActor.run { randomSeed &+= 1 }
                     }
@@ -463,6 +482,7 @@ struct SearchView: View {
                             })
                             
                             Button(action: {
+                                randomSeed &+= 1
                                 selectedTab = .random
                             }, label: {
                                 Label(homeSearchButtonExplore, systemImage: selectedTab == .random ? "globe.europe.africa.fill" : "globe.europe.africa")
