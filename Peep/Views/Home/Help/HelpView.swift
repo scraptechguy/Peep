@@ -40,7 +40,8 @@ struct HelpView: View {
                     }
                 }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     .frame(maxHeight: .infinity)
-                    .ignoresSafeArea()
+                    .padding(.top)
+                     
             }
         }.preferredColorScheme(model.isLightMode ? .dark : .light)
     }
