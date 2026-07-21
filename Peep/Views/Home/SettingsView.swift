@@ -123,7 +123,7 @@ struct SettingsView: View {
                         }
                         .listRowBackground(Color("ListRowBackground"))
                         
-                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md")!) {
+                        Link(destination: URL(string: "https://github.com/brozrost/Peep/blob/main/docs/PRIVACY.md")!) {
                             HStack {
                                 Label(settingsPrivacyPolicy, systemImage: "person.badge.key")
                                     .foregroundColor(.primary)
@@ -136,14 +136,14 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md"
+                                UIPasteboard.general.string = "https://github.com/brozrost/Peep/blob/main/docs/PRIVACY.md"
                             }, label: {
                                 Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
                         
-                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep")!) {
+                        Link(destination: URL(string: "https://github.com/brozrost/Peep")!) {
                             HStack {
                                 Label("GitHub", systemImage: "xserve")
                                     .foregroundColor(.primary)
@@ -156,7 +156,7 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep"
+                                UIPasteboard.general.string = "https://github.com/brozrost/Peep"
                             }, label: {
                                 Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
                             })
@@ -191,7 +191,7 @@ struct SettingsView: View {
                     // MARK: - Developer settings
                     
                     Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsFooter).foregroundStyle(Color.secondary)) {
-                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title=")!) {
+                        Link(destination: URL(string: "https://github.com/brozrost/Peep/issues/new?assignees=&labels=&template=bug_report.md&title=")!) {
                             HStack {
                                 Label(settingsBug, systemImage: "exclamationmark.triangle")
                                 
@@ -206,14 +206,14 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title="
+                                UIPasteboard.general.string = "https://github.com/brozrost/Peep/issues/new?assignees=&labels=&template=bug_report.md&title="
                             }, label: {
                                 Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
                         
-                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=feature_request.md&title=")!) {
+                        Link(destination: URL(string: "https://github.com/brozrost/Peep/issues/new?assignees=&labels=&template=feature_request.md&title=")!) {
                             HStack {
                                 Label(settingsFeature, systemImage: "pencil.and.outline")
                                 
