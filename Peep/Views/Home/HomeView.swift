@@ -24,6 +24,7 @@ struct HomeView: View {
     let screenSize: CGRect = UIScreen.main.bounds
     
     let offlineAlert: LocalizedStringKey = "offlineAlert"
+    let north: LocalizedStringKey = "north"
     
     private var isFacingNorth: Bool {
         let heading = model.mapHeading
@@ -151,7 +152,7 @@ struct HomeView: View {
                     
                     model.mapView.setCamera(camera, animated: true)
                 }, label: {
-                    Text("N")
+                    Text(north)
                         .bold()
                         .foregroundColor(isFacingNorth ? .primary : .red)
                         .animation(.easeInOut(duration: 0.2), value: isFacingNorth)

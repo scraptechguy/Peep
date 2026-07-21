@@ -18,10 +18,13 @@ struct PlaceDetail: View {
     let screenSize: CGRect = UIScreen.main.bounds
     
     let minHeight: CGFloat = UIScreen.main.bounds.height / 11 // Collapsed
-    let midHeight: CGFloat = UIScreen.main.bounds.height * 0.45// Mid-height
+    let midHeight: CGFloat = UIScreen.main.bounds.height * 0.45 // Mid-height
     let maxHeight: CGFloat = UIScreen.main.bounds.height * 0.85 // Fully expanded
     
     let detailGuide: LocalizedStringKey = "detailGuide"
+    let mapLegend: LocalizedStringKey = "mapLegend"
+    let mapLegendAnnotation: LocalizedStringKey = "mapLegendAnnotation"
+    let mapLegendCluster: LocalizedStringKey = "mapLegendCluster"
     
     let detailNoAddress: LocalizedStringKey = "detailNoAddress"
     let detailNoDescription: LocalizedStringKey = "detailNoDescription"
@@ -392,7 +395,7 @@ struct PlaceDetail: View {
                                 .minimumScaleFactor(0.1)
                             
                             HStack {
-                                Text("Map legend")
+                                Text(mapLegend)
                                     .textCase(.uppercase)
                                     .font(.system(size: 15))
                                     .foregroundColor(.secondary)
@@ -412,9 +415,9 @@ struct PlaceDetail: View {
                                 })
                             }.padding(.top)
                             
-                            mapLegendRow(for: "annotation", text: "Place with a sundial, tap the pin to see more information.")
+                            mapLegendRow(for: "annotation", text: mapLegendAnnotation)
                             
-                            mapLegendRow(for: "cluster", text: "Multiple places close to each other. Tap to break the pin into individual places.")
+                            mapLegendRow(for: "cluster", text: mapLegendCluster)
                         }
                         
                     }
@@ -436,7 +439,7 @@ struct PlaceDetail: View {
     // MARK: - Map legend row
     
     @ViewBuilder
-    func mapLegendRow(for image: String, text: String) -> some View {
+    func mapLegendRow(for image: String, text: LocalizedStringKey) -> some View {
         HStack(spacing: 20) {
             Image(image)
                 .resizable()

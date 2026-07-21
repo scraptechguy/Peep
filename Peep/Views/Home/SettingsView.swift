@@ -228,7 +228,7 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=feature_request.md&title="
+                                UIPasteboard.general.string = "https://github.com/brozrost/Peep/issues/new?assignees=&labels=&template=feature_request.md&title="
                             }, label: {
                                 Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
                             })
@@ -254,8 +254,8 @@ struct SettingsView: View {
                     
                     Section(footer:
                         VStack(alignment: .leading, spacing: 10) {
-                            HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) {
-                                    Text("@scraptechguy").foregroundColor(.primary)
+                            HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/brozrost")!) {
+                                    Text("@brozrost").foregroundColor(.primary)
                                 }
                             }
                         }

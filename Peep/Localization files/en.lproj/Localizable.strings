@@ -34,6 +34,7 @@
 
 "offline" = "You're offline";
 "offlineAlert" = "Peep has to be connected to the internet on the first launch to load sundials to cache. After this singular connection, you can enjoy Peep offline!";
+"north" = "N";
 "homeSearch" = "Search for an address";
 "homeSearchLoading" = "Loading...";
 "homeSearchNoMatches" = "There seem to be no sundials\nat this location";
@@ -116,6 +117,9 @@
 // MARK: - Place detail
 
 "detailGuide" = "**Move around the map to find sundials!**";
+"mapLegend" = "Map legend";
+"mapLegendAnnotation" = "Place with a sundial, tap the pin to see more information.";
+"mapLegendCluster" = "Multiple places close to each other. Tap to break the pin into individual places.";
 
 "detailNoAddress" = "No address found";
 "detailNoDescription" = "No description found";

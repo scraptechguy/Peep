@@ -34,6 +34,7 @@
 
 "offline" = "Aplikace je offline";
 "offlineAlert" = "Pro načtení slunečních hodin do mezipaměti musí být Peep při prvním spuštění připojen k internetu. Po tomto jednom připojení můžeš používat Peep už navždy i offline!";
+"north" = "S";
 "homeSearch" = "Vyhledat adresu";
 "homeSearchLoading" = "Načítání...";
 "homeSearchNoMatches" = "Zdá se, že na tomto místě nejsou\nžádné sluneční hodiny";
@@ -116,7 +117,9 @@
 // MARK: - Place detail
 
 "detailGuide" = "**Poohlédni se po slunečních hodinách!**";
-
+"mapLegend" = "Legenda";
+"mapLegendAnnotation" = "Místo se slunečními hodinami. Klikni na červený bod pro více informací.";
+"mapLegendCluster" = "Vícero míst se slunečními hodinami, která jsou blízko u sebe. Klikni na červený bod nebo přibliž mapu pro prohlížení jednotlivých hodin.";
 "detailNoAddress" = "Adresa chybí";
 "detailNoDescription" = "Popis chybí";
 "detailDirections" = "Trasa";
