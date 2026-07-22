@@ -38,14 +38,25 @@ struct Map: UIViewRepresentable {
         let lonRange = visibleSpan.longitudeDelta * paddingFactor / 2
         
         var annotations: [MKPointAnnotation] = []
+        
+        // About 3–4 metres in Czechia.
+        let duplicateLongitudeOffset: CLLocationDegrees = 0.0001
+        var coordinateOccurrences: [String: Int] = [:]
 
         for place in model.searchablePlaces {
             guard let latStr = place.zsirka, let lonStr = place.zdelka, let lat = Double(latStr), let lon = Double(lonStr) else { continue }
 
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-
             // Keep only pins inside visible area + span padding.
             guard abs(lat - center.latitude) <= latRange && abs(lon - center.longitude) <= lonRange else { continue }
+            
+            let coordinateKey = "\(lat.bitPattern):\(lon.bitPattern)"
+            let duplicateIndex = coordinateOccurrences[coordinateKey, default: 0]
+            coordinateOccurrences[coordinateKey] = duplicateIndex + 1
+
+            let coordinate = CLLocationCoordinate2D(
+                latitude: lat,
+                longitude: lon + Double(duplicateIndex) * duplicateLongitudeOffset
+            )
 
             // Use address as a stable key if available.
             let key = place.id ?? UUID().uuidString

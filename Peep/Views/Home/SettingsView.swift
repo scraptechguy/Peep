@@ -118,7 +118,7 @@ struct SettingsView: View {
                             Button(action: {
                                 UIPasteboard.general.string = "https://astro.troja.mff.cuni.cz/mira/sh/sh.php"
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
@@ -138,7 +138,7 @@ struct SettingsView: View {
                             Button(action: {
                                 UIPasteboard.general.string = "https://github.com/brozrost/Peep/blob/main/docs/PRIVACY.md"
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
@@ -158,7 +158,7 @@ struct SettingsView: View {
                             Button(action: {
                                 UIPasteboard.general.string = "https://github.com/brozrost/Peep"
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
@@ -182,7 +182,7 @@ struct SettingsView: View {
                             Button(action: {
                                 UIPasteboard.general.string = "https://apps.apple.com/cz/app/peep-the-world-of-sundials/id6747686124?action=write-review"
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
@@ -208,7 +208,7 @@ struct SettingsView: View {
                             Button(action: {
                                 UIPasteboard.general.string = "https://github.com/brozrost/Peep/issues/new?assignees=&labels=&template=bug_report.md&title="
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
@@ -230,7 +230,7 @@ struct SettingsView: View {
                             Button(action: {
                                 UIPasteboard.general.string = "https://github.com/brozrost/Peep/issues/new?assignees=&labels=&template=feature_request.md&title="
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
