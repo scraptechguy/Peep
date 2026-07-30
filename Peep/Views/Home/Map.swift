@@ -62,14 +62,17 @@ struct Map: UIViewRepresentable {
             let key = place.id ?? UUID().uuidString
 
             if let annotation = cache[key] {
-                // Already cached, update coordinate if needed
+                // Already cached, update its current data.
                 annotation.coordinate = coordinate
+                annotation.title = place.adresa ?? ""
+                annotation.subtitle = place.id
                 annotations.append(annotation)
             } else {
                 // Create and cache a new point annotation.
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = coordinate
                 annotation.title = place.adresa ?? ""
+                annotation.subtitle = place.id
                 cache[key] = annotation
                 annotations.append(annotation)
             }
@@ -333,8 +336,10 @@ struct Map: UIViewRepresentable {
 
                 // If we stored a pending place, select its annotation.
                 if let place = model.pendingSelectionPlace {
-                    // Select the annotation that matches the place address.
-                    if let annotation = mapView.annotations.compactMap({ $0 as? MKPointAnnotation }).first(where: { $0.title == place.adresa }) {
+                    // Select the annotation that matches the place ID.
+                    if let annotation = mapView.annotations
+                        .compactMap({ $0 as? MKPointAnnotation })
+                        .first(where: { $0.subtitle == place.id }) {
                         mapView.selectAnnotation(annotation, animated: true)
                     }
                 }
@@ -399,27 +404,32 @@ struct Map: UIViewRepresentable {
         /// - Expands bottom sheet
         /// - Recenters the map with a slight upward offset so the sheet doesn't cover the pin
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-            // Find the tapped place by matching the title to the address
-            for place in model.searchablePlaces {
-                if place.adresa == view.annotation?.title {
-                    map.selectedPlace = place
-                    model.annotationSelected = true
-                    
-                    withAnimation {
-                        model.currentHeight = 400
-                    }
-                    
-                    // Center the map on the selected annotation (with - 0.006 lat offset)
-                    if let lat = place.zsirka, let long = place.zdelka {
-                        let relativeOffset = mapView.region.span.latitudeDelta * 0.2
-                        let coordinate = CLLocationCoordinate2D.init(latitude: Double(lat)! - relativeOffset, longitude: Double(long)!)
-                        let region = MKCoordinateRegion.init(center: coordinate, span: mapView.region.span)
-                        mapView.setRegion(region, animated: true)
-                    }
-                    
-                    return
-                }
+            // Find the tapped place by its database ID.
+            guard let annotation = view.annotation as? MKPointAnnotation, let placeID = annotation.subtitle,
+                let place = model.searchablePlaces.first(where: { $0.id == placeID })
+            else {
+                return
             }
+
+            map.selectedPlace = place
+            model.annotationSelected = true
+
+            withAnimation {
+                model.currentHeight = 400
+            }
+
+            // Center on the annotation's actual displayed coordinate.
+            // This preserves the duplicate-coordinate longitude shift.
+            let relativeOffset = mapView.region.span.latitudeDelta * 0.2
+            let coordinate = CLLocationCoordinate2D(
+                latitude: annotation.coordinate.latitude - relativeOffset,
+                longitude: annotation.coordinate.longitude
+            )
+            let region = MKCoordinateRegion(
+                center: coordinate,
+                span: mapView.region.span
+            )
+            mapView.setRegion(region, animated: true)
         }
 
         
