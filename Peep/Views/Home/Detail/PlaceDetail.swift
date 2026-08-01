@@ -18,10 +18,13 @@ struct PlaceDetail: View {
     let screenSize: CGRect = UIScreen.main.bounds
     
     let minHeight: CGFloat = UIScreen.main.bounds.height / 11 // Collapsed
-    let midHeight: CGFloat = UIScreen.main.bounds.height * 0.45// Mid-height
+    let midHeight: CGFloat = UIScreen.main.bounds.height * 0.45 // Mid-height
     let maxHeight: CGFloat = UIScreen.main.bounds.height * 0.85 // Fully expanded
     
     let detailGuide: LocalizedStringKey = "detailGuide"
+    let mapLegend: LocalizedStringKey = "mapLegend"
+    let mapLegendAnnotation: LocalizedStringKey = "mapLegendAnnotation"
+    let mapLegendCluster: LocalizedStringKey = "mapLegendCluster"
     
     let detailNoAddress: LocalizedStringKey = "detailNoAddress"
     let detailNoDescription: LocalizedStringKey = "detailNoDescription"
@@ -391,11 +394,30 @@ struct PlaceDetail: View {
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.1)
                             
-                            Text(String(localized: "comingSoon"))
-                                .bold()
-                                .font(.title3)
-                                .padding(.top, 50)
-                                .padding(.bottom, 30)
+                            HStack {
+                                Text(mapLegend)
+                                    .textCase(.uppercase)
+                                    .font(.system(size: 15))
+                                    .foregroundColor(.secondary)
+                                    .padding(.leading)
+                                    .padding(.bottom, 8)
+                                
+                                Spacer()
+                                
+                                Button(action: {
+                                    withAnimation {
+                                        model.currentHeight = screenSize.height / 11
+                                    }
+                                }, label: {
+                                    Image(systemName: "multiply")
+                                        .foregroundStyle(Color.primary)
+                                        .padding(.trailing)
+                                })
+                            }.padding(.top)
+                            
+                            mapLegendRow(for: "annotation", text: mapLegendAnnotation)
+                            
+                            mapLegendRow(for: "cluster", text: mapLegendCluster)
                         }
                         
                     }
@@ -411,6 +433,25 @@ struct PlaceDetail: View {
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea()
             .preferredColorScheme(model.isLightMode ? .light : .dark)
+    }
+    
+    
+    // MARK: - Map legend row
+    
+    @ViewBuilder
+    func mapLegendRow(for image: String, text: LocalizedStringKey) -> some View {
+        HStack(spacing: 20) {
+            Image(image)
+                .resizable()
+                .frame(width: 75, height: 75)
+                .mask {
+                    RoundedRectangle(cornerRadius: 22)
+                }
+            
+            Text(text)
+                .foregroundStyle(Color.primary)
+        }.padding(.horizontal)
+        .frame(width: screenSize.width, alignment: .leading)
     }
     
     // MARK: - Drag gesture

@@ -243,7 +243,7 @@ struct OnboardingView: View {
                 .overlay(alignment: .bottom) {
                     let screenIsLast = currentIndex == intros.count
                     
-                    HStack(spacing: 5) {
+                    HStack(spacing: 0) {
                         Text(welcomeSubtitle)
                             .font(.system(size: 14))
                             .foregroundColor(.secondary)

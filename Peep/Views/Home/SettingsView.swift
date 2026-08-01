@@ -20,11 +20,13 @@ struct SettingsView: View {
     let settingsColorScheme: LocalizedStringKey = "settingsColorScheme"
     let settingsAppLanguage: LocalizedStringKey = "settingsAppLanguage"
     let settingsAppLanguageValue: LocalizedStringKey = "settingsAppLanguageValue"
+    let settingsSectionGeneralFooter: LocalizedStringKey = "settingsSectionGeneralFooter"
     
     let settingsSectionInformation: LocalizedStringKey = "settingsSectionInformation"
     let settingsFeedback: LocalizedStringKey = "settingsFeedback"
     let settingsPrivacyPolicy: LocalizedStringKey = "settingsPrivacyPolicy"
     let settingsHelp: LocalizedStringKey = "settingsHelp"
+    let settingsCredits: LocalizedStringKey = "settingsCredits"
     let settingsSectionInformationFooter: LocalizedStringKey = "settingsSectionInformationFooter"
     
     let settingsSectionLinks: LocalizedStringKey = "settingsSectionLinks"
@@ -33,8 +35,13 @@ struct SettingsView: View {
     let settingsSectionDeveloperSettings: LocalizedStringKey = "settingsSectionDeveloperSettings"
     let settingsBug: LocalizedStringKey = "settingsBug"
     let settingsFeature: LocalizedStringKey = "settingsFeature"
+    let settingsDatabase: LocalizedStringKey = "settingsDatabase"
+    let settingsSectionDeveloperSettingsFooter: LocalizedStringKey = "settingsSectionDeveloperSettingsFooter"
     
     let settingsFooter: LocalizedStringKey = "settingsFooter"
+    
+    let settingsThanks: LocalizedStringKey = "settingsThanks"
+    let settingsCopyright: LocalizedStringKey = "settingsCopyright"
     
     var body: some View {
         ZStack {
@@ -46,7 +53,7 @@ struct SettingsView: View {
                     
                     // MARK: - General
                     
-                    Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary)) {
+                    Section(header: Text(settingsSectionGeneral).foregroundColor(.secondary), footer: Text(settingsSectionGeneralFooter).foregroundColor(.secondary)) {
                         Toggle(isOn: $model.isLightMode) {
                             Label(settingsColorScheme, systemImage: model.isLightMode ? "sun.max.fill" : "sun.min")
                         }.listRowBackground(Color("ListRowBackground"))
@@ -111,12 +118,12 @@ struct SettingsView: View {
                             Button(action: {
                                 UIPasteboard.general.string = "https://astro.troja.mff.cuni.cz/mira/sh/sh.php"
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
                         
-                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md")!) {
+                        Link(destination: URL(string: "https://github.com/brozrost/Peep/blob/main/docs/PRIVACY.md")!) {
                             HStack {
                                 Label(settingsPrivacyPolicy, systemImage: "person.badge.key")
                                     .foregroundColor(.primary)
@@ -129,14 +136,14 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/blob/main/docs/PRIVACY.md"
+                                UIPasteboard.general.string = "https://github.com/brozrost/Peep/blob/main/docs/PRIVACY.md"
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
                         
-                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep")!) {
+                        Link(destination: URL(string: "https://github.com/brozrost/Peep")!) {
                             HStack {
                                 Label("GitHub", systemImage: "xserve")
                                     .foregroundColor(.primary)
@@ -149,14 +156,14 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep"
+                                UIPasteboard.general.string = "https://github.com/brozrost/Peep"
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
                         
-                        Link(destination: URL(string: "https://apps.apple.com/us/app/p%C3%ADp/id6444575713")!) {
+                        Link(destination: URL(string: "https://apps.apple.com/cz/app/peep-the-world-of-sundials/id6747686124?action=write-review")!) {
                             HStack {
                                 Label(settingsFeedback, systemImage: "leaf")
                                     .foregroundColor(.primary)
@@ -173,9 +180,9 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                UIPasteboard.general.string = "https://apps.apple.com/us/app/p%C3%ADp/id6444575713"
+                                UIPasteboard.general.string = "https://apps.apple.com/cz/app/peep-the-world-of-sundials/id6747686124?action=write-review"
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
@@ -183,8 +190,8 @@ struct SettingsView: View {
                     
                     // MARK: - Developer settings
                     
-                    Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary)) {
-                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title=")!) {
+                    Section(header: Text(settingsSectionDeveloperSettings).foregroundColor(.secondary), footer: Text(settingsSectionDeveloperSettingsFooter).foregroundStyle(Color.secondary)) {
+                        Link(destination: URL(string: "https://github.com/brozrost/Peep/issues/new?assignees=&labels=&template=bug_report.md&title=")!) {
                             HStack {
                                 Label(settingsBug, systemImage: "exclamationmark.triangle")
                                 
@@ -199,14 +206,14 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=bug_report.md&title="
+                                UIPasteboard.general.string = "https://github.com/brozrost/Peep/issues/new?assignees=&labels=&template=bug_report.md&title="
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
                         
-                        Link(destination: URL(string: "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=feature_request.md&title=")!) {
+                        Link(destination: URL(string: "https://github.com/brozrost/Peep/issues/new?assignees=&labels=&template=feature_request.md&title=")!) {
                             HStack {
                                 Label(settingsFeature, systemImage: "pencil.and.outline")
                                 
@@ -221,19 +228,46 @@ struct SettingsView: View {
                             }
                         }.swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button(action: {
-                                UIPasteboard.general.string = "https://github.com/scraptechguy/Peep/issues/new?assignees=&labels=&template=feature_request.md&title="
+                                UIPasteboard.general.string = "https://github.com/brozrost/Peep/issues/new?assignees=&labels=&template=feature_request.md&title="
                             }, label: {
-                                Label("Copy to clipboard", systemImage: "rectangle.on.rectangle")
+                                Label("", systemImage: "rectangle.on.rectangle")
                             })
                         }
                         .listRowBackground(Color("ListRowBackground"))
+                        
+                        HStack {
+                            Text(settingsDatabase)
+                            
+                            Spacer()
+                            
+                            Circle()
+                                .foregroundStyle(data.databaseOnline ? Color.green : Color.red)
+                                .frame(width: 10, height: 10)
+                            
+                            Circle()
+                                .foregroundStyle(data.jsonValid ? Color.green : Color.red)
+                                .frame(width: 10, height: 10)
+                        }
                     }.foregroundColor(.primary)
                     
-                    Section(footer: HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/scraptechguy")!) { Text("@scraptechguy").foregroundColor(.primary) }}) {
+                    // MARK: - Footer
+                    
+                    Section(footer:
+                        VStack(alignment: .leading, spacing: 10) {
+                            HStack(spacing: 0) { Text(settingsFooter).foregroundColor(.secondary); Link(destination: URL(string: "https://github.com/brozrost")!) {
+                                    Text("@brozrost").foregroundColor(.primary)
+                                }
+                            }
+                        }
+                    ) {
+                        NavigationLink(destination: CreditsView().navigationBarTitle(settingsCredits)) {
+                            Text(settingsCredits)
+                        }.listRowBackground(Color("ListRowBackground"))
+                        
                         Button(action: {
                             
                         }, label: {
-                            Label("\(String(localized: "settingsVersion")) \(Bundle.main.versionBuildString)", systemImage: "server.rack")
+                            Text("\(String(localized: "settingsVersion")) \(Bundle.main.versionBuildString)")
                                 .background(
                                     AnimatedBlobView()
                                         .frame(width: 400, height: 414)
@@ -243,10 +277,11 @@ struct SettingsView: View {
                         }).simultaneousGesture(LongPressGesture(minimumDuration: 1.5).onEnded { _ in
                             model.didLongPressed = true
                         }).sheet(isPresented: {$model.didLongPressed}()) {PeepView()}
+                            .foregroundColor(.secondary)
                             .listRowBackground(Color("ListRowBackground"))
-                    }.foregroundColor(.secondary)
+                    }
                     
-                    Text("© 2025 Rostislav Brož | Except where otherwise stated, content on this site is licensed under a Creative Commons Attribution 4.0 International License. | Main contact: Rostislav Brož (scraptechguy@gmail.com)")
+                    Text(settingsCopyright)
                         .multilineTextAlignment(.center)
                         .font(.footnote)
                         .foregroundStyle(Color.secondary)

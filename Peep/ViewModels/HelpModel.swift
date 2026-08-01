@@ -7,17 +7,26 @@
 
 import SwiftUI
 
+/// Represents a single help/guide entry in the in-app help system.
 struct Help: Identifiable {
-    
+    /// Unique identifier for SwiftUI `ForEach` and list diffing.
     var id: String = UUID().uuidString
-    var imageName: String
-    var title: String
-    var text: String
     
+    /// The name of the image asset to display for this help entry.
+    var imageName: String
+    
+    /// The localized title text for this help entry.
+    var title: String
+    
+    /// The localized descriptive or instructional text for this help entry.
+    var text: String
 }
 
+/// The list of all help/guide entries displayed in the help section of the app.
+///
+/// Each entry contains a localized title, descriptive text, and an associated image.
+/// The array order determines the display order in the UI.
 var guides: [Help] = [
-
     .init(imageName: "Help1", title: String(localized: "helpHeading1"), text: String(localized: "helpText1")),
     .init(imageName: "Help2", title: String(localized: "helpHeading2"), text: String(localized: "helpText2")),
     .init(imageName: "Help3", title: String(localized: "helpHeading3"), text: String(localized: "helpText3")),
@@ -29,5 +38,4 @@ var guides: [Help] = [
     .init(imageName: "Help9", title: String(localized: "helpHeading9"), text: String(localized: "helpText9")),
     .init(imageName: "Help10", title: String(localized: "helpHeading10"), text: String(localized: "helpText10")),
     .init(imageName: "Help11", title: String(localized: "helpHeading11"), text: String(localized: "helpText11")),
-
 ]

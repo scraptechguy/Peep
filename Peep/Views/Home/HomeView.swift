@@ -24,6 +24,12 @@ struct HomeView: View {
     let screenSize: CGRect = UIScreen.main.bounds
     
     let offlineAlert: LocalizedStringKey = "offlineAlert"
+    let north: LocalizedStringKey = "north"
+    
+    private var isFacingNorth: Bool {
+        let heading = model.mapHeading
+        return min(heading, 360 - heading) < 1
+    }
     
     private var cacheExists: Bool {
         let fm = FileManager.default
@@ -59,22 +65,6 @@ struct HomeView: View {
                     
                 }
             }.preferredColorScheme(model.isLightMode ? .light : .dark)
-                .onChange(of: model.annotationSelected, perform: { newValue in
-                    if !model.annotationSelected {
-                        
-                        model.shouldDeselectAnnotations = true
-                        
-                    }
-                })
-                .onChange(of: model.authorizationState, perform: { newValue in
-                    if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
-                        
-                        model.shouldCheckIsOnLocation = true
-                        
-                    }
-                    
-                    model.shouldDeselectAnnotations = true
-                })
                 
             SearchView(centerPlacemark: $centerPlacemark)
                 .environmentObject(data)
@@ -84,7 +74,42 @@ struct HomeView: View {
             SettingsView()
                 .opacity(model.showingSettings ? 1 : 0)
                 .animation(.easeInOut(duration: 0.2), value: model.showingSettings)
-        }.onChange(of: EquatableCoordinate(model.mapView.region.center)) { newCenter in
+        }
+        .onAppear {
+            if !net.isOnline && !cacheExists {
+                
+                showOfflineAlert = true
+                
+            }
+        }
+        .onChange(of: net.isOnline) { offline, online in
+            if online {
+                
+                data.fetchData()
+                
+            } else if !cacheExists {
+                
+                showOfflineAlert = true
+                
+            }
+        }
+        .onChange(of: model.annotationSelected) {
+            if !model.annotationSelected {
+                
+                model.shouldDeselectAnnotations = true
+                
+            }
+        }
+        .onChange(of: model.authorizationState) {
+            if model.authorizationState == .authorizedAlways || model.authorizationState == .authorizedWhenInUse {
+                
+                model.shouldCheckIsOnLocation = true
+                
+            }
+            
+            model.shouldDeselectAnnotations = true
+        }
+        .onChange(of: EquatableCoordinate(model.mapView.region.center)) { oldCenter, newCenter in
             // Cancel the previous task if it exists
             regionChangeWorkItem?.cancel()
             
@@ -106,24 +131,6 @@ struct HomeView: View {
             // Execute after 1 seconds if not cancelled
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: workItem)
         }
-        .onAppear {
-            if !net.isOnline && !cacheExists {
-                
-                showOfflineAlert = true
-                
-            }
-        }
-        .onChange(of: net.isOnline) { online in
-            if online {
-                
-                data.fetchData()
-                
-            } else if !cacheExists {
-                
-                showOfflineAlert = true
-                
-            }
-        }
         .alert("Offline!", isPresented: $showOfflineAlert) {
             Button("OK", role: .cancel) {}
         } message: {
@@ -135,6 +142,34 @@ struct HomeView: View {
     func locationButton() -> some View {
         VStack {
             Spacer()
+            
+            HStack {
+                Spacer()
+                
+                Button(action: {            
+                    let camera = model.mapView.camera.copy() as! MKMapCamera
+                    camera.heading = 0
+                    
+                    model.mapView.setCamera(camera, animated: true)
+                }, label: {
+                    Text(north)
+                        .bold()
+                        .foregroundColor(isFacingNorth ? .primary : .red)
+                        .animation(.easeInOut(duration: 0.2), value: isFacingNorth)
+                        .frame(width: 18, height: 18)
+                        .padding()
+                        .background {
+                            ZStack {
+                                Rectangle()
+                                    .fill(Color.clear)
+                                    .overlay(.thinMaterial)
+                                    .mask(
+                                        RoundedRectangle(cornerRadius: 30, style: .circular)
+                                    )
+                            }
+                    }
+                }).padding(.trailing)
+            }
             
             HStack {
                 Spacer()
@@ -169,6 +204,7 @@ struct HomeView: View {
                         
                         Image(systemName: model.isOnLocation ? "location.fill" : "location")
                             .foregroundColor(.primary)
+                            .frame(width: 18, height: 18)
                             .padding()
                             .background {
                                 ZStack {
@@ -185,6 +221,7 @@ struct HomeView: View {
                         
                         Image(systemName: "location")
                             .foregroundColor(.primary)
+                            .frame(width: 18, height: 18)
                             .padding()
                             .background {
                                 ZStack {

@@ -7,10 +7,14 @@
 
 import SwiftUI
 
+/// Static informational screen about Peep.
+/// Presents a logo, a title, several paragraphs of localized copy, and a close button.
+/// - Note: Visibility is controlled by `ContentModel.didLongPressed` upstream.
 struct PeepView: View {
-    
+    /// Global app state (for color scheme + dismiss flag).
     @EnvironmentObject var model: ContentModel
     
+    /// Localized strings used in the content body.
     let peepTitle: LocalizedStringKey = "peepTitle"
     let peepText1: LocalizedStringKey = "peepText1"
     let peepText2: LocalizedStringKey = "peepText2"
@@ -22,9 +26,13 @@ struct PeepView: View {
             Color("Background")
                 .ignoresSafeArea()
             
+            // Content scrolls if text overflows on small devices or large Dynamic Type.
             ScrollView(showsIndicators: false) {
                 VStack {
+                    // Header image / logo
                     Image("peep_initial")
+                        .resizable()
+                        .frame(width: 150, height: 150)
                         .padding(.top, 50)
                         .padding(.bottom, 20)
                     
@@ -59,6 +67,7 @@ struct PeepView: View {
                     .padding(.horizontal)
             }
             
+            // Close button pinned to top-trailing
             VStack {
                 HStack {
                     Spacer()
