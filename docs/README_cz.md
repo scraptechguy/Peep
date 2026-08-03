@@ -1,9 +1,11 @@
 <div align="center">
-  <a href="https://apps.apple.com/cz/app/p%C3%ADp/id6444575713" target="_blank"> 
+  <a href="https://apps.apple.com/cz/app/peep-the-world-of-sundials/id6747686124" target="_blank"> 
     <img width="100" height="100" alt="LaunchScreenImage1200x1200" src="https://github.com/user-attachments/assets/76011207-e401-4a51-8895-18e2c66a7573"/>
   </a>
-  
-  <b>Peep</b>
+
+  <a href="https://astro.troja.mff.cuni.cz/mira/sh/sh.php" target="_blank">
+    <img width="100" height="100" alt="logo_hvezdar1_pdf" src="https://github.com/user-attachments/assets/5a5066a0-6c0f-4c6a-a9f1-032611d77a2a" />
+  </a>
 </div>
 
 ## Peep ti pomůže objevit úžasný svět slunečních hodin. Najdi sluneční hodiny, prozkoumej informace o nich a naplánuj si výlet! 
