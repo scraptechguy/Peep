@@ -6,13 +6,13 @@
   <a href="https://astro.troja.mff.cuni.cz/mira/sh/sh.php" target="_blank">
     <img width="100" height="100" alt="logo_hvezdar1_pdf" src="https://github.com/user-attachments/assets/5a5066a0-6c0f-4c6a-a9f1-032611d77a2a" />
   </a>
-  
-  <b>Peep</b>
+
+  <a href="https://apps.apple.com/cz/app/peep-the-world-of-sundials/id6747686124" target="_blank"> 
+    <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> 
+  </a>
 </div>
 
 ## Discover the amazing world of sundials with Peep. Find sundials close to you, learn about their features, and plan out your trip! 
-
-There's over 7,000 sundials documented around the world. Zoom in and find them all!
 
 <div align="center">
   <a href="https://github.com/scraptechguy/Peep/actions">
@@ -35,12 +35,11 @@ There's over 7,000 sundials documented around the world. Zoom in and find them a
   <a href="/docs/README_cz.md">Čeština</a>
 </p>
 
+There's over 7,000 sundials documented around the world. Zoom in and find them all!
+
+Peep provides access to a database of more than 7,000 sundials and nearly 30,000 photographs. Features include an interactive map, search, detailed metadata, and navigation to individual sundials. Built with SwiftUI, MapKit, and Core Location. Supports localization, offline functionality, user location, caching, and database synchronization.
+
 <img width="5424" height="2796" alt="4previews" src="https://github.com/user-attachments/assets/a6335ea2-83a5-4bba-9109-c4fa20ed2e58" />
-
-
-<div align="center">
-  <a href="https://apps.apple.com/cz/app/peep-the-world-of-sundials/id6747686124" target="_blank"> <img width="250" alt="Download on the App Store" src="https://user-images.githubusercontent.com/75474651/196102512-b4307edf-2497-44f1-b847-05464128c9e1.svg"> </a>
-</div>
 
 ### Latest TestFlight release:
 
