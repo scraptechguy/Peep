@@ -15,22 +15,22 @@
 ## Discover the amazing world of sundials with Peep. Find sundials close to you, learn about their features, and plan out your trip! 
 
 <div align="center">
-  <a href="https://github.com/scraptechguy/Peep/actions">
-    <img src="https://github.com/scraptechguy/Peep/actions/workflows/objective-c-xcode.yml/badge.svg">
+  <a href="https://github.com/brozrost/Peep/actions">
+    <img src="https://github.com/brozrost/Peep/actions/workflows/objective-c-xcode.yml/badge.svg">
   </a>
-  <a href="https://github.com/scraptechguy/Peep/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/scraptechguy/Peep">
+  <a href="https://github.com/brozrost/Peep/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/brozrost/Peep">
   </a>
-  <a href="https://github.com/scraptechguy/Peep/issues">
-    <img src="https://img.shields.io/github/issues/scraptechguy/Peep">
+  <a href="https://github.com/brozrost/Peep/issues">
+    <img src="https://img.shields.io/github/issues/brozrost/Peep">
   </a>
-  <a href="https://github.com/scraptechguy/Peep/pulls">
-    <img src="https://img.shields.io/github/issues-pr/scraptechguy/Peep">
+  <a href="https://github.com/brozrost/Peep/pulls">
+    <img src="https://img.shields.io/github/issues-pr/brozrost/Peep">
   </a>
 </div>
 
 <p align="center">
-  <a href="https://github.com/scraptechguy/Peep#readme">English </a>
+  <a href="https://github.com/brozrost/Peep#readme">English </a>
   ·
   <a href="/docs/README_cz.md">Čeština</a>
 </p>
